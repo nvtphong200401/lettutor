@@ -19,8 +19,14 @@ class ColorName {
   /// Color: #2A3453
   static const Color formDesc = Color(0xFF2A3453);
 
+  /// Color: #2ECC71
+  static const Color green = Color(0xFF2ECC71);
+
   /// Color: #A4B0BE
   static const Color grey = Color(0xFFA4B0BE);
+
+  /// Color: #787878
+  static const Color partDesc = Color(0xFF787878);
 
   /// Color: #0071F0
   static const Color primary = Color(0xFF0071F0);
