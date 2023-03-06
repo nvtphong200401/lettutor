@@ -16,6 +16,9 @@ class ColorName {
   /// Color: #FFFFFF
   static const Color background = Color(0xFFFFFFFF);
 
+  /// Color: #F1F1F1
+  static const Color cardhistory = Color(0xFFF1F1F1);
+
   /// Color: #2A3453
   static const Color formDesc = Color(0xFF2A3453);
 
@@ -30,6 +33,9 @@ class ColorName {
 
   /// Color: #0071F0
   static const Color primary = Color(0xFF0071F0);
+
+  /// Color: #1890FF
+  static const Color textButton = Color(0xFF1890FF);
 
   /// Color: #000000
   static const Color textColor = Color(0xFF000000);
