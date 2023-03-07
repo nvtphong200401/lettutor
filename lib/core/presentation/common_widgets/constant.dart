@@ -9,4 +9,6 @@ const textSize18 = TextStyle(fontSize: 18);
 const textSize16 = TextStyle(fontSize: 16);
 const partTitle = TextStyle(fontSize: 17, color: ColorName.textColor);
 const partContent = TextStyle(fontSize: 17, color: ColorName.textColor);
+const partTitleDesc = TextStyle(
+    fontSize: 16, color: ColorName.textColor, fontWeight: FontWeight.w700);
 const partDesc = TextStyle(fontSize: 14, color: ColorName.partDesc);

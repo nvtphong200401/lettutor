@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
 
-class HistoryItem extends StatelessWidget {
+class HistoryItem extends StatelessWidget with BuildWhiteContainerMixin {
   const HistoryItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: ColorName.cardhistory,
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.symmetric(vertical: 12),
+    return greyBoxContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -63,14 +61,6 @@ class HistoryItem extends StatelessWidget {
           ))
         ],
       ),
-    );
-  }
-
-  Widget whiteBoxContainer({required Widget child}) {
-    return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-      child: child,
     );
   }
 }

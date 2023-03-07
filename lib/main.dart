@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/presentation/history/history_student_screen.dart';
+import 'package:lettutor/presentation/schedule/booking_student.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           colorScheme:
               const ColorScheme.light(background: ColorName.background)),
-      home: const HistoryStudentScreen(),
+      home: const BookingStudentScreen(),
     );
   }
 }
