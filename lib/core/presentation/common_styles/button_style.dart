@@ -18,7 +18,7 @@ extension ButtonStyleEx on ButtonStyle {
   ButtonStyle customCopyWith(
       {Color? borderColor, bool capsuleShape = true, Color? backgroundColor, Color? textColor}) {
     return copyWith(
-      textStyle: MaterialStatePropertyAll(TextStyle(color: textColor)),
+      // textStyle: MaterialStatePropertyAll(TextStyle(color: textColor)),
       shape: MaterialStatePropertyAll(
         RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(capsuleShape ? 45 : 6),

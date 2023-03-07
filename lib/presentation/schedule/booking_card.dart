@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 
-import '../../core/presentation/common_widgets/constant.dart';
+import '../../core/presentation/common_styles/text_style.dart';
 import '../teacher/teacher_info.dart';
 
 class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
@@ -18,7 +18,7 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
       children: [
         Text(
           DateFormat('EEE, dd MMM yy').format(DateTime.now()),
-          style: textSize24.copyWith(fontWeight: FontWeight.w700),
+          style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
         ),
         Text(
           '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',

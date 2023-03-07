@@ -6,9 +6,11 @@ class CommonTextStyle {
   CommonTextStyle._();
   static const textSize30 = TextStyle(fontSize: 30);
   static const textSize24 = TextStyle(fontSize: 24);
+  static const title = TextStyle(fontSize: 22, fontWeight: FontWeight.w600);
+  static const content = TextStyle(fontSize: 14, color: ColorName.textColor);
   static const textSize20 = TextStyle(fontSize: 20);
   static const textSize18 = TextStyle(fontSize: 18);
-  static const textSize16 = TextStyle(fontSize: 16);
+  static const textSize16 = TextStyle(fontSize: 16, color: ColorName.textColor);
   static const partTitle = TextStyle(fontSize: 17, color: ColorName.textColor);
   static const partContent = TextStyle(fontSize: 17, color: ColorName.textColor);
   static const partTitleDesc =

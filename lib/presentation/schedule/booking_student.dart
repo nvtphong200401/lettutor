@@ -11,82 +11,79 @@ class BookingStudentScreen extends StatelessWidget with BuildWhiteContainerMixin
 
   @override
   Widget build(BuildContext context) {
-    return DismissKeyboardScaffold(
-      appBar: const CommonAppBar(),
-      body: ListView(
-        padding: const EdgeInsets.all(10),
-        children: [
-          CommonHeader(
-            avatar: SvgPicture.network(
-                'https://sandbox.app.lettutor.com/static/media/calendar-check.7cf3b05d.svg'),
-            title: 'Schedule',
-            children: const [
-              Text(
-                'Here is a list of the sessions you have booked',
-                style: CommonTextStyle.textSize16,
+    return ListView(
+      padding: const EdgeInsets.all(10),
+      children: [
+        CommonHeader(
+          avatar: SvgPicture.network(
+              'https://sandbox.app.lettutor.com/static/media/calendar-check.7cf3b05d.svg'),
+          title: 'Schedule',
+          children: const [
+            Text(
+              'Here is a list of the sessions you have booked',
+              style: CommonTextStyle.textSize16,
+            ),
+            Text(
+              'You can track when the meeting starts, join the meeting with one click or can cancel the meeting before 2 hours',
+              style: CommonTextStyle.textSize16,
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 48,
+            bottom: 16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Latest Book',
+                style: CommonTextStyle.partTitleDesc,
               ),
-              Text(
-                'You can track when the meeting starts, join the meeting with one click or can cancel the meeting before 2 hours',
-                style: CommonTextStyle.textSize16,
+              const SizedBox(
+                height: 10,
+              ),
+              Table(
+                border: TableBorder.all(
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(5), topRight: Radius.circular(5))),
+                children: [
+                  TableRow(children: [
+                    _tableItem(text: 'Name', bgColor: ColorName.cardhistory),
+                    _tableItem(text: '3.pdf', textColor: ColorName.primary),
+                    _tableItem(text: 'Page', bgColor: ColorName.cardhistory),
+                    _tableItem(text: '1'),
+                  ], decoration: const BoxDecoration()),
+                ],
+              ),
+              Table(
+                columnWidths: const {
+                  0: IntrinsicColumnWidth(flex: 1),
+                  1: IntrinsicColumnWidth(flex: 3),
+                },
+                border: const TableBorder(
+                  left: BorderSide(),
+                  verticalInside: BorderSide(),
+                  bottom: BorderSide(),
+                  right: BorderSide(),
+                ),
+                children: [
+                  TableRow(children: [
+                    _tableItem(text: 'Description', bgColor: ColorName.cardhistory),
+                    _tableItem(text: ''),
+                  ], decoration: BoxDecoration(borderRadius: BorderRadius.circular(10))),
+                ],
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 48,
-              bottom: 16,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  'Latest Book',
-                  style: CommonTextStyle.partTitleDesc,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Table(
-                  border: TableBorder.all(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(5), topRight: Radius.circular(5))),
-                  children: [
-                    TableRow(children: [
-                      _tableItem(text: 'Name', bgColor: ColorName.cardhistory),
-                      _tableItem(text: '3.pdf', textColor: ColorName.primary),
-                      _tableItem(text: 'Page', bgColor: ColorName.cardhistory),
-                      _tableItem(text: '1'),
-                    ], decoration: const BoxDecoration()),
-                  ],
-                ),
-                Table(
-                  columnWidths: const {
-                    0: IntrinsicColumnWidth(flex: 1),
-                    1: IntrinsicColumnWidth(flex: 3),
-                  },
-                  border: const TableBorder(
-                    left: BorderSide(),
-                    verticalInside: BorderSide(),
-                    bottom: BorderSide(),
-                    right: BorderSide(),
-                  ),
-                  children: [
-                    TableRow(children: [
-                      _tableItem(text: 'Description', bgColor: ColorName.cardhistory),
-                      _tableItem(text: ''),
-                    ], decoration: BoxDecoration(borderRadius: BorderRadius.circular(10))),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const BookingCard(),
-          const SizedBox(
-            height: 10,
-          ),
-          const BookingCard(),
-        ],
-      ),
+        ),
+        const BookingCard(),
+        const SizedBox(
+          height: 10,
+        ),
+        const BookingCard(),
+      ],
     );
   }
 

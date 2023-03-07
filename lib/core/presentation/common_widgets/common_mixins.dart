@@ -14,7 +14,7 @@ mixin BuildWhiteContainerMixin {
     );
   }
 
-  greyBoxContainer({required Widget child}) {
+  Container greyBoxContainer({required Widget child}) {
     return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),

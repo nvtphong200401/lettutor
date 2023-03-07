@@ -13,6 +13,9 @@ import 'package:flutter/material.dart';
 class ColorName {
   ColorName._();
 
+  /// Color: #DDEAFF
+  static const Color activeTag = Color(0xFFDDEAFF);
+
   /// Color: #FFFFFF
   static const Color background = Color(0xFFFFFFFF);
 

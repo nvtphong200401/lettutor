@@ -85,9 +85,9 @@ class UpcommingLessonBoard extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Text(
+            Text(
               'Total lesson time is 5 hours 0 minutes',
-              style: CommonTextStyle.textSize16,
+              style: CommonTextStyle.textSize16.copyWith(color: Colors.white),
             )
           ],
         ),
