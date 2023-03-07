@@ -1,10 +1,11 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 
-import '../../core/presentation/common_styles/text_style.dart';
 import '../teacher/teacher_info.dart';
 
 class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
@@ -18,7 +19,8 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
       children: [
         Text(
           DateFormat('EEE, dd MMM yy').format(DateTime.now()),
-          style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
+          style:
+              CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
         ),
         Text(
           '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
@@ -33,32 +35,31 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
           ),
         ),
         const SizedBox(
-          height: 5,
+          height: 10,
         ),
         whiteBoxContainer(
-            child: Column(
-          children: const [
-            Text('Lesson Time: 08:30 - 09:25'),
-          ],
-        )),
+          child: const CommonLessonTime(startTime: '08:30', endTime: '09:30'),
+        ),
         const SizedBox(
-          height: 5,
+          height: 1,
         ),
         whiteBoxContainer(
-          child: buildSection(),
+          child: buildSection('Sesson 1: 08:30 - 08:55'),
         ),
         const SizedBox(
-          height: 5,
+          height: 1,
         ),
-        whiteBoxContainer(child: buildSection()),
+        whiteBoxContainer(child: buildSection('Sesson 2: 08:55 - 09:30')),
         const SizedBox(
-          height: 5,
+          height: 1,
         ),
         whiteBoxContainer(
           child: ExpandablePanel(
             header: const Padding(
-              padding: EdgeInsets.only(top: 2.0, left: 10),
-              child: Text('Request for lesson'),
+              padding: EdgeInsets.only(left: 10),
+              child: Text(
+                'Request for lesson',
+              ),
             ),
             collapsed: const SizedBox.shrink(),
             expanded: Column(
@@ -77,21 +78,24 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
             theme: const ExpandableThemeData(
                 iconRotationAngle: 2,
                 iconPlacement: ExpandablePanelIconPlacement.left,
-                iconSize: 18,
+                iconSize: 14,
                 expandIcon: Icons.arrow_forward_ios,
                 // collapseIcon: Icons.keyboard_arrow_down,
-                iconPadding: EdgeInsets.zero),
+                iconPadding: EdgeInsets.only(top: 1)),
           ),
+        ),
+        const SizedBox(
+          height: 10,
         ),
         // ),
         SizedBox(
           width: 50,
           child: ElevatedButton(
-            style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(ColorName.primary)),
+            style: CommonButtonStyle.primaryButtonStyle.customCopyWith(),
             onPressed: () {},
             child: const Text(
               'Go to meeting',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),
         )
@@ -99,33 +103,67 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
     ));
   }
 
-  Widget buildSection() {
+  Widget buildSection(String text) {
     return Row(
       children: [
-        const Text('Sesson 1: 08:30 - 08:55'),
+        Text(
+          text,
+        ),
         const Spacer(),
-        SizedBox(
-          height: 30,
-          child: OutlinedButton(
-            onPressed: () {},
-            style: const ButtonStyle(
-              foregroundColor: MaterialStatePropertyAll(Colors.red),
-              side: MaterialStatePropertyAll(BorderSide(color: Colors.red)),
-            ),
-            child: Row(
-              children: const [
-                Icon(
-                  Icons.cancel,
-                  size: 18,
-                ),
-                SizedBox(
-                  width: 3,
-                ),
-                Text('Cancel'),
-              ],
-            ),
+        Container(
+          decoration: BoxDecoration(
+            color: ColorName.background,
+            border: Border.all(color: Colors.red),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+          child: Row(
+            children: [
+              const Icon(
+                Icons.cancel,
+                size: 12,
+                color: Colors.red,
+              ),
+              const SizedBox(
+                width: 3,
+              ),
+              Text(
+                'Cancel',
+                style: CommonTextStyle.textSize12.copyWith(color: Colors.red),
+              ),
+            ],
           ),
         )
+        // SizedBox(
+        //   height: 30,
+        //   child: OutlinedButton(
+        //     onPressed: () {},
+        //     style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
+        //       backgroundColor: Colors.white,
+        //       foregroundColor: Colors.red,
+        //       borderColor: Colors.red,
+        //     ),
+        //     // const ButtonStyle(
+        //     //   foregroundColor: MaterialStatePropertyAll(Colors.red),
+        //     //   side: MaterialStatePropertyAll(BorderSide(color: Colors.red)),
+        //     // ),
+        //     child: Row(
+        //       children: const [
+        //         Icon(
+        //           Icons.cancel,
+        //           size: 14,
+        //         ),
+        //         SizedBox(
+        //           width: 3,
+        //         ),
+        //         Text(
+        //           'Cancel',
+        //           style: CommonTextStyle.textSize12,
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // )
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../gen/colors.gen.dart';
 
@@ -24,16 +25,34 @@ class TeacherInfo extends StatelessWidget {
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
+          children: [
+            const Text(
               'Joan Gacer',
               style: TextStyle(
                   color: ColorName.textColor,
                   fontSize: 22,
                   fontWeight: FontWeight.bold),
             ),
-            Text('No reviews yet'),
-            Text('Vietnam'),
+            const SizedBox(
+              height: 2,
+            ),
+            const Text('No reviews yet'),
+            const SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: [
+                SvgPicture.network(
+                  'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/vn.svg',
+                  width: 18,
+                  height: 18,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                const Text('Vietnam'),
+              ],
+            ),
           ],
         ),
         const Spacer(),

@@ -16,7 +16,8 @@ class CourseDetailScreen extends StatelessWidget {
         padding: paddingLayout,
         children: [
           Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -26,7 +27,8 @@ class CourseDetailScreen extends StatelessWidget {
                         imageErrorBuilder: (context, error, stackTrace) {
                           return const SizedBox.shrink();
                         },
-                        placeholder: const AssetImage('assets/images/login_banner.png'),
+                        placeholder:
+                            const AssetImage('assets/images/login_banner.png'),
                         image: const NetworkImage(
                             'https://camblycurriculumicons.s3.amazonaws.com/5e0e8b212ac750e7dc9886ac?h=d41d8cd98f00b204e9800998ecf8427e'))),
                 ListView(
@@ -93,8 +95,8 @@ class CourseDetailScreen extends StatelessWidget {
 
   Widget buildTopicItem(String topic) {
     return ElevatedButton(
-        style: CommonButtonStyle.primaryButtonStyle
-            .customCopyWith(backgroundColor: ColorName.cardhistory, capsuleShape: false),
+        style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
+            backgroundColor: ColorName.cardhistory, capsuleShape: false),
         onPressed: () {},
         child: Align(
           alignment: Alignment.centerLeft,
@@ -157,7 +159,8 @@ class CourseDetailScreen extends StatelessWidget {
             ),
             Text(
               title,
-              style: CommonTextStyle.textSize16.copyWith(fontWeight: FontWeight.w500),
+              style: CommonTextStyle.textSize16
+                  .copyWith(fontWeight: FontWeight.w500),
             ),
           ]),
           Row(

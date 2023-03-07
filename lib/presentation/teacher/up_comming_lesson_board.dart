@@ -17,8 +17,9 @@ class UpcommingLessonBoard extends StatelessWidget {
       style: const TextStyle(color: Colors.white),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 40),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: const LinearGradient(colors: [
             Color(0xFF0C3DDF),
             Color(0xFF05179D),
           ], begin: Alignment.topLeft, end: Alignment.bottomRight),
@@ -31,7 +32,7 @@ class UpcommingLessonBoard extends StatelessWidget {
               style: CommonTextStyle.textSize30,
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -40,14 +41,21 @@ class UpcommingLessonBoard extends StatelessWidget {
                 children: [
                   Flexible(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
                           'Sun, 05 Mar 23',
                           style: CommonTextStyle.textSize20,
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         const Text(
                           '1:30 - 1:55',
                           style: CommonTextStyle.textSize20,
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         CountDownText(endTime: DateTime(2023, 3, 5))
                       ],
@@ -57,10 +65,11 @@ class UpcommingLessonBoard extends StatelessWidget {
                     height: 40,
                     child: ElevatedButton(
                       onPressed: () {},
-                      style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
-                          textColor: ColorName.primary,
-                          capsuleShape: true,
-                          backgroundColor: ColorName.background),
+                      style: CommonButtonStyle.primaryButtonStyle
+                          .customCopyWith(
+                              textColor: ColorName.primary,
+                              capsuleShape: true,
+                              backgroundColor: ColorName.background),
                       child: Row(
                         children: const [
                           Icon(
@@ -83,7 +92,7 @@ class UpcommingLessonBoard extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             Text(
               'Total lesson time is 5 hours 0 minutes',

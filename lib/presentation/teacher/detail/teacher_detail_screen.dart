@@ -110,7 +110,8 @@ class TeacherDetailScreen extends HookWidget {
           ),
           buildPartDesc(
               title: 'Interests',
-              desc: 'I loved the weather, the scenery and the laid-back lifestyle of the locals.'),
+              desc:
+                  'I loved the weather, the scenery and the laid-back lifestyle of the locals.'),
           const SizedBox(
             height: 20,
           ),
@@ -125,26 +126,25 @@ class TeacherDetailScreen extends HookWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(ColorName.primary),
+                    backgroundColor:
+                        MaterialStatePropertyAll(ColorName.primary),
                     elevation: MaterialStatePropertyAll(0)),
                 child: const Text('Today'),
               ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_left_outlined)),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_right_outlined)),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.keyboard_arrow_left_outlined)),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.keyboard_arrow_right_outlined)),
               Text(DateFormat('MMM y').format(DateTime.now()))
             ],
           ),
           GridView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            // padding: const EdgeInsets.symmetric(
-            //   horizontal: 30,
-            //   vertical: 20,
-            // ),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 5,
-              // mainAxisSpacing: 30,
-              // crossAxisSpacing: 36,
             ),
             itemCount: 30,
             itemBuilder: (context, index) => DecoratedBox(
@@ -165,7 +165,8 @@ class TeacherDetailScreen extends HookWidget {
     if (index == 0) return const SizedBox.shrink();
     if (index < 5) {
       final DateTime now = DateTime.now();
-      String date = DateFormat('dd/MM EE').format(now.copyWith(day: now.day + index));
+      String date =
+          DateFormat('dd/MM EE').format(now.copyWith(day: now.day + index));
       return Text(date);
     }
     if (index % 5 == 0) {
@@ -237,7 +238,7 @@ class TeacherDetailScreen extends HookWidget {
         child: ElevatedButton(
           onPressed: () {},
           style: CommonButtonStyle.primaryButtonStyle
-              .customCopyWith(backgroundColor: ColorName.primary.withOpacity(0.3)),
+              .customCopyWith(backgroundColor: ColorName.activeTag),
           child: Text(
             text,
             style: const TextStyle(color: ColorName.primary),

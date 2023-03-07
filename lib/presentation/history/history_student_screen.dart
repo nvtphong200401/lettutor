@@ -15,7 +15,9 @@ class HistoryStudentScreen extends StatelessWidget {
       children: [
         CommonHeader(
           avatar: SvgPicture.network(
-              'https://sandbox.app.lettutor.com/static/media/history.1e097d10.svg'),
+            'https://sandbox.app.lettutor.com/static/media/history.1e097d10.svg',
+            width: 100,
+          ),
           title: 'History',
           children: const [
             Text(

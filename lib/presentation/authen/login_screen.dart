@@ -4,6 +4,7 @@ import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/assets.gen.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/main.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -16,6 +17,9 @@ class LoginScreen extends StatelessWidget {
         padding: paddingLayout,
         children: [
           Assets.images.loginBanner.image(),
+          const SizedBox(
+            height: 10,
+          ),
           const Text(
             'Say hello to your English tutors',
             style: TextStyle(
@@ -25,11 +29,13 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Text(
               'Become fluent faster through one on one video chat lessons tailored to your goals.',
-              style:
-                  TextStyle(color: ColorName.formDesc, fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: ColorName.formDesc,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           const CommonInputField(
@@ -38,6 +44,7 @@ class LoginScreen extends StatelessWidget {
           ),
           const CommonInputField(
             title: 'Password',
+            hintText: 'Password',
             obscureText: true,
           ),
           Align(
@@ -46,16 +53,18 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text(
                   'Forgot Password?',
-                  style: TextStyle(color: ColorName.primary, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: ColorName.primary, fontWeight: FontWeight.bold),
                 )),
           ),
-          const SizedBox(
-            height: 10,
-          ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const MyHomePage(title: 'Test')));
+            },
             style: CommonButtonStyle.primaryButtonStyle,
-            child: const Text('LOGIN', style: TextStyle(color: ColorName.background)),
+            child: const Text('LOGIN',
+                style: TextStyle(color: ColorName.background)),
           ),
           const Center(
             child: Padding(

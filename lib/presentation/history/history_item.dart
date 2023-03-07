@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
@@ -17,7 +18,8 @@ class HistoryItem extends StatelessWidget with BuildWhiteContainerMixin {
         children: [
           Text(
             DateFormat('EEE, dd MMM yy').format(DateTime.now()),
-            style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
+            style: CommonTextStyle.textSize24
+                .copyWith(fontWeight: FontWeight.w700),
           ),
           Text(
             '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
@@ -32,9 +34,11 @@ class HistoryItem extends StatelessWidget with BuildWhiteContainerMixin {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
-          whiteBoxContainer(child: const Text('Lesson Time: 18:00 - 18:25')),
+          whiteBoxContainer(
+              child:
+                  const CommonLessonTime(startTime: '08:30', endTime: '09:30')),
           const SizedBox(
             height: 1,
           ),
