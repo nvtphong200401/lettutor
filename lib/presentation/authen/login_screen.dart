@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/assets.gen.dart';
@@ -27,10 +28,8 @@ class LoginScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 8.0),
             child: Text(
               'Become fluent faster through one on one video chat lessons tailored to your goals.',
-              style: TextStyle(
-                  color: ColorName.formDesc,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: ColorName.formDesc, fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
           const CommonInputField(
@@ -47,15 +46,16 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text(
                   'Forgot Password?',
-                  style: TextStyle(
-                      color: ColorName.primary, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: ColorName.primary, fontWeight: FontWeight.bold),
                 )),
           ),
           const SizedBox(
             height: 10,
           ),
-          const CommonPrimaryButton(
-            child: Text('LOGIN', style: TextStyle(color: ColorName.background)),
+          ElevatedButton(
+            onPressed: () {},
+            style: CommonButtonStyle.primaryButtonStyle,
+            child: const Text('LOGIN', style: TextStyle(color: ColorName.background)),
           ),
           const Center(
             child: Padding(

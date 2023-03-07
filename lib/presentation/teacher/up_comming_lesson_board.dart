@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../core/presentation/common_widgets/common_widgets.dart';
-import '../../core/presentation/common_widgets/constant.dart';
+import '../../core/presentation/common_styles/common_styles.dart';
 import '../../gen/colors.gen.dart';
 
 class UpcommingLessonBoard extends StatelessWidget {
@@ -29,7 +28,7 @@ class UpcommingLessonBoard extends StatelessWidget {
           children: [
             const Text(
               'Up comming lesson',
-              style: textSize30,
+              style: CommonTextStyle.textSize30,
             ),
             const SizedBox(
               height: 10,
@@ -44,36 +43,40 @@ class UpcommingLessonBoard extends StatelessWidget {
                       children: [
                         const Text(
                           'Sun, 05 Mar 23',
-                          style: textSize20,
+                          style: CommonTextStyle.textSize20,
                         ),
                         const Text(
                           '1:30 - 1:55',
-                          style: textSize20,
+                          style: CommonTextStyle.textSize20,
                         ),
                         CountDownText(endTime: DateTime(2023, 3, 5))
                       ],
                     ),
                   ),
-                  CommonPrimaryButton(
-                    backgroundColor: ColorName.background,
-                    capsuleShape: true,
-                    textColor: ColorName.primary,
-                    size: const Size.fromHeight(40),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          FontAwesomeIcons.youtube,
-                          size: 16,
-                          color: ColorName.primary,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Enter lesson room',
-                          style: TextStyle(color: ColorName.primary),
-                        )
-                      ],
+                  SizedBox(
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
+                          textColor: ColorName.primary,
+                          capsuleShape: true,
+                          backgroundColor: ColorName.background),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            FontAwesomeIcons.youtube,
+                            size: 16,
+                            color: ColorName.primary,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Enter lesson room',
+                            style: TextStyle(color: ColorName.primary),
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -84,7 +87,7 @@ class UpcommingLessonBoard extends StatelessWidget {
             ),
             const Text(
               'Total lesson time is 5 hours 0 minutes',
-              style: textSize16,
+              style: CommonTextStyle.textSize16,
             )
           ],
         ),

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
-import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/presentation/schedule/booking_card.dart';
 
-import '../teacher/teacher_info.dart';
+import '../../core/presentation/common_styles/common_styles.dart';
 
-class BookingStudentScreen extends StatelessWidget
-    with BuildWhiteContainerMixin {
+class BookingStudentScreen extends StatelessWidget with BuildWhiteContainerMixin {
   const BookingStudentScreen({super.key});
 
   @override
@@ -16,7 +14,7 @@ class BookingStudentScreen extends StatelessWidget
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
       body: ListView(
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(10),
         children: [
           CommonHeader(
             avatar: SvgPicture.network(
@@ -25,11 +23,11 @@ class BookingStudentScreen extends StatelessWidget
             children: const [
               Text(
                 'Here is a list of the sessions you have booked',
-                style: textSize16,
+                style: CommonTextStyle.textSize16,
               ),
               Text(
                 'You can track when the meeting starts, join the meeting with one click or can cancel the meeting before 2 hours',
-                style: textSize16,
+                style: CommonTextStyle.textSize16,
               ),
             ],
           ),
@@ -43,16 +41,22 @@ class BookingStudentScreen extends StatelessWidget
               children: [
                 const Text(
                   'Latest Book',
-                  style: partTitleDesc,
+                  style: CommonTextStyle.partTitleDesc,
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Table(
-                  children: const [
+                  border: TableBorder.all(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(5), topRight: Radius.circular(5))),
+                  children: [
                     TableRow(children: [
-                      Text('Name'),
-                      Text('3.pdf'),
-                      Text('Page'),
-                      Text('1'),
-                    ]),
+                      _tableItem(text: 'Name', bgColor: ColorName.cardhistory),
+                      _tableItem(text: '3.pdf', textColor: ColorName.primary),
+                      _tableItem(text: 'Page', bgColor: ColorName.cardhistory),
+                      _tableItem(text: '1'),
+                    ], decoration: const BoxDecoration()),
                   ],
                 ),
                 Table(
@@ -60,108 +64,40 @@ class BookingStudentScreen extends StatelessWidget
                     0: IntrinsicColumnWidth(flex: 1),
                     1: IntrinsicColumnWidth(flex: 3),
                   },
-                  children: const [
+                  border: const TableBorder(
+                    left: BorderSide(),
+                    verticalInside: BorderSide(),
+                    bottom: BorderSide(),
+                    right: BorderSide(),
+                  ),
+                  children: [
                     TableRow(children: [
-                      Text('Description'),
-                      Text('Some long textttttttttttttttttttttttt')
-                    ]),
+                      _tableItem(text: 'Description', bgColor: ColorName.cardhistory),
+                      _tableItem(text: ''),
+                    ], decoration: BoxDecoration(borderRadius: BorderRadius.circular(10))),
                   ],
                 ),
               ],
             ),
           ),
-          greyBoxContainer(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                DateFormat('EEE, dd MMM yy').format(DateTime.now()),
-                style: textSize24.copyWith(fontWeight: FontWeight.w700),
-              ),
-              Text(
-                '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
-                style: const TextStyle(fontStyle: FontStyle.italic),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              whiteBoxContainer(
-                child: const TeacherInfo(
-                  favIcon: false,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              whiteBoxContainer(
-                  child: Column(
-                children: const [
-                  Text('Lesson Time: 08:30 - 09:25'),
-                ],
-              )),
-              const SizedBox(
-                height: 5,
-              ),
-              whiteBoxContainer(
-                child: buildSection(),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              whiteBoxContainer(child: buildSection()),
-              const SizedBox(
-                height: 5,
-              ),
-              ExpansionTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                expandedAlignment: Alignment.centerLeft,
-                expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                backgroundColor: Colors.white,
-                collapsedBackgroundColor: Colors.white,
-                textColor: ColorName.textColor,
-                iconColor: Colors.black,
-                childrenPadding: const EdgeInsets.symmetric(horizontal: 20),
-                // tilePadding: const EdgeInsets.symmetric(vertical: 12),
-                title: const Text('Request for lesson'),
-                leading: const SizedBox.shrink(),
-                trailing: null,
-                children: const [Text('This is comment')],
-              ),
-            ],
-          ))
+          const BookingCard(),
+          const SizedBox(
+            height: 10,
+          ),
+          const BookingCard(),
         ],
       ),
     );
   }
 
-  Widget buildSection() {
-    return Row(
-      children: [
-        const Text('Sesson 1: 08:30 - 08:55'),
-        const Spacer(),
-        SizedBox(
-          height: 30,
-          child: OutlinedButton(
-            onPressed: () {},
-            style: const ButtonStyle(
-              foregroundColor: MaterialStatePropertyAll(Colors.red),
-              side: MaterialStatePropertyAll(BorderSide(color: Colors.red)),
-            ),
-            child: Row(
-              children: const [
-                Icon(
-                  Icons.cancel,
-                  size: 18,
-                ),
-                SizedBox(
-                  width: 3,
-                ),
-                Text('Cancel'),
-              ],
-            ),
-          ),
-        )
-      ],
+  Widget _tableItem({required String text, Color? textColor, Color? bgColor}) {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      color: bgColor,
+      child: Text(
+        text,
+        style: TextStyle(color: textColor),
+      ),
     );
   }
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'constant.dart';
+import '../common_styles/common_styles.dart';
 
 class CommonHeader extends StatelessWidget {
-  const CommonHeader(
-      {super.key, required this.avatar, required this.title, this.children});
+  const CommonHeader({super.key, required this.avatar, required this.title, this.children});
   final Widget avatar;
   final String title;
   final List<Widget>? children;
@@ -20,7 +19,7 @@ class CommonHeader extends StatelessWidget {
         //     'https://sandbox.app.lettutor.com/static/media/history.1e097d10.svg'),
         Text(
           title,
-          style: textSize30,
+          style: CommonTextStyle.textSize30,
         ),
         if (children != null) ...children!,
         // const Text(

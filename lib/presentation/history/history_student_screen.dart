@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/presentation/history/history_item.dart';
 
+import '../../core/presentation/common_styles/common_styles.dart';
 import '../../core/presentation/common_widgets/common_widgets.dart';
 
 class HistoryStudentScreen extends StatelessWidget {
@@ -22,11 +22,11 @@ class HistoryStudentScreen extends StatelessWidget {
             children: const [
               Text(
                 'The following is a list of lessons you have attended',
-                style: textSize16,
+                style: CommonTextStyle.textSize16,
               ),
               Text(
                 'You can review the details of the lessons you have attended',
-                style: textSize16,
+                style: CommonTextStyle.textSize16,
               )
             ],
           ),

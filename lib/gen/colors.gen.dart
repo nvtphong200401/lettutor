@@ -19,6 +19,9 @@ class ColorName {
   /// Color: #F1F1F1
   static const Color cardhistory = Color(0xFFF1F1F1);
 
+  /// Color: #808080
+  static const Color courseDesc = Color(0xFF808080);
+
   /// Color: #2A3453
   static const Color formDesc = Color(0xFF2A3453);
 

@@ -9,6 +9,7 @@ import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../core/presentation/common_styles/common_styles.dart';
 import '../teacher_info.dart';
 
 class TeacherDetailScreen extends HookWidget {
@@ -67,7 +68,7 @@ class TeacherDetailScreen extends HookWidget {
           ),
           const Text(
             'Languages',
-            style: partTitle,
+            style: CommonTextStyle.partTitle,
           ),
           const SizedBox(
             height: 10,
@@ -80,7 +81,7 @@ class TeacherDetailScreen extends HookWidget {
           ),
           const Text(
             'Specialties',
-            style: partTitle,
+            style: CommonTextStyle.partTitle,
           ),
           const SizedBox(
             height: 10,
@@ -97,7 +98,7 @@ class TeacherDetailScreen extends HookWidget {
           ),
           const Text(
             'Suggested courses',
-            style: partTitle,
+            style: CommonTextStyle.partTitle,
           ),
           const SizedBox(
             height: 10,
@@ -109,8 +110,7 @@ class TeacherDetailScreen extends HookWidget {
           ),
           buildPartDesc(
               title: 'Interests',
-              desc:
-                  'I loved the weather, the scenery and the laid-back lifestyle of the locals.'),
+              desc: 'I loved the weather, the scenery and the laid-back lifestyle of the locals.'),
           const SizedBox(
             height: 20,
           ),
@@ -125,17 +125,12 @@ class TeacherDetailScreen extends HookWidget {
               ElevatedButton(
                 onPressed: () {},
                 style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll(ColorName.primary),
+                    backgroundColor: MaterialStatePropertyAll(ColorName.primary),
                     elevation: MaterialStatePropertyAll(0)),
                 child: const Text('Today'),
               ),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.keyboard_arrow_left_outlined)),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.keyboard_arrow_right_outlined)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_left_outlined)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_right_outlined)),
               Text(DateFormat('MMM y').format(DateTime.now()))
             ],
           ),
@@ -170,8 +165,7 @@ class TeacherDetailScreen extends HookWidget {
     if (index == 0) return const SizedBox.shrink();
     if (index < 5) {
       final DateTime now = DateTime.now();
-      String date =
-          DateFormat('dd/MM EE').format(now.copyWith(day: now.day + index));
+      String date = DateFormat('dd/MM EE').format(now.copyWith(day: now.day + index));
       return Text(date);
     }
     if (index % 5 == 0) {
@@ -193,7 +187,7 @@ class TeacherDetailScreen extends HookWidget {
       children: [
         Text(
           title,
-          style: partTitle,
+          style: CommonTextStyle.partTitle,
         ),
         const SizedBox(
           height: 9,
@@ -202,7 +196,7 @@ class TeacherDetailScreen extends HookWidget {
           padding: const EdgeInsets.only(left: 15, bottom: 7),
           child: Text(
             desc,
-            style: partDesc,
+            style: CommonTextStyle.partDesc,
           ),
         ),
       ],
@@ -216,7 +210,7 @@ class TeacherDetailScreen extends HookWidget {
         children: [
           Text(
             content,
-            style: partContent,
+            style: CommonTextStyle.partContent,
           ),
           const SizedBox(
             width: 10,
@@ -238,13 +232,16 @@ class TeacherDetailScreen extends HookWidget {
   Widget buildTag(String text) {
     return Padding(
       padding: const EdgeInsets.all(4),
-      child: CommonPrimaryButton(
-        size: const Size.fromHeight(30),
-        backgroundColor: ColorName.primary.withOpacity(0.3),
-        capsuleShape: true,
-        child: Text(
-          text,
-          style: const TextStyle(color: ColorName.primary),
+      child: SizedBox(
+        height: 30,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: CommonButtonStyle.primaryButtonStyle
+              .customCopyWith(backgroundColor: ColorName.primary.withOpacity(0.3)),
+          child: Text(
+            text,
+            style: const TextStyle(color: ColorName.primary),
+          ),
         ),
       ),
     );
