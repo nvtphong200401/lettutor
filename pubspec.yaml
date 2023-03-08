@@ -43,7 +43,9 @@ dependencies:
   video_player: ^2.5.3
   intl: ^0.18.0
   expandable: ^5.0.1
-  curved_navigation_bar: ^1.0.3
+  transparent_image: ^2.0.1
+  webview_flutter: ^4.0.6
+  syncfusion_flutter_pdfviewer: ^20.4.53
 
 dev_dependencies:
   flutter_gen_runner:

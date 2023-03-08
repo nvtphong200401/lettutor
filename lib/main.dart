@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/core/presentation/common_widgets/common_appbar.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/presentation/authen/login_screen.dart';
+import 'package:lettutor/presentation/courses/courses_screen.dart';
 import 'package:lettutor/presentation/history/history_student_screen.dart';
 import 'package:lettutor/presentation/schedule/booking_student.dart';
 import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
+
+import 'core/presentation/common_widgets/common_appbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,7 +44,7 @@ const tabList = [
   ListTeachScreen(),
   BookingStudentScreen(),
   HistoryStudentScreen(),
-  HistoryStudentScreen()
+  CoursesScreen(),
 ];
 
 class MyHomePage extends StatefulWidget {
