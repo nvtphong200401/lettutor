@@ -20,12 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          textTheme: GoogleFonts.poppinsTextTheme().copyWith(
-              bodyMedium: const TextStyle(color: ColorName.textColor)),
+          textTheme: GoogleFonts.poppinsTextTheme()
+              .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: ColorName.background,
-          colorScheme:
-              const ColorScheme.light(background: ColorName.background)),
+          appBarTheme: const AppBarTheme(
+              backgroundColor: ColorName.background, foregroundColor: ColorName.primary),
+          colorScheme: const ColorScheme.light(background: ColorName.background)),
       home: const LoginScreen(),
     );
   }
@@ -79,40 +80,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           });
         },
       ),
-
-      // CurvedNavigationBar(
-      //   animationDuration: const Duration(milliseconds: 200),
-      //   backgroundColor: ColorName.background,
-      //   color: ColorName.textButton,
-      //   items: const <Widget>[
-      //     Icon(
-      //       Icons.people_rounded,
-      //       size: 24,
-      //       color: Colors.white,
-      //     ),
-      //     Icon(
-      //       Icons.book_rounded,
-      //       size: 24,
-      //       color: Colors.white,
-      //     ),
-      //     Icon(
-      //       Icons.timer_rounded,
-      //       size: 24,
-      //       color: Colors.white,
-      //     ),
-      //     Icon(
-      //       Icons.list_rounded,
-      //       size: 24,
-      //       color: Colors.white,
-      //     )
-      //   ],
-      //   onTap: (index) {
-      //     //Handle button tap
-      //     setState(() {
-      //       activeIndex = index;
-      //     });
-      //   },
-      // ),
       body: tabList[activeIndex],
     );
   }

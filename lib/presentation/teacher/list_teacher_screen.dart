@@ -7,11 +7,7 @@ import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/presentation/teacher/teacher_card_item.dart';
 import 'package:lettutor/presentation/teacher/up_comming_lesson_board.dart';
 
-const tutorNationality = [
-  'Vietnamese Tutor',
-  'Foreign Tutor',
-  'Native English Tutor'
-];
+const tutorNationality = ['Vietnamese Tutor', 'Foreign Tutor', 'Native English Tutor'];
 
 class ListTeachScreen extends HookWidget {
   const ListTeachScreen({super.key});
@@ -28,14 +24,11 @@ class ListTeachScreen extends HookWidget {
         ),
         const UpcommingLessonBoard(),
         const SizedBox(
-          height: 10,
+          height: 20,
         ),
         const Text(
           'Find a tutor',
-          style: TextStyle(
-              color: ColorName.textColor,
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
+          style: TextStyle(color: ColorName.textColor, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         const SizedBox(
           height: 20,
@@ -73,8 +66,7 @@ class ListTeachScreen extends HookWidget {
                     dropdownStyleData: const DropdownStyleData(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(22),
-                              topRight: Radius.circular(22))),
+                              topLeft: Radius.circular(22), topRight: Radius.circular(22))),
                       offset: Offset(0, 30),
                       width: 200,
                     ),
@@ -85,8 +77,7 @@ class ListTeachScreen extends HookWidget {
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(
-                              color: ColorName.grey, width: 1.5)),
+                          borderSide: const BorderSide(color: ColorName.grey, width: 1.5)),
                       //Add isDense true and zero Padding.
                       //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
                       isDense: true,
@@ -140,7 +131,7 @@ class ListTeachScreen extends HookWidget {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         const Divider(),
         const SizedBox(
@@ -148,13 +139,10 @@ class ListTeachScreen extends HookWidget {
         ),
         const Text(
           'Recommended Tutors',
-          style: TextStyle(
-              color: ColorName.textColor,
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
+          style: TextStyle(color: ColorName.textColor, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         const SizedBox(
-          height: 10,
+          height: 20,
         ),
         const TeacherCardItem(),
         const SizedBox(

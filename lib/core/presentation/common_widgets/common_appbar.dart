@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../gen/assets.gen.dart';
-import '../../../gen/colors.gen.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CommonAppBar({
@@ -11,12 +10,11 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      foregroundColor: Colors.blue,
       title: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Assets.images.appLogo.svg(height: 39),
+        padding: EdgeInsets.zero,
+        child: Assets.images.appLogo.svg(height: 45),
       ),
-      // leadingWidth: 200,
-      backgroundColor: ColorName.background,
     );
   }
 

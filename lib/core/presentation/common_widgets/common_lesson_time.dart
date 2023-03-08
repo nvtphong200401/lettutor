@@ -1,51 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/gen/colors.gen.dart';
 
 import '../common_styles/text_style.dart';
 
 class CommonLessonTime extends StatelessWidget {
-  const CommonLessonTime(
-      {super.key, required this.startTime, required this.endTime});
+  const CommonLessonTime({
+    super.key,
+    required this.startTime,
+    required this.endTime,
+    this.axis = Axis.horizontal,
+  });
   final String startTime;
   final String endTime;
+  final Axis axis;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    if (axis == Axis.horizontal) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildTime(Colors.blue, startTime),
+          const Text(
+            ' - ',
+            style: CommonTextStyle.textSize16,
+          ),
+          _buildTime(Colors.red, endTime),
+        ],
+      );
+    }
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          padding: const EdgeInsets.all(3),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3),
-            border: Border.all(color: Colors.blue[200]!),
-            color: Colors.blue[100],
-          ),
-          child: const Text(
-            '08:30',
-            style: TextStyle(
-              color: ColorName.primary,
-            ),
-          ),
+        _buildTime(Colors.blue, startTime),
+        const SizedBox(
+          height: 5,
         ),
-        const Text(
-          ' - ',
-          style: CommonTextStyle.textSize16,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(3),
-              color: Colors.red[100],
-              border: Border.all(color: Colors.red[200]!)),
-          padding: const EdgeInsets.all(3),
-          child: Text(
-            '09:30',
-            style: TextStyle(
-              color: Colors.red[500],
-            ),
-          ),
-        )
+        _buildTime(Colors.red, endTime),
       ],
+    );
+  }
+
+  Widget _buildTime(MaterialColor color, String time) {
+    return Container(
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(3),
+        // border: Border.all(color: color[200]!),
+        color: color[50],
+      ),
+      child: Text(
+        time,
+        style: TextStyle(
+          color: color[500],
+        ),
+      ),
     );
   }
 }

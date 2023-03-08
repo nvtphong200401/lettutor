@@ -28,15 +28,20 @@ class TeacherInfo extends StatelessWidget {
           children: [
             const Text(
               'Joan Gacer',
-              style: TextStyle(
-                  color: ColorName.textColor,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(color: ColorName.primary, fontSize: 20, fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               height: 2,
             ),
-            const Text('No reviews yet'),
+            Row(
+              children: List.filled(
+                  5,
+                  const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                    size: 20,
+                  )),
+            ),
             const SizedBox(
               height: 5,
             ),

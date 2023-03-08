@@ -3,13 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
-import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../core/presentation/common_styles/common_styles.dart';
+import '../../../gen/assets.gen.dart';
 import '../teacher_info.dart';
 
 class TeacherDetailScreen extends HookWidget {
@@ -20,6 +21,16 @@ class TeacherDetailScreen extends HookWidget {
     final videoController = useMemoized(() => VideoPlayerController.network(
           'https://api.app.lettutor.com/video/4d54d3d7-d2a9-42e5-97a2-5ed38af5789avideo1627913015871.mp4',
         ));
+    final scrollController = useScrollController();
+    final isSliverAppBarExpanded = useValueNotifier(false);
+    useEffect(() {
+      void onScroll() {
+        isSliverAppBarExpanded.value = scrollController.offset > 400 - kToolbarHeight;
+      }
+
+      scrollController.addListener(onScroll);
+      return () => scrollController.removeListener(onScroll);
+    }, [scrollController]);
     bool isPlaying = true;
     useEffect(() {
       videoController.initialize();
@@ -27,150 +38,175 @@ class TeacherDetailScreen extends HookWidget {
       return videoController.dispose;
     }, [videoController]);
     return DismissKeyboardScaffold(
-      appBar: const CommonAppBar(),
-      body: ListView(
-        padding: paddingLayout,
-        children: [
-          const TeacherInfo(
-            favIcon: false,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ReadMoreText(
-              moreStyle: TextStyle(color: Colors.blue),
-              lessStyle: TextStyle(color: Colors.blue),
-              'I am passionate about running and fitness, I often compete in trail/mountain running events and I love pushing myself. I am training to one day take part in ultra-endurance events. I also enjoy watching rugby on the weekends, reading and watching podcasts on Youtube. My most memorable life experience would be living in and traveling around Southeast Asia.'),
-          const SizedBox(
-            height: 15,
-          ),
-          const IconGroup(),
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: 400,
-            width: 200,
-            child: GestureDetector(
-                onTap: () {
-                  if (isPlaying) {
-                    videoController.pause();
-                    isPlaying = false;
-                  } else {
-                    videoController.play();
-                    isPlaying = true;
-                  }
-                },
-                child: VideoPlayer(videoController)),
-          ),
-          const SizedBox(
-            height: 35,
-          ),
-          const Text(
-            'Languages',
-            style: CommonTextStyle.partTitle,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Wrap(
-            children: [buildTag('English')],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            'Specialties',
-            style: CommonTextStyle.partTitle,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Wrap(
-            children: [
-              buildTag('English for Business'),
-              buildTag('Consersational'),
-              buildTag('English for kids'),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            'Suggested courses',
-            style: CommonTextStyle.partTitle,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          buildPartContent(content: 'Basic Conversation Topics', link: ''),
-          buildPartContent(content: 'Life in the Internet Age', link: ''),
-          const SizedBox(
-            height: 20,
-          ),
-          buildPartDesc(
-              title: 'Interests',
-              desc:
-                  'I loved the weather, the scenery and the laid-back lifestyle of the locals.'),
-          const SizedBox(
-            height: 20,
-          ),
-          buildPartDesc(
-              title: 'Teaching experience',
-              desc: 'I have more than 10 years of teaching english experience'),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll(ColorName.primary),
-                    elevation: MaterialStatePropertyAll(0)),
-                child: const Text('Today'),
+        // appBar: const CommonAppBar(),
+        body: CustomScrollView(
+      controller: scrollController,
+      slivers: [
+        SliverAppBar(
+          pinned: true,
+          title: HookBuilder(builder: (context) {
+            final notShowAppBar = useValueListenable(isSliverAppBarExpanded);
+            debugPrint('notshowAppbar $notShowAppBar');
+            if (notShowAppBar) return Assets.images.appLogo.svg(height: 45);
+            return const SizedBox.shrink();
+          }),
+          // backgroundColor: ColorName.background,
+          expandedHeight: 400,
+          collapsedHeight: 60,
+          flexibleSpace: FlexibleSpaceBar(
+            background: SizedBox(
+              height: 400,
+              width: 200,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+                child: GestureDetector(
+                    onTap: () {
+                      if (isPlaying) {
+                        videoController.pause();
+                        isPlaying = false;
+                      } else {
+                        videoController.play();
+                        isPlaying = true;
+                      }
+                    },
+                    child: VideoPlayer(videoController)),
               ),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.keyboard_arrow_left_outlined)),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.keyboard_arrow_right_outlined)),
-              Text(DateFormat('MMM y').format(DateTime.now()))
-            ],
+            ),
           ),
-          GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 5,
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.all(10),
+          sliver: SliverList(
+              delegate: SliverChildListDelegate([
+            const SizedBox(
+              height: 20,
             ),
-            itemCount: 30,
-            itemBuilder: (context, index) => DecoratedBox(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: ColorName.grey,
-                      width: 0.5,
-                      strokeAlign: BorderSide.strokeAlignCenter)),
-              child: Center(child: buildSchedule(index)),
+            const TeacherInfo(
+              favIcon: false,
             ),
-          )
-        ],
-      ),
-    );
+            const SizedBox(
+              height: 10,
+            ),
+            const ReadMoreText(
+                moreStyle: TextStyle(color: Colors.blue),
+                lessStyle: TextStyle(color: Colors.blue),
+                'I am passionate about running and fitness, I often compete in trail/mountain running events and I love pushing myself. I am training to one day take part in ultra-endurance events. I also enjoy watching rugby on the weekends, reading and watching podcasts on Youtube. My most memorable life experience would be living in and traveling around Southeast Asia.'),
+            const SizedBox(
+              height: 15,
+            ),
+            const IconGroup(),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Languages',
+              style: CommonTextStyle.partTitle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Wrap(
+              children: [buildTag('English')],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Specialties',
+              style: CommonTextStyle.partTitle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Wrap(
+              children: [
+                buildTag('English for Business'),
+                buildTag('Consersational'),
+                buildTag('English for kids'),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Suggested courses',
+              style: CommonTextStyle.partTitle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            buildPartContent(content: 'Basic Conversation Topics', link: ''),
+            buildPartContent(content: 'Life in the Internet Age', link: ''),
+            const SizedBox(
+              height: 20,
+            ),
+            buildPartDesc(
+                title: 'Interests',
+                desc:
+                    'I loved the weather, the scenery and the laid-back lifestyle of the locals.'),
+            const SizedBox(
+              height: 20,
+            ),
+            buildPartDesc(
+                title: 'Teaching experience',
+                desc: 'I have more than 10 years of teaching english experience'),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(ColorName.primary),
+                      elevation: MaterialStatePropertyAll(0)),
+                  child: const Text('Today'),
+                ),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_left_outlined)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_right_outlined)),
+                Text(DateFormat('MMM y').format(DateTime.now()))
+              ],
+            ),
+            MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              child: GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                ),
+                itemCount: 30,
+                itemBuilder: (context, index) => DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: ColorName.grey,
+                          width: 0.5,
+                          strokeAlign: BorderSide.strokeAlignCenter)),
+                  child: Center(child: buildSchedule(index)),
+                ),
+              ),
+            )
+          ])),
+        )
+      ],
+    ));
   }
 
   Widget buildSchedule(int index) {
     if (index == 0) return const SizedBox.shrink();
     if (index < 5) {
       final DateTime now = DateTime.now();
-      String date =
-          DateFormat('dd/MM EE').format(now.copyWith(day: now.day + index));
+      String date = DateFormat('dd/MM EE').format(now.copyWith(day: now.day + index));
       return Text(date);
     }
     if (index % 5 == 0) {
-      return const Text('01:30 - 01:55');
+      return const CommonLessonTime(
+        startTime: '01:30',
+        endTime: '01:55',
+        axis: Axis.vertical,
+      );
     }
     final bool isBook = Random().nextBool();
     if (isBook) {

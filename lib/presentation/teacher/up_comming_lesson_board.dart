@@ -48,14 +48,14 @@ class UpcommingLessonBoard extends StatelessWidget {
                           style: CommonTextStyle.textSize20,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 7,
                         ),
                         const Text(
-                          '1:30 - 1:55',
+                          '01:30 - 01:55',
                           style: CommonTextStyle.textSize20,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 7,
                         ),
                         CountDownText(endTime: DateTime(2023, 3, 5))
                       ],
@@ -65,11 +65,10 @@ class UpcommingLessonBoard extends StatelessWidget {
                     height: 40,
                     child: ElevatedButton(
                       onPressed: () {},
-                      style: CommonButtonStyle.primaryButtonStyle
-                          .customCopyWith(
-                              textColor: ColorName.primary,
-                              capsuleShape: true,
-                              backgroundColor: ColorName.background),
+                      style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
+                          textColor: ColorName.primary,
+                          capsuleShape: true,
+                          backgroundColor: ColorName.background),
                       child: Row(
                         children: const [
                           Icon(
