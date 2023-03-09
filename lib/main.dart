@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/presentation/authen/login_screen.dart';
 import 'package:lettutor/presentation/courses/courses_screen.dart';
 import 'package:lettutor/presentation/history/history_student_screen.dart';
 import 'package:lettutor/presentation/schedule/booking_student.dart';
 import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
-
-import 'core/presentation/common_widgets/common_appbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,13 +21,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          textTheme: GoogleFonts.poppinsTextTheme()
-              .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
+          textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+              bodyMedium: const TextStyle(color: ColorName.textColor)),
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: ColorName.background,
           appBarTheme: const AppBarTheme(
-              backgroundColor: ColorName.background, foregroundColor: ColorName.primary),
-          colorScheme: const ColorScheme.light(background: ColorName.background)),
+              backgroundColor: ColorName.background,
+              foregroundColor: ColorName.primary),
+          colorScheme:
+              const ColorScheme.light(background: ColorName.background)),
       home: const LoginScreen(),
     );
   }
@@ -60,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

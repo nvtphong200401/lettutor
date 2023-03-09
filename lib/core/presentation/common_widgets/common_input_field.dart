@@ -44,18 +44,20 @@ class CommonInputField extends StatelessWidget {
 }
 
 class CommonTextFormField extends HookWidget {
-  const CommonTextFormField(
-      {super.key,
-      this.controller,
-      this.autofocus = true,
-      this.obscureText = false,
-      this.hintText,
-      this.capsuleShape = false,
-      this.size,
-      this.borderColor,
-      this.onTap,
-      this.focusNode,
-      this.onChanged});
+  const CommonTextFormField({
+    super.key,
+    this.controller,
+    this.autofocus = true,
+    this.obscureText = false,
+    this.hintText,
+    this.capsuleShape = false,
+    this.size,
+    this.borderColor,
+    this.onTap,
+    this.focusNode,
+    this.onChanged,
+    this.prefixIcon,
+  });
   final bool autofocus;
   final TextEditingController? controller;
   final bool obscureText;
@@ -66,6 +68,7 @@ class CommonTextFormField extends HookWidget {
   final void Function()? onTap;
   final void Function(String)? onChanged;
   final FocusNode? focusNode;
+  final Widget? prefixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +110,7 @@ class CommonTextFormField extends HookWidget {
           hintText: hintText,
           hintStyle: const TextStyle(color: ColorName.grey),
           suffixIcon: suffixIcon(),
+          prefix: prefixIcon,
         ),
         obscureText: obscureState.value,
         controller: controller,
