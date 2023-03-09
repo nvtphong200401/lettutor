@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_layout.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_sliver_appbar.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/presentation/courses/detail/course_slivers.dart';
-
+import 'course_flexible_spacebar.dart';
 import 'course_header.dart';
 import 'course_topic_item.dart';
 
-class CourseInfoScreen extends StatelessWidget {
+class CourseInfoScreen extends HookWidget {
   const CourseInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = useScrollController();
     return DismissKeyboardScaffold(
       body: CustomScrollView(
+        controller: scrollController,
         slivers: [
-          CourseSlivers.courseAppBar,
+          SliverAppBar(
+              pinned: true,
+              title: CommonSliverAppbarTitle(scrollController: scrollController),
+              expandedHeight: 340,
+              collapsedHeight: 60,
+              flexibleSpace: const CourseInfoFlexibleSpaceBar()),
           SliverPadding(
             padding: paddingLayout,
             sliver: SliverList(
                 delegate: SliverChildListDelegate([
-              const SizedBox(
-                height: 20,
-              ),
               const CourseHeader(header: 'Overview'),
               buildDescription('Why take this course',
                   "It can be intimidating to speak with a foreigner, no matter how much grammar and vocabulary you've mastered. If you have basic knowledge of English but have not spent much time speaking, this course will help you ease into your first English conversations."),

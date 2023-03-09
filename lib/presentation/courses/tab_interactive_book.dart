@@ -10,6 +10,9 @@ class TabInteractiveBooks extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
+        SizedBox(
+          height: 50,
+        ),
         Icon(
           Icons.inbox_rounded,
           color: ColorName.partDesc,

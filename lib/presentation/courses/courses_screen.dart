@@ -7,6 +7,8 @@ import 'package:lettutor/presentation/courses/tab_books.dart';
 import 'package:lettutor/presentation/courses/tab_course.dart';
 import 'package:lettutor/presentation/courses/tab_interactive_book.dart';
 
+import 'course_dropdown.dart';
+
 const tabsItem = [
   'Course',
   'Ebook',
@@ -22,83 +24,96 @@ class CoursesScreen extends HookWidget {
   Widget build(BuildContext context) {
     final tabController = useTabController(initialLength: 3);
     final currentIndex = useValueNotifier(0);
+    // final scrollController = useScrollController();
+    // final appBarHeight = useState(0.0);
+    final selectedCategories = useValueNotifier(<String>{});
 
     return CustomScrollView(
+      // controller: scrollController,
       slivers: [
-        SliverAppBar(
-          expandedHeight: 170,
-          flexibleSpace: FlexibleSpaceBar(
-            background: Column(
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: CommonHeader(
-                    avatar: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: SvgPicture.network(
-                        'https://sandbox.app.lettutor.com/static/media/course.0bf1bb71.svg',
-                        width: 100,
-                      ),
-                    ),
-                    title: 'Discover Courses',
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          height: 36,
-                          child: TextField(
-                            autofocus: false,
-                            textInputAction: TextInputAction.search,
-                            keyboardType: TextInputType.text,
-                            // cursorHeight: 20,
-                            decoration: InputDecoration(
-                                prefixIconConstraints: const BoxConstraints(
-                                    minWidth: 18, maxHeight: 18),
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.only(left: 12, right: 6),
-                                  child: Icon(Icons.search,
-                                      size: 18, color: ColorName.partDesc),
-                                ),
-                                contentPadding:
-                                    const EdgeInsets.fromLTRB(6, 6, 12, 6),
-                                border: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: ColorName.partDesc, width: 1),
-                                  borderRadius: BorderRadius.circular(2.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: ColorName.partDesc, width: 1),
-                                  borderRadius: BorderRadius.circular(2.0),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: ColorName.partDesc, width: 1),
-                                  borderRadius: BorderRadius.circular(2.0),
-                                ),
-                                filled: true,
-                                hintStyle:
-                                    const TextStyle(color: ColorName.partDesc),
-                                hintText: 'Search courses',
-                                fillColor: Colors.white70),
-                          ),
+        HookBuilder(builder: (context) {
+          final selectedCatesListener = useValueListenable(selectedCategories);
+          return SliverAppBar(
+            expandedHeight: 200 + selectedCatesListener.length * 20,
+            // title: CommonSliverAppbarTitle(scrollController: scrollController),
+            flexibleSpace: FlexibleSpaceBar(
+              background: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: CommonHeader(
+                      avatar: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: SvgPicture.network(
+                          'https://sandbox.app.lettutor.com/static/media/course.0bf1bb71.svg',
+                          width: 100,
                         ),
                       ),
-                    ],
+                      title: 'Discover Courses',
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 36,
+                            child: TextField(
+                              autofocus: false,
+                              textInputAction: TextInputAction.search,
+                              keyboardType: TextInputType.text,
+                              // cursorHeight: 20,
+                              decoration: InputDecoration(
+                                  prefixIconConstraints:
+                                      const BoxConstraints(minWidth: 18, maxHeight: 18),
+                                  prefixIcon: const Padding(
+                                    padding: EdgeInsets.only(left: 12, right: 6),
+                                    child: Icon(Icons.search, size: 18, color: ColorName.grey),
+                                  ),
+                                  contentPadding: const EdgeInsets.fromLTRB(6, 6, 12, 6),
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                    borderRadius: BorderRadius.circular(2.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                    borderRadius: BorderRadius.circular(2.0),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                    borderRadius: BorderRadius.circular(2.0),
+                                  ),
+                                  filled: true,
+                                  hintStyle: const TextStyle(color: ColorName.grey),
+                                  hintText: 'Search courses',
+                                  fillColor: Colors.white70),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Stack(
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: DropdownFieldMultipleSelection(
+                      data: categories,
+                      title: 'Select category',
+                      valuesSelected: selectedCategories,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(50),
+                child: Stack(
                   children: [
                     Positioned.fill(
                       bottom: 1,
                       child: Container(
                         decoration: const BoxDecoration(
                           border: Border(
-                            bottom: BorderSide(
-                                color: ColorName.cardhistory, width: 1),
+                            bottom: BorderSide(color: ColorName.cardhistory, width: 1),
                           ),
                         ),
                       ),
@@ -118,11 +133,9 @@ class CoursesScreen extends HookWidget {
                       },
                     ),
                   ],
-                )
-              ],
-            ),
-          ),
-        ),
+                )),
+          );
+        }),
         SliverList(
             delegate: SliverChildListDelegate([
           HookBuilder(builder: (context) {

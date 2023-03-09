@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_sliver_appbar.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../core/presentation/common_styles/common_styles.dart';
-import '../../../gen/assets.gen.dart';
 import '../teacher_info.dart';
 
 class TeacherDetailScreen extends HookWidget {
@@ -22,16 +22,7 @@ class TeacherDetailScreen extends HookWidget {
           'https://api.app.lettutor.com/video/4d54d3d7-d2a9-42e5-97a2-5ed38af5789avideo1627913015871.mp4',
         ));
     final scrollController = useScrollController();
-    final isSliverAppBarExpanded = useValueNotifier(false);
-    useEffect(() {
-      void onScroll() {
-        isSliverAppBarExpanded.value = scrollController.offset > 400 - kToolbarHeight;
-      }
 
-      scrollController.addListener(onScroll);
-      return () => scrollController.removeListener(onScroll);
-    }, [scrollController]);
-    bool isPlaying = true;
     useEffect(() {
       videoController.initialize();
       videoController.play();
@@ -44,13 +35,7 @@ class TeacherDetailScreen extends HookWidget {
       slivers: [
         SliverAppBar(
           pinned: true,
-          title: HookBuilder(builder: (context) {
-            final notShowAppBar = useValueListenable(isSliverAppBarExpanded);
-            debugPrint('notshowAppbar $notShowAppBar');
-            if (notShowAppBar) return Assets.images.appLogo.svg(height: 45);
-            return const SizedBox.shrink();
-          }),
-          // backgroundColor: ColorName.background,
+          title: CommonSliverAppbarTitle(scrollController: scrollController),
           expandedHeight: 400,
           collapsedHeight: 60,
           flexibleSpace: FlexibleSpaceBar(
@@ -60,21 +45,44 @@ class TeacherDetailScreen extends HookWidget {
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-                child: GestureDetector(
-                    onTap: () {
-                      if (isPlaying) {
-                        videoController.pause();
-                        isPlaying = false;
-                      } else {
-                        videoController.play();
-                        isPlaying = true;
-                      }
-                    },
-                    child: VideoPlayer(videoController)),
+                child: VideoPlayer(videoController),
               ),
             ),
           ),
         ),
+        // SliverAppBar(
+        //   pinned: true,
+        //   title: HookBuilder(builder: (context) {
+        //     final notShowAppBar = useValueListenable(isSliverAppBarExpanded);
+        //     debugPrint('notshowAppbar $notShowAppBar');
+        //     if (notShowAppBar) return Assets.images.appLogo.svg(height: 45);
+        //     return const SizedBox.shrink();
+        //   }),
+        //   // backgroundColor: ColorName.background,
+        //   expandedHeight: 400,
+        //   collapsedHeight: 60,
+        //   flexibleSpace: FlexibleSpaceBar(
+        //     background: SizedBox(
+        //       height: 400,
+        //       width: 200,
+        //       child: ClipRRect(
+        //         borderRadius: const BorderRadius.only(
+        //             bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+        //         child: GestureDetector(
+        //             onTap: () {
+        //               if (isPlaying) {
+        //                 videoController.pause();
+        //                 isPlaying = false;
+        //               } else {
+        //                 videoController.play();
+        //                 isPlaying = true;
+        //               }
+        //             },
+        //             child: VideoPlayer(videoController)),
+        //       ),
+        //     ),
+        //   ),
+        // ),
         SliverPadding(
           padding: const EdgeInsets.all(10),
           sliver: SliverList(
