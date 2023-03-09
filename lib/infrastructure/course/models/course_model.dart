@@ -7,10 +7,10 @@ part 'course_model.g.dart';
 class CourseModel with _$CourseModel {
   const CourseModel._();
   const factory CourseModel({
-    String? name,
-    String? description,
-    String? imageUrl,
-    String? level,
+    @Default('') String name,
+    @Default('') String description,
+    @Default('https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png') String imageUrl,
+    @Default('') String level,
   }) = _CourseModel;
   factory CourseModel.fromJson(Map<String, dynamic> json) => _$CourseModelFromJson(json);
 

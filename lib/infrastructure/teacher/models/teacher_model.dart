@@ -7,11 +7,11 @@ part 'teacher_model.g.dart';
 class TeacherModel with _$TeacherModel {
   const TeacherModel._();
   const factory TeacherModel({
-    String? name,
+    @Default('') String name,
     @Default('https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png')
         String avatar,
-    String? video,
-    String? bio,
+    @Default('') String video,
+    @Default('') String bio,
   }) = _TeacherModel;
   factory TeacherModel.fromJson(Map<String, dynamic> json) => _$TeacherModelFromJson(json);
 
