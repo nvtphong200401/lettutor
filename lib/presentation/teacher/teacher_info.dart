@@ -7,18 +7,21 @@ class TeacherInfo extends StatelessWidget {
   const TeacherInfo({
     super.key,
     this.favIcon = true,
+    required this.avatar,
+    required this.name,
   });
   final bool favIcon;
+  final String avatar;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CircleAvatar(
+        CircleAvatar(
           radius: 30,
-          foregroundImage: NetworkImage(
-              'https://api.app.lettutor.com/avatar/8c4e58c4-e9d1-4353-b64d-41b573c5a3e9avatar1632284832414.jpg'),
+          foregroundImage: NetworkImage(avatar),
         ),
         const SizedBox(
           width: 20,
@@ -26,9 +29,10 @@ class TeacherInfo extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Joan Gacer',
-              style: TextStyle(color: ColorName.primary, fontSize: 20, fontWeight: FontWeight.w600),
+            Text(
+              name,
+              style: const TextStyle(
+                  color: ColorName.primary, fontSize: 20, fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               height: 2,

@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
@@ -8,7 +9,11 @@ import 'package:lettutor/presentation/history/history_student_screen.dart';
 import 'package:lettutor/presentation/schedule/booking_student.dart';
 import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
 
-void main() {
+late List<CameraDescription> cameras;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   runApp(const MyApp());
 }
 
@@ -21,15 +26,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          textTheme: GoogleFonts.poppinsTextTheme().copyWith(
-              bodyMedium: const TextStyle(color: ColorName.textColor)),
+          textTheme: GoogleFonts.poppinsTextTheme()
+              .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: ColorName.background,
           appBarTheme: const AppBarTheme(
-              backgroundColor: ColorName.background,
-              foregroundColor: ColorName.primary),
-          colorScheme:
-              const ColorScheme.light(background: ColorName.background)),
+              backgroundColor: ColorName.background, foregroundColor: ColorName.primary),
+          colorScheme: const ColorScheme.light(background: ColorName.background)),
       home: const LoginScreen(),
     );
   }

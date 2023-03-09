@@ -5,6 +5,7 @@ import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/infrastructure/schedule/models/booking_model.dart';
 
 import '../teacher/teacher_info.dart';
 
@@ -13,14 +14,14 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
 
   @override
   Widget build(BuildContext context) {
+    final bookInfo = BookingModel.init();
     return greyBoxContainer(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
           DateFormat('EEE, dd MMM yy').format(DateTime.now()),
-          style:
-              CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
+          style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
         ),
         Text(
           '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
@@ -30,15 +31,18 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
           height: 10,
         ),
         whiteBoxContainer(
-          child: const TeacherInfo(
+          child: TeacherInfo(
             favIcon: false,
+            name: bookInfo.tutorInfo?.name ?? '',
+            avatar: bookInfo.tutorInfo?.avatar ?? '',
           ),
         ),
         const SizedBox(
           height: 10,
         ),
         whiteBoxContainer(
-          child: const CommonLessonTime(startTime: '08:30', endTime: '09:30'),
+          child: CommonLessonTime(
+              startTime: bookInfo.startTime ?? '', endTime: bookInfo.endTime ?? ''),
         ),
         const SizedBox(
           height: 1,
@@ -133,37 +137,7 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
               ),
             ],
           ),
-        )
-        // SizedBox(
-        //   height: 30,
-        //   child: OutlinedButton(
-        //     onPressed: () {},
-        //     style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
-        //       backgroundColor: Colors.white,
-        //       foregroundColor: Colors.red,
-        //       borderColor: Colors.red,
-        //     ),
-        //     // const ButtonStyle(
-        //     //   foregroundColor: MaterialStatePropertyAll(Colors.red),
-        //     //   side: MaterialStatePropertyAll(BorderSide(color: Colors.red)),
-        //     // ),
-        //     child: Row(
-        //       children: const [
-        //         Icon(
-        //           Icons.cancel,
-        //           size: 14,
-        //         ),
-        //         SizedBox(
-        //           width: 3,
-        //         ),
-        //         Text(
-        //           'Cancel',
-        //           style: CommonTextStyle.textSize12,
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // )
+        ),
       ],
     );
   }

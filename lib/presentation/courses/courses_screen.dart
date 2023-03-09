@@ -34,7 +34,7 @@ class CoursesScreen extends HookWidget {
         HookBuilder(builder: (context) {
           final selectedCatesListener = useValueListenable(selectedCategories);
           return SliverAppBar(
-            expandedHeight: 200 + selectedCatesListener.length * 20,
+            expandedHeight: 220 + selectedCatesListener.length * 20,
             // title: CommonSliverAppbarTitle(scrollController: scrollController),
             flexibleSpace: FlexibleSpaceBar(
               background: Column(
@@ -92,6 +92,9 @@ class CoursesScreen extends HookWidget {
                         ),
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),

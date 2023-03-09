@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
+import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_detail_screen.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
 
@@ -13,9 +14,10 @@ class TeacherCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final info = TeacherModel.init();
     return InkWell(
-      onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const TeacherDetailScreen())),
+      onTap: () => Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const TeacherDetailScreen())),
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -25,7 +27,10 @@ class TeacherCardItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TeacherInfo(),
+              TeacherInfo(
+                name: info.name ?? '',
+                avatar: info.avatar,
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -41,7 +46,7 @@ class TeacherCardItem extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Text('I don\'t want to do this anymore'),
+              Text(info.bio ?? ''),
               const SizedBox(
                 height: 10,
               ),

@@ -322,8 +322,6 @@ class SelectedTextItem extends HookWidget {
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
     );
-    print(text.length * textStyle.fontSize! * 0.53);
-    print(value);
     if (text.length * textStyle.fontSize! * 0.53 > value) {
       return Expanded(child: child);
     } else {

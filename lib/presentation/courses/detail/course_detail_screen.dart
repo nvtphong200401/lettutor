@@ -4,8 +4,9 @@ import 'package:lettutor/gen/colors.gen.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class CourseDetailScreen extends HookWidget {
-  const CourseDetailScreen({super.key, required this.title});
+  const CourseDetailScreen({super.key, required this.title, required this.courseUrl});
   final String title;
+  final String courseUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,7 @@ class CourseDetailScreen extends HookWidget {
           return NavigationDecision.navigate;
         },
       ));
-      webViewController.loadRequest(Uri.parse(
-          'https://api.app.lettutor.com/file/be4c3df8-3b1b-4c8f-a5cc-75a8e2e6626afileFoods%20You%20Love.pdf'));
+      webViewController.loadRequest(Uri.parse(courseUrl));
       return null;
     }, [webViewController]);
     // return SfPdfViewer.network(
