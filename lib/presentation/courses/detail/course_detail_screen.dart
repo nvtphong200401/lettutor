@@ -26,10 +26,11 @@ class CourseDetailScreen extends HookWidget {
     return Scaffold(
       body: WebViewWidget(controller: webViewController),
       appBar: AppBar(
-        foregroundColor: ColorName.textColor,
+        foregroundColor: ColorName.primary,
         title: Text(
           title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          style:
+              const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: ColorName.primary),
         ),
       ),
     );

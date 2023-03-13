@@ -8,10 +8,11 @@ part of 'course_model.dart';
 
 _$_CourseModel _$$_CourseModelFromJson(Map<String, dynamic> json) =>
     _$_CourseModel(
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      imageUrl: json['imageUrl'] as String?,
-      level: json['level'] as String?,
+      name: json['name'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      imageUrl: json['imageUrl'] as String? ??
+          'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
+      level: json['level'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_CourseModelToJson(_$_CourseModel instance) =>

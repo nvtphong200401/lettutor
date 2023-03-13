@@ -8,10 +8,10 @@ part of 'booking_model.dart';
 
 _$_BookingModel _$$_BookingModelFromJson(Map<String, dynamic> json) =>
     _$_BookingModel(
-      startTime: json['startTime'] as String?,
-      endTime: json['endTime'] as String?,
+      startTime: json['startTime'] as String? ?? '00:00',
+      endTime: json['endTime'] as String? ?? '00:00',
       tutorInfo: json['tutorInfo'] == null
-          ? null
+          ? const TeacherModel()
           : TeacherModel.fromJson(json['tutorInfo'] as Map<String, dynamic>),
     );
 

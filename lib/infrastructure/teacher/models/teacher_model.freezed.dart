@@ -20,10 +20,10 @@ TeacherModel _$TeacherModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TeacherModel {
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
-  String? get video => throw _privateConstructorUsedError;
-  String? get bio => throw _privateConstructorUsedError;
+  String get video => throw _privateConstructorUsedError;
+  String get bio => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +37,7 @@ abstract class $TeacherModelCopyWith<$Res> {
           TeacherModel value, $Res Function(TeacherModel) then) =
       _$TeacherModelCopyWithImpl<$Res, TeacherModel>;
   @useResult
-  $Res call({String? name, String avatar, String? video, String? bio});
+  $Res call({String name, String avatar, String video, String bio});
 }
 
 /// @nodoc
@@ -53,28 +53,28 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
     Object? avatar = null,
-    Object? video = freezed,
-    Object? bio = freezed,
+    Object? video = null,
+    Object? bio = null,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
-      video: freezed == video
+      video: null == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bio: freezed == bio
+              as String,
+      bio: null == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -87,7 +87,7 @@ abstract class _$$_TeacherModelCopyWith<$Res>
       __$$_TeacherModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name, String avatar, String? video, String? bio});
+  $Res call({String name, String avatar, String video, String bio});
 }
 
 /// @nodoc
@@ -101,28 +101,28 @@ class __$$_TeacherModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
     Object? avatar = null,
-    Object? video = freezed,
-    Object? bio = freezed,
+    Object? video = null,
+    Object? bio = null,
   }) {
     return _then(_$_TeacherModel(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
-      video: freezed == video
+      video: null == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bio: freezed == bio
+              as String,
+      bio: null == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -131,25 +131,28 @@ class __$$_TeacherModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TeacherModel extends _TeacherModel {
   const _$_TeacherModel(
-      {this.name,
+      {this.name = '',
       this.avatar =
           'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
-      this.video,
-      this.bio})
+      this.video = '',
+      this.bio = ''})
       : super._();
 
   factory _$_TeacherModel.fromJson(Map<String, dynamic> json) =>
       _$$_TeacherModelFromJson(json);
 
   @override
-  final String? name;
+  @JsonKey()
+  final String name;
   @override
   @JsonKey()
   final String avatar;
   @override
-  final String? video;
+  @JsonKey()
+  final String video;
   @override
-  final String? bio;
+  @JsonKey()
+  final String bio;
 
   @override
   String toString() {
@@ -187,23 +190,23 @@ class _$_TeacherModel extends _TeacherModel {
 
 abstract class _TeacherModel extends TeacherModel {
   const factory _TeacherModel(
-      {final String? name,
+      {final String name,
       final String avatar,
-      final String? video,
-      final String? bio}) = _$_TeacherModel;
+      final String video,
+      final String bio}) = _$_TeacherModel;
   const _TeacherModel._() : super._();
 
   factory _TeacherModel.fromJson(Map<String, dynamic> json) =
       _$_TeacherModel.fromJson;
 
   @override
-  String? get name;
+  String get name;
   @override
   String get avatar;
   @override
-  String? get video;
+  String get video;
   @override
-  String? get bio;
+  String get bio;
   @override
   @JsonKey(ignore: true)
   _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith =>

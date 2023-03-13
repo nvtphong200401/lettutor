@@ -1,10 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
+import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/gen/assets.gen.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/main.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -32,10 +33,8 @@ class LoginScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 10),
             child: Text(
               'Become fluent faster through one on one video chat lessons tailored to your goals.',
-              style: TextStyle(
-                  color: ColorName.formDesc,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: ColorName.formDesc, fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
           const CommonInputField(
@@ -53,18 +52,17 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text(
                   'Forgot Password?',
-                  style: TextStyle(
-                      color: ColorName.primary, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: ColorName.primary, fontWeight: FontWeight.bold),
                 )),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const MyHomePage(title: 'Test')));
+              context.router.replace(const MyHomeRoute());
+              // Navigator.of(context)
+              //     .pushReplacement(MaterialPageRoute(builder: (context) => const MyHomePage()));
             },
             style: CommonButtonStyle.primaryButtonStyle,
-            child: const Text('LOGIN',
-                style: TextStyle(color: ColorName.background)),
+            child: const Text('LOGIN', style: TextStyle(color: ColorName.background)),
           ),
           const Center(
             child: Padding(

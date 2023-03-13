@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
-import 'package:lettutor/core/presentation/common_widgets/common_sliver_appbar.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/gen/colors.gen.dart';
@@ -12,6 +11,7 @@ import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../core/presentation/common_styles/common_styles.dart';
+import '../../../core/presentation/common_widgets/common_sliver_appbar.dart';
 import '../teacher_info.dart';
 
 class TeacherDetailScreen extends HookWidget {
@@ -37,6 +37,13 @@ class TeacherDetailScreen extends HookWidget {
       slivers: [
         SliverAppBar(
           pinned: true,
+          leading: Container(
+            color: Colors.white,
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: ColorName.primary,
+            ),
+          ),
           title: CommonSliverAppbarTitle(scrollController: scrollController),
           expandedHeight: 400,
           collapsedHeight: 60,
@@ -61,8 +68,8 @@ class TeacherDetailScreen extends HookWidget {
             ),
             TeacherInfo(
               favIcon: false,
-              name: info.name ?? '',
-              avatar: info.name ?? '',
+              name: info.name,
+              avatar: info.avatar,
             ),
             const SizedBox(
               height: 10,

@@ -20,10 +20,10 @@ CourseModel _$CourseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseModel {
-  String? get name => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
-  String? get level => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String get level => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,8 +37,7 @@ abstract class $CourseModelCopyWith<$Res> {
           CourseModel value, $Res Function(CourseModel) then) =
       _$CourseModelCopyWithImpl<$Res, CourseModel>;
   @useResult
-  $Res call(
-      {String? name, String? description, String? imageUrl, String? level});
+  $Res call({String name, String description, String imageUrl, String level});
 }
 
 /// @nodoc
@@ -54,28 +53,28 @@ class _$CourseModelCopyWithImpl<$Res, $Val extends CourseModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? imageUrl = freezed,
-    Object? level = freezed,
+    Object? name = null,
+    Object? description = null,
+    Object? imageUrl = null,
+    Object? level = null,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: freezed == imageUrl
+              as String,
+      imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      level: freezed == level
+              as String,
+      level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -88,8 +87,7 @@ abstract class _$$_CourseModelCopyWith<$Res>
       __$$_CourseModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? name, String? description, String? imageUrl, String? level});
+  $Res call({String name, String description, String imageUrl, String level});
 }
 
 /// @nodoc
@@ -103,28 +101,28 @@ class __$$_CourseModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? imageUrl = freezed,
-    Object? level = freezed,
+    Object? name = null,
+    Object? description = null,
+    Object? imageUrl = null,
+    Object? level = null,
   }) {
     return _then(_$_CourseModel(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: freezed == imageUrl
+              as String,
+      imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      level: freezed == level
+              as String,
+      level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -132,20 +130,29 @@ class __$$_CourseModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CourseModel extends _CourseModel {
-  const _$_CourseModel({this.name, this.description, this.imageUrl, this.level})
+  const _$_CourseModel(
+      {this.name = '',
+      this.description = '',
+      this.imageUrl =
+          'https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
+      this.level = ''})
       : super._();
 
   factory _$_CourseModel.fromJson(Map<String, dynamic> json) =>
       _$$_CourseModelFromJson(json);
 
   @override
-  final String? name;
+  @JsonKey()
+  final String name;
   @override
-  final String? description;
+  @JsonKey()
+  final String description;
   @override
-  final String? imageUrl;
+  @JsonKey()
+  final String imageUrl;
   @override
-  final String? level;
+  @JsonKey()
+  final String level;
 
   @override
   String toString() {
@@ -186,23 +193,23 @@ class _$_CourseModel extends _CourseModel {
 
 abstract class _CourseModel extends CourseModel {
   const factory _CourseModel(
-      {final String? name,
-      final String? description,
-      final String? imageUrl,
-      final String? level}) = _$_CourseModel;
+      {final String name,
+      final String description,
+      final String imageUrl,
+      final String level}) = _$_CourseModel;
   const _CourseModel._() : super._();
 
   factory _CourseModel.fromJson(Map<String, dynamic> json) =
       _$_CourseModel.fromJson;
 
   @override
-  String? get name;
+  String get name;
   @override
-  String? get description;
+  String get description;
   @override
-  String? get imageUrl;
+  String get imageUrl;
   @override
-  String? get level;
+  String get level;
   @override
   @JsonKey(ignore: true)
   _$$_CourseModelCopyWith<_$_CourseModel> get copyWith =>

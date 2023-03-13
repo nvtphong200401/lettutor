@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
+import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_detail_screen.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
@@ -16,8 +18,9 @@ class TeacherCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final info = TeacherModel.init();
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const TeacherDetailScreen())),
+      onTap: () => context.router.push(const TeacherDetailRoute()),
+      // Navigator.of(context)
+      //     .push(MaterialPageRoute(builder: (context) => const TeacherDetailScreen())),
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -28,7 +31,7 @@ class TeacherCardItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TeacherInfo(
-                name: info.name ?? '',
+                name: info.name,
                 avatar: info.avatar,
               ),
               const SizedBox(

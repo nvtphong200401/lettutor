@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
-import 'package:lettutor/core/presentation/common_widgets/common_layout.dart';
-import 'package:lettutor/core/presentation/common_widgets/common_sliver_appbar.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
+// import 'package:lettutor/core/presentation/common_widgets/common_sliver_appbar.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import '../../../core/presentation/common_widgets/common_sliver_appbar.dart';
 import 'course_flexible_spacebar.dart';
 import 'course_header.dart';
 import 'course_topic_item.dart';
@@ -16,6 +17,7 @@ class CourseInfoScreen extends HookWidget {
   Widget build(BuildContext context) {
     final scrollController = useScrollController();
     return DismissKeyboardScaffold(
+      // appBar: const LeadingButtonAppBar(),
       body: CustomScrollView(
         controller: scrollController,
         slivers: [

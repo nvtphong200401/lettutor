@@ -1,13 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
+import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/presentation/authen/login_screen.dart';
-import 'package:lettutor/presentation/courses/courses_screen.dart';
-import 'package:lettutor/presentation/history/history_student_screen.dart';
-import 'package:lettutor/presentation/schedule/booking_student.dart';
-import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
 
 late List<CameraDescription> cameras;
 
@@ -17,13 +14,14 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final appRouter = useMemoized(() => AppRouter());
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme()
@@ -33,7 +31,8 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
               backgroundColor: ColorName.background, foregroundColor: ColorName.primary),
           colorScheme: const ColorScheme.light(background: ColorName.background)),
-      home: const LoginScreen(),
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 }
@@ -44,17 +43,9 @@ const navItem = {
   'History': Icons.timer_rounded,
   'Courses': Icons.list_rounded,
 };
-const tabList = [
-  ListTeachScreen(),
-  BookingStudentScreen(),
-  HistoryStudentScreen(),
-  CoursesScreen(),
-];
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -64,29 +55,58 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return DismissKeyboardScaffold(
-      appBar: const CommonAppBar(),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: const TextStyle(color: ColorName.primary),
-        selectedItemColor: ColorName.primary,
-        items: navItem.entries
-            .map((entry) => BottomNavigationBarItem(
-                  icon: Icon(
-                    entry.value,
-                  ),
-                  label: entry.key,
-                  backgroundColor: ColorName.background,
-                ))
-            .toList(),
-        currentIndex: activeIndex,
-        onTap: (index) {
-          setState(() {
-            activeIndex = index;
-          });
-        },
-      ),
-      body: tabList[activeIndex],
+    return AutoTabsScaffold(
+      // appBarBuilder: (context, tabsRouter) {
+      //   return const CommonAppBar();
+      // },
+      routes: const [
+        ListTeacherRouter(),
+        BookingStudentRoute(),
+        HistoryStudentRoute(),
+        CoursesRouter(),
+      ],
+      bottomNavigationBuilder: (context, tabsRouter) {
+        return BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedLabelStyle: const TextStyle(color: ColorName.primary),
+          selectedItemColor: ColorName.primary,
+          items: navItem.entries
+              .map((entry) => BottomNavigationBarItem(
+                    icon: Icon(
+                      entry.value,
+                    ),
+                    label: entry.key,
+                    backgroundColor: ColorName.background,
+                  ))
+              .toList(),
+          onTap: tabsRouter.setActiveIndex,
+          currentIndex: tabsRouter.activeIndex,
+        );
+      },
     );
+    // return DismissKeyboardScaffold(
+    //   appBar: const CommonAppBar(),
+    //   bottomNavigationBar: BottomNavigationBar(
+    //     type: BottomNavigationBarType.fixed,
+    //     selectedLabelStyle: const TextStyle(color: ColorName.primary),
+    //     selectedItemColor: ColorName.primary,
+    //     items: navItem.entries
+    //         .map((entry) => BottomNavigationBarItem(
+    //               icon: Icon(
+    //                 entry.value,
+    //               ),
+    //               label: entry.key,
+    //               backgroundColor: ColorName.background,
+    //             ))
+    //         .toList(),
+    //     currentIndex: activeIndex,
+    //     onTap: (index) {
+    //       setState(() {
+    //         activeIndex = index;
+    //       });
+    //     },
+    //   ),
+    //   body: tabList[activeIndex],
+    // );
   }
 }
