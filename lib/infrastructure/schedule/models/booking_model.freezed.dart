@@ -22,7 +22,7 @@ BookingModel _$BookingModelFromJson(Map<String, dynamic> json) {
 mixin _$BookingModel {
   String get startTime => throw _privateConstructorUsedError;
   String get endTime => throw _privateConstructorUsedError;
-  TeacherModel? get tutorInfo => throw _privateConstructorUsedError;
+  TeacherModel get tutorInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $BookingModelCopyWith<$Res> {
           BookingModel value, $Res Function(BookingModel) then) =
       _$BookingModelCopyWithImpl<$Res, BookingModel>;
   @useResult
-  $Res call({String startTime, String endTime, TeacherModel? tutorInfo});
+  $Res call({String startTime, String endTime, TeacherModel tutorInfo});
 
-  $TeacherModelCopyWith<$Res>? get tutorInfo;
+  $TeacherModelCopyWith<$Res> get tutorInfo;
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$BookingModelCopyWithImpl<$Res, $Val extends BookingModel>
   $Res call({
     Object? startTime = null,
     Object? endTime = null,
-    Object? tutorInfo = freezed,
+    Object? tutorInfo = null,
   }) {
     return _then(_value.copyWith(
       startTime: null == startTime
@@ -67,21 +67,17 @@ class _$BookingModelCopyWithImpl<$Res, $Val extends BookingModel>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String,
-      tutorInfo: freezed == tutorInfo
+      tutorInfo: null == tutorInfo
           ? _value.tutorInfo
           : tutorInfo // ignore: cast_nullable_to_non_nullable
-              as TeacherModel?,
+              as TeacherModel,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TeacherModelCopyWith<$Res>? get tutorInfo {
-    if (_value.tutorInfo == null) {
-      return null;
-    }
-
-    return $TeacherModelCopyWith<$Res>(_value.tutorInfo!, (value) {
+  $TeacherModelCopyWith<$Res> get tutorInfo {
+    return $TeacherModelCopyWith<$Res>(_value.tutorInfo, (value) {
       return _then(_value.copyWith(tutorInfo: value) as $Val);
     });
   }
@@ -95,10 +91,10 @@ abstract class _$$_BookingModelCopyWith<$Res>
       __$$_BookingModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String startTime, String endTime, TeacherModel? tutorInfo});
+  $Res call({String startTime, String endTime, TeacherModel tutorInfo});
 
   @override
-  $TeacherModelCopyWith<$Res>? get tutorInfo;
+  $TeacherModelCopyWith<$Res> get tutorInfo;
 }
 
 /// @nodoc
@@ -114,7 +110,7 @@ class __$$_BookingModelCopyWithImpl<$Res>
   $Res call({
     Object? startTime = null,
     Object? endTime = null,
-    Object? tutorInfo = freezed,
+    Object? tutorInfo = null,
   }) {
     return _then(_$_BookingModel(
       startTime: null == startTime
@@ -125,10 +121,10 @@ class __$$_BookingModelCopyWithImpl<$Res>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String,
-      tutorInfo: freezed == tutorInfo
+      tutorInfo: null == tutorInfo
           ? _value.tutorInfo
           : tutorInfo // ignore: cast_nullable_to_non_nullable
-              as TeacherModel?,
+              as TeacherModel,
     ));
   }
 }
@@ -153,7 +149,7 @@ class _$_BookingModel extends _BookingModel {
   final String endTime;
   @override
   @JsonKey()
-  final TeacherModel? tutorInfo;
+  final TeacherModel tutorInfo;
 
   @override
   String toString() {
@@ -194,7 +190,7 @@ abstract class _BookingModel extends BookingModel {
   const factory _BookingModel(
       {final String startTime,
       final String endTime,
-      final TeacherModel? tutorInfo}) = _$_BookingModel;
+      final TeacherModel tutorInfo}) = _$_BookingModel;
   const _BookingModel._() : super._();
 
   factory _BookingModel.fromJson(Map<String, dynamic> json) =
@@ -205,7 +201,7 @@ abstract class _BookingModel extends BookingModel {
   @override
   String get endTime;
   @override
-  TeacherModel? get tutorInfo;
+  TeacherModel get tutorInfo;
   @override
   @JsonKey(ignore: true)
   _$$_BookingModelCopyWith<_$_BookingModel> get copyWith =>

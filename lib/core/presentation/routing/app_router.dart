@@ -8,6 +8,7 @@ import 'package:lettutor/presentation/courses/courses_screen.dart';
 import 'package:lettutor/presentation/courses/detail/course_detail_screen.dart';
 import 'package:lettutor/presentation/history/history_student_screen.dart';
 import 'package:lettutor/presentation/schedule/booking_student.dart';
+import 'package:lettutor/presentation/stream/stream_screen.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_detail_screen.dart';
 import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
 
@@ -48,8 +49,12 @@ part 'app_router.gr.dart';
       AutoRoute(path: 'courses', page: EmptyRouterPage, name: 'CoursesRouter', children: [
         AutoRoute(path: '', page: CoursesScreen),
         AutoRoute(path: ':courseId', page: CourseDetailScreen),
-      ])
+      ]),
     ]),
+    AutoRoute(
+      path: 'call',
+      page: StreamScreen,
+    ),
   ],
 )
 class AppRouter extends _$AppRouter {}

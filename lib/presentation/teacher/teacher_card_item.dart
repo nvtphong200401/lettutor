@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
+import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
-import 'package:lettutor/presentation/teacher/detail/teacher_detail_screen.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
 
 import '../../gen/colors.gen.dart';
@@ -33,6 +33,7 @@ class TeacherCardItem extends StatelessWidget {
               TeacherInfo(
                 name: info.name,
                 avatar: info.avatar,
+                isFavorite: info.isFavorite,
               ),
               const SizedBox(
                 height: 20,
@@ -40,16 +41,13 @@ class TeacherCardItem extends StatelessWidget {
               Wrap(
                 children: const [
                   CommonTag(title: 'English for kids'),
-                  SizedBox(
-                    width: 10,
-                  ),
                   CommonTag(title: 'IELTS'),
                 ],
               ),
               const SizedBox(
                 height: 20,
               ),
-              Text(info.bio ?? ''),
+              ReadMoreText(info.bio),
               const SizedBox(
                 height: 10,
               ),

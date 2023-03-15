@@ -39,6 +39,12 @@ class _$AppRouter extends RootStackRouter {
         child: const MyHomePage(),
       );
     },
+    StreamRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const StreamScreen(),
+      );
+    },
     ListTeacherRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -161,6 +167,10 @@ class _$AppRouter extends RootStackRouter {
             ),
           ],
         ),
+        RouteConfig(
+          StreamRoute.name,
+          path: 'call',
+        ),
       ];
 }
 
@@ -199,6 +209,18 @@ class MyHomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MyHomeRoute';
+}
+
+/// generated route for
+/// [StreamScreen]
+class StreamRoute extends PageRouteInfo<void> {
+  const StreamRoute()
+      : super(
+          StreamRoute.name,
+          path: 'call',
+        );
+
+  static const String name = 'StreamRoute';
 }
 
 /// generated route for

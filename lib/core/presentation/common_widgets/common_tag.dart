@@ -10,17 +10,20 @@ class CommonTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 30,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
-          backgroundColor: ColorName.activeTag,
-          capsuleShape: true,
-        ),
-        child: Text(
-          title,
-          style: const TextStyle(color: ColorName.primary),
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: SizedBox(
+        height: 30,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
+            backgroundColor: ColorName.activeTag,
+            capsuleShape: true,
+          ),
+          child: Text(
+            title,
+            style: const TextStyle(color: ColorName.primary),
+          ),
         ),
       ),
     );

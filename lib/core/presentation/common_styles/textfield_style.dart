@@ -20,17 +20,21 @@ class CommonTextFieldStyle {
 }
 
 extension InputDecorationEx on InputDecoration {
-  InputDecoration customCopyWith(
-      {Color? borderColor,
-      bool capsuleShape = true,
-      String? hintText,
-      Widget? prefixIcon,
-      Widget? suffixIcon}) {
+  InputDecoration customCopyWith({
+    Color? borderColor,
+    bool? capsuleShape,
+    String? hintText,
+    Widget? prefixIcon,
+    Widget? suffixIcon,
+    TextStyle? hintStyle,
+  }) {
     return copyWith(
+        hintMaxLines: 3,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: borderColor ?? ColorName.grey, width: 1.5),
-            borderRadius: BorderRadius.circular(capsuleShape ? 40 : 6)),
+            borderRadius: BorderRadius.circular((capsuleShape ?? false) ? 40 : 6)),
         hintText: hintText,
+        hintStyle: hintStyle,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon);
   }

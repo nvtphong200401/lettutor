@@ -6,6 +6,7 @@ import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dar
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/schedule/models/booking_model.dart';
+import 'package:lettutor/presentation/schedule/cancel_booking.dart';
 
 import '../teacher/teacher_info.dart';
 
@@ -32,28 +33,26 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
         ),
         whiteBoxContainer(
           child: TeacherInfo(
-            favIcon: false,
-            name: bookInfo.tutorInfo?.name ?? '',
-            avatar: bookInfo.tutorInfo?.avatar ?? '',
+            name: bookInfo.tutorInfo.name,
+            avatar: bookInfo.tutorInfo.avatar,
           ),
         ),
         const SizedBox(
           height: 10,
         ),
         whiteBoxContainer(
-          child: CommonLessonTime(
-              startTime: bookInfo.startTime ?? '', endTime: bookInfo.endTime ?? ''),
+          child: CommonLessonTime(startTime: bookInfo.startTime, endTime: bookInfo.endTime),
         ),
         const SizedBox(
           height: 1,
         ),
         whiteBoxContainer(
-          child: buildSection('Sesson 1: 08:30 - 08:55'),
+          child: BookingSession(bookingModel: bookInfo),
         ),
         const SizedBox(
           height: 1,
         ),
-        whiteBoxContainer(child: buildSection('Sesson 2: 08:55 - 09:30')),
+        whiteBoxContainer(child: BookingSession(bookingModel: bookInfo)),
         const SizedBox(
           height: 1,
         ),
@@ -106,36 +105,49 @@ class BookingCard extends StatelessWidget with BuildWhiteContainerMixin {
       ],
     ));
   }
+}
 
-  Widget buildSection(String text) {
+class BookingSession extends StatelessWidget {
+  const BookingSession({super.key, required this.bookingModel});
+  final BookingModel bookingModel;
+
+  @override
+  Widget build(BuildContext context) {
+    final tutor = bookingModel.tutorInfo;
     return Row(
       children: [
         Text(
-          text,
+          'Sesson 1: ${bookingModel.startTime} - ${bookingModel.endTime}',
         ),
         const Spacer(),
-        Container(
-          decoration: BoxDecoration(
-            color: ColorName.background,
-            border: Border.all(color: Colors.red),
-            borderRadius: BorderRadius.circular(100),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.cancel,
-                size: 12,
-                color: Colors.red,
-              ),
-              const SizedBox(
-                width: 3,
-              ),
-              Text(
-                'Cancel',
-                style: CommonTextStyle.textSize12.copyWith(color: Colors.red),
-              ),
-            ],
+        GestureDetector(
+          onTap: () => showDialog(
+              context: context,
+              builder: (context) => CancelBookingDialog(
+                  avatarUrl: tutor.avatar, teacherName: tutor.name, lessonTime: 'Wed, 14 Mar 23')),
+          child: Container(
+            decoration: BoxDecoration(
+              color: ColorName.background,
+              border: Border.all(color: Colors.red),
+              borderRadius: BorderRadius.circular(100),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.cancel,
+                  size: 12,
+                  color: Colors.red,
+                ),
+                const SizedBox(
+                  width: 3,
+                ),
+                Text(
+                  'Cancel',
+                  style: CommonTextStyle.textSize12.copyWith(color: Colors.red),
+                ),
+              ],
+            ),
           ),
         ),
       ],

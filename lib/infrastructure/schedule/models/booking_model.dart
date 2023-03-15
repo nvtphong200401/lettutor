@@ -10,7 +10,7 @@ class BookingModel with _$BookingModel {
   const factory BookingModel({
     @Default('00:00') String startTime,
     @Default('00:00') String endTime,
-    @Default(TeacherModel()) TeacherModel? tutorInfo,
+    @Default(TeacherModel()) TeacherModel tutorInfo,
   }) = _BookingModel;
   factory BookingModel.fromJson(Map<String, dynamic> json) => _$BookingModelFromJson(json);
 

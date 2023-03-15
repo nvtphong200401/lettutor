@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_back_button.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 // import 'package:lettutor/core/presentation/common_widgets/common_sliver_appbar.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
@@ -23,6 +24,7 @@ class CourseInfoScreen extends HookWidget {
         slivers: [
           SliverAppBar(
               pinned: true,
+              leading: const CommonBackButton(),
               title: CommonSliverAppbarTitle(scrollController: scrollController),
               expandedHeight: 340,
               collapsedHeight: 60,

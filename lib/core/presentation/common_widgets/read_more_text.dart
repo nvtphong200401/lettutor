@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor/gen/colors.gen.dart';
 
 enum TrimMode {
   length,
@@ -26,8 +27,8 @@ class ReadMoreText extends StatefulWidget {
     this.locale,
     this.textScaleFactor,
     this.semanticsLabel,
-    this.moreStyle,
-    this.lessStyle,
+    this.moreStyle = const TextStyle(color: ColorName.textButton),
+    this.lessStyle = const TextStyle(color: ColorName.textButton),
     this.delimiter = '$_kEllipsis ',
     this.delimiterStyle,
     this.callback,

@@ -32,8 +32,7 @@ class HistoryItem extends StatelessWidget with BuildWhiteContainerMixin {
           ),
           whiteBoxContainer(
             child: TeacherInfo(
-              favIcon: false,
-              name: info.name ?? '',
+              name: info.name,
               avatar: info.avatar,
             ),
           ),

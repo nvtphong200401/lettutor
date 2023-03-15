@@ -1,7 +1,11 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_dialog.dart';
+import 'package:lettutor/core/presentation/routing/app_router.dart';
+import 'package:lettutor/main.dart';
 
 import '../../core/presentation/common_styles/common_styles.dart';
 import '../../gen/colors.gen.dart';
@@ -64,7 +68,14 @@ class UpcommingLessonBoard extends StatelessWidget {
                   SizedBox(
                     height: 40,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (cameras.isNotEmpty) {
+                          context.router.push(const StreamRoute());
+                        } else {
+                          CommonDialog(context).infoDialog(
+                              title: 'Permission denied', body: 'Camera permission is denied');
+                        }
+                      },
                       style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
                           textColor: ColorName.primary,
                           capsuleShape: true,

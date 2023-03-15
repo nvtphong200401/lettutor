@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
-import 'package:video_player/video_player.dart';
+import 'package:lettutor/presentation/teacher/detail/report_modal.dart';
+import 'package:lettutor/presentation/teacher/detail/teacher_video.dart';
 
 import '../../../core/presentation/common_styles/common_styles.dart';
+import '../../../core/presentation/common_widgets/common_back_button.dart';
 import '../../../core/presentation/common_widgets/common_sliver_appbar.dart';
 import '../teacher_info.dart';
 
@@ -19,17 +22,9 @@ class TeacherDetailScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final videoController = useMemoized(() => VideoPlayerController.network(
-          'https://api.app.lettutor.com/video/4d54d3d7-d2a9-42e5-97a2-5ed38af5789avideo1627913015871.mp4',
-        ));
     final scrollController = useScrollController();
     final info = TeacherModel.init();
 
-    useEffect(() {
-      videoController.initialize();
-      videoController.play();
-      return videoController.dispose;
-    }, [videoController]);
     return DismissKeyboardScaffold(
         // appBar: const CommonAppBar(),
         body: CustomScrollView(
@@ -37,26 +32,12 @@ class TeacherDetailScreen extends HookWidget {
       slivers: [
         SliverAppBar(
           pinned: true,
-          leading: Container(
-            color: Colors.white,
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: ColorName.primary,
-            ),
-          ),
+          leading: const CommonBackButton(),
           title: CommonSliverAppbarTitle(scrollController: scrollController),
           expandedHeight: 400,
           collapsedHeight: 60,
-          flexibleSpace: FlexibleSpaceBar(
-            background: SizedBox(
-              height: 400,
-              width: 200,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-                child: VideoPlayer(videoController),
-              ),
-            ),
+          flexibleSpace: const FlexibleSpaceBar(
+            background: TeacherVideo(),
           ),
         ),
         SliverPadding(
@@ -67,7 +48,6 @@ class TeacherDetailScreen extends HookWidget {
               height: 20,
             ),
             TeacherInfo(
-              favIcon: false,
               name: info.name,
               avatar: info.avatar,
             ),
@@ -81,7 +61,9 @@ class TeacherDetailScreen extends HookWidget {
             const SizedBox(
               height: 15,
             ),
-            const IconGroup(),
+            IconGroup(
+              isFavorite: info.isFavorite,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -93,7 +75,7 @@ class TeacherDetailScreen extends HookWidget {
               height: 10,
             ),
             Wrap(
-              children: [buildTag('English')],
+              children: const [CommonTag(title: 'English')],
             ),
             const SizedBox(
               height: 20,
@@ -106,10 +88,10 @@ class TeacherDetailScreen extends HookWidget {
               height: 10,
             ),
             Wrap(
-              children: [
-                buildTag('English for Business'),
-                buildTag('Consersational'),
-                buildTag('English for kids'),
+              children: const [
+                CommonTag(title: 'English for Business'),
+                CommonTag(title: 'Consersational'),
+                CommonTag(title: 'English for kids'),
               ],
             ),
             const SizedBox(
@@ -272,30 +254,52 @@ class TeacherDetailScreen extends HookWidget {
 }
 
 class IconGroup extends StatelessWidget {
-  const IconGroup({super.key});
+  const IconGroup({super.key, required this.isFavorite});
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _buildIcon('Favorite', Icons.favorite_outline),
-        _buildIcon('Report', Icons.info_outline),
+        HookBuilder(builder: (context) {
+          final fav = useState(isFavorite);
+          final icon = fav.value
+              ? _buildIcon('Favorite', Icons.favorite, Colors.red)
+              : _buildIcon('Favorite', Icons.favorite_outline);
+          return GestureDetector(
+            child: icon,
+            onTap: () {
+              fav.value = !fav.value;
+            },
+          );
+        }),
+        GestureDetector(
+          child: _buildIcon('Report', Icons.info_outline),
+          onTap: () => showModalBottomSheet(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+              builder: (context) {
+                return const ReportModal();
+              }),
+        ),
         _buildIcon('Reviews', Icons.star_outline),
       ],
     );
   }
 
-  Widget _buildIcon(String text, IconData icon) {
+  Widget _buildIcon(String text, IconData icon, [Color color = ColorName.primary]) {
     return Column(
       children: [
         Icon(
           icon,
-          color: ColorName.primary,
+          color: color,
         ),
         Text(
           text,
-          style: const TextStyle(color: ColorName.primary),
+          style: TextStyle(color: color),
         ),
       ],
     );

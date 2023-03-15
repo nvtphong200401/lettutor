@@ -113,21 +113,9 @@ class ListTeachScreen extends HookWidget {
             child: Row(
               children: const [
                 CommonTag(title: 'IELTS'),
-                SizedBox(
-                  width: 10,
-                ),
                 CommonTag(title: 'English for kids'),
-                SizedBox(
-                  width: 10,
-                ),
                 CommonTag(title: 'Conversational'),
-                SizedBox(
-                  width: 10,
-                ),
                 CommonTag(title: 'TOEIC'),
-                SizedBox(
-                  width: 10,
-                ),
                 CommonTag(title: 'English for Business'),
               ],
             ),

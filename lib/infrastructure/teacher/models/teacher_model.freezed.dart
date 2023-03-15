@@ -24,6 +24,7 @@ mixin _$TeacherModel {
   String get avatar => throw _privateConstructorUsedError;
   String get video => throw _privateConstructorUsedError;
   String get bio => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,8 @@ abstract class $TeacherModelCopyWith<$Res> {
           TeacherModel value, $Res Function(TeacherModel) then) =
       _$TeacherModelCopyWithImpl<$Res, TeacherModel>;
   @useResult
-  $Res call({String name, String avatar, String video, String bio});
+  $Res call(
+      {String name, String avatar, String video, String bio, bool isFavorite});
 }
 
 /// @nodoc
@@ -57,6 +59,7 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
     Object? avatar = null,
     Object? video = null,
     Object? bio = null,
+    Object? isFavorite = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -75,6 +78,10 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -87,7 +94,8 @@ abstract class _$$_TeacherModelCopyWith<$Res>
       __$$_TeacherModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String avatar, String video, String bio});
+  $Res call(
+      {String name, String avatar, String video, String bio, bool isFavorite});
 }
 
 /// @nodoc
@@ -105,6 +113,7 @@ class __$$_TeacherModelCopyWithImpl<$Res>
     Object? avatar = null,
     Object? video = null,
     Object? bio = null,
+    Object? isFavorite = null,
   }) {
     return _then(_$_TeacherModel(
       name: null == name
@@ -123,6 +132,10 @@ class __$$_TeacherModelCopyWithImpl<$Res>
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
               as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -135,7 +148,8 @@ class _$_TeacherModel extends _TeacherModel {
       this.avatar =
           'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
       this.video = '',
-      this.bio = ''})
+      this.bio = '',
+      this.isFavorite = false})
       : super._();
 
   factory _$_TeacherModel.fromJson(Map<String, dynamic> json) =>
@@ -153,10 +167,13 @@ class _$_TeacherModel extends _TeacherModel {
   @override
   @JsonKey()
   final String bio;
+  @override
+  @JsonKey()
+  final bool isFavorite;
 
   @override
   String toString() {
-    return 'TeacherModel(name: $name, avatar: $avatar, video: $video, bio: $bio)';
+    return 'TeacherModel(name: $name, avatar: $avatar, video: $video, bio: $bio, isFavorite: $isFavorite)';
   }
 
   @override
@@ -167,12 +184,15 @@ class _$_TeacherModel extends _TeacherModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.video, video) || other.video == video) &&
-            (identical(other.bio, bio) || other.bio == bio));
+            (identical(other.bio, bio) || other.bio == bio) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, avatar, video, bio);
+  int get hashCode =>
+      Object.hash(runtimeType, name, avatar, video, bio, isFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -193,7 +213,8 @@ abstract class _TeacherModel extends TeacherModel {
       {final String name,
       final String avatar,
       final String video,
-      final String bio}) = _$_TeacherModel;
+      final String bio,
+      final bool isFavorite}) = _$_TeacherModel;
   const _TeacherModel._() : super._();
 
   factory _TeacherModel.fromJson(Map<String, dynamic> json) =
@@ -207,6 +228,8 @@ abstract class _TeacherModel extends TeacherModel {
   String get video;
   @override
   String get bio;
+  @override
+  bool get isFavorite;
   @override
   @JsonKey(ignore: true)
   _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith =>

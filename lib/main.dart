@@ -24,13 +24,16 @@ class MyApp extends HookWidget {
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
-          textTheme: GoogleFonts.poppinsTextTheme()
-              .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: ColorName.background,
-          appBarTheme: const AppBarTheme(
-              backgroundColor: ColorName.background, foregroundColor: ColorName.primary),
-          colorScheme: const ColorScheme.light(background: ColorName.background)),
+        textTheme: GoogleFonts.poppinsTextTheme()
+            .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
+        primarySwatch: Colors.blue,
+        primaryColor: ColorName.primary,
+        scaffoldBackgroundColor: ColorName.background,
+        appBarTheme: const AppBarTheme(
+            backgroundColor: ColorName.background, foregroundColor: ColorName.primary),
+        // colorScheme:
+        //     const ColorScheme.light(background: ColorName.background, primary: ColorName.primary),
+      ),
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
     );

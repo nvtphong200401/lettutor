@@ -13,6 +13,7 @@ _$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) =>
           'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
       video: json['video'] as String? ?? '',
       bio: json['bio'] as String? ?? '',
+      isFavorite: json['isFavorite'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) =>
       'avatar': instance.avatar,
       'video': instance.video,
       'bio': instance.bio,
+      'isFavorite': instance.isFavorite,
     };

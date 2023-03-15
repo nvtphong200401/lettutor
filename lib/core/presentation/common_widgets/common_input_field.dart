@@ -93,13 +93,13 @@ class CommonTextFormField extends HookWidget {
       height: size?.height ?? 45,
       width: size?.width,
       child: TextFormField(
+        cursorColor: ColorName.primary,
         focusNode: focusNode,
         onChanged: onChanged,
         onTap: onTap,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: borderColor ?? ColorName.grey, width: 1.5),
+              borderSide: BorderSide(color: borderColor ?? ColorName.grey, width: 1.5),
               borderRadius: BorderRadius.circular(capsuleShape ? 40 : 6)),
           contentPadding: const EdgeInsets.all(10),
           focusedBorder: OutlineInputBorder(
