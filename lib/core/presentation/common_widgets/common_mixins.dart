@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../gen/colors.gen.dart';
 
-mixin BuildWhiteContainerMixin {
-  whiteBoxContainer({required Widget child}) {
+class WhiteBoxContainer extends StatelessWidget {
+  const WhiteBoxContainer({super.key, required this.child});
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -13,8 +17,13 @@ mixin BuildWhiteContainerMixin {
       child: child,
     );
   }
+}
 
-  Container greyBoxContainer({required Widget child}) {
+class GreyBoxContainer extends StatelessWidget {
+  const GreyBoxContainer({super.key, required this.child});
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),

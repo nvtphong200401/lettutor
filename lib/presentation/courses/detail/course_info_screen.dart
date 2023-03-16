@@ -25,8 +25,9 @@ class CourseInfoScreen extends HookWidget {
           SliverAppBar(
               pinned: true,
               leading: const CommonBackButton(),
-              title: CommonSliverAppbarTitle(scrollController: scrollController),
-              expandedHeight: 340,
+              title:
+                  CommonSliverAppbarTitle(scrollController: scrollController),
+              expandedHeight: 390,
               collapsedHeight: 60,
               flexibleSpace: const CourseInfoFlexibleSpaceBar()),
           SliverPadding(
@@ -98,7 +99,8 @@ class CourseInfoScreen extends HookWidget {
             ),
             Text(
               title,
-              style: CommonTextStyle.textSize16.copyWith(fontWeight: FontWeight.w500),
+              style: CommonTextStyle.textSize16
+                  .copyWith(fontWeight: FontWeight.w500),
             ),
           ]),
           Row(

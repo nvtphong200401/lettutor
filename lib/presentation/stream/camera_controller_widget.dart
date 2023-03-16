@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -16,13 +17,17 @@ class CameraControllerWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 8.0, right: 16, top: 4.0, bottom: 4.0),
+      padding:
+          const EdgeInsets.only(left: 8.0, right: 16, top: 4.0, bottom: 4.0),
       margin: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6.0),
           color: const Color(0xff141414),
           boxShadow: const [
-            BoxShadow(color: Colors.black54, blurRadius: 15.0, offset: Offset(0.0, 0.75)),
+            BoxShadow(
+                color: Colors.black54,
+                blurRadius: 15.0,
+                offset: Offset(0.0, 0.75)),
           ]),
       child: LayoutBuilder(
         builder: (context, constraint) {
@@ -46,7 +51,9 @@ class CameraControllerWidget extends HookWidget {
                 return GestureDetector(
                   onTap: () => cameraNotifier.value = !cameraNotifier.value,
                   child: Item(
-                    icon: cameraValue ? Icons.videocam_outlined : Icons.videocam_off_outlined,
+                    icon: cameraValue
+                        ? Icons.videocam_outlined
+                        : Icons.videocam_off_outlined,
                     more: true,
                   ),
                 );
@@ -116,12 +123,15 @@ class HangupPhone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.circular(4.0),
+    return GestureDetector(
+      onTap: () => context.router.pop(),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+        child: const Item(icon: Icons.phone),
       ),
-      child: const Item(icon: Icons.phone),
     );
   }
 }
@@ -154,7 +164,8 @@ class Item extends StatelessWidget {
               alignment: Alignment.topRight,
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                    color: const Color(0xff36383c), borderRadius: BorderRadius.circular(3.0)),
+                    color: const Color(0xff36383c),
+                    borderRadius: BorderRadius.circular(3.0)),
                 child: const Icon(
                   Icons.keyboard_arrow_up,
                   color: Colors.white,

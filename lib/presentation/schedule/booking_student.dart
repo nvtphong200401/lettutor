@@ -6,7 +6,7 @@ import 'package:lettutor/presentation/schedule/booking_card.dart';
 
 import '../../core/presentation/common_styles/common_styles.dart';
 
-class BookingStudentScreen extends StatelessWidget with BuildWhiteContainerMixin {
+class BookingStudentScreen extends StatelessWidget {
   const BookingStudentScreen({super.key});
 
   @override
@@ -51,7 +51,8 @@ class BookingStudentScreen extends StatelessWidget with BuildWhiteContainerMixin
                 Table(
                   border: TableBorder.all(
                       borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(5), topRight: Radius.circular(5))),
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5))),
                   children: [
                     TableRow(children: [
                       _tableItem(text: 'Name', bgColor: ColorName.cardhistory),
@@ -73,10 +74,15 @@ class BookingStudentScreen extends StatelessWidget with BuildWhiteContainerMixin
                     right: BorderSide(),
                   ),
                   children: [
-                    TableRow(children: [
-                      _tableItem(text: 'Description', bgColor: ColorName.cardhistory),
-                      _tableItem(text: ''),
-                    ], decoration: BoxDecoration(borderRadius: BorderRadius.circular(10))),
+                    TableRow(
+                        children: [
+                          _tableItem(
+                              text: 'Description',
+                              bgColor: ColorName.cardhistory),
+                          _tableItem(text: ''),
+                        ],
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10))),
                   ],
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -14,10 +15,15 @@ final _reasonList = [
 
 class CancelBookingDialog extends StatelessWidget {
   const CancelBookingDialog(
-      {super.key, required this.avatarUrl, required this.teacherName, required this.lessonTime});
+      {super.key,
+      required this.avatarUrl,
+      required this.teacherName,
+      required this.lessonTime,
+      this.onSubmit});
   final String avatarUrl;
   final String teacherName;
   final String lessonTime;
+  final void Function()? onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +98,9 @@ class CancelBookingDialog extends StatelessWidget {
                     'Choose reason',
                     style: TextStyle(color: ColorName.grey),
                   ),
-                  items:
-                      _reasonList.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList());
+                  items: _reasonList
+                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                      .toList());
             }),
             const SizedBox(
               height: 10,
@@ -111,12 +118,17 @@ class CancelBookingDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(onPressed: () {}, child: const Text('Later')),
+                TextButton(
+                    onPressed: () => context.router.root.pop(),
+                    child: const Text('Later')),
                 const SizedBox(
                   width: 10,
                 ),
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    onSubmit?.call();
+                    context.router.root.pop();
+                  },
                   style: CommonButtonStyle.primaryButtonStyle,
                   child: const Text(
                     'Submit',

@@ -7,21 +7,23 @@ import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
 
 import '../../core/presentation/common_styles/common_styles.dart';
+import '../teacher/detail/report_modal.dart';
 
-class HistoryItem extends StatelessWidget with BuildWhiteContainerMixin {
+class HistoryItem extends StatelessWidget {
   const HistoryItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     final info = TeacherModel.init();
 
-    return greyBoxContainer(
+    return GreyBoxContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             DateFormat('EEE, dd MMM yy').format(DateTime.now()),
-            style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
+            style: CommonTextStyle.textSize24
+                .copyWith(fontWeight: FontWeight.w700),
           ),
           Text(
             '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
@@ -30,7 +32,7 @@ class HistoryItem extends StatelessWidget with BuildWhiteContainerMixin {
           const SizedBox(
             height: 10,
           ),
-          whiteBoxContainer(
+          WhiteBoxContainer(
             child: TeacherInfo(
               name: info.name,
               avatar: info.avatar,
@@ -39,29 +41,41 @@ class HistoryItem extends StatelessWidget with BuildWhiteContainerMixin {
           const SizedBox(
             height: 10,
           ),
-          whiteBoxContainer(child: const CommonLessonTime(startTime: '08:30', endTime: '09:30')),
+          const WhiteBoxContainer(
+              child: CommonLessonTime(startTime: '08:30', endTime: '09:30')),
           const SizedBox(
             height: 1,
           ),
-          whiteBoxContainer(child: const Text('Request for lesson')),
+          const WhiteBoxContainer(child: Text('Request for lesson')),
           const SizedBox(
             height: 1,
           ),
-          whiteBoxContainer(child: const Text('Tutor haven\'t reviewed yet')),
+          const WhiteBoxContainer(child: Text('Tutor haven\'t reviewed yet')),
           const SizedBox(
             height: 1,
           ),
-          whiteBoxContainer(
+          WhiteBoxContainer(
               child: Row(
-            children: const [
-              Text(
+            children: [
+              const Text(
                 'Add a rating',
                 style: TextStyle(color: ColorName.textButton),
               ),
-              Spacer(),
-              Text(
-                'Report',
-                style: TextStyle(color: ColorName.textButton),
+              const Spacer(),
+              GestureDetector(
+                onTap: () => showModalBottomSheet(
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
+                    builder: (context) {
+                      return const ReportModal();
+                    }),
+                child: const Text(
+                  'Report',
+                  style: TextStyle(color: ColorName.textButton),
+                ),
               )
             ],
           ))
