@@ -45,7 +45,7 @@ dependencies:
   expandable: ^5.0.1
   transparent_image: ^2.0.1
   webview_flutter: ^4.0.6
-  syncfusion_flutter_pdfviewer: ^20.4.53
+  syncfusion_flutter_pdfviewer: ^20.4.54
   intrinsic_dimension: ^0.3.0
   multi_select_flutter: ^4.1.3
 
