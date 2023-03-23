@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,7 +20,8 @@ class TeacherCardItem extends ConsumerWidget {
   final String teacherId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final info = ref.watch(teachersProvider.select((value) => value.teachersMap[teacherId]!));
+    final info = ref.watch(teacherProvider(teacherId));
+    log('see rebuild $info');
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -31,7 +34,7 @@ class TeacherCardItem extends ConsumerWidget {
             TeacherInfo(
               info: info,
               toggleFavorite: () {
-                ref.read(teachersProvider.notifier).updateFavorite(info.id);
+                ref.read(teacherProvider(teacherId).notifier).updateFavorite();
               },
             ),
             const SizedBox(

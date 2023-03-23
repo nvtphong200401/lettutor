@@ -137,7 +137,7 @@ class ListTeachScreen extends HookConsumerWidget {
             height: 20,
           ),
           ref.watch(teachersProvider).when(
-            loading: () {
+            loading: (data) {
               return const Center(
                 child: CircularProgressIndicator(),
               );

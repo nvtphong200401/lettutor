@@ -16,22 +16,23 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TeachersState {
+  List<TeacherModel> get teachers => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<TeacherModel> teachers) loading,
     required TResult Function(List<TeacherModel> teachers, String? errorMessage)
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<TeacherModel> teachers)? loading,
     TResult? Function(List<TeacherModel> teachers, String? errorMessage)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<TeacherModel> teachers)? loading,
     TResult Function(List<TeacherModel> teachers, String? errorMessage)? data,
     required TResult orElse(),
   }) =>
@@ -55,6 +56,10 @@ mixin _$TeachersState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TeachersStateCopyWith<TeachersState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -62,6 +67,8 @@ abstract class $TeachersStateCopyWith<$Res> {
   factory $TeachersStateCopyWith(
           TeachersState value, $Res Function(TeachersState) then) =
       _$TeachersStateCopyWithImpl<$Res, TeachersState>;
+  @useResult
+  $Res call({List<TeacherModel> teachers});
 }
 
 /// @nodoc
@@ -73,13 +80,30 @@ class _$TeachersStateCopyWithImpl<$Res, $Val extends TeachersState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? teachers = null,
+  }) {
+    return _then(_value.copyWith(
+      teachers: null == teachers
+          ? _value.teachers
+          : teachers // ignore: cast_nullable_to_non_nullable
+              as List<TeacherModel>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
+abstract class _$$_LoadingCopyWith<$Res>
+    implements $TeachersStateCopyWith<$Res> {
   factory _$$_LoadingCopyWith(
           _$_Loading value, $Res Function(_$_Loading) then) =
       __$$_LoadingCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TeacherModel> teachers});
 }
 
 /// @nodoc
@@ -88,55 +112,87 @@ class __$$_LoadingCopyWithImpl<$Res>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? teachers = null,
+  }) {
+    return _then(_$_Loading(
+      teachers: null == teachers
+          ? _value._teachers
+          : teachers // ignore: cast_nullable_to_non_nullable
+              as List<TeacherModel>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Loading extends _Loading {
-  const _$_Loading() : super._();
+  const _$_Loading({required final List<TeacherModel> teachers})
+      : _teachers = teachers,
+        super._();
+
+  final List<TeacherModel> _teachers;
+  @override
+  List<TeacherModel> get teachers {
+    if (_teachers is EqualUnmodifiableListView) return _teachers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_teachers);
+  }
 
   @override
   String toString() {
-    return 'TeachersState.loading()';
+    return 'TeachersState.loading(teachers: $teachers)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
+        (other.runtimeType == runtimeType &&
+            other is _$_Loading &&
+            const DeepCollectionEquality().equals(other._teachers, _teachers));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_teachers));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
+      __$$_LoadingCopyWithImpl<_$_Loading>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<TeacherModel> teachers) loading,
     required TResult Function(List<TeacherModel> teachers, String? errorMessage)
         data,
   }) {
-    return loading();
+    return loading(teachers);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<TeacherModel> teachers)? loading,
     TResult? Function(List<TeacherModel> teachers, String? errorMessage)? data,
   }) {
-    return loading?.call();
+    return loading?.call(teachers);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<TeacherModel> teachers)? loading,
     TResult Function(List<TeacherModel> teachers, String? errorMessage)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(teachers);
     }
     return orElse();
   }
@@ -174,14 +230,23 @@ class _$_Loading extends _Loading {
 }
 
 abstract class _Loading extends TeachersState {
-  const factory _Loading() = _$_Loading;
+  const factory _Loading({required final List<TeacherModel> teachers}) =
+      _$_Loading;
   const _Loading._() : super._();
+
+  @override
+  List<TeacherModel> get teachers;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LoadingCopyWith<_$_Loading> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_DataCopyWith<$Res> {
+abstract class _$$_DataCopyWith<$Res> implements $TeachersStateCopyWith<$Res> {
   factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
       __$$_DataCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({List<TeacherModel> teachers, String? errorMessage});
 }
@@ -258,7 +323,7 @@ class _$_Data extends _Data {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
+    required TResult Function(List<TeacherModel> teachers) loading,
     required TResult Function(List<TeacherModel> teachers, String? errorMessage)
         data,
   }) {
@@ -268,7 +333,7 @@ class _$_Data extends _Data {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
+    TResult? Function(List<TeacherModel> teachers)? loading,
     TResult? Function(List<TeacherModel> teachers, String? errorMessage)? data,
   }) {
     return data?.call(teachers, errorMessage);
@@ -277,7 +342,7 @@ class _$_Data extends _Data {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
+    TResult Function(List<TeacherModel> teachers)? loading,
     TResult Function(List<TeacherModel> teachers, String? errorMessage)? data,
     required TResult orElse(),
   }) {
@@ -325,8 +390,10 @@ abstract class _Data extends TeachersState {
       final String? errorMessage}) = _$_Data;
   _Data._() : super._();
 
+  @override
   List<TeacherModel> get teachers;
   String? get errorMessage;
+  @override
   @JsonKey(ignore: true)
   _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
 }

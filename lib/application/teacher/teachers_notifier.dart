@@ -8,33 +8,33 @@ part 'teachers_notifier.freezed.dart';
 @freezed
 class TeachersState with _$TeachersState {
   const TeachersState._();
-  const factory TeachersState.loading() = _Loading;
+  const factory TeachersState.loading({
+    required List<TeacherModel> teachers,
+  }) = _Loading;
   factory TeachersState.data({
     required List<TeacherModel> teachers,
     String? errorMessage,
   }) = _Data;
 
-  Map<String, TeacherModel> get teachersMap => when(
-      loading: () => {},
-      data: (teachers, errorMessage) {
-        return Map.fromEntries(teachers.map((e) => MapEntry<String, TeacherModel>(e.id, e)));
-      });
+  Map<String, TeacherModel> get currentData =>
+      Map.fromEntries(teachers.map((e) => MapEntry(e.id, e)));
 }
 
 class TeachersNotifier extends StateNotifier<TeachersState> {
-  TeachersNotifier() : super(const TeachersState.loading()) {
+  TeachersNotifier() : super(const TeachersState.loading(teachers: [])) {
     getTeacherList();
   }
 
   Future getTeacherList() async {
     state = TeachersState.data(teachers: [TeacherModel.init(), TeacherModel.init(id: '2')]);
   }
+}
 
-  Future updateFavorite(String teacherId) async {
-    final newMap = Map<String, TeacherModel>.from(state.teachersMap);
-    final teacher = newMap[teacherId]!;
-    newMap[teacherId] = teacher.copyWith(isFavorite: !teacher.isFavorite);
-    final teachers = List<TeacherModel>.from(newMap.values);
-    state = TeachersState.data(teachers: teachers);
+class TeacherModelNotifier extends StateNotifier<TeacherModel> {
+  TeacherModelNotifier(this.teacherModel) : super(teacherModel);
+  final TeacherModel teacherModel;
+
+  Future updateFavorite() async {
+    state = state.copyWith(isFavorite: !state.isFavorite);
   }
 }

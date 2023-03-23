@@ -28,7 +28,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useScrollController();
-    final info = ref.watch(teachersProvider.select((value) => value.teachersMap[teacherId]!));
+    final info = ref.watch(teacherProvider(teacherId));
 
     return DismissKeyboardScaffold(
         // appBar: const CommonAppBar(),
@@ -274,7 +274,7 @@ class IconGroup extends ConsumerWidget {
           return GestureDetector(
             child: icon,
             onTap: () {
-              ref.read(teachersProvider.notifier).updateFavorite(teacher.id);
+              ref.read(teacherProvider(teacher.id).notifier).updateFavorite();
             },
           );
         }),

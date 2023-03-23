@@ -68,8 +68,7 @@ class TeacherInfo extends StatelessWidget {
         const Spacer(),
         if (toggleFavorite != null)
           Consumer(builder: (context, ref, child) {
-            final fav = ref
-                .watch(teachersProvider.select((value) => value.teachersMap[info.id]!.isFavorite));
+            final fav = ref.watch(teacherProvider(info.id).select((value) => value.isFavorite));
             final icon = fav
                 ? const Icon(
                     Icons.favorite,
