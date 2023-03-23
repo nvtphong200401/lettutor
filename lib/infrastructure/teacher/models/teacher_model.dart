@@ -7,6 +7,7 @@ part 'teacher_model.g.dart';
 class TeacherModel with _$TeacherModel {
   const TeacherModel._();
   const factory TeacherModel({
+    @Default('') String id,
     @Default('') String name,
     @Default('https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png')
         String avatar,
@@ -16,7 +17,8 @@ class TeacherModel with _$TeacherModel {
   }) = _TeacherModel;
   factory TeacherModel.fromJson(Map<String, dynamic> json) => _$TeacherModelFromJson(json);
 
-  factory TeacherModel.init() => TeacherModel.fromJson({
+  factory TeacherModel.init({String? id}) => TeacherModel.fromJson({
+        'id': id ?? '1',
         'name': 'Joan Gacer',
         'avatar':
             'https://api.app.lettutor.com/avatar/8c4e58c4-e9d1-4353-b64d-41b573c5a3e9avatar1632284832414.jpg',

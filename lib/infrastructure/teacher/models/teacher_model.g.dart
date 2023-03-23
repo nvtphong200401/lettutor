@@ -8,6 +8,7 @@ part of 'teacher_model.dart';
 
 _$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) =>
     _$_TeacherModel(
+      id: json['id'] as String? ?? '',
       name: json['name'] as String? ?? '',
       avatar: json['avatar'] as String? ??
           'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
@@ -18,6 +19,7 @@ _$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'avatar': instance.avatar,
       'video': instance.video,

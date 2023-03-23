@@ -1,8 +1,11 @@
 import 'dart:math';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor/application/teacher/providers.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
@@ -17,13 +20,15 @@ import '../../../core/presentation/common_widgets/common_back_button.dart';
 import '../../../core/presentation/common_widgets/common_sliver_appbar.dart';
 import '../teacher_info.dart';
 
-class TeacherDetailScreen extends HookWidget {
-  const TeacherDetailScreen({super.key});
+class TeacherDetailScreen extends HookConsumerWidget {
+  const TeacherDetailScreen({super.key, @PathParam('teacherId') required this.teacherId});
+
+  final String teacherId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useScrollController();
-    final info = TeacherModel.init();
+    final info = ref.watch(teachersProvider.select((value) => value.teachersMap[teacherId]!));
 
     return DismissKeyboardScaffold(
         // appBar: const CommonAppBar(),
@@ -48,8 +53,7 @@ class TeacherDetailScreen extends HookWidget {
               height: 20,
             ),
             TeacherInfo(
-              name: info.name,
-              avatar: info.avatar,
+              info: info,
             ),
             const SizedBox(
               height: 10,
@@ -62,7 +66,7 @@ class TeacherDetailScreen extends HookWidget {
               height: 15,
             ),
             IconGroup(
-              isFavorite: info.isFavorite,
+              teacher: info,
             ),
             const SizedBox(
               height: 20,
@@ -253,24 +257,24 @@ class TeacherDetailScreen extends HookWidget {
   }
 }
 
-class IconGroup extends StatelessWidget {
-  const IconGroup({super.key, required this.isFavorite});
-  final bool isFavorite;
+class IconGroup extends ConsumerWidget {
+  const IconGroup({super.key, required this.teacher});
+  final TeacherModel teacher;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         HookBuilder(builder: (context) {
-          final fav = useState(isFavorite);
-          final icon = fav.value
+          final fav = teacher.isFavorite;
+          final icon = fav
               ? _buildIcon('Favorite', Icons.favorite, Colors.red)
               : _buildIcon('Favorite', Icons.favorite_outline);
           return GestureDetector(
             child: icon,
             onTap: () {
-              fav.value = !fav.value;
+              ref.read(teachersProvider.notifier).updateFavorite(teacher.id);
             },
           );
         }),

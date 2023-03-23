@@ -1,22 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
-import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
 
+import '../../application/teacher/providers.dart';
 import '../../gen/colors.gen.dart';
 
-class TeacherCardItem extends StatelessWidget {
+class TeacherCardItem extends ConsumerWidget {
   const TeacherCardItem({
     super.key,
+    required this.teacherId,
   });
-
+  final String teacherId;
   @override
-  Widget build(BuildContext context) {
-    final info = TeacherModel.init();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final info = ref.watch(teachersProvider.select((value) => value.teachersMap[teacherId]!));
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -27,9 +29,10 @@ class TeacherCardItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TeacherInfo(
-              name: info.name,
-              avatar: info.avatar,
-              isFavorite: info.isFavorite,
+              info: info,
+              toggleFavorite: () {
+                ref.read(teachersProvider.notifier).updateFavorite(info.id);
+              },
             ),
             const SizedBox(
               height: 20,
@@ -50,7 +53,12 @@ class TeacherCardItem extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
-                onPressed: () => context.router.push(const TeacherDetailRoute()),
+                onPressed: () {
+                  debugPrint(context.router.stack.toString());
+                  // context.router.pushNamed('/detail/${info.id}');
+                  context.pushRoute(TeacherDetailRoute(teacherId: info.id, key: ValueKey(info.id)));
+                  // context.router.push(TeacherDetailRoute(teacherId: info.id));
+                },
                 style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
                     capsuleShape: true,
                     backgroundColor: ColorName.background,

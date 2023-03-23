@@ -18,6 +18,7 @@ part 'app_router.gr.dart';
   replaceInRouteName: 'Page|Screen,Route',
   routes: [
     AutoRoute(
+      path: '',
       page: SplashScreen,
       initial: true,
     ),
@@ -26,31 +27,53 @@ part 'app_router.gr.dart';
         path: '/login',
         transitionsBuilder: TransitionsBuilders.fadeIn,
         durationInMilliseconds: 1000),
-    AutoRoute(page: MyHomePage, children: [
-      AutoRoute(path: 'list-teacher', name: 'ListTeacherRouter', page: EmptyRouterPage, children: [
+    AutoRoute(
+      path: '/home',
+      page: MyHomePage,
+      children: [
+        // AutoRoute(
+        //   path: 'list-teach',
+        //   page: ListTeachScreen,
+        //   children: [
+        //     AutoRoute(
+        //       path: ':teacherId',
+        //       page: TeacherDetailScreen,
+        //     ),
+        //   ],
+        // ),
         AutoRoute(
-          path: '',
-          page: ListTeachScreen,
+            path: 'list-teacher',
+            name: 'ListTeacherRouter',
+            page: EmptyRouterPage,
+            children: [
+              AutoRoute(
+                path: '',
+                page: ListTeachScreen,
+              ),
+              AutoRoute(
+                path: ':teacherId',
+                page: TeacherDetailScreen,
+              ),
+            ]),
+        AutoRoute(
+          path: 'schedule',
+          page: BookingStudentScreen,
         ),
         AutoRoute(
-          path: ':teacherId',
-          page: TeacherDetailScreen,
+          path: 'history',
+          page: HistoryStudentScreen,
         ),
-        RedirectRoute(path: '*', redirectTo: ''),
-      ]),
-      AutoRoute(
-        path: 'schedule',
-        page: BookingStudentScreen,
-      ),
-      AutoRoute(
-        path: 'history',
-        page: HistoryStudentScreen,
-      ),
-      AutoRoute(path: 'courses', page: EmptyRouterPage, name: 'CoursesRouter', children: [
-        AutoRoute(path: '', page: CoursesScreen),
-        AutoRoute(path: ':courseId', page: CourseDetailScreen),
-      ]),
-    ]),
+        AutoRoute(
+          path: 'courses',
+          page: EmptyRouterPage,
+          name: 'CoursesRouter',
+          children: [
+            AutoRoute(path: '', page: CoursesScreen),
+            AutoRoute(path: ':courseId', page: CourseDetailScreen),
+          ],
+        ),
+      ],
+    ),
     AutoRoute(
       path: 'call',
       page: StreamScreen,

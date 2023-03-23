@@ -1,6 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/application/teacher/providers.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/gen/colors.gen.dart';
@@ -9,11 +11,11 @@ import 'package:lettutor/presentation/teacher/up_comming_lesson_board.dart';
 
 const tutorNationality = ['Vietnamese Tutor', 'Foreign Tutor', 'Native English Tutor'];
 
-class ListTeachScreen extends HookWidget {
+class ListTeachScreen extends HookConsumerWidget {
   const ListTeachScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final dropdownKey = useMemoized(() => GlobalKey<DropdownButton2State>());
     final searchController = useTextEditingController();
     return DismissKeyboardScaffold(
@@ -134,11 +136,25 @@ class ListTeachScreen extends HookWidget {
           const SizedBox(
             height: 20,
           ),
-          const TeacherCardItem(),
-          const SizedBox(
-            height: 20,
-          ),
-          const TeacherCardItem(),
+          ref.watch(teachersProvider).when(
+            loading: () {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+            data: (teachers, errorMessage) {
+              return Column(
+                children: teachers
+                    .map((e) => Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: TeacherCardItem(
+                            teacherId: e.id,
+                          ),
+                        ))
+                    .toList(),
+              );
+            },
+          )
         ],
       ),
     );

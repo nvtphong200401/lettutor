@@ -76,9 +76,16 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     TeacherDetailRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<TeacherDetailRouteArgs>(
+          orElse: () => TeacherDetailRouteArgs(
+              teacherId: pathParams.getString('teacherId')));
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const TeacherDetailScreen(),
+        child: TeacherDetailScreen(
+          key: args.key,
+          teacherId: args.teacherId,
+        ),
       );
     },
     CoursesRoute.name: (routeData) {
@@ -103,8 +110,14 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          SplashRoute.name,
+          '/#redirect',
           path: '/',
+          redirectTo: '',
+          fullMatch: true,
+        ),
+        RouteConfig(
+          SplashRoute.name,
+          path: '',
         ),
         RouteConfig(
           LoginRoute.name,
@@ -112,7 +125,7 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           MyHomeRoute.name,
-          path: '/my-home-page',
+          path: '/home',
           children: [
             RouteConfig(
               ListTeacherRouter.name,
@@ -128,13 +141,6 @@ class _$AppRouter extends RootStackRouter {
                   TeacherDetailRoute.name,
                   path: ':teacherId',
                   parent: ListTeacherRouter.name,
-                ),
-                RouteConfig(
-                  '*#redirect',
-                  path: '*',
-                  parent: ListTeacherRouter.name,
-                  redirectTo: '',
-                  fullMatch: true,
                 ),
               ],
             ),
@@ -180,7 +186,7 @@ class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
-          path: '/',
+          path: '',
         );
 
   static const String name = 'SplashRoute';
@@ -204,7 +210,7 @@ class MyHomeRoute extends PageRouteInfo<void> {
   const MyHomeRoute({List<PageRouteInfo>? children})
       : super(
           MyHomeRoute.name,
-          path: '/my-home-page',
+          path: '/home',
           initialChildren: children,
         );
 
@@ -287,14 +293,37 @@ class ListTeachRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [TeacherDetailScreen]
-class TeacherDetailRoute extends PageRouteInfo<void> {
-  const TeacherDetailRoute()
-      : super(
+class TeacherDetailRoute extends PageRouteInfo<TeacherDetailRouteArgs> {
+  TeacherDetailRoute({
+    Key? key,
+    required String teacherId,
+  }) : super(
           TeacherDetailRoute.name,
           path: ':teacherId',
+          args: TeacherDetailRouteArgs(
+            key: key,
+            teacherId: teacherId,
+          ),
+          rawPathParams: {'teacherId': teacherId},
         );
 
   static const String name = 'TeacherDetailRoute';
+}
+
+class TeacherDetailRouteArgs {
+  const TeacherDetailRouteArgs({
+    this.key,
+    required this.teacherId,
+  });
+
+  final Key? key;
+
+  final String teacherId;
+
+  @override
+  String toString() {
+    return 'TeacherDetailRouteArgs{key: $key, teacherId: $teacherId}';
+  }
 }
 
 /// generated route for

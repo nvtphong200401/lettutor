@@ -23,8 +23,7 @@ class BookingCard extends StatelessWidget {
       children: [
         Text(
           DateFormat('EEE, dd MMM yy').format(DateTime.now()),
-          style:
-              CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
+          style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
         ),
         Text(
           '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
@@ -35,16 +34,14 @@ class BookingCard extends StatelessWidget {
         ),
         WhiteBoxContainer(
           child: TeacherInfo(
-            name: bookInfo.tutorInfo.name,
-            avatar: bookInfo.tutorInfo.avatar,
+            info: bookInfo.tutorInfo,
           ),
         ),
         const SizedBox(
           height: 10,
         ),
         WhiteBoxContainer(
-          child: CommonLessonTime(
-              startTime: bookInfo.startTime, endTime: bookInfo.endTime),
+          child: CommonLessonTime(startTime: bookInfo.startTime, endTime: bookInfo.endTime),
         ),
         const SizedBox(
           height: 1,
@@ -153,8 +150,7 @@ class BookingSession extends HookWidget {
                     ),
                     Text(
                       'Cancel',
-                      style: CommonTextStyle.textSize12
-                          .copyWith(color: Colors.red),
+                      style: CommonTextStyle.textSize12.copyWith(color: Colors.red),
                     ),
                   ],
                 ),

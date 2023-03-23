@@ -20,6 +20,7 @@ TeacherModel _$TeacherModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TeacherModel {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
   String get video => throw _privateConstructorUsedError;
@@ -39,7 +40,12 @@ abstract class $TeacherModelCopyWith<$Res> {
       _$TeacherModelCopyWithImpl<$Res, TeacherModel>;
   @useResult
   $Res call(
-      {String name, String avatar, String video, String bio, bool isFavorite});
+      {String id,
+      String name,
+      String avatar,
+      String video,
+      String bio,
+      bool isFavorite});
 }
 
 /// @nodoc
@@ -55,6 +61,7 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? avatar = null,
     Object? video = null,
@@ -62,6 +69,10 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
     Object? isFavorite = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -95,7 +106,12 @@ abstract class _$$_TeacherModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name, String avatar, String video, String bio, bool isFavorite});
+      {String id,
+      String name,
+      String avatar,
+      String video,
+      String bio,
+      bool isFavorite});
 }
 
 /// @nodoc
@@ -109,6 +125,7 @@ class __$$_TeacherModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? avatar = null,
     Object? video = null,
@@ -116,6 +133,10 @@ class __$$_TeacherModelCopyWithImpl<$Res>
     Object? isFavorite = null,
   }) {
     return _then(_$_TeacherModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -144,7 +165,8 @@ class __$$_TeacherModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TeacherModel extends _TeacherModel {
   const _$_TeacherModel(
-      {this.name = '',
+      {this.id = '',
+      this.name = '',
       this.avatar =
           'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png',
       this.video = '',
@@ -155,6 +177,9 @@ class _$_TeacherModel extends _TeacherModel {
   factory _$_TeacherModel.fromJson(Map<String, dynamic> json) =>
       _$$_TeacherModelFromJson(json);
 
+  @override
+  @JsonKey()
+  final String id;
   @override
   @JsonKey()
   final String name;
@@ -173,7 +198,7 @@ class _$_TeacherModel extends _TeacherModel {
 
   @override
   String toString() {
-    return 'TeacherModel(name: $name, avatar: $avatar, video: $video, bio: $bio, isFavorite: $isFavorite)';
+    return 'TeacherModel(id: $id, name: $name, avatar: $avatar, video: $video, bio: $bio, isFavorite: $isFavorite)';
   }
 
   @override
@@ -181,6 +206,7 @@ class _$_TeacherModel extends _TeacherModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TeacherModel &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.video, video) || other.video == video) &&
@@ -192,7 +218,7 @@ class _$_TeacherModel extends _TeacherModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, name, avatar, video, bio, isFavorite);
+      Object.hash(runtimeType, id, name, avatar, video, bio, isFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -210,7 +236,8 @@ class _$_TeacherModel extends _TeacherModel {
 
 abstract class _TeacherModel extends TeacherModel {
   const factory _TeacherModel(
-      {final String name,
+      {final String id,
+      final String name,
       final String avatar,
       final String video,
       final String bio,
@@ -220,6 +247,8 @@ abstract class _TeacherModel extends TeacherModel {
   factory _TeacherModel.fromJson(Map<String, dynamic> json) =
       _$_TeacherModel.fromJson;
 
+  @override
+  String get id;
   @override
   String get name;
   @override

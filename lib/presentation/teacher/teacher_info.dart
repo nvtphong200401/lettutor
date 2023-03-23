@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/application/teacher/providers.dart';
+import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
 
 import '../../gen/colors.gen.dart';
 
 class TeacherInfo extends StatelessWidget {
   const TeacherInfo({
     super.key,
-    this.isFavorite,
-    required this.avatar,
-    required this.name,
+    required this.info,
+    this.toggleFavorite,
   });
-  final bool? isFavorite;
-  final String avatar;
-  final String name;
+  final TeacherModel info;
+  final void Function()? toggleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class TeacherInfo extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 30,
-          foregroundImage: NetworkImage(avatar),
+          foregroundImage: NetworkImage(info.avatar),
         ),
         const SizedBox(
           width: 20,
@@ -31,7 +31,7 @@ class TeacherInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              name,
+              info.name,
               style: const TextStyle(
                   color: ColorName.primary, fontSize: 20, fontWeight: FontWeight.w600),
             ),
@@ -66,10 +66,11 @@ class TeacherInfo extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        if (isFavorite != null)
-          HookBuilder(builder: (context) {
-            final fav = useState(isFavorite!);
-            final icon = fav.value
+        if (toggleFavorite != null)
+          Consumer(builder: (context, ref, child) {
+            final fav = ref
+                .watch(teachersProvider.select((value) => value.teachersMap[info.id]!.isFavorite));
+            final icon = fav
                 ? const Icon(
                     Icons.favorite,
                     color: Colors.red,
@@ -79,7 +80,7 @@ class TeacherInfo extends StatelessWidget {
                     color: ColorName.primary,
                   );
             return GestureDetector(
-              onTap: () => fav.value = !fav.value,
+              onTap: toggleFavorite,
               child: icon,
             );
           })

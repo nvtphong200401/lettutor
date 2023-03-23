@@ -4,6 +4,7 @@ import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dar
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
+import 'package:lettutor/presentation/history/rating_history.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
 
 import '../../core/presentation/common_styles/common_styles.dart';
@@ -22,8 +23,7 @@ class HistoryItem extends StatelessWidget {
         children: [
           Text(
             DateFormat('EEE, dd MMM yy').format(DateTime.now()),
-            style: CommonTextStyle.textSize24
-                .copyWith(fontWeight: FontWeight.w700),
+            style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
           ),
           Text(
             '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
@@ -33,16 +33,12 @@ class HistoryItem extends StatelessWidget {
             height: 10,
           ),
           WhiteBoxContainer(
-            child: TeacherInfo(
-              name: info.name,
-              avatar: info.avatar,
-            ),
+            child: TeacherInfo(info: info),
           ),
           const SizedBox(
             height: 10,
           ),
-          const WhiteBoxContainer(
-              child: CommonLessonTime(startTime: '08:30', endTime: '09:30')),
+          const WhiteBoxContainer(child: CommonLessonTime(startTime: '08:30', endTime: '09:30')),
           const SizedBox(
             height: 1,
           ),
@@ -57,9 +53,13 @@ class HistoryItem extends StatelessWidget {
           WhiteBoxContainer(
               child: Row(
             children: [
-              const Text(
-                'Add a rating',
-                style: TextStyle(color: ColorName.textButton),
+              GestureDetector(
+                onTap: () =>
+                    showDialog(builder: (context) => const RatingHistory(), context: context),
+                child: const Text(
+                  'Add a rating',
+                  style: TextStyle(color: ColorName.textButton),
+                ),
               ),
               const Spacer(),
               GestureDetector(
@@ -67,8 +67,7 @@ class HistoryItem extends StatelessWidget {
                     context: context,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10))),
+                            topLeft: Radius.circular(10), topRight: Radius.circular(10))),
                     builder: (context) {
                       return const ReportModal();
                     }),
