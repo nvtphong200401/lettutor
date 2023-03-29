@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../infrastructure/teacher/models/teacher_model.dart';
+import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
+import 'package:lettutor/infrastructure/teacher/teacher_repo.dart';
 
 part 'teachers_notifier.freezed.dart';
 
@@ -17,24 +17,26 @@ class TeachersState with _$TeachersState {
   }) = _Data;
 
   Map<String, TeacherModel> get currentData =>
-      Map.fromEntries(teachers.map((e) => MapEntry(e.id, e)));
+      Map.fromEntries(teachers.map((e) => MapEntry(e.id ?? '1', e)));
 }
 
 class TeachersNotifier extends StateNotifier<TeachersState> {
-  TeachersNotifier() : super(const TeachersState.loading(teachers: [])) {
+  TeachersNotifier(this._teacherRepository) : super(const TeachersState.loading(teachers: [])) {
     getTeacherList();
   }
+  final TeacherRepository _teacherRepository;
 
   Future getTeacherList() async {
-    state = TeachersState.data(teachers: [TeacherModel.init(), TeacherModel.init(id: '2')]);
+    final result = await _teacherRepository.getListTeacher(9, 1);
+    state = result.fold((l) => state, (r) => TeachersState.data(teachers: r));
   }
 }
 
-class TeacherModelNotifier extends StateNotifier<TeacherModel> {
-  TeacherModelNotifier(this.teacherModel) : super(teacherModel);
-  final TeacherModel teacherModel;
+class TutorDetailNotifier extends StateNotifier<TeacherModel> {
+  TutorDetailNotifier(this.tutor) : super(tutor);
+  final TeacherModel tutor;
 
   Future updateFavorite() async {
-    state = state.copyWith(isFavorite: !state.isFavorite);
+    state = state.copyWith(isFavorite: !(state.isFavorite ?? false));
   }
 }

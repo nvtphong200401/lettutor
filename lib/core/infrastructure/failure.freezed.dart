@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Failure {
-  int get statusCode => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ abstract class $FailureCopyWith<$Res> {
   factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
       _$FailureCopyWithImpl<$Res, Failure>;
   @useResult
-  $Res call({int statusCode, String message});
+  $Res call({int? statusCode, String? message});
 }
 
 /// @nodoc
@@ -44,18 +44,18 @@ class _$FailureCopyWithImpl<$Res, $Val extends Failure>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? statusCode = null,
-    Object? message = null,
+    Object? statusCode = freezed,
+    Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      statusCode: null == statusCode
+      statusCode: freezed == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
-              as int,
-      message: null == message
+              as int?,
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -67,7 +67,7 @@ abstract class _$$_FailureCopyWith<$Res> implements $FailureCopyWith<$Res> {
       __$$_FailureCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int statusCode, String message});
+  $Res call({int? statusCode, String? message});
 }
 
 /// @nodoc
@@ -80,18 +80,18 @@ class __$$_FailureCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? statusCode = null,
-    Object? message = null,
+    Object? statusCode = freezed,
+    Object? message = freezed,
   }) {
     return _then(_$_Failure(
-      statusCode: null == statusCode
+      statusCode: freezed == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
-              as int,
-      message: null == message
+              as int?,
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -99,13 +99,12 @@ class __$$_FailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Failure extends _Failure {
-  const _$_Failure({required this.statusCode, required this.message})
-      : super._();
+  const _$_Failure({this.statusCode, this.message}) : super._();
 
   @override
-  final int statusCode;
+  final int? statusCode;
   @override
-  final String message;
+  final String? message;
 
   @override
   String toString() {
@@ -133,15 +132,14 @@ class _$_Failure extends _Failure {
 }
 
 abstract class _Failure extends Failure {
-  const factory _Failure(
-      {required final int statusCode,
-      required final String message}) = _$_Failure;
+  const factory _Failure({final int? statusCode, final String? message}) =
+      _$_Failure;
   const _Failure._() : super._();
 
   @override
-  int get statusCode;
+  int? get statusCode;
   @override
-  String get message;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   _$$_FailureCopyWith<_$_Failure> get copyWith =>

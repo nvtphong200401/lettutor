@@ -14,8 +14,7 @@ class AuthResult with _$AuthResult {
     required Tokens tokens,
   }) = _AuthResult;
 
-  factory AuthResult.fromJson(Map<String, dynamic> json) =>
-      _$AuthResultFromJson(json);
+  factory AuthResult.fromJson(Map<String, dynamic> json) => _$AuthResultFromJson(json);
 }
 
 @freezed
@@ -40,7 +39,6 @@ class Access with _$Access {
 
 @freezed
 class User with _$User {
-  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory User({
     required String id,
     required String email,
@@ -69,7 +67,6 @@ class User with _$User {
 
 @freezed
 class WalletInfo with _$WalletInfo {
-  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory WalletInfo({
     required String id,
     required String userId,
@@ -80,6 +77,5 @@ class WalletInfo with _$WalletInfo {
     required int bonus,
   }) = _WalletInfo;
 
-  factory WalletInfo.fromJson(Map<String, dynamic> json) =>
-      _$WalletInfoFromJson(json);
+  factory WalletInfo.fromJson(Map<String, dynamic> json) => _$WalletInfoFromJson(json);
 }

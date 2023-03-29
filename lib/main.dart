@@ -6,13 +6,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/shared/core_providers.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 late List<CameraDescription> cameras;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  cameras = await availableCameras();
-  runApp(const ProviderScope(child: MyApp()));
+  // cameras = await availableCameras();
+  final pref = await SharedPreferences.getInstance();
+  runApp(ProviderScope(
+    overrides: [localStorageProvider.overrideWithValue(pref)],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends HookWidget {

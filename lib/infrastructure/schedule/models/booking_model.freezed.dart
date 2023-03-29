@@ -22,7 +22,7 @@ BookingModel _$BookingModelFromJson(Map<String, dynamic> json) {
 mixin _$BookingModel {
   String get startTime => throw _privateConstructorUsedError;
   String get endTime => throw _privateConstructorUsedError;
-  TeacherModel get tutorInfo => throw _privateConstructorUsedError;
+  TutorDetail? get tutorInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,9 @@ abstract class $BookingModelCopyWith<$Res> {
           BookingModel value, $Res Function(BookingModel) then) =
       _$BookingModelCopyWithImpl<$Res, BookingModel>;
   @useResult
-  $Res call({String startTime, String endTime, TeacherModel tutorInfo});
+  $Res call({String startTime, String endTime, TutorDetail? tutorInfo});
 
-  $TeacherModelCopyWith<$Res> get tutorInfo;
+  $TutorDetailCopyWith<$Res>? get tutorInfo;
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$BookingModelCopyWithImpl<$Res, $Val extends BookingModel>
   $Res call({
     Object? startTime = null,
     Object? endTime = null,
-    Object? tutorInfo = null,
+    Object? tutorInfo = freezed,
   }) {
     return _then(_value.copyWith(
       startTime: null == startTime
@@ -67,17 +67,21 @@ class _$BookingModelCopyWithImpl<$Res, $Val extends BookingModel>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String,
-      tutorInfo: null == tutorInfo
+      tutorInfo: freezed == tutorInfo
           ? _value.tutorInfo
           : tutorInfo // ignore: cast_nullable_to_non_nullable
-              as TeacherModel,
+              as TutorDetail?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TeacherModelCopyWith<$Res> get tutorInfo {
-    return $TeacherModelCopyWith<$Res>(_value.tutorInfo, (value) {
+  $TutorDetailCopyWith<$Res>? get tutorInfo {
+    if (_value.tutorInfo == null) {
+      return null;
+    }
+
+    return $TutorDetailCopyWith<$Res>(_value.tutorInfo!, (value) {
       return _then(_value.copyWith(tutorInfo: value) as $Val);
     });
   }
@@ -91,10 +95,10 @@ abstract class _$$_BookingModelCopyWith<$Res>
       __$$_BookingModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String startTime, String endTime, TeacherModel tutorInfo});
+  $Res call({String startTime, String endTime, TutorDetail? tutorInfo});
 
   @override
-  $TeacherModelCopyWith<$Res> get tutorInfo;
+  $TutorDetailCopyWith<$Res>? get tutorInfo;
 }
 
 /// @nodoc
@@ -110,7 +114,7 @@ class __$$_BookingModelCopyWithImpl<$Res>
   $Res call({
     Object? startTime = null,
     Object? endTime = null,
-    Object? tutorInfo = null,
+    Object? tutorInfo = freezed,
   }) {
     return _then(_$_BookingModel(
       startTime: null == startTime
@@ -121,10 +125,10 @@ class __$$_BookingModelCopyWithImpl<$Res>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String,
-      tutorInfo: null == tutorInfo
+      tutorInfo: freezed == tutorInfo
           ? _value.tutorInfo
           : tutorInfo // ignore: cast_nullable_to_non_nullable
-              as TeacherModel,
+              as TutorDetail?,
     ));
   }
 }
@@ -133,9 +137,7 @@ class __$$_BookingModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BookingModel extends _BookingModel {
   const _$_BookingModel(
-      {this.startTime = '00:00',
-      this.endTime = '00:00',
-      this.tutorInfo = const TeacherModel()})
+      {this.startTime = '00:00', this.endTime = '00:00', this.tutorInfo})
       : super._();
 
   factory _$_BookingModel.fromJson(Map<String, dynamic> json) =>
@@ -148,8 +150,7 @@ class _$_BookingModel extends _BookingModel {
   @JsonKey()
   final String endTime;
   @override
-  @JsonKey()
-  final TeacherModel tutorInfo;
+  final TutorDetail? tutorInfo;
 
   @override
   String toString() {
@@ -190,7 +191,7 @@ abstract class _BookingModel extends BookingModel {
   const factory _BookingModel(
       {final String startTime,
       final String endTime,
-      final TeacherModel tutorInfo}) = _$_BookingModel;
+      final TutorDetail? tutorInfo}) = _$_BookingModel;
   const _BookingModel._() : super._();
 
   factory _BookingModel.fromJson(Map<String, dynamic> json) =
@@ -201,7 +202,7 @@ abstract class _BookingModel extends BookingModel {
   @override
   String get endTime;
   @override
-  TeacherModel get tutorInfo;
+  TutorDetail? get tutorInfo;
   @override
   @JsonKey(ignore: true)
   _$$_BookingModelCopyWith<_$_BookingModel> get copyWith =>

@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
+import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
 import 'package:lettutor/presentation/history/rating_history.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
 
@@ -15,7 +15,7 @@ class HistoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final info = TeacherModel.init();
+    final info = TutorDetail.init();
 
     return GreyBoxContainer(
       child: Column(
@@ -33,7 +33,11 @@ class HistoryItem extends StatelessWidget {
             height: 10,
           ),
           WhiteBoxContainer(
-            child: TeacherInfo(info: info),
+            child: TeacherInfo(
+              id: info.user.id,
+              avatar: info.user.avatar,
+              name: info.user.name,
+            ),
           ),
           const SizedBox(
             height: 10,

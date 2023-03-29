@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,21 +5,20 @@ import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
+import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
+import 'package:lettutor/shared/teacher_providers.dart';
 
-import '../../application/teacher/providers.dart';
 import '../../gen/colors.gen.dart';
 
 class TeacherCardItem extends ConsumerWidget {
   const TeacherCardItem({
     super.key,
-    required this.teacherId,
+    required this.teacher,
   });
-  final String teacherId;
+  final TeacherModel teacher;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final info = ref.watch(teacherProvider(teacherId));
-    log('see rebuild $info');
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -32,9 +29,11 @@ class TeacherCardItem extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TeacherInfo(
-              info: info,
+              id: teacher.id!,
+              avatar: teacher.avatar,
+              name: teacher.name ?? '',
               toggleFavorite: () {
-                ref.read(teacherProvider(teacherId).notifier).updateFavorite();
+                ref.read(teacherCardNotifierProvider(teacher.id!).notifier).updateFavorite();
               },
             ),
             const SizedBox(
@@ -49,7 +48,7 @@ class TeacherCardItem extends ConsumerWidget {
             const SizedBox(
               height: 20,
             ),
-            ReadMoreText(info.bio),
+            ReadMoreText(teacher.bio ?? ''),
             const SizedBox(
               height: 10,
             ),
@@ -59,7 +58,8 @@ class TeacherCardItem extends ConsumerWidget {
                 onPressed: () {
                   debugPrint(context.router.stack.toString());
                   // context.router.pushNamed('/detail/${info.id}');
-                  context.pushRoute(TeacherDetailRoute(teacherId: info.id, key: ValueKey(info.id)));
+                  context.pushRoute(
+                      TeacherDetailRoute(teacherId: teacher.id!, key: ValueKey(teacher.id)));
                   // context.router.push(TeacherDetailRoute(teacherId: info.id));
                 },
                 style: CommonButtonStyle.primaryButtonStyle.customCopyWith(

@@ -847,8 +847,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class _$_User implements _User {
   const _$_User(
       {required this.id,
@@ -1257,8 +1256,7 @@ class __$$_WalletInfoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class _$_WalletInfo implements _WalletInfo {
   const _$_WalletInfo(
       {required this.id,

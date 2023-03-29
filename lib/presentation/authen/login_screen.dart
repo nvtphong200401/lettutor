@@ -1,17 +1,38 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/application/authen/auth_notifier.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_dialog.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/gen/assets.gen.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/shared/auth_providers.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends HookConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<AuthState>(authNotifierProvider, (previous, next) {
+      next.maybeWhen(
+        authenticated: (auth) {
+          // cache user
+          context.router.root.pop();
+          context.router.replace(const MyHomeRoute());
+        },
+        authenticating: () {
+          CommonDialog(context).loadingDialog();
+        },
+        orElse: () {},
+      );
+    });
+    final txtEmail = useTextEditingController();
+    final txtPassword = useTextEditingController();
+
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
       body: ListView(
@@ -37,14 +58,52 @@ class LoginScreen extends StatelessWidget {
                   TextStyle(color: ColorName.formDesc, fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
-          const CommonInputField(
+          CommonInputField(
             title: 'Email',
             hintText: 'mail@example.com',
+            controller: txtEmail,
           ),
-          const CommonInputField(
+          CommonInputField(
             title: 'Password',
             hintText: 'Password',
             obscureText: true,
+            controller: txtPassword,
+          ),
+          Consumer(
+            builder: (context, ref, child) {
+              final state = ref.watch(authNotifierProvider);
+              return state.maybeWhen(
+                unAuthenticated: (message) {
+                  if (message != null) return child!;
+                  return const SizedBox.shrink();
+                },
+                orElse: () => const SizedBox.shrink(),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: Colors.red.shade50,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(
+                    color: Colors.red.shade300,
+                  )),
+              child: Row(
+                children: const [
+                  Icon(
+                    Icons.cancel,
+                    size: 20,
+                    color: Colors.red,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Incorrect email or password',
+                  )
+                ],
+              ),
+            ),
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -56,10 +115,8 @@ class LoginScreen extends StatelessWidget {
                 )),
           ),
           ElevatedButton(
-            onPressed: () {
-              context.router.replace(const MyHomeRoute());
-              // Navigator.of(context)
-              //     .pushReplacement(MaterialPageRoute(builder: (context) => const MyHomePage()));
+            onPressed: () async {
+              ref.read(authNotifierProvider.notifier).login(txtEmail.text, txtPassword.text);
             },
             style: CommonButtonStyle.primaryButtonStyle,
             child: const Text('LOGIN', style: TextStyle(color: ColorName.background)),

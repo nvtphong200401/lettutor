@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
+import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
 
 part 'booking_model.freezed.dart';
 part 'booking_model.g.dart';
@@ -10,13 +10,13 @@ class BookingModel with _$BookingModel {
   const factory BookingModel({
     @Default('00:00') String startTime,
     @Default('00:00') String endTime,
-    @Default(TeacherModel()) TeacherModel tutorInfo,
+    TutorDetail? tutorInfo,
   }) = _BookingModel;
   factory BookingModel.fromJson(Map<String, dynamic> json) => _$BookingModelFromJson(json);
 
   factory BookingModel.init() => BookingModel.fromJson({
         'startTime': '08:30',
         'endTime': '09:30',
-        'tutorInfo': TeacherModel.init().toJson(),
+        'tutorInfo': TutorDetail.init().toJson(),
       });
 }

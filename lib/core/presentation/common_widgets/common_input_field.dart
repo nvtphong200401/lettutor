@@ -77,7 +77,7 @@ class CommonTextFormField extends HookWidget {
       if (obscureText == false) return null;
       return obscureState.value
           ? IconButton(
-              icon: const Icon(Icons.visibility),
+              icon: const Icon(Icons.visibility_off),
               onPressed: () {
                 obscureState.value = !obscureState.value;
               },
@@ -86,7 +86,7 @@ class CommonTextFormField extends HookWidget {
               onPressed: () {
                 obscureState.value = !obscureState.value;
               },
-              icon: const Icon(Icons.visibility_off));
+              icon: const Icon(Icons.visibility));
     }
 
     return SizedBox(

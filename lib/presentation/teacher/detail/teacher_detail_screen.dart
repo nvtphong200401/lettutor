@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:lettutor/application/teacher/providers.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
+import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
 import 'package:lettutor/presentation/teacher/detail/report_modal.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_video.dart';
 
@@ -28,7 +27,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useScrollController();
-    final info = ref.watch(teacherProvider(teacherId));
+    final info = TutorDetail.init();
 
     return DismissKeyboardScaffold(
         // appBar: const CommonAppBar(),
@@ -53,7 +52,9 @@ class TeacherDetailScreen extends HookConsumerWidget {
               height: 20,
             ),
             TeacherInfo(
-              info: info,
+              id: info.user.id,
+              avatar: info.user.avatar,
+              name: info.user.name,
             ),
             const SizedBox(
               height: 10,
@@ -259,7 +260,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
 
 class IconGroup extends ConsumerWidget {
   const IconGroup({super.key, required this.teacher});
-  final TeacherModel teacher;
+  final TutorDetail teacher;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -274,7 +275,7 @@ class IconGroup extends ConsumerWidget {
           return GestureDetector(
             child: icon,
             onTap: () {
-              ref.read(teacherProvider(teacher.id).notifier).updateFavorite();
+              // ref.read(teacherProvider(teacher.user.id).notifier).updateFavorite();
             },
           );
         }),

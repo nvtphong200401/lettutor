@@ -11,8 +11,8 @@ _$_BookingModel _$$_BookingModelFromJson(Map<String, dynamic> json) =>
       startTime: json['startTime'] as String? ?? '00:00',
       endTime: json['endTime'] as String? ?? '00:00',
       tutorInfo: json['tutorInfo'] == null
-          ? const TeacherModel()
-          : TeacherModel.fromJson(json['tutorInfo'] as Map<String, dynamic>),
+          ? null
+          : TutorDetail.fromJson(json['tutorInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_BookingModelToJson(_$_BookingModel instance) =>

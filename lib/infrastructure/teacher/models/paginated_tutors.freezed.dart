@@ -197,11 +197,11 @@ FavoriteTutor _$FavoriteTutorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FavoriteTutor {
   String get id => throw _privateConstructorUsedError;
-  String get firstId => throw _privateConstructorUsedError;
-  String get secondId => throw _privateConstructorUsedError;
+  String? get firstId => throw _privateConstructorUsedError;
+  String? get secondId => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get updatedAt => throw _privateConstructorUsedError;
-  SecondInfo get secondInfo => throw _privateConstructorUsedError;
+  SecondInfo? get secondInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -217,13 +217,13 @@ abstract class $FavoriteTutorCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String firstId,
-      String secondId,
+      String? firstId,
+      String? secondId,
       String createdAt,
       String updatedAt,
-      SecondInfo secondInfo});
+      SecondInfo? secondInfo});
 
-  $SecondInfoCopyWith<$Res> get secondInfo;
+  $SecondInfoCopyWith<$Res>? get secondInfo;
 }
 
 /// @nodoc
@@ -240,25 +240,25 @@ class _$FavoriteTutorCopyWithImpl<$Res, $Val extends FavoriteTutor>
   @override
   $Res call({
     Object? id = null,
-    Object? firstId = null,
-    Object? secondId = null,
+    Object? firstId = freezed,
+    Object? secondId = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? secondInfo = null,
+    Object? secondInfo = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      firstId: null == firstId
+      firstId: freezed == firstId
           ? _value.firstId
           : firstId // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondId: null == secondId
+              as String?,
+      secondId: freezed == secondId
           ? _value.secondId
           : secondId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -267,17 +267,21 @@ class _$FavoriteTutorCopyWithImpl<$Res, $Val extends FavoriteTutor>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String,
-      secondInfo: null == secondInfo
+      secondInfo: freezed == secondInfo
           ? _value.secondInfo
           : secondInfo // ignore: cast_nullable_to_non_nullable
-              as SecondInfo,
+              as SecondInfo?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SecondInfoCopyWith<$Res> get secondInfo {
-    return $SecondInfoCopyWith<$Res>(_value.secondInfo, (value) {
+  $SecondInfoCopyWith<$Res>? get secondInfo {
+    if (_value.secondInfo == null) {
+      return null;
+    }
+
+    return $SecondInfoCopyWith<$Res>(_value.secondInfo!, (value) {
       return _then(_value.copyWith(secondInfo: value) as $Val);
     });
   }
@@ -293,14 +297,14 @@ abstract class _$$_FavoriteTutorCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String firstId,
-      String secondId,
+      String? firstId,
+      String? secondId,
       String createdAt,
       String updatedAt,
-      SecondInfo secondInfo});
+      SecondInfo? secondInfo});
 
   @override
-  $SecondInfoCopyWith<$Res> get secondInfo;
+  $SecondInfoCopyWith<$Res>? get secondInfo;
 }
 
 /// @nodoc
@@ -315,25 +319,25 @@ class __$$_FavoriteTutorCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? firstId = null,
-    Object? secondId = null,
+    Object? firstId = freezed,
+    Object? secondId = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? secondInfo = null,
+    Object? secondInfo = freezed,
   }) {
     return _then(_$_FavoriteTutor(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      firstId: null == firstId
+      firstId: freezed == firstId
           ? _value.firstId
           : firstId // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondId: null == secondId
+              as String?,
+      secondId: freezed == secondId
           ? _value.secondId
           : secondId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -342,10 +346,10 @@ class __$$_FavoriteTutorCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String,
-      secondInfo: null == secondInfo
+      secondInfo: freezed == secondInfo
           ? _value.secondInfo
           : secondInfo // ignore: cast_nullable_to_non_nullable
-              as SecondInfo,
+              as SecondInfo?,
     ));
   }
 }
@@ -355,11 +359,11 @@ class __$$_FavoriteTutorCopyWithImpl<$Res>
 class _$_FavoriteTutor implements _FavoriteTutor {
   const _$_FavoriteTutor(
       {required this.id,
-      required this.firstId,
-      required this.secondId,
+      this.firstId,
+      this.secondId,
       required this.createdAt,
       required this.updatedAt,
-      required this.secondInfo});
+      this.secondInfo});
 
   factory _$_FavoriteTutor.fromJson(Map<String, dynamic> json) =>
       _$$_FavoriteTutorFromJson(json);
@@ -367,15 +371,15 @@ class _$_FavoriteTutor implements _FavoriteTutor {
   @override
   final String id;
   @override
-  final String firstId;
+  final String? firstId;
   @override
-  final String secondId;
+  final String? secondId;
   @override
   final String createdAt;
   @override
   final String updatedAt;
   @override
-  final SecondInfo secondInfo;
+  final SecondInfo? secondInfo;
 
   @override
   String toString() {
@@ -421,11 +425,11 @@ class _$_FavoriteTutor implements _FavoriteTutor {
 abstract class _FavoriteTutor implements FavoriteTutor {
   const factory _FavoriteTutor(
       {required final String id,
-      required final String firstId,
-      required final String secondId,
+      final String? firstId,
+      final String? secondId,
       required final String createdAt,
       required final String updatedAt,
-      required final SecondInfo secondInfo}) = _$_FavoriteTutor;
+      final SecondInfo? secondInfo}) = _$_FavoriteTutor;
 
   factory _FavoriteTutor.fromJson(Map<String, dynamic> json) =
       _$_FavoriteTutor.fromJson;
@@ -433,15 +437,15 @@ abstract class _FavoriteTutor implements FavoriteTutor {
   @override
   String get id;
   @override
-  String get firstId;
+  String? get firstId;
   @override
-  String get secondId;
+  String? get secondId;
   @override
   String get createdAt;
   @override
   String get updatedAt;
   @override
-  SecondInfo get secondInfo;
+  SecondInfo? get secondInfo;
   @override
   @JsonKey(ignore: true)
   _$$_FavoriteTutorCopyWith<_$_FavoriteTutor> get copyWith =>
@@ -454,33 +458,33 @@ SecondInfo _$SecondInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SecondInfo {
-  String get id => throw _privateConstructorUsedError;
-  String get level => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  dynamic get google => throw _privateConstructorUsedError;
-  dynamic get facebook => throw _privateConstructorUsedError;
-  dynamic get apple => throw _privateConstructorUsedError;
-  String get avatar => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get language => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get level => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get google => throw _privateConstructorUsedError;
+  String? get facebook => throw _privateConstructorUsedError;
+  String? get apple => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
   DateTime get birthday => throw _privateConstructorUsedError;
-  bool get requestPassword => throw _privateConstructorUsedError;
-  bool get isActivated => throw _privateConstructorUsedError;
-  dynamic get isPhoneActivated => throw _privateConstructorUsedError;
-  dynamic get requireNote => throw _privateConstructorUsedError;
+  bool? get requestPassword => throw _privateConstructorUsedError;
+  bool? get isActivated => throw _privateConstructorUsedError;
+  String? get isPhoneActivated => throw _privateConstructorUsedError;
+  String? get requireNote => throw _privateConstructorUsedError;
   int get timezone => throw _privateConstructorUsedError;
-  dynamic get phoneAuth => throw _privateConstructorUsedError;
-  bool get isPhoneAuthActivated => throw _privateConstructorUsedError;
-  String get studySchedule => throw _privateConstructorUsedError;
-  bool get canSendMessage => throw _privateConstructorUsedError;
-  bool get isPublicRecord => throw _privateConstructorUsedError;
-  dynamic get caredByStaffId => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
-  dynamic get deletedAt => throw _privateConstructorUsedError;
-  dynamic get studentGroupId => throw _privateConstructorUsedError;
+  String? get phoneAuth => throw _privateConstructorUsedError;
+  bool? get isPhoneAuthActivated => throw _privateConstructorUsedError;
+  String? get studySchedule => throw _privateConstructorUsedError;
+  bool? get canSendMessage => throw _privateConstructorUsedError;
+  bool? get isPublicRecord => throw _privateConstructorUsedError;
+  String? get caredByStaffId => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
+  String? get deletedAt => throw _privateConstructorUsedError;
+  String? get studentGroupId => throw _privateConstructorUsedError;
   TutorInfo get tutorInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -496,33 +500,33 @@ abstract class $SecondInfoCopyWith<$Res> {
       _$SecondInfoCopyWithImpl<$Res, SecondInfo>;
   @useResult
   $Res call(
-      {String id,
-      String level,
-      String email,
-      dynamic google,
-      dynamic facebook,
-      dynamic apple,
-      String avatar,
-      String name,
-      String country,
-      String phone,
-      String language,
+      {String? id,
+      String? level,
+      String? email,
+      String? google,
+      String? facebook,
+      String? apple,
+      String? avatar,
+      String? name,
+      String? country,
+      String? phone,
+      String? language,
       DateTime birthday,
-      bool requestPassword,
-      bool isActivated,
-      dynamic isPhoneActivated,
-      dynamic requireNote,
+      bool? requestPassword,
+      bool? isActivated,
+      String? isPhoneActivated,
+      String? requireNote,
       int timezone,
-      dynamic phoneAuth,
-      bool isPhoneAuthActivated,
-      String studySchedule,
-      bool canSendMessage,
-      bool isPublicRecord,
-      dynamic caredByStaffId,
-      String createdAt,
-      String updatedAt,
-      dynamic deletedAt,
-      dynamic studentGroupId,
+      String? phoneAuth,
+      bool? isPhoneAuthActivated,
+      String? studySchedule,
+      bool? canSendMessage,
+      bool? isPublicRecord,
+      String? caredByStaffId,
+      String? createdAt,
+      String? updatedAt,
+      String? deletedAt,
+      String? studentGroupId,
       TutorInfo tutorInfo});
 
   $TutorInfoCopyWith<$Res> get tutorInfo;
@@ -541,100 +545,100 @@ class _$SecondInfoCopyWithImpl<$Res, $Val extends SecondInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? level = null,
-    Object? email = null,
+    Object? id = freezed,
+    Object? level = freezed,
+    Object? email = freezed,
     Object? google = freezed,
     Object? facebook = freezed,
     Object? apple = freezed,
-    Object? avatar = null,
-    Object? name = null,
-    Object? country = null,
-    Object? phone = null,
-    Object? language = null,
+    Object? avatar = freezed,
+    Object? name = freezed,
+    Object? country = freezed,
+    Object? phone = freezed,
+    Object? language = freezed,
     Object? birthday = null,
-    Object? requestPassword = null,
-    Object? isActivated = null,
+    Object? requestPassword = freezed,
+    Object? isActivated = freezed,
     Object? isPhoneActivated = freezed,
     Object? requireNote = freezed,
     Object? timezone = null,
     Object? phoneAuth = freezed,
-    Object? isPhoneAuthActivated = null,
-    Object? studySchedule = null,
-    Object? canSendMessage = null,
-    Object? isPublicRecord = null,
+    Object? isPhoneAuthActivated = freezed,
+    Object? studySchedule = freezed,
+    Object? canSendMessage = freezed,
+    Object? isPublicRecord = freezed,
     Object? caredByStaffId = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? deletedAt = freezed,
     Object? studentGroupId = freezed,
     Object? tutorInfo = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      level: null == level
+              as String?,
+      level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       google: freezed == google
           ? _value.google
           : google // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       facebook: freezed == facebook
           ? _value.facebook
           : facebook // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       apple: freezed == apple
           ? _value.apple
           : apple // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      avatar: null == avatar
+              as String?,
+      avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      language: null == language
+              as String?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       birthday: null == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      requestPassword: null == requestPassword
+      requestPassword: freezed == requestPassword
           ? _value.requestPassword
           : requestPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActivated: null == isActivated
+              as bool?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       timezone: null == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
@@ -642,43 +646,43 @@ class _$SecondInfoCopyWithImpl<$Res, $Val extends SecondInfo>
       phoneAuth: freezed == phoneAuth
           ? _value.phoneAuth
           : phoneAuth // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isPhoneAuthActivated: null == isPhoneAuthActivated
+              as String?,
+      isPhoneAuthActivated: freezed == isPhoneAuthActivated
           ? _value.isPhoneAuthActivated
           : isPhoneAuthActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      studySchedule: null == studySchedule
+              as bool?,
+      studySchedule: freezed == studySchedule
           ? _value.studySchedule
           : studySchedule // ignore: cast_nullable_to_non_nullable
-              as String,
-      canSendMessage: null == canSendMessage
+              as String?,
+      canSendMessage: freezed == canSendMessage
           ? _value.canSendMessage
           : canSendMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPublicRecord: null == isPublicRecord
+              as bool?,
+      isPublicRecord: freezed == isPublicRecord
           ? _value.isPublicRecord
           : isPublicRecord // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       caredByStaffId: freezed == caredByStaffId
           ? _value.caredByStaffId
           : caredByStaffId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       studentGroupId: freezed == studentGroupId
           ? _value.studentGroupId
           : studentGroupId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       tutorInfo: null == tutorInfo
           ? _value.tutorInfo
           : tutorInfo // ignore: cast_nullable_to_non_nullable
@@ -704,33 +708,33 @@ abstract class _$$_SecondInfoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String level,
-      String email,
-      dynamic google,
-      dynamic facebook,
-      dynamic apple,
-      String avatar,
-      String name,
-      String country,
-      String phone,
-      String language,
+      {String? id,
+      String? level,
+      String? email,
+      String? google,
+      String? facebook,
+      String? apple,
+      String? avatar,
+      String? name,
+      String? country,
+      String? phone,
+      String? language,
       DateTime birthday,
-      bool requestPassword,
-      bool isActivated,
-      dynamic isPhoneActivated,
-      dynamic requireNote,
+      bool? requestPassword,
+      bool? isActivated,
+      String? isPhoneActivated,
+      String? requireNote,
       int timezone,
-      dynamic phoneAuth,
-      bool isPhoneAuthActivated,
-      String studySchedule,
-      bool canSendMessage,
-      bool isPublicRecord,
-      dynamic caredByStaffId,
-      String createdAt,
-      String updatedAt,
-      dynamic deletedAt,
-      dynamic studentGroupId,
+      String? phoneAuth,
+      bool? isPhoneAuthActivated,
+      String? studySchedule,
+      bool? canSendMessage,
+      bool? isPublicRecord,
+      String? caredByStaffId,
+      String? createdAt,
+      String? updatedAt,
+      String? deletedAt,
+      String? studentGroupId,
       TutorInfo tutorInfo});
 
   @override
@@ -748,100 +752,100 @@ class __$$_SecondInfoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? level = null,
-    Object? email = null,
+    Object? id = freezed,
+    Object? level = freezed,
+    Object? email = freezed,
     Object? google = freezed,
     Object? facebook = freezed,
     Object? apple = freezed,
-    Object? avatar = null,
-    Object? name = null,
-    Object? country = null,
-    Object? phone = null,
-    Object? language = null,
+    Object? avatar = freezed,
+    Object? name = freezed,
+    Object? country = freezed,
+    Object? phone = freezed,
+    Object? language = freezed,
     Object? birthday = null,
-    Object? requestPassword = null,
-    Object? isActivated = null,
+    Object? requestPassword = freezed,
+    Object? isActivated = freezed,
     Object? isPhoneActivated = freezed,
     Object? requireNote = freezed,
     Object? timezone = null,
     Object? phoneAuth = freezed,
-    Object? isPhoneAuthActivated = null,
-    Object? studySchedule = null,
-    Object? canSendMessage = null,
-    Object? isPublicRecord = null,
+    Object? isPhoneAuthActivated = freezed,
+    Object? studySchedule = freezed,
+    Object? canSendMessage = freezed,
+    Object? isPublicRecord = freezed,
     Object? caredByStaffId = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? deletedAt = freezed,
     Object? studentGroupId = freezed,
     Object? tutorInfo = null,
   }) {
     return _then(_$_SecondInfo(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      level: null == level
+              as String?,
+      level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       google: freezed == google
           ? _value.google
           : google // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       facebook: freezed == facebook
           ? _value.facebook
           : facebook // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       apple: freezed == apple
           ? _value.apple
           : apple // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      avatar: null == avatar
+              as String?,
+      avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      language: null == language
+              as String?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       birthday: null == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      requestPassword: null == requestPassword
+      requestPassword: freezed == requestPassword
           ? _value.requestPassword
           : requestPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActivated: null == isActivated
+              as bool?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       timezone: null == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
@@ -849,43 +853,43 @@ class __$$_SecondInfoCopyWithImpl<$Res>
       phoneAuth: freezed == phoneAuth
           ? _value.phoneAuth
           : phoneAuth // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isPhoneAuthActivated: null == isPhoneAuthActivated
+              as String?,
+      isPhoneAuthActivated: freezed == isPhoneAuthActivated
           ? _value.isPhoneAuthActivated
           : isPhoneAuthActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      studySchedule: null == studySchedule
+              as bool?,
+      studySchedule: freezed == studySchedule
           ? _value.studySchedule
           : studySchedule // ignore: cast_nullable_to_non_nullable
-              as String,
-      canSendMessage: null == canSendMessage
+              as String?,
+      canSendMessage: freezed == canSendMessage
           ? _value.canSendMessage
           : canSendMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPublicRecord: null == isPublicRecord
+              as bool?,
+      isPublicRecord: freezed == isPublicRecord
           ? _value.isPublicRecord
           : isPublicRecord // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       caredByStaffId: freezed == caredByStaffId
           ? _value.caredByStaffId
           : caredByStaffId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       studentGroupId: freezed == studentGroupId
           ? _value.studentGroupId
           : studentGroupId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       tutorInfo: null == tutorInfo
           ? _value.tutorInfo
           : tutorInfo // ignore: cast_nullable_to_non_nullable
@@ -898,92 +902,92 @@ class __$$_SecondInfoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SecondInfo implements _SecondInfo {
   const _$_SecondInfo(
-      {required this.id,
-      required this.level,
-      required this.email,
-      required this.google,
-      required this.facebook,
-      required this.apple,
-      required this.avatar,
-      required this.name,
-      required this.country,
-      required this.phone,
-      required this.language,
+      {this.id,
+      this.level,
+      this.email,
+      this.google,
+      this.facebook,
+      this.apple,
+      this.avatar,
+      this.name,
+      this.country,
+      this.phone,
+      this.language,
       required this.birthday,
-      required this.requestPassword,
-      required this.isActivated,
-      required this.isPhoneActivated,
-      required this.requireNote,
+      this.requestPassword,
+      this.isActivated,
+      this.isPhoneActivated,
+      this.requireNote,
       required this.timezone,
-      required this.phoneAuth,
-      required this.isPhoneAuthActivated,
-      required this.studySchedule,
-      required this.canSendMessage,
-      required this.isPublicRecord,
-      required this.caredByStaffId,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.deletedAt,
-      required this.studentGroupId,
+      this.phoneAuth,
+      this.isPhoneAuthActivated,
+      this.studySchedule,
+      this.canSendMessage,
+      this.isPublicRecord,
+      this.caredByStaffId,
+      this.createdAt,
+      this.updatedAt,
+      this.deletedAt,
+      this.studentGroupId,
       required this.tutorInfo});
 
   factory _$_SecondInfo.fromJson(Map<String, dynamic> json) =>
       _$$_SecondInfoFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String level;
+  final String? level;
   @override
-  final String email;
+  final String? email;
   @override
-  final dynamic google;
+  final String? google;
   @override
-  final dynamic facebook;
+  final String? facebook;
   @override
-  final dynamic apple;
+  final String? apple;
   @override
-  final String avatar;
+  final String? avatar;
   @override
-  final String name;
+  final String? name;
   @override
-  final String country;
+  final String? country;
   @override
-  final String phone;
+  final String? phone;
   @override
-  final String language;
+  final String? language;
   @override
   final DateTime birthday;
   @override
-  final bool requestPassword;
+  final bool? requestPassword;
   @override
-  final bool isActivated;
+  final bool? isActivated;
   @override
-  final dynamic isPhoneActivated;
+  final String? isPhoneActivated;
   @override
-  final dynamic requireNote;
+  final String? requireNote;
   @override
   final int timezone;
   @override
-  final dynamic phoneAuth;
+  final String? phoneAuth;
   @override
-  final bool isPhoneAuthActivated;
+  final bool? isPhoneAuthActivated;
   @override
-  final String studySchedule;
+  final String? studySchedule;
   @override
-  final bool canSendMessage;
+  final bool? canSendMessage;
   @override
-  final bool isPublicRecord;
+  final bool? isPublicRecord;
   @override
-  final dynamic caredByStaffId;
+  final String? caredByStaffId;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
   @override
-  final dynamic deletedAt;
+  final String? deletedAt;
   @override
-  final dynamic studentGroupId;
+  final String? studentGroupId;
   @override
   final TutorInfo tutorInfo;
 
@@ -1000,9 +1004,10 @@ class _$_SecondInfo implements _SecondInfo {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.level, level) || other.level == level) &&
             (identical(other.email, email) || other.email == email) &&
-            const DeepCollectionEquality().equals(other.google, google) &&
-            const DeepCollectionEquality().equals(other.facebook, facebook) &&
-            const DeepCollectionEquality().equals(other.apple, apple) &&
+            (identical(other.google, google) || other.google == google) &&
+            (identical(other.facebook, facebook) ||
+                other.facebook == facebook) &&
+            (identical(other.apple, apple) || other.apple == apple) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.country, country) || other.country == country) &&
@@ -1015,13 +1020,14 @@ class _$_SecondInfo implements _SecondInfo {
                 other.requestPassword == requestPassword) &&
             (identical(other.isActivated, isActivated) ||
                 other.isActivated == isActivated) &&
-            const DeepCollectionEquality()
-                .equals(other.isPhoneActivated, isPhoneActivated) &&
-            const DeepCollectionEquality()
-                .equals(other.requireNote, requireNote) &&
+            (identical(other.isPhoneActivated, isPhoneActivated) ||
+                other.isPhoneActivated == isPhoneActivated) &&
+            (identical(other.requireNote, requireNote) ||
+                other.requireNote == requireNote) &&
             (identical(other.timezone, timezone) ||
                 other.timezone == timezone) &&
-            const DeepCollectionEquality().equals(other.phoneAuth, phoneAuth) &&
+            (identical(other.phoneAuth, phoneAuth) ||
+                other.phoneAuth == phoneAuth) &&
             (identical(other.isPhoneAuthActivated, isPhoneAuthActivated) ||
                 other.isPhoneAuthActivated == isPhoneAuthActivated) &&
             (identical(other.studySchedule, studySchedule) ||
@@ -1030,15 +1036,16 @@ class _$_SecondInfo implements _SecondInfo {
                 other.canSendMessage == canSendMessage) &&
             (identical(other.isPublicRecord, isPublicRecord) ||
                 other.isPublicRecord == isPublicRecord) &&
-            const DeepCollectionEquality()
-                .equals(other.caredByStaffId, caredByStaffId) &&
+            (identical(other.caredByStaffId, caredByStaffId) ||
+                other.caredByStaffId == caredByStaffId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
-            const DeepCollectionEquality().equals(other.deletedAt, deletedAt) &&
-            const DeepCollectionEquality()
-                .equals(other.studentGroupId, studentGroupId) &&
+            (identical(other.deletedAt, deletedAt) ||
+                other.deletedAt == deletedAt) &&
+            (identical(other.studentGroupId, studentGroupId) ||
+                other.studentGroupId == studentGroupId) &&
             (identical(other.tutorInfo, tutorInfo) ||
                 other.tutorInfo == tutorInfo));
   }
@@ -1050,9 +1057,9 @@ class _$_SecondInfo implements _SecondInfo {
         id,
         level,
         email,
-        const DeepCollectionEquality().hash(google),
-        const DeepCollectionEquality().hash(facebook),
-        const DeepCollectionEquality().hash(apple),
+        google,
+        facebook,
+        apple,
         avatar,
         name,
         country,
@@ -1061,19 +1068,19 @@ class _$_SecondInfo implements _SecondInfo {
         birthday,
         requestPassword,
         isActivated,
-        const DeepCollectionEquality().hash(isPhoneActivated),
-        const DeepCollectionEquality().hash(requireNote),
+        isPhoneActivated,
+        requireNote,
         timezone,
-        const DeepCollectionEquality().hash(phoneAuth),
+        phoneAuth,
         isPhoneAuthActivated,
         studySchedule,
         canSendMessage,
         isPublicRecord,
-        const DeepCollectionEquality().hash(caredByStaffId),
+        caredByStaffId,
         createdAt,
         updatedAt,
-        const DeepCollectionEquality().hash(deletedAt),
-        const DeepCollectionEquality().hash(studentGroupId),
+        deletedAt,
+        studentGroupId,
         tutorInfo
       ]);
 
@@ -1093,92 +1100,92 @@ class _$_SecondInfo implements _SecondInfo {
 
 abstract class _SecondInfo implements SecondInfo {
   const factory _SecondInfo(
-      {required final String id,
-      required final String level,
-      required final String email,
-      required final dynamic google,
-      required final dynamic facebook,
-      required final dynamic apple,
-      required final String avatar,
-      required final String name,
-      required final String country,
-      required final String phone,
-      required final String language,
+      {final String? id,
+      final String? level,
+      final String? email,
+      final String? google,
+      final String? facebook,
+      final String? apple,
+      final String? avatar,
+      final String? name,
+      final String? country,
+      final String? phone,
+      final String? language,
       required final DateTime birthday,
-      required final bool requestPassword,
-      required final bool isActivated,
-      required final dynamic isPhoneActivated,
-      required final dynamic requireNote,
+      final bool? requestPassword,
+      final bool? isActivated,
+      final String? isPhoneActivated,
+      final String? requireNote,
       required final int timezone,
-      required final dynamic phoneAuth,
-      required final bool isPhoneAuthActivated,
-      required final String studySchedule,
-      required final bool canSendMessage,
-      required final bool isPublicRecord,
-      required final dynamic caredByStaffId,
-      required final String createdAt,
-      required final String updatedAt,
-      required final dynamic deletedAt,
-      required final dynamic studentGroupId,
+      final String? phoneAuth,
+      final bool? isPhoneAuthActivated,
+      final String? studySchedule,
+      final bool? canSendMessage,
+      final bool? isPublicRecord,
+      final String? caredByStaffId,
+      final String? createdAt,
+      final String? updatedAt,
+      final String? deletedAt,
+      final String? studentGroupId,
       required final TutorInfo tutorInfo}) = _$_SecondInfo;
 
   factory _SecondInfo.fromJson(Map<String, dynamic> json) =
       _$_SecondInfo.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
-  String get level;
+  String? get level;
   @override
-  String get email;
+  String? get email;
   @override
-  dynamic get google;
+  String? get google;
   @override
-  dynamic get facebook;
+  String? get facebook;
   @override
-  dynamic get apple;
+  String? get apple;
   @override
-  String get avatar;
+  String? get avatar;
   @override
-  String get name;
+  String? get name;
   @override
-  String get country;
+  String? get country;
   @override
-  String get phone;
+  String? get phone;
   @override
-  String get language;
+  String? get language;
   @override
   DateTime get birthday;
   @override
-  bool get requestPassword;
+  bool? get requestPassword;
   @override
-  bool get isActivated;
+  bool? get isActivated;
   @override
-  dynamic get isPhoneActivated;
+  String? get isPhoneActivated;
   @override
-  dynamic get requireNote;
+  String? get requireNote;
   @override
   int get timezone;
   @override
-  dynamic get phoneAuth;
+  String? get phoneAuth;
   @override
-  bool get isPhoneAuthActivated;
+  bool? get isPhoneAuthActivated;
   @override
-  String get studySchedule;
+  String? get studySchedule;
   @override
-  bool get canSendMessage;
+  bool? get canSendMessage;
   @override
-  bool get isPublicRecord;
+  bool? get isPublicRecord;
   @override
-  dynamic get caredByStaffId;
+  String? get caredByStaffId;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
-  dynamic get deletedAt;
+  String? get deletedAt;
   @override
-  dynamic get studentGroupId;
+  String? get studentGroupId;
   @override
   TutorInfo get tutorInfo;
   @override
@@ -1193,24 +1200,24 @@ TutorInfo _$TutorInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TutorInfo {
-  String get id => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  String get video => throw _privateConstructorUsedError;
-  String get bio => throw _privateConstructorUsedError;
-  String get education => throw _privateConstructorUsedError;
-  String get experience => throw _privateConstructorUsedError;
-  String get profession => throw _privateConstructorUsedError;
-  dynamic get accent => throw _privateConstructorUsedError;
-  String get targetStudent => throw _privateConstructorUsedError;
-  String get interests => throw _privateConstructorUsedError;
-  String get languages => throw _privateConstructorUsedError;
-  String get specialties => throw _privateConstructorUsedError;
-  dynamic get resume => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
-  bool get isActivated => throw _privateConstructorUsedError;
-  dynamic get isNative => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
+  String? get video => throw _privateConstructorUsedError;
+  String? get bio => throw _privateConstructorUsedError;
+  String? get education => throw _privateConstructorUsedError;
+  String? get experience => throw _privateConstructorUsedError;
+  String? get profession => throw _privateConstructorUsedError;
+  String? get accent => throw _privateConstructorUsedError;
+  String? get targetStudent => throw _privateConstructorUsedError;
+  String? get interests => throw _privateConstructorUsedError;
+  String? get languages => throw _privateConstructorUsedError;
+  String? get specialties => throw _privateConstructorUsedError;
+  String? get resume => throw _privateConstructorUsedError;
+  double? get rating => throw _privateConstructorUsedError;
+  bool? get isActivated => throw _privateConstructorUsedError;
+  bool? get isNative => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1224,24 +1231,24 @@ abstract class $TutorInfoCopyWith<$Res> {
       _$TutorInfoCopyWithImpl<$Res, TutorInfo>;
   @useResult
   $Res call(
-      {String id,
-      String userId,
-      String video,
-      String bio,
-      String education,
-      String experience,
-      String profession,
-      dynamic accent,
-      String targetStudent,
-      String interests,
-      String languages,
-      String specialties,
-      dynamic resume,
-      double rating,
-      bool isActivated,
-      dynamic isNative,
-      String createdAt,
-      String updatedAt});
+      {String? id,
+      String? userId,
+      String? video,
+      String? bio,
+      String? education,
+      String? experience,
+      String? profession,
+      String? accent,
+      String? targetStudent,
+      String? interests,
+      String? languages,
+      String? specialties,
+      String? resume,
+      double? rating,
+      bool? isActivated,
+      bool? isNative,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -1257,98 +1264,98 @@ class _$TutorInfoCopyWithImpl<$Res, $Val extends TutorInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? userId = null,
-    Object? video = null,
-    Object? bio = null,
-    Object? education = null,
-    Object? experience = null,
-    Object? profession = null,
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? video = freezed,
+    Object? bio = freezed,
+    Object? education = freezed,
+    Object? experience = freezed,
+    Object? profession = freezed,
     Object? accent = freezed,
-    Object? targetStudent = null,
-    Object? interests = null,
-    Object? languages = null,
-    Object? specialties = null,
+    Object? targetStudent = freezed,
+    Object? interests = freezed,
+    Object? languages = freezed,
+    Object? specialties = freezed,
     Object? resume = freezed,
-    Object? rating = null,
-    Object? isActivated = null,
+    Object? rating = freezed,
+    Object? isActivated = freezed,
     Object? isNative = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
+              as String?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      video: null == video
+              as String?,
+      video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as String,
-      bio: null == bio
+              as String?,
+      bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
-              as String,
-      education: null == education
+              as String?,
+      education: freezed == education
           ? _value.education
           : education // ignore: cast_nullable_to_non_nullable
-              as String,
-      experience: null == experience
+              as String?,
+      experience: freezed == experience
           ? _value.experience
           : experience // ignore: cast_nullable_to_non_nullable
-              as String,
-      profession: null == profession
+              as String?,
+      profession: freezed == profession
           ? _value.profession
           : profession // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       accent: freezed == accent
           ? _value.accent
           : accent // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      targetStudent: null == targetStudent
+              as String?,
+      targetStudent: freezed == targetStudent
           ? _value.targetStudent
           : targetStudent // ignore: cast_nullable_to_non_nullable
-              as String,
-      interests: null == interests
+              as String?,
+      interests: freezed == interests
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as String,
-      languages: null == languages
+              as String?,
+      languages: freezed == languages
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialties: null == specialties
+              as String?,
+      specialties: freezed == specialties
           ? _value.specialties
           : specialties // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       resume: freezed == resume
           ? _value.resume
           : resume // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      rating: null == rating
+              as String?,
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      isActivated: null == isActivated
+              as double?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isNative: freezed == isNative
           ? _value.isNative
           : isNative // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: null == createdAt
+              as bool?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -1361,24 +1368,24 @@ abstract class _$$_TutorInfoCopyWith<$Res> implements $TutorInfoCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String userId,
-      String video,
-      String bio,
-      String education,
-      String experience,
-      String profession,
-      dynamic accent,
-      String targetStudent,
-      String interests,
-      String languages,
-      String specialties,
-      dynamic resume,
-      double rating,
-      bool isActivated,
-      dynamic isNative,
-      String createdAt,
-      String updatedAt});
+      {String? id,
+      String? userId,
+      String? video,
+      String? bio,
+      String? education,
+      String? experience,
+      String? profession,
+      String? accent,
+      String? targetStudent,
+      String? interests,
+      String? languages,
+      String? specialties,
+      String? resume,
+      double? rating,
+      bool? isActivated,
+      bool? isNative,
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -1392,98 +1399,98 @@ class __$$_TutorInfoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? userId = null,
-    Object? video = null,
-    Object? bio = null,
-    Object? education = null,
-    Object? experience = null,
-    Object? profession = null,
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? video = freezed,
+    Object? bio = freezed,
+    Object? education = freezed,
+    Object? experience = freezed,
+    Object? profession = freezed,
     Object? accent = freezed,
-    Object? targetStudent = null,
-    Object? interests = null,
-    Object? languages = null,
-    Object? specialties = null,
+    Object? targetStudent = freezed,
+    Object? interests = freezed,
+    Object? languages = freezed,
+    Object? specialties = freezed,
     Object? resume = freezed,
-    Object? rating = null,
-    Object? isActivated = null,
+    Object? rating = freezed,
+    Object? isActivated = freezed,
     Object? isNative = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$_TutorInfo(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
+              as String?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      video: null == video
+              as String?,
+      video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as String,
-      bio: null == bio
+              as String?,
+      bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
-              as String,
-      education: null == education
+              as String?,
+      education: freezed == education
           ? _value.education
           : education // ignore: cast_nullable_to_non_nullable
-              as String,
-      experience: null == experience
+              as String?,
+      experience: freezed == experience
           ? _value.experience
           : experience // ignore: cast_nullable_to_non_nullable
-              as String,
-      profession: null == profession
+              as String?,
+      profession: freezed == profession
           ? _value.profession
           : profession // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       accent: freezed == accent
           ? _value.accent
           : accent // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      targetStudent: null == targetStudent
+              as String?,
+      targetStudent: freezed == targetStudent
           ? _value.targetStudent
           : targetStudent // ignore: cast_nullable_to_non_nullable
-              as String,
-      interests: null == interests
+              as String?,
+      interests: freezed == interests
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as String,
-      languages: null == languages
+              as String?,
+      languages: freezed == languages
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialties: null == specialties
+              as String?,
+      specialties: freezed == specialties
           ? _value.specialties
           : specialties // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       resume: freezed == resume
           ? _value.resume
           : resume // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      rating: null == rating
+              as String?,
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      isActivated: null == isActivated
+              as double?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isNative: freezed == isNative
           ? _value.isNative
           : isNative // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: null == createdAt
+              as bool?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -1492,64 +1499,64 @@ class __$$_TutorInfoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TutorInfo implements _TutorInfo {
   const _$_TutorInfo(
-      {required this.id,
-      required this.userId,
-      required this.video,
-      required this.bio,
-      required this.education,
-      required this.experience,
-      required this.profession,
-      required this.accent,
-      required this.targetStudent,
-      required this.interests,
-      required this.languages,
-      required this.specialties,
-      required this.resume,
-      required this.rating,
-      required this.isActivated,
-      required this.isNative,
-      required this.createdAt,
-      required this.updatedAt});
+      {this.id,
+      this.userId,
+      this.video,
+      this.bio,
+      this.education,
+      this.experience,
+      this.profession,
+      this.accent,
+      this.targetStudent,
+      this.interests,
+      this.languages,
+      this.specialties,
+      this.resume,
+      this.rating,
+      this.isActivated,
+      this.isNative,
+      this.createdAt,
+      this.updatedAt});
 
   factory _$_TutorInfo.fromJson(Map<String, dynamic> json) =>
       _$$_TutorInfoFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String userId;
+  final String? userId;
   @override
-  final String video;
+  final String? video;
   @override
-  final String bio;
+  final String? bio;
   @override
-  final String education;
+  final String? education;
   @override
-  final String experience;
+  final String? experience;
   @override
-  final String profession;
+  final String? profession;
   @override
-  final dynamic accent;
+  final String? accent;
   @override
-  final String targetStudent;
+  final String? targetStudent;
   @override
-  final String interests;
+  final String? interests;
   @override
-  final String languages;
+  final String? languages;
   @override
-  final String specialties;
+  final String? specialties;
   @override
-  final dynamic resume;
+  final String? resume;
   @override
-  final double rating;
+  final double? rating;
   @override
-  final bool isActivated;
+  final bool? isActivated;
   @override
-  final dynamic isNative;
+  final bool? isNative;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
 
   @override
   String toString() {
@@ -1571,7 +1578,7 @@ class _$_TutorInfo implements _TutorInfo {
                 other.experience == experience) &&
             (identical(other.profession, profession) ||
                 other.profession == profession) &&
-            const DeepCollectionEquality().equals(other.accent, accent) &&
+            (identical(other.accent, accent) || other.accent == accent) &&
             (identical(other.targetStudent, targetStudent) ||
                 other.targetStudent == targetStudent) &&
             (identical(other.interests, interests) ||
@@ -1580,11 +1587,12 @@ class _$_TutorInfo implements _TutorInfo {
                 other.languages == languages) &&
             (identical(other.specialties, specialties) ||
                 other.specialties == specialties) &&
-            const DeepCollectionEquality().equals(other.resume, resume) &&
+            (identical(other.resume, resume) || other.resume == resume) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.isActivated, isActivated) ||
                 other.isActivated == isActivated) &&
-            const DeepCollectionEquality().equals(other.isNative, isNative) &&
+            (identical(other.isNative, isNative) ||
+                other.isNative == isNative) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -1602,15 +1610,15 @@ class _$_TutorInfo implements _TutorInfo {
       education,
       experience,
       profession,
-      const DeepCollectionEquality().hash(accent),
+      accent,
       targetStudent,
       interests,
       languages,
       specialties,
-      const DeepCollectionEquality().hash(resume),
+      resume,
       rating,
       isActivated,
-      const DeepCollectionEquality().hash(isNative),
+      isNative,
       createdAt,
       updatedAt);
 
@@ -1630,64 +1638,64 @@ class _$_TutorInfo implements _TutorInfo {
 
 abstract class _TutorInfo implements TutorInfo {
   const factory _TutorInfo(
-      {required final String id,
-      required final String userId,
-      required final String video,
-      required final String bio,
-      required final String education,
-      required final String experience,
-      required final String profession,
-      required final dynamic accent,
-      required final String targetStudent,
-      required final String interests,
-      required final String languages,
-      required final String specialties,
-      required final dynamic resume,
-      required final double rating,
-      required final bool isActivated,
-      required final dynamic isNative,
-      required final String createdAt,
-      required final String updatedAt}) = _$_TutorInfo;
+      {final String? id,
+      final String? userId,
+      final String? video,
+      final String? bio,
+      final String? education,
+      final String? experience,
+      final String? profession,
+      final String? accent,
+      final String? targetStudent,
+      final String? interests,
+      final String? languages,
+      final String? specialties,
+      final String? resume,
+      final double? rating,
+      final bool? isActivated,
+      final bool? isNative,
+      final String? createdAt,
+      final String? updatedAt}) = _$_TutorInfo;
 
   factory _TutorInfo.fromJson(Map<String, dynamic> json) =
       _$_TutorInfo.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
-  String get userId;
+  String? get userId;
   @override
-  String get video;
+  String? get video;
   @override
-  String get bio;
+  String? get bio;
   @override
-  String get education;
+  String? get education;
   @override
-  String get experience;
+  String? get experience;
   @override
-  String get profession;
+  String? get profession;
   @override
-  dynamic get accent;
+  String? get accent;
   @override
-  String get targetStudent;
+  String? get targetStudent;
   @override
-  String get interests;
+  String? get interests;
   @override
-  String get languages;
+  String? get languages;
   @override
-  String get specialties;
+  String? get specialties;
   @override
-  dynamic get resume;
+  String? get resume;
   @override
-  double get rating;
+  double? get rating;
   @override
-  bool get isActivated;
+  bool? get isActivated;
   @override
-  dynamic get isNative;
+  bool? get isNative;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_TutorInfoCopyWith<_$_TutorInfo> get copyWith =>
@@ -1701,7 +1709,7 @@ Tutors _$TutorsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Tutors {
   int get count => throw _privateConstructorUsedError;
-  List<Row> get rows => throw _privateConstructorUsedError;
+  List<TeacherModel> get rows => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1713,7 +1721,7 @@ abstract class $TutorsCopyWith<$Res> {
   factory $TutorsCopyWith(Tutors value, $Res Function(Tutors) then) =
       _$TutorsCopyWithImpl<$Res, Tutors>;
   @useResult
-  $Res call({int count, List<Row> rows});
+  $Res call({int count, List<TeacherModel> rows});
 }
 
 /// @nodoc
@@ -1740,7 +1748,7 @@ class _$TutorsCopyWithImpl<$Res, $Val extends Tutors>
       rows: null == rows
           ? _value.rows
           : rows // ignore: cast_nullable_to_non_nullable
-              as List<Row>,
+              as List<TeacherModel>,
     ) as $Val);
   }
 }
@@ -1751,7 +1759,7 @@ abstract class _$$_TutorsCopyWith<$Res> implements $TutorsCopyWith<$Res> {
       __$$_TutorsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int count, List<Row> rows});
+  $Res call({int count, List<TeacherModel> rows});
 }
 
 /// @nodoc
@@ -1775,7 +1783,7 @@ class __$$_TutorsCopyWithImpl<$Res>
       rows: null == rows
           ? _value._rows
           : rows // ignore: cast_nullable_to_non_nullable
-              as List<Row>,
+              as List<TeacherModel>,
     ));
   }
 }
@@ -1783,7 +1791,7 @@ class __$$_TutorsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Tutors implements _Tutors {
-  const _$_Tutors({required this.count, required final List<Row> rows})
+  const _$_Tutors({required this.count, required final List<TeacherModel> rows})
       : _rows = rows;
 
   factory _$_Tutors.fromJson(Map<String, dynamic> json) =>
@@ -1791,9 +1799,9 @@ class _$_Tutors implements _Tutors {
 
   @override
   final int count;
-  final List<Row> _rows;
+  final List<TeacherModel> _rows;
   @override
-  List<Row> get rows {
+  List<TeacherModel> get rows {
     if (_rows is EqualUnmodifiableListView) return _rows;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_rows);
@@ -1834,131 +1842,137 @@ class _$_Tutors implements _Tutors {
 
 abstract class _Tutors implements Tutors {
   const factory _Tutors(
-      {required final int count, required final List<Row> rows}) = _$_Tutors;
+      {required final int count,
+      required final List<TeacherModel> rows}) = _$_Tutors;
 
   factory _Tutors.fromJson(Map<String, dynamic> json) = _$_Tutors.fromJson;
 
   @override
   int get count;
   @override
-  List<Row> get rows;
+  List<TeacherModel> get rows;
   @override
   @JsonKey(ignore: true)
   _$$_TutorsCopyWith<_$_Tutors> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Row _$RowFromJson(Map<String, dynamic> json) {
-  return _Row.fromJson(json);
+TeacherModel _$TeacherModelFromJson(Map<String, dynamic> json) {
+  return _TeacherModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Row {
-  String get level => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  dynamic get google => throw _privateConstructorUsedError;
-  dynamic get facebook => throw _privateConstructorUsedError;
-  dynamic get apple => throw _privateConstructorUsedError;
+mixin _$TeacherModel {
+  String? get level => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get google => throw _privateConstructorUsedError;
+  String? get facebook => throw _privateConstructorUsedError;
+  String? get apple => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get language => throw _privateConstructorUsedError;
-  String get birthday => throw _privateConstructorUsedError;
-  bool get requestPassword => throw _privateConstructorUsedError;
-  bool get isActivated => throw _privateConstructorUsedError;
-  dynamic get isPhoneActivated => throw _privateConstructorUsedError;
-  dynamic get requireNote => throw _privateConstructorUsedError;
-  int get timezone => throw _privateConstructorUsedError;
-  dynamic get phoneAuth => throw _privateConstructorUsedError;
-  bool get isPhoneAuthActivated => throw _privateConstructorUsedError;
-  String get studySchedule => throw _privateConstructorUsedError;
-  bool get canSendMessage => throw _privateConstructorUsedError;
-  bool get isPublicRecord => throw _privateConstructorUsedError;
-  dynamic get caredByStaffId => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
-  dynamic get deletedAt => throw _privateConstructorUsedError;
-  dynamic get studentGroupId => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  String? get birthday => throw _privateConstructorUsedError;
+  bool? get requestPassword => throw _privateConstructorUsedError;
+  bool? get isActivated => throw _privateConstructorUsedError;
+  String? get isPhoneActivated => throw _privateConstructorUsedError;
+  String? get requireNote => throw _privateConstructorUsedError;
+  int? get timezone => throw _privateConstructorUsedError;
+  String? get phoneAuth => throw _privateConstructorUsedError;
+  bool? get isPhoneAuthActivated => throw _privateConstructorUsedError;
+  String? get studySchedule => throw _privateConstructorUsedError;
+  bool? get canSendMessage => throw _privateConstructorUsedError;
+  bool? get isPublicRecord => throw _privateConstructorUsedError;
+  String? get caredByStaffId => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
+  String? get deletedAt => throw _privateConstructorUsedError;
+  String? get studentGroupId => throw _privateConstructorUsedError;
   List<Feedback> get feedbacks => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  String get video => throw _privateConstructorUsedError;
-  String get bio => throw _privateConstructorUsedError;
-  String get education => throw _privateConstructorUsedError;
-  String get experience => throw _privateConstructorUsedError;
-  String get profession => throw _privateConstructorUsedError;
-  String get accent => throw _privateConstructorUsedError;
-  String get targetStudent => throw _privateConstructorUsedError;
-  String get interests => throw _privateConstructorUsedError;
-  String get languages => throw _privateConstructorUsedError;
-  String get specialties => throw _privateConstructorUsedError;
-  String get resume => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
-  dynamic get isNative => throw _privateConstructorUsedError;
-  int get price => throw _privateConstructorUsedError;
-  bool get isOnline => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
+  String? get video => throw _privateConstructorUsedError;
+  String? get bio => throw _privateConstructorUsedError;
+  String? get education => throw _privateConstructorUsedError;
+  String? get experience => throw _privateConstructorUsedError;
+  String? get profession => throw _privateConstructorUsedError;
+  String? get accent => throw _privateConstructorUsedError;
+  String? get targetStudent => throw _privateConstructorUsedError;
+  String? get interests => throw _privateConstructorUsedError;
+  String? get languages => throw _privateConstructorUsedError;
+  String? get specialties => throw _privateConstructorUsedError;
+  String? get resume => throw _privateConstructorUsedError;
+  double? get rating => throw _privateConstructorUsedError;
+  bool? get isNative => throw _privateConstructorUsedError;
+  int? get price => throw _privateConstructorUsedError;
+  bool? get isOnline => throw _privateConstructorUsedError;
+  bool? get isFavorite => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RowCopyWith<Row> get copyWith => throw _privateConstructorUsedError;
+  $TeacherModelCopyWith<TeacherModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RowCopyWith<$Res> {
-  factory $RowCopyWith(Row value, $Res Function(Row) then) =
-      _$RowCopyWithImpl<$Res, Row>;
+abstract class $TeacherModelCopyWith<$Res> {
+  factory $TeacherModelCopyWith(
+          TeacherModel value, $Res Function(TeacherModel) then) =
+      _$TeacherModelCopyWithImpl<$Res, TeacherModel>;
   @useResult
   $Res call(
-      {String level,
-      String email,
-      dynamic google,
-      dynamic facebook,
-      dynamic apple,
+      {String? level,
+      String? email,
+      String? google,
+      String? facebook,
+      String? apple,
       String avatar,
-      String name,
-      String country,
-      String phone,
-      String language,
-      String birthday,
-      bool requestPassword,
-      bool isActivated,
-      dynamic isPhoneActivated,
-      dynamic requireNote,
-      int timezone,
-      dynamic phoneAuth,
-      bool isPhoneAuthActivated,
-      String studySchedule,
-      bool canSendMessage,
-      bool isPublicRecord,
-      dynamic caredByStaffId,
-      String createdAt,
-      String updatedAt,
-      dynamic deletedAt,
-      dynamic studentGroupId,
+      String? name,
+      String? country,
+      String? phone,
+      String? language,
+      String? birthday,
+      bool? requestPassword,
+      bool? isActivated,
+      String? isPhoneActivated,
+      String? requireNote,
+      int? timezone,
+      String? phoneAuth,
+      bool? isPhoneAuthActivated,
+      String? studySchedule,
+      bool? canSendMessage,
+      bool? isPublicRecord,
+      String? caredByStaffId,
+      String? createdAt,
+      String? updatedAt,
+      String? deletedAt,
+      String? studentGroupId,
       List<Feedback> feedbacks,
-      String id,
-      String userId,
-      String video,
-      String bio,
-      String education,
-      String experience,
-      String profession,
-      String accent,
-      String targetStudent,
-      String interests,
-      String languages,
-      String specialties,
-      String resume,
-      double rating,
-      dynamic isNative,
-      int price,
-      bool isOnline});
+      String? id,
+      String? userId,
+      String? video,
+      String? bio,
+      String? education,
+      String? experience,
+      String? profession,
+      String? accent,
+      String? targetStudent,
+      String? interests,
+      String? languages,
+      String? specialties,
+      String? resume,
+      double? rating,
+      bool? isNative,
+      int? price,
+      bool? isOnline,
+      bool? isFavorite});
 }
 
 /// @nodoc
-class _$RowCopyWithImpl<$Res, $Val extends Row> implements $RowCopyWith<$Res> {
-  _$RowCopyWithImpl(this._value, this._then);
+class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
+    implements $TeacherModelCopyWith<$Res> {
+  _$TeacherModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1968,624 +1982,643 @@ class _$RowCopyWithImpl<$Res, $Val extends Row> implements $RowCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? level = null,
-    Object? email = null,
+    Object? level = freezed,
+    Object? email = freezed,
     Object? google = freezed,
     Object? facebook = freezed,
     Object? apple = freezed,
     Object? avatar = null,
-    Object? name = null,
-    Object? country = null,
-    Object? phone = null,
-    Object? language = null,
-    Object? birthday = null,
-    Object? requestPassword = null,
-    Object? isActivated = null,
+    Object? name = freezed,
+    Object? country = freezed,
+    Object? phone = freezed,
+    Object? language = freezed,
+    Object? birthday = freezed,
+    Object? requestPassword = freezed,
+    Object? isActivated = freezed,
     Object? isPhoneActivated = freezed,
     Object? requireNote = freezed,
-    Object? timezone = null,
+    Object? timezone = freezed,
     Object? phoneAuth = freezed,
-    Object? isPhoneAuthActivated = null,
-    Object? studySchedule = null,
-    Object? canSendMessage = null,
-    Object? isPublicRecord = null,
+    Object? isPhoneAuthActivated = freezed,
+    Object? studySchedule = freezed,
+    Object? canSendMessage = freezed,
+    Object? isPublicRecord = freezed,
     Object? caredByStaffId = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? deletedAt = freezed,
     Object? studentGroupId = freezed,
     Object? feedbacks = null,
-    Object? id = null,
-    Object? userId = null,
-    Object? video = null,
-    Object? bio = null,
-    Object? education = null,
-    Object? experience = null,
-    Object? profession = null,
-    Object? accent = null,
-    Object? targetStudent = null,
-    Object? interests = null,
-    Object? languages = null,
-    Object? specialties = null,
-    Object? resume = null,
-    Object? rating = null,
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? video = freezed,
+    Object? bio = freezed,
+    Object? education = freezed,
+    Object? experience = freezed,
+    Object? profession = freezed,
+    Object? accent = freezed,
+    Object? targetStudent = freezed,
+    Object? interests = freezed,
+    Object? languages = freezed,
+    Object? specialties = freezed,
+    Object? resume = freezed,
+    Object? rating = freezed,
     Object? isNative = freezed,
-    Object? price = null,
-    Object? isOnline = null,
+    Object? price = freezed,
+    Object? isOnline = freezed,
+    Object? isFavorite = freezed,
   }) {
     return _then(_value.copyWith(
-      level: null == level
+      level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       google: freezed == google
           ? _value.google
           : google // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       facebook: freezed == facebook
           ? _value.facebook
           : facebook // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       apple: freezed == apple
           ? _value.apple
           : apple // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      language: null == language
+              as String?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      requestPassword: null == requestPassword
+              as String?,
+      requestPassword: freezed == requestPassword
           ? _value.requestPassword
           : requestPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActivated: null == isActivated
+              as bool?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      timezone: null == timezone
+              as String?,
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       phoneAuth: freezed == phoneAuth
           ? _value.phoneAuth
           : phoneAuth // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isPhoneAuthActivated: null == isPhoneAuthActivated
+              as String?,
+      isPhoneAuthActivated: freezed == isPhoneAuthActivated
           ? _value.isPhoneAuthActivated
           : isPhoneAuthActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      studySchedule: null == studySchedule
+              as bool?,
+      studySchedule: freezed == studySchedule
           ? _value.studySchedule
           : studySchedule // ignore: cast_nullable_to_non_nullable
-              as String,
-      canSendMessage: null == canSendMessage
+              as String?,
+      canSendMessage: freezed == canSendMessage
           ? _value.canSendMessage
           : canSendMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPublicRecord: null == isPublicRecord
+              as bool?,
+      isPublicRecord: freezed == isPublicRecord
           ? _value.isPublicRecord
           : isPublicRecord // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       caredByStaffId: freezed == caredByStaffId
           ? _value.caredByStaffId
           : caredByStaffId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       studentGroupId: freezed == studentGroupId
           ? _value.studentGroupId
           : studentGroupId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       feedbacks: null == feedbacks
           ? _value.feedbacks
           : feedbacks // ignore: cast_nullable_to_non_nullable
               as List<Feedback>,
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
+              as String?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      video: null == video
+              as String?,
+      video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as String,
-      bio: null == bio
+              as String?,
+      bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
-              as String,
-      education: null == education
+              as String?,
+      education: freezed == education
           ? _value.education
           : education // ignore: cast_nullable_to_non_nullable
-              as String,
-      experience: null == experience
+              as String?,
+      experience: freezed == experience
           ? _value.experience
           : experience // ignore: cast_nullable_to_non_nullable
-              as String,
-      profession: null == profession
+              as String?,
+      profession: freezed == profession
           ? _value.profession
           : profession // ignore: cast_nullable_to_non_nullable
-              as String,
-      accent: null == accent
+              as String?,
+      accent: freezed == accent
           ? _value.accent
           : accent // ignore: cast_nullable_to_non_nullable
-              as String,
-      targetStudent: null == targetStudent
+              as String?,
+      targetStudent: freezed == targetStudent
           ? _value.targetStudent
           : targetStudent // ignore: cast_nullable_to_non_nullable
-              as String,
-      interests: null == interests
+              as String?,
+      interests: freezed == interests
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as String,
-      languages: null == languages
+              as String?,
+      languages: freezed == languages
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialties: null == specialties
+              as String?,
+      specialties: freezed == specialties
           ? _value.specialties
           : specialties // ignore: cast_nullable_to_non_nullable
-              as String,
-      resume: null == resume
+              as String?,
+      resume: freezed == resume
           ? _value.resume
           : resume // ignore: cast_nullable_to_non_nullable
-              as String,
-      rating: null == rating
+              as String?,
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       isNative: freezed == isNative
           ? _value.isNative
           : isNative // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      price: null == price
+              as bool?,
+      price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      isOnline: null == isOnline
+              as int?,
+      isOnline: freezed == isOnline
           ? _value.isOnline
           : isOnline // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
+      isFavorite: freezed == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_RowCopyWith<$Res> implements $RowCopyWith<$Res> {
-  factory _$$_RowCopyWith(_$_Row value, $Res Function(_$_Row) then) =
-      __$$_RowCopyWithImpl<$Res>;
+abstract class _$$_TeacherModelCopyWith<$Res>
+    implements $TeacherModelCopyWith<$Res> {
+  factory _$$_TeacherModelCopyWith(
+          _$_TeacherModel value, $Res Function(_$_TeacherModel) then) =
+      __$$_TeacherModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String level,
-      String email,
-      dynamic google,
-      dynamic facebook,
-      dynamic apple,
+      {String? level,
+      String? email,
+      String? google,
+      String? facebook,
+      String? apple,
       String avatar,
-      String name,
-      String country,
-      String phone,
-      String language,
-      String birthday,
-      bool requestPassword,
-      bool isActivated,
-      dynamic isPhoneActivated,
-      dynamic requireNote,
-      int timezone,
-      dynamic phoneAuth,
-      bool isPhoneAuthActivated,
-      String studySchedule,
-      bool canSendMessage,
-      bool isPublicRecord,
-      dynamic caredByStaffId,
-      String createdAt,
-      String updatedAt,
-      dynamic deletedAt,
-      dynamic studentGroupId,
+      String? name,
+      String? country,
+      String? phone,
+      String? language,
+      String? birthday,
+      bool? requestPassword,
+      bool? isActivated,
+      String? isPhoneActivated,
+      String? requireNote,
+      int? timezone,
+      String? phoneAuth,
+      bool? isPhoneAuthActivated,
+      String? studySchedule,
+      bool? canSendMessage,
+      bool? isPublicRecord,
+      String? caredByStaffId,
+      String? createdAt,
+      String? updatedAt,
+      String? deletedAt,
+      String? studentGroupId,
       List<Feedback> feedbacks,
-      String id,
-      String userId,
-      String video,
-      String bio,
-      String education,
-      String experience,
-      String profession,
-      String accent,
-      String targetStudent,
-      String interests,
-      String languages,
-      String specialties,
-      String resume,
-      double rating,
-      dynamic isNative,
-      int price,
-      bool isOnline});
+      String? id,
+      String? userId,
+      String? video,
+      String? bio,
+      String? education,
+      String? experience,
+      String? profession,
+      String? accent,
+      String? targetStudent,
+      String? interests,
+      String? languages,
+      String? specialties,
+      String? resume,
+      double? rating,
+      bool? isNative,
+      int? price,
+      bool? isOnline,
+      bool? isFavorite});
 }
 
 /// @nodoc
-class __$$_RowCopyWithImpl<$Res> extends _$RowCopyWithImpl<$Res, _$_Row>
-    implements _$$_RowCopyWith<$Res> {
-  __$$_RowCopyWithImpl(_$_Row _value, $Res Function(_$_Row) _then)
+class __$$_TeacherModelCopyWithImpl<$Res>
+    extends _$TeacherModelCopyWithImpl<$Res, _$_TeacherModel>
+    implements _$$_TeacherModelCopyWith<$Res> {
+  __$$_TeacherModelCopyWithImpl(
+      _$_TeacherModel _value, $Res Function(_$_TeacherModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? level = null,
-    Object? email = null,
+    Object? level = freezed,
+    Object? email = freezed,
     Object? google = freezed,
     Object? facebook = freezed,
     Object? apple = freezed,
     Object? avatar = null,
-    Object? name = null,
-    Object? country = null,
-    Object? phone = null,
-    Object? language = null,
-    Object? birthday = null,
-    Object? requestPassword = null,
-    Object? isActivated = null,
+    Object? name = freezed,
+    Object? country = freezed,
+    Object? phone = freezed,
+    Object? language = freezed,
+    Object? birthday = freezed,
+    Object? requestPassword = freezed,
+    Object? isActivated = freezed,
     Object? isPhoneActivated = freezed,
     Object? requireNote = freezed,
-    Object? timezone = null,
+    Object? timezone = freezed,
     Object? phoneAuth = freezed,
-    Object? isPhoneAuthActivated = null,
-    Object? studySchedule = null,
-    Object? canSendMessage = null,
-    Object? isPublicRecord = null,
+    Object? isPhoneAuthActivated = freezed,
+    Object? studySchedule = freezed,
+    Object? canSendMessage = freezed,
+    Object? isPublicRecord = freezed,
     Object? caredByStaffId = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? deletedAt = freezed,
     Object? studentGroupId = freezed,
     Object? feedbacks = null,
-    Object? id = null,
-    Object? userId = null,
-    Object? video = null,
-    Object? bio = null,
-    Object? education = null,
-    Object? experience = null,
-    Object? profession = null,
-    Object? accent = null,
-    Object? targetStudent = null,
-    Object? interests = null,
-    Object? languages = null,
-    Object? specialties = null,
-    Object? resume = null,
-    Object? rating = null,
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? video = freezed,
+    Object? bio = freezed,
+    Object? education = freezed,
+    Object? experience = freezed,
+    Object? profession = freezed,
+    Object? accent = freezed,
+    Object? targetStudent = freezed,
+    Object? interests = freezed,
+    Object? languages = freezed,
+    Object? specialties = freezed,
+    Object? resume = freezed,
+    Object? rating = freezed,
     Object? isNative = freezed,
-    Object? price = null,
-    Object? isOnline = null,
+    Object? price = freezed,
+    Object? isOnline = freezed,
+    Object? isFavorite = freezed,
   }) {
-    return _then(_$_Row(
-      level: null == level
+    return _then(_$_TeacherModel(
+      level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       google: freezed == google
           ? _value.google
           : google // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       facebook: freezed == facebook
           ? _value.facebook
           : facebook // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       apple: freezed == apple
           ? _value.apple
           : apple // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      language: null == language
+              as String?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      requestPassword: null == requestPassword
+              as String?,
+      requestPassword: freezed == requestPassword
           ? _value.requestPassword
           : requestPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActivated: null == isActivated
+              as bool?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      timezone: null == timezone
+              as String?,
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       phoneAuth: freezed == phoneAuth
           ? _value.phoneAuth
           : phoneAuth // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isPhoneAuthActivated: null == isPhoneAuthActivated
+              as String?,
+      isPhoneAuthActivated: freezed == isPhoneAuthActivated
           ? _value.isPhoneAuthActivated
           : isPhoneAuthActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      studySchedule: null == studySchedule
+              as bool?,
+      studySchedule: freezed == studySchedule
           ? _value.studySchedule
           : studySchedule // ignore: cast_nullable_to_non_nullable
-              as String,
-      canSendMessage: null == canSendMessage
+              as String?,
+      canSendMessage: freezed == canSendMessage
           ? _value.canSendMessage
           : canSendMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPublicRecord: null == isPublicRecord
+              as bool?,
+      isPublicRecord: freezed == isPublicRecord
           ? _value.isPublicRecord
           : isPublicRecord // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       caredByStaffId: freezed == caredByStaffId
           ? _value.caredByStaffId
           : caredByStaffId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       studentGroupId: freezed == studentGroupId
           ? _value.studentGroupId
           : studentGroupId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       feedbacks: null == feedbacks
           ? _value._feedbacks
           : feedbacks // ignore: cast_nullable_to_non_nullable
               as List<Feedback>,
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
+              as String?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      video: null == video
+              as String?,
+      video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as String,
-      bio: null == bio
+              as String?,
+      bio: freezed == bio
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
-              as String,
-      education: null == education
+              as String?,
+      education: freezed == education
           ? _value.education
           : education // ignore: cast_nullable_to_non_nullable
-              as String,
-      experience: null == experience
+              as String?,
+      experience: freezed == experience
           ? _value.experience
           : experience // ignore: cast_nullable_to_non_nullable
-              as String,
-      profession: null == profession
+              as String?,
+      profession: freezed == profession
           ? _value.profession
           : profession // ignore: cast_nullable_to_non_nullable
-              as String,
-      accent: null == accent
+              as String?,
+      accent: freezed == accent
           ? _value.accent
           : accent // ignore: cast_nullable_to_non_nullable
-              as String,
-      targetStudent: null == targetStudent
+              as String?,
+      targetStudent: freezed == targetStudent
           ? _value.targetStudent
           : targetStudent // ignore: cast_nullable_to_non_nullable
-              as String,
-      interests: null == interests
+              as String?,
+      interests: freezed == interests
           ? _value.interests
           : interests // ignore: cast_nullable_to_non_nullable
-              as String,
-      languages: null == languages
+              as String?,
+      languages: freezed == languages
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
-              as String,
-      specialties: null == specialties
+              as String?,
+      specialties: freezed == specialties
           ? _value.specialties
           : specialties // ignore: cast_nullable_to_non_nullable
-              as String,
-      resume: null == resume
+              as String?,
+      resume: freezed == resume
           ? _value.resume
           : resume // ignore: cast_nullable_to_non_nullable
-              as String,
-      rating: null == rating
+              as String?,
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       isNative: freezed == isNative
           ? _value.isNative
           : isNative // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      price: null == price
+              as bool?,
+      price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      isOnline: null == isOnline
+              as int?,
+      isOnline: freezed == isOnline
           ? _value.isOnline
           : isOnline // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
+      isFavorite: freezed == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Row implements _Row {
-  const _$_Row(
-      {required this.level,
-      required this.email,
-      required this.google,
-      required this.facebook,
-      required this.apple,
-      required this.avatar,
-      required this.name,
-      required this.country,
-      required this.phone,
-      required this.language,
-      required this.birthday,
-      required this.requestPassword,
-      required this.isActivated,
-      required this.isPhoneActivated,
-      required this.requireNote,
-      required this.timezone,
-      required this.phoneAuth,
-      required this.isPhoneAuthActivated,
-      required this.studySchedule,
-      required this.canSendMessage,
-      required this.isPublicRecord,
-      required this.caredByStaffId,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.deletedAt,
-      required this.studentGroupId,
+class _$_TeacherModel implements _TeacherModel {
+  const _$_TeacherModel(
+      {this.level,
+      this.email,
+      this.google,
+      this.facebook,
+      this.apple,
+      this.avatar =
+          'https://thumbs.dreamstime.com/z/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg',
+      this.name,
+      this.country,
+      this.phone,
+      this.language,
+      this.birthday,
+      this.requestPassword,
+      this.isActivated,
+      this.isPhoneActivated,
+      this.requireNote,
+      this.timezone,
+      this.phoneAuth,
+      this.isPhoneAuthActivated,
+      this.studySchedule,
+      this.canSendMessage,
+      this.isPublicRecord,
+      this.caredByStaffId,
+      this.createdAt,
+      this.updatedAt,
+      this.deletedAt,
+      this.studentGroupId,
       required final List<Feedback> feedbacks,
-      required this.id,
-      required this.userId,
-      required this.video,
-      required this.bio,
-      required this.education,
-      required this.experience,
-      required this.profession,
-      required this.accent,
-      required this.targetStudent,
-      required this.interests,
-      required this.languages,
-      required this.specialties,
-      required this.resume,
-      required this.rating,
-      required this.isNative,
-      required this.price,
-      required this.isOnline})
+      this.id,
+      this.userId,
+      this.video,
+      this.bio,
+      this.education,
+      this.experience,
+      this.profession,
+      this.accent,
+      this.targetStudent,
+      this.interests,
+      this.languages,
+      this.specialties,
+      this.resume,
+      this.rating,
+      this.isNative,
+      this.price,
+      this.isOnline,
+      this.isFavorite})
       : _feedbacks = feedbacks;
 
-  factory _$_Row.fromJson(Map<String, dynamic> json) => _$$_RowFromJson(json);
+  factory _$_TeacherModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TeacherModelFromJson(json);
 
   @override
-  final String level;
+  final String? level;
   @override
-  final String email;
+  final String? email;
   @override
-  final dynamic google;
+  final String? google;
   @override
-  final dynamic facebook;
+  final String? facebook;
   @override
-  final dynamic apple;
+  final String? apple;
   @override
+  @JsonKey()
   final String avatar;
   @override
-  final String name;
+  final String? name;
   @override
-  final String country;
+  final String? country;
   @override
-  final String phone;
+  final String? phone;
   @override
-  final String language;
+  final String? language;
   @override
-  final String birthday;
+  final String? birthday;
   @override
-  final bool requestPassword;
+  final bool? requestPassword;
   @override
-  final bool isActivated;
+  final bool? isActivated;
   @override
-  final dynamic isPhoneActivated;
+  final String? isPhoneActivated;
   @override
-  final dynamic requireNote;
+  final String? requireNote;
   @override
-  final int timezone;
+  final int? timezone;
   @override
-  final dynamic phoneAuth;
+  final String? phoneAuth;
   @override
-  final bool isPhoneAuthActivated;
+  final bool? isPhoneAuthActivated;
   @override
-  final String studySchedule;
+  final String? studySchedule;
   @override
-  final bool canSendMessage;
+  final bool? canSendMessage;
   @override
-  final bool isPublicRecord;
+  final bool? isPublicRecord;
   @override
-  final dynamic caredByStaffId;
+  final String? caredByStaffId;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
   @override
-  final dynamic deletedAt;
+  final String? deletedAt;
   @override
-  final dynamic studentGroupId;
+  final String? studentGroupId;
   final List<Feedback> _feedbacks;
   @override
   List<Feedback> get feedbacks {
@@ -2595,55 +2628,58 @@ class _$_Row implements _Row {
   }
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String userId;
+  final String? userId;
   @override
-  final String video;
+  final String? video;
   @override
-  final String bio;
+  final String? bio;
   @override
-  final String education;
+  final String? education;
   @override
-  final String experience;
+  final String? experience;
   @override
-  final String profession;
+  final String? profession;
   @override
-  final String accent;
+  final String? accent;
   @override
-  final String targetStudent;
+  final String? targetStudent;
   @override
-  final String interests;
+  final String? interests;
   @override
-  final String languages;
+  final String? languages;
   @override
-  final String specialties;
+  final String? specialties;
   @override
-  final String resume;
+  final String? resume;
   @override
-  final double rating;
+  final double? rating;
   @override
-  final dynamic isNative;
+  final bool? isNative;
   @override
-  final int price;
+  final int? price;
   @override
-  final bool isOnline;
+  final bool? isOnline;
+  @override
+  final bool? isFavorite;
 
   @override
   String toString() {
-    return 'Row(level: $level, email: $email, google: $google, facebook: $facebook, apple: $apple, avatar: $avatar, name: $name, country: $country, phone: $phone, language: $language, birthday: $birthday, requestPassword: $requestPassword, isActivated: $isActivated, isPhoneActivated: $isPhoneActivated, requireNote: $requireNote, timezone: $timezone, phoneAuth: $phoneAuth, isPhoneAuthActivated: $isPhoneAuthActivated, studySchedule: $studySchedule, canSendMessage: $canSendMessage, isPublicRecord: $isPublicRecord, caredByStaffId: $caredByStaffId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, studentGroupId: $studentGroupId, feedbacks: $feedbacks, id: $id, userId: $userId, video: $video, bio: $bio, education: $education, experience: $experience, profession: $profession, accent: $accent, targetStudent: $targetStudent, interests: $interests, languages: $languages, specialties: $specialties, resume: $resume, rating: $rating, isNative: $isNative, price: $price, isOnline: $isOnline)';
+    return 'TeacherModel(level: $level, email: $email, google: $google, facebook: $facebook, apple: $apple, avatar: $avatar, name: $name, country: $country, phone: $phone, language: $language, birthday: $birthday, requestPassword: $requestPassword, isActivated: $isActivated, isPhoneActivated: $isPhoneActivated, requireNote: $requireNote, timezone: $timezone, phoneAuth: $phoneAuth, isPhoneAuthActivated: $isPhoneAuthActivated, studySchedule: $studySchedule, canSendMessage: $canSendMessage, isPublicRecord: $isPublicRecord, caredByStaffId: $caredByStaffId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, studentGroupId: $studentGroupId, feedbacks: $feedbacks, id: $id, userId: $userId, video: $video, bio: $bio, education: $education, experience: $experience, profession: $profession, accent: $accent, targetStudent: $targetStudent, interests: $interests, languages: $languages, specialties: $specialties, resume: $resume, rating: $rating, isNative: $isNative, price: $price, isOnline: $isOnline, isFavorite: $isFavorite)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Row &&
+            other is _$_TeacherModel &&
             (identical(other.level, level) || other.level == level) &&
             (identical(other.email, email) || other.email == email) &&
-            const DeepCollectionEquality().equals(other.google, google) &&
-            const DeepCollectionEquality().equals(other.facebook, facebook) &&
-            const DeepCollectionEquality().equals(other.apple, apple) &&
+            (identical(other.google, google) || other.google == google) &&
+            (identical(other.facebook, facebook) ||
+                other.facebook == facebook) &&
+            (identical(other.apple, apple) || other.apple == apple) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.country, country) || other.country == country) &&
@@ -2656,13 +2692,14 @@ class _$_Row implements _Row {
                 other.requestPassword == requestPassword) &&
             (identical(other.isActivated, isActivated) ||
                 other.isActivated == isActivated) &&
-            const DeepCollectionEquality()
-                .equals(other.isPhoneActivated, isPhoneActivated) &&
-            const DeepCollectionEquality()
-                .equals(other.requireNote, requireNote) &&
+            (identical(other.isPhoneActivated, isPhoneActivated) ||
+                other.isPhoneActivated == isPhoneActivated) &&
+            (identical(other.requireNote, requireNote) ||
+                other.requireNote == requireNote) &&
             (identical(other.timezone, timezone) ||
                 other.timezone == timezone) &&
-            const DeepCollectionEquality().equals(other.phoneAuth, phoneAuth) &&
+            (identical(other.phoneAuth, phoneAuth) ||
+                other.phoneAuth == phoneAuth) &&
             (identical(other.isPhoneAuthActivated, isPhoneAuthActivated) ||
                 other.isPhoneAuthActivated == isPhoneAuthActivated) &&
             (identical(other.studySchedule, studySchedule) ||
@@ -2671,15 +2708,16 @@ class _$_Row implements _Row {
                 other.canSendMessage == canSendMessage) &&
             (identical(other.isPublicRecord, isPublicRecord) ||
                 other.isPublicRecord == isPublicRecord) &&
-            const DeepCollectionEquality()
-                .equals(other.caredByStaffId, caredByStaffId) &&
+            (identical(other.caredByStaffId, caredByStaffId) ||
+                other.caredByStaffId == caredByStaffId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
-            const DeepCollectionEquality().equals(other.deletedAt, deletedAt) &&
-            const DeepCollectionEquality()
-                .equals(other.studentGroupId, studentGroupId) &&
+            (identical(other.deletedAt, deletedAt) ||
+                other.deletedAt == deletedAt) &&
+            (identical(other.studentGroupId, studentGroupId) ||
+                other.studentGroupId == studentGroupId) &&
             const DeepCollectionEquality()
                 .equals(other._feedbacks, _feedbacks) &&
             (identical(other.id, id) || other.id == id) &&
@@ -2703,10 +2741,13 @@ class _$_Row implements _Row {
                 other.specialties == specialties) &&
             (identical(other.resume, resume) || other.resume == resume) &&
             (identical(other.rating, rating) || other.rating == rating) &&
-            const DeepCollectionEquality().equals(other.isNative, isNative) &&
+            (identical(other.isNative, isNative) ||
+                other.isNative == isNative) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.isOnline, isOnline) ||
-                other.isOnline == isOnline));
+                other.isOnline == isOnline) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
   }
 
   @JsonKey(ignore: true)
@@ -2715,9 +2756,9 @@ class _$_Row implements _Row {
         runtimeType,
         level,
         email,
-        const DeepCollectionEquality().hash(google),
-        const DeepCollectionEquality().hash(facebook),
-        const DeepCollectionEquality().hash(apple),
+        google,
+        facebook,
+        apple,
         avatar,
         name,
         country,
@@ -2726,19 +2767,19 @@ class _$_Row implements _Row {
         birthday,
         requestPassword,
         isActivated,
-        const DeepCollectionEquality().hash(isPhoneActivated),
-        const DeepCollectionEquality().hash(requireNote),
+        isPhoneActivated,
+        requireNote,
         timezone,
-        const DeepCollectionEquality().hash(phoneAuth),
+        phoneAuth,
         isPhoneAuthActivated,
         studySchedule,
         canSendMessage,
         isPublicRecord,
-        const DeepCollectionEquality().hash(caredByStaffId),
+        caredByStaffId,
         createdAt,
         updatedAt,
-        const DeepCollectionEquality().hash(deletedAt),
-        const DeepCollectionEquality().hash(studentGroupId),
+        deletedAt,
+        studentGroupId,
         const DeepCollectionEquality().hash(_feedbacks),
         id,
         userId,
@@ -2754,165 +2795,171 @@ class _$_Row implements _Row {
         specialties,
         resume,
         rating,
-        const DeepCollectionEquality().hash(isNative),
+        isNative,
         price,
-        isOnline
+        isOnline,
+        isFavorite
       ]);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RowCopyWith<_$_Row> get copyWith =>
-      __$$_RowCopyWithImpl<_$_Row>(this, _$identity);
+  _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith =>
+      __$$_TeacherModelCopyWithImpl<_$_TeacherModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RowToJson(
+    return _$$_TeacherModelToJson(
       this,
     );
   }
 }
 
-abstract class _Row implements Row {
-  const factory _Row(
-      {required final String level,
-      required final String email,
-      required final dynamic google,
-      required final dynamic facebook,
-      required final dynamic apple,
-      required final String avatar,
-      required final String name,
-      required final String country,
-      required final String phone,
-      required final String language,
-      required final String birthday,
-      required final bool requestPassword,
-      required final bool isActivated,
-      required final dynamic isPhoneActivated,
-      required final dynamic requireNote,
-      required final int timezone,
-      required final dynamic phoneAuth,
-      required final bool isPhoneAuthActivated,
-      required final String studySchedule,
-      required final bool canSendMessage,
-      required final bool isPublicRecord,
-      required final dynamic caredByStaffId,
-      required final String createdAt,
-      required final String updatedAt,
-      required final dynamic deletedAt,
-      required final dynamic studentGroupId,
+abstract class _TeacherModel implements TeacherModel {
+  const factory _TeacherModel(
+      {final String? level,
+      final String? email,
+      final String? google,
+      final String? facebook,
+      final String? apple,
+      final String avatar,
+      final String? name,
+      final String? country,
+      final String? phone,
+      final String? language,
+      final String? birthday,
+      final bool? requestPassword,
+      final bool? isActivated,
+      final String? isPhoneActivated,
+      final String? requireNote,
+      final int? timezone,
+      final String? phoneAuth,
+      final bool? isPhoneAuthActivated,
+      final String? studySchedule,
+      final bool? canSendMessage,
+      final bool? isPublicRecord,
+      final String? caredByStaffId,
+      final String? createdAt,
+      final String? updatedAt,
+      final String? deletedAt,
+      final String? studentGroupId,
       required final List<Feedback> feedbacks,
-      required final String id,
-      required final String userId,
-      required final String video,
-      required final String bio,
-      required final String education,
-      required final String experience,
-      required final String profession,
-      required final String accent,
-      required final String targetStudent,
-      required final String interests,
-      required final String languages,
-      required final String specialties,
-      required final String resume,
-      required final double rating,
-      required final dynamic isNative,
-      required final int price,
-      required final bool isOnline}) = _$_Row;
+      final String? id,
+      final String? userId,
+      final String? video,
+      final String? bio,
+      final String? education,
+      final String? experience,
+      final String? profession,
+      final String? accent,
+      final String? targetStudent,
+      final String? interests,
+      final String? languages,
+      final String? specialties,
+      final String? resume,
+      final double? rating,
+      final bool? isNative,
+      final int? price,
+      final bool? isOnline,
+      final bool? isFavorite}) = _$_TeacherModel;
 
-  factory _Row.fromJson(Map<String, dynamic> json) = _$_Row.fromJson;
+  factory _TeacherModel.fromJson(Map<String, dynamic> json) =
+      _$_TeacherModel.fromJson;
 
   @override
-  String get level;
+  String? get level;
   @override
-  String get email;
+  String? get email;
   @override
-  dynamic get google;
+  String? get google;
   @override
-  dynamic get facebook;
+  String? get facebook;
   @override
-  dynamic get apple;
+  String? get apple;
   @override
   String get avatar;
   @override
-  String get name;
+  String? get name;
   @override
-  String get country;
+  String? get country;
   @override
-  String get phone;
+  String? get phone;
   @override
-  String get language;
+  String? get language;
   @override
-  String get birthday;
+  String? get birthday;
   @override
-  bool get requestPassword;
+  bool? get requestPassword;
   @override
-  bool get isActivated;
+  bool? get isActivated;
   @override
-  dynamic get isPhoneActivated;
+  String? get isPhoneActivated;
   @override
-  dynamic get requireNote;
+  String? get requireNote;
   @override
-  int get timezone;
+  int? get timezone;
   @override
-  dynamic get phoneAuth;
+  String? get phoneAuth;
   @override
-  bool get isPhoneAuthActivated;
+  bool? get isPhoneAuthActivated;
   @override
-  String get studySchedule;
+  String? get studySchedule;
   @override
-  bool get canSendMessage;
+  bool? get canSendMessage;
   @override
-  bool get isPublicRecord;
+  bool? get isPublicRecord;
   @override
-  dynamic get caredByStaffId;
+  String? get caredByStaffId;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
-  dynamic get deletedAt;
+  String? get deletedAt;
   @override
-  dynamic get studentGroupId;
+  String? get studentGroupId;
   @override
   List<Feedback> get feedbacks;
   @override
-  String get id;
+  String? get id;
   @override
-  String get userId;
+  String? get userId;
   @override
-  String get video;
+  String? get video;
   @override
-  String get bio;
+  String? get bio;
   @override
-  String get education;
+  String? get education;
   @override
-  String get experience;
+  String? get experience;
   @override
-  String get profession;
+  String? get profession;
   @override
-  String get accent;
+  String? get accent;
   @override
-  String get targetStudent;
+  String? get targetStudent;
   @override
-  String get interests;
+  String? get interests;
   @override
-  String get languages;
+  String? get languages;
   @override
-  String get specialties;
+  String? get specialties;
   @override
-  String get resume;
+  String? get resume;
   @override
-  double get rating;
+  double? get rating;
   @override
-  dynamic get isNative;
+  bool? get isNative;
   @override
-  int get price;
+  int? get price;
   @override
-  bool get isOnline;
+  bool? get isOnline;
+  @override
+  bool? get isFavorite;
   @override
   @JsonKey(ignore: true)
-  _$$_RowCopyWith<_$_Row> get copyWith => throw _privateConstructorUsedError;
+  _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 Feedback _$FeedbackFromJson(Map<String, dynamic> json) {
@@ -2922,14 +2969,14 @@ Feedback _$FeedbackFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Feedback {
   String get id => throw _privateConstructorUsedError;
-  String get bookingId => throw _privateConstructorUsedError;
-  String get firstId => throw _privateConstructorUsedError;
-  String get secondId => throw _privateConstructorUsedError;
+  String? get bookingId => throw _privateConstructorUsedError;
+  String? get firstId => throw _privateConstructorUsedError;
+  String? get secondId => throw _privateConstructorUsedError;
   int get rating => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
-  FirstInfo get firstInfo => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
+  FirstInfo? get firstInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2944,16 +2991,16 @@ abstract class $FeedbackCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String bookingId,
-      String firstId,
-      String secondId,
+      String? bookingId,
+      String? firstId,
+      String? secondId,
       int rating,
-      String content,
-      String createdAt,
-      String updatedAt,
-      FirstInfo firstInfo});
+      String? content,
+      String? createdAt,
+      String? updatedAt,
+      FirstInfo? firstInfo});
 
-  $FirstInfoCopyWith<$Res> get firstInfo;
+  $FirstInfoCopyWith<$Res>? get firstInfo;
 }
 
 /// @nodoc
@@ -2970,59 +3017,63 @@ class _$FeedbackCopyWithImpl<$Res, $Val extends Feedback>
   @override
   $Res call({
     Object? id = null,
-    Object? bookingId = null,
-    Object? firstId = null,
-    Object? secondId = null,
+    Object? bookingId = freezed,
+    Object? firstId = freezed,
+    Object? secondId = freezed,
     Object? rating = null,
-    Object? content = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? firstInfo = null,
+    Object? content = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? firstInfo = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      bookingId: null == bookingId
+      bookingId: freezed == bookingId
           ? _value.bookingId
           : bookingId // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstId: null == firstId
+              as String?,
+      firstId: freezed == firstId
           ? _value.firstId
           : firstId // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondId: null == secondId
+              as String?,
+      secondId: freezed == secondId
           ? _value.secondId
           : secondId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as int,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstInfo: null == firstInfo
+              as String?,
+      firstInfo: freezed == firstInfo
           ? _value.firstInfo
           : firstInfo // ignore: cast_nullable_to_non_nullable
-              as FirstInfo,
+              as FirstInfo?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $FirstInfoCopyWith<$Res> get firstInfo {
-    return $FirstInfoCopyWith<$Res>(_value.firstInfo, (value) {
+  $FirstInfoCopyWith<$Res>? get firstInfo {
+    if (_value.firstInfo == null) {
+      return null;
+    }
+
+    return $FirstInfoCopyWith<$Res>(_value.firstInfo!, (value) {
       return _then(_value.copyWith(firstInfo: value) as $Val);
     });
   }
@@ -3037,17 +3088,17 @@ abstract class _$$_FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String bookingId,
-      String firstId,
-      String secondId,
+      String? bookingId,
+      String? firstId,
+      String? secondId,
       int rating,
-      String content,
-      String createdAt,
-      String updatedAt,
-      FirstInfo firstInfo});
+      String? content,
+      String? createdAt,
+      String? updatedAt,
+      FirstInfo? firstInfo});
 
   @override
-  $FirstInfoCopyWith<$Res> get firstInfo;
+  $FirstInfoCopyWith<$Res>? get firstInfo;
 }
 
 /// @nodoc
@@ -3062,52 +3113,52 @@ class __$$_FeedbackCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? bookingId = null,
-    Object? firstId = null,
-    Object? secondId = null,
+    Object? bookingId = freezed,
+    Object? firstId = freezed,
+    Object? secondId = freezed,
     Object? rating = null,
-    Object? content = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? firstInfo = null,
+    Object? content = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? firstInfo = freezed,
   }) {
     return _then(_$_Feedback(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      bookingId: null == bookingId
+      bookingId: freezed == bookingId
           ? _value.bookingId
           : bookingId // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstId: null == firstId
+              as String?,
+      firstId: freezed == firstId
           ? _value.firstId
           : firstId // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondId: null == secondId
+              as String?,
+      secondId: freezed == secondId
           ? _value.secondId
           : secondId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as int,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstInfo: null == firstInfo
+              as String?,
+      firstInfo: freezed == firstInfo
           ? _value.firstInfo
           : firstInfo // ignore: cast_nullable_to_non_nullable
-              as FirstInfo,
+              as FirstInfo?,
     ));
   }
 }
@@ -3117,14 +3168,14 @@ class __$$_FeedbackCopyWithImpl<$Res>
 class _$_Feedback implements _Feedback {
   const _$_Feedback(
       {required this.id,
-      required this.bookingId,
-      required this.firstId,
-      required this.secondId,
+      this.bookingId,
+      this.firstId,
+      this.secondId,
       required this.rating,
-      required this.content,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.firstInfo});
+      this.content,
+      this.createdAt,
+      this.updatedAt,
+      this.firstInfo});
 
   factory _$_Feedback.fromJson(Map<String, dynamic> json) =>
       _$$_FeedbackFromJson(json);
@@ -3132,21 +3183,21 @@ class _$_Feedback implements _Feedback {
   @override
   final String id;
   @override
-  final String bookingId;
+  final String? bookingId;
   @override
-  final String firstId;
+  final String? firstId;
   @override
-  final String secondId;
+  final String? secondId;
   @override
   final int rating;
   @override
-  final String content;
+  final String? content;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
   @override
-  final FirstInfo firstInfo;
+  final FirstInfo? firstInfo;
 
   @override
   String toString() {
@@ -3196,35 +3247,35 @@ class _$_Feedback implements _Feedback {
 abstract class _Feedback implements Feedback {
   const factory _Feedback(
       {required final String id,
-      required final String bookingId,
-      required final String firstId,
-      required final String secondId,
+      final String? bookingId,
+      final String? firstId,
+      final String? secondId,
       required final int rating,
-      required final String content,
-      required final String createdAt,
-      required final String updatedAt,
-      required final FirstInfo firstInfo}) = _$_Feedback;
+      final String? content,
+      final String? createdAt,
+      final String? updatedAt,
+      final FirstInfo? firstInfo}) = _$_Feedback;
 
   factory _Feedback.fromJson(Map<String, dynamic> json) = _$_Feedback.fromJson;
 
   @override
   String get id;
   @override
-  String get bookingId;
+  String? get bookingId;
   @override
-  String get firstId;
+  String? get firstId;
   @override
-  String get secondId;
+  String? get secondId;
   @override
   int get rating;
   @override
-  String get content;
+  String? get content;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
-  FirstInfo get firstInfo;
+  FirstInfo? get firstInfo;
   @override
   @JsonKey(ignore: true)
   _$$_FeedbackCopyWith<_$_Feedback> get copyWith =>
@@ -3237,32 +3288,32 @@ FirstInfo _$FirstInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FirstInfo {
-  String get level => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get google => throw _privateConstructorUsedError;
-  String get facebook => throw _privateConstructorUsedError;
-  dynamic get apple => throw _privateConstructorUsedError;
-  String get avatar => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get language => throw _privateConstructorUsedError;
-  String get birthday => throw _privateConstructorUsedError;
-  bool get requestPassword => throw _privateConstructorUsedError;
-  bool get isActivated => throw _privateConstructorUsedError;
-  bool get isPhoneActivated => throw _privateConstructorUsedError;
-  String get requireNote => throw _privateConstructorUsedError;
-  int get timezone => throw _privateConstructorUsedError;
-  dynamic get phoneAuth => throw _privateConstructorUsedError;
-  bool get isPhoneAuthActivated => throw _privateConstructorUsedError;
-  String get studySchedule => throw _privateConstructorUsedError;
-  bool get canSendMessage => throw _privateConstructorUsedError;
-  bool get isPublicRecord => throw _privateConstructorUsedError;
-  dynamic get caredByStaffId => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
-  dynamic get deletedAt => throw _privateConstructorUsedError;
-  dynamic get studentGroupId => throw _privateConstructorUsedError;
+  String? get level => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get google => throw _privateConstructorUsedError;
+  String? get facebook => throw _privateConstructorUsedError;
+  String? get apple => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  String? get birthday => throw _privateConstructorUsedError;
+  bool? get requestPassword => throw _privateConstructorUsedError;
+  bool? get isActivated => throw _privateConstructorUsedError;
+  bool? get isPhoneActivated => throw _privateConstructorUsedError;
+  String? get requireNote => throw _privateConstructorUsedError;
+  int? get timezone => throw _privateConstructorUsedError;
+  String? get phoneAuth => throw _privateConstructorUsedError;
+  bool? get isPhoneAuthActivated => throw _privateConstructorUsedError;
+  String? get studySchedule => throw _privateConstructorUsedError;
+  bool? get canSendMessage => throw _privateConstructorUsedError;
+  bool? get isPublicRecord => throw _privateConstructorUsedError;
+  String? get caredByStaffId => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
+  String? get deletedAt => throw _privateConstructorUsedError;
+  String? get studentGroupId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3276,32 +3327,32 @@ abstract class $FirstInfoCopyWith<$Res> {
       _$FirstInfoCopyWithImpl<$Res, FirstInfo>;
   @useResult
   $Res call(
-      {String level,
-      String email,
-      String google,
-      String facebook,
-      dynamic apple,
-      String avatar,
-      String name,
-      String country,
-      String phone,
-      String language,
-      String birthday,
-      bool requestPassword,
-      bool isActivated,
-      bool isPhoneActivated,
-      String requireNote,
-      int timezone,
-      dynamic phoneAuth,
-      bool isPhoneAuthActivated,
-      String studySchedule,
-      bool canSendMessage,
-      bool isPublicRecord,
-      dynamic caredByStaffId,
-      String createdAt,
-      String updatedAt,
-      dynamic deletedAt,
-      dynamic studentGroupId});
+      {String? level,
+      String? email,
+      String? google,
+      String? facebook,
+      String? apple,
+      String? avatar,
+      String? name,
+      String? country,
+      String? phone,
+      String? language,
+      String? birthday,
+      bool? requestPassword,
+      bool? isActivated,
+      bool? isPhoneActivated,
+      String? requireNote,
+      int? timezone,
+      String? phoneAuth,
+      bool? isPhoneAuthActivated,
+      String? studySchedule,
+      bool? canSendMessage,
+      bool? isPublicRecord,
+      String? caredByStaffId,
+      String? createdAt,
+      String? updatedAt,
+      String? deletedAt,
+      String? studentGroupId});
 }
 
 /// @nodoc
@@ -3317,138 +3368,138 @@ class _$FirstInfoCopyWithImpl<$Res, $Val extends FirstInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? level = null,
-    Object? email = null,
-    Object? google = null,
-    Object? facebook = null,
+    Object? level = freezed,
+    Object? email = freezed,
+    Object? google = freezed,
+    Object? facebook = freezed,
     Object? apple = freezed,
-    Object? avatar = null,
-    Object? name = null,
-    Object? country = null,
-    Object? phone = null,
-    Object? language = null,
-    Object? birthday = null,
-    Object? requestPassword = null,
-    Object? isActivated = null,
-    Object? isPhoneActivated = null,
-    Object? requireNote = null,
-    Object? timezone = null,
+    Object? avatar = freezed,
+    Object? name = freezed,
+    Object? country = freezed,
+    Object? phone = freezed,
+    Object? language = freezed,
+    Object? birthday = freezed,
+    Object? requestPassword = freezed,
+    Object? isActivated = freezed,
+    Object? isPhoneActivated = freezed,
+    Object? requireNote = freezed,
+    Object? timezone = freezed,
     Object? phoneAuth = freezed,
-    Object? isPhoneAuthActivated = null,
-    Object? studySchedule = null,
-    Object? canSendMessage = null,
-    Object? isPublicRecord = null,
+    Object? isPhoneAuthActivated = freezed,
+    Object? studySchedule = freezed,
+    Object? canSendMessage = freezed,
+    Object? isPublicRecord = freezed,
     Object? caredByStaffId = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? deletedAt = freezed,
     Object? studentGroupId = freezed,
   }) {
     return _then(_value.copyWith(
-      level: null == level
+      level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      google: null == google
+              as String?,
+      google: freezed == google
           ? _value.google
           : google // ignore: cast_nullable_to_non_nullable
-              as String,
-      facebook: null == facebook
+              as String?,
+      facebook: freezed == facebook
           ? _value.facebook
           : facebook // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       apple: freezed == apple
           ? _value.apple
           : apple // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      avatar: null == avatar
+              as String?,
+      avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      language: null == language
+              as String?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      requestPassword: null == requestPassword
+              as String?,
+      requestPassword: freezed == requestPassword
           ? _value.requestPassword
           : requestPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActivated: null == isActivated
+              as bool?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPhoneActivated: null == isPhoneActivated
+              as bool?,
+      isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requireNote: null == requireNote
+              as bool?,
+      requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
-              as String,
-      timezone: null == timezone
+              as String?,
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       phoneAuth: freezed == phoneAuth
           ? _value.phoneAuth
           : phoneAuth // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isPhoneAuthActivated: null == isPhoneAuthActivated
+              as String?,
+      isPhoneAuthActivated: freezed == isPhoneAuthActivated
           ? _value.isPhoneAuthActivated
           : isPhoneAuthActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      studySchedule: null == studySchedule
+              as bool?,
+      studySchedule: freezed == studySchedule
           ? _value.studySchedule
           : studySchedule // ignore: cast_nullable_to_non_nullable
-              as String,
-      canSendMessage: null == canSendMessage
+              as String?,
+      canSendMessage: freezed == canSendMessage
           ? _value.canSendMessage
           : canSendMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPublicRecord: null == isPublicRecord
+              as bool?,
+      isPublicRecord: freezed == isPublicRecord
           ? _value.isPublicRecord
           : isPublicRecord // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       caredByStaffId: freezed == caredByStaffId
           ? _value.caredByStaffId
           : caredByStaffId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       studentGroupId: freezed == studentGroupId
           ? _value.studentGroupId
           : studentGroupId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
     ) as $Val);
   }
 }
@@ -3461,32 +3512,32 @@ abstract class _$$_FirstInfoCopyWith<$Res> implements $FirstInfoCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String level,
-      String email,
-      String google,
-      String facebook,
-      dynamic apple,
-      String avatar,
-      String name,
-      String country,
-      String phone,
-      String language,
-      String birthday,
-      bool requestPassword,
-      bool isActivated,
-      bool isPhoneActivated,
-      String requireNote,
-      int timezone,
-      dynamic phoneAuth,
-      bool isPhoneAuthActivated,
-      String studySchedule,
-      bool canSendMessage,
-      bool isPublicRecord,
-      dynamic caredByStaffId,
-      String createdAt,
-      String updatedAt,
-      dynamic deletedAt,
-      dynamic studentGroupId});
+      {String? level,
+      String? email,
+      String? google,
+      String? facebook,
+      String? apple,
+      String? avatar,
+      String? name,
+      String? country,
+      String? phone,
+      String? language,
+      String? birthday,
+      bool? requestPassword,
+      bool? isActivated,
+      bool? isPhoneActivated,
+      String? requireNote,
+      int? timezone,
+      String? phoneAuth,
+      bool? isPhoneAuthActivated,
+      String? studySchedule,
+      bool? canSendMessage,
+      bool? isPublicRecord,
+      String? caredByStaffId,
+      String? createdAt,
+      String? updatedAt,
+      String? deletedAt,
+      String? studentGroupId});
 }
 
 /// @nodoc
@@ -3500,138 +3551,138 @@ class __$$_FirstInfoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? level = null,
-    Object? email = null,
-    Object? google = null,
-    Object? facebook = null,
+    Object? level = freezed,
+    Object? email = freezed,
+    Object? google = freezed,
+    Object? facebook = freezed,
     Object? apple = freezed,
-    Object? avatar = null,
-    Object? name = null,
-    Object? country = null,
-    Object? phone = null,
-    Object? language = null,
-    Object? birthday = null,
-    Object? requestPassword = null,
-    Object? isActivated = null,
-    Object? isPhoneActivated = null,
-    Object? requireNote = null,
-    Object? timezone = null,
+    Object? avatar = freezed,
+    Object? name = freezed,
+    Object? country = freezed,
+    Object? phone = freezed,
+    Object? language = freezed,
+    Object? birthday = freezed,
+    Object? requestPassword = freezed,
+    Object? isActivated = freezed,
+    Object? isPhoneActivated = freezed,
+    Object? requireNote = freezed,
+    Object? timezone = freezed,
     Object? phoneAuth = freezed,
-    Object? isPhoneAuthActivated = null,
-    Object? studySchedule = null,
-    Object? canSendMessage = null,
-    Object? isPublicRecord = null,
+    Object? isPhoneAuthActivated = freezed,
+    Object? studySchedule = freezed,
+    Object? canSendMessage = freezed,
+    Object? isPublicRecord = freezed,
     Object? caredByStaffId = freezed,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? deletedAt = freezed,
     Object? studentGroupId = freezed,
   }) {
     return _then(_$_FirstInfo(
-      level: null == level
+      level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      google: null == google
+              as String?,
+      google: freezed == google
           ? _value.google
           : google // ignore: cast_nullable_to_non_nullable
-              as String,
-      facebook: null == facebook
+              as String?,
+      facebook: freezed == facebook
           ? _value.facebook
           : facebook // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       apple: freezed == apple
           ? _value.apple
           : apple // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      avatar: null == avatar
+              as String?,
+      avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      language: null == language
+              as String?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      requestPassword: null == requestPassword
+              as String?,
+      requestPassword: freezed == requestPassword
           ? _value.requestPassword
           : requestPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActivated: null == isActivated
+              as bool?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPhoneActivated: null == isPhoneActivated
+              as bool?,
+      isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requireNote: null == requireNote
+              as bool?,
+      requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
-              as String,
-      timezone: null == timezone
+              as String?,
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       phoneAuth: freezed == phoneAuth
           ? _value.phoneAuth
           : phoneAuth // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isPhoneAuthActivated: null == isPhoneAuthActivated
+              as String?,
+      isPhoneAuthActivated: freezed == isPhoneAuthActivated
           ? _value.isPhoneAuthActivated
           : isPhoneAuthActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      studySchedule: null == studySchedule
+              as bool?,
+      studySchedule: freezed == studySchedule
           ? _value.studySchedule
           : studySchedule // ignore: cast_nullable_to_non_nullable
-              as String,
-      canSendMessage: null == canSendMessage
+              as String?,
+      canSendMessage: freezed == canSendMessage
           ? _value.canSendMessage
           : canSendMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPublicRecord: null == isPublicRecord
+              as bool?,
+      isPublicRecord: freezed == isPublicRecord
           ? _value.isPublicRecord
           : isPublicRecord // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       caredByStaffId: freezed == caredByStaffId
           ? _value.caredByStaffId
           : caredByStaffId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: null == createdAt
+              as String?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       studentGroupId: freezed == studentGroupId
           ? _value.studentGroupId
           : studentGroupId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
     ));
   }
 }
@@ -3640,88 +3691,88 @@ class __$$_FirstInfoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_FirstInfo implements _FirstInfo {
   const _$_FirstInfo(
-      {required this.level,
-      required this.email,
-      required this.google,
-      required this.facebook,
-      required this.apple,
-      required this.avatar,
-      required this.name,
-      required this.country,
-      required this.phone,
-      required this.language,
-      required this.birthday,
-      required this.requestPassword,
-      required this.isActivated,
-      required this.isPhoneActivated,
-      required this.requireNote,
-      required this.timezone,
-      required this.phoneAuth,
-      required this.isPhoneAuthActivated,
-      required this.studySchedule,
-      required this.canSendMessage,
-      required this.isPublicRecord,
-      required this.caredByStaffId,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.deletedAt,
-      required this.studentGroupId});
+      {this.level,
+      this.email,
+      this.google,
+      this.facebook,
+      this.apple,
+      this.avatar,
+      this.name,
+      this.country,
+      this.phone,
+      this.language,
+      this.birthday,
+      this.requestPassword,
+      this.isActivated,
+      this.isPhoneActivated,
+      this.requireNote,
+      this.timezone,
+      this.phoneAuth,
+      this.isPhoneAuthActivated,
+      this.studySchedule,
+      this.canSendMessage,
+      this.isPublicRecord,
+      this.caredByStaffId,
+      this.createdAt,
+      this.updatedAt,
+      this.deletedAt,
+      this.studentGroupId});
 
   factory _$_FirstInfo.fromJson(Map<String, dynamic> json) =>
       _$$_FirstInfoFromJson(json);
 
   @override
-  final String level;
+  final String? level;
   @override
-  final String email;
+  final String? email;
   @override
-  final String google;
+  final String? google;
   @override
-  final String facebook;
+  final String? facebook;
   @override
-  final dynamic apple;
+  final String? apple;
   @override
-  final String avatar;
+  final String? avatar;
   @override
-  final String name;
+  final String? name;
   @override
-  final String country;
+  final String? country;
   @override
-  final String phone;
+  final String? phone;
   @override
-  final String language;
+  final String? language;
   @override
-  final String birthday;
+  final String? birthday;
   @override
-  final bool requestPassword;
+  final bool? requestPassword;
   @override
-  final bool isActivated;
+  final bool? isActivated;
   @override
-  final bool isPhoneActivated;
+  final bool? isPhoneActivated;
   @override
-  final String requireNote;
+  final String? requireNote;
   @override
-  final int timezone;
+  final int? timezone;
   @override
-  final dynamic phoneAuth;
+  final String? phoneAuth;
   @override
-  final bool isPhoneAuthActivated;
+  final bool? isPhoneAuthActivated;
   @override
-  final String studySchedule;
+  final String? studySchedule;
   @override
-  final bool canSendMessage;
+  final bool? canSendMessage;
   @override
-  final bool isPublicRecord;
+  final bool? isPublicRecord;
   @override
-  final dynamic caredByStaffId;
+  final String? caredByStaffId;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
   @override
-  final dynamic deletedAt;
+  final String? deletedAt;
   @override
-  final dynamic studentGroupId;
+  final String? studentGroupId;
 
   @override
   String toString() {
@@ -3738,7 +3789,7 @@ class _$_FirstInfo implements _FirstInfo {
             (identical(other.google, google) || other.google == google) &&
             (identical(other.facebook, facebook) ||
                 other.facebook == facebook) &&
-            const DeepCollectionEquality().equals(other.apple, apple) &&
+            (identical(other.apple, apple) || other.apple == apple) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.country, country) || other.country == country) &&
@@ -3757,7 +3808,8 @@ class _$_FirstInfo implements _FirstInfo {
                 other.requireNote == requireNote) &&
             (identical(other.timezone, timezone) ||
                 other.timezone == timezone) &&
-            const DeepCollectionEquality().equals(other.phoneAuth, phoneAuth) &&
+            (identical(other.phoneAuth, phoneAuth) ||
+                other.phoneAuth == phoneAuth) &&
             (identical(other.isPhoneAuthActivated, isPhoneAuthActivated) ||
                 other.isPhoneAuthActivated == isPhoneAuthActivated) &&
             (identical(other.studySchedule, studySchedule) ||
@@ -3766,15 +3818,16 @@ class _$_FirstInfo implements _FirstInfo {
                 other.canSendMessage == canSendMessage) &&
             (identical(other.isPublicRecord, isPublicRecord) ||
                 other.isPublicRecord == isPublicRecord) &&
-            const DeepCollectionEquality()
-                .equals(other.caredByStaffId, caredByStaffId) &&
+            (identical(other.caredByStaffId, caredByStaffId) ||
+                other.caredByStaffId == caredByStaffId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
-            const DeepCollectionEquality().equals(other.deletedAt, deletedAt) &&
-            const DeepCollectionEquality()
-                .equals(other.studentGroupId, studentGroupId));
+            (identical(other.deletedAt, deletedAt) ||
+                other.deletedAt == deletedAt) &&
+            (identical(other.studentGroupId, studentGroupId) ||
+                other.studentGroupId == studentGroupId));
   }
 
   @JsonKey(ignore: true)
@@ -3785,7 +3838,7 @@ class _$_FirstInfo implements _FirstInfo {
         email,
         google,
         facebook,
-        const DeepCollectionEquality().hash(apple),
+        apple,
         avatar,
         name,
         country,
@@ -3797,16 +3850,16 @@ class _$_FirstInfo implements _FirstInfo {
         isPhoneActivated,
         requireNote,
         timezone,
-        const DeepCollectionEquality().hash(phoneAuth),
+        phoneAuth,
         isPhoneAuthActivated,
         studySchedule,
         canSendMessage,
         isPublicRecord,
-        const DeepCollectionEquality().hash(caredByStaffId),
+        caredByStaffId,
         createdAt,
         updatedAt,
-        const DeepCollectionEquality().hash(deletedAt),
-        const DeepCollectionEquality().hash(studentGroupId)
+        deletedAt,
+        studentGroupId
       ]);
 
   @JsonKey(ignore: true)
@@ -3825,88 +3878,88 @@ class _$_FirstInfo implements _FirstInfo {
 
 abstract class _FirstInfo implements FirstInfo {
   const factory _FirstInfo(
-      {required final String level,
-      required final String email,
-      required final String google,
-      required final String facebook,
-      required final dynamic apple,
-      required final String avatar,
-      required final String name,
-      required final String country,
-      required final String phone,
-      required final String language,
-      required final String birthday,
-      required final bool requestPassword,
-      required final bool isActivated,
-      required final bool isPhoneActivated,
-      required final String requireNote,
-      required final int timezone,
-      required final dynamic phoneAuth,
-      required final bool isPhoneAuthActivated,
-      required final String studySchedule,
-      required final bool canSendMessage,
-      required final bool isPublicRecord,
-      required final dynamic caredByStaffId,
-      required final String createdAt,
-      required final String updatedAt,
-      required final dynamic deletedAt,
-      required final dynamic studentGroupId}) = _$_FirstInfo;
+      {final String? level,
+      final String? email,
+      final String? google,
+      final String? facebook,
+      final String? apple,
+      final String? avatar,
+      final String? name,
+      final String? country,
+      final String? phone,
+      final String? language,
+      final String? birthday,
+      final bool? requestPassword,
+      final bool? isActivated,
+      final bool? isPhoneActivated,
+      final String? requireNote,
+      final int? timezone,
+      final String? phoneAuth,
+      final bool? isPhoneAuthActivated,
+      final String? studySchedule,
+      final bool? canSendMessage,
+      final bool? isPublicRecord,
+      final String? caredByStaffId,
+      final String? createdAt,
+      final String? updatedAt,
+      final String? deletedAt,
+      final String? studentGroupId}) = _$_FirstInfo;
 
   factory _FirstInfo.fromJson(Map<String, dynamic> json) =
       _$_FirstInfo.fromJson;
 
   @override
-  String get level;
+  String? get level;
   @override
-  String get email;
+  String? get email;
   @override
-  String get google;
+  String? get google;
   @override
-  String get facebook;
+  String? get facebook;
   @override
-  dynamic get apple;
+  String? get apple;
   @override
-  String get avatar;
+  String? get avatar;
   @override
-  String get name;
+  String? get name;
   @override
-  String get country;
+  String? get country;
   @override
-  String get phone;
+  String? get phone;
   @override
-  String get language;
+  String? get language;
   @override
-  String get birthday;
+  String? get birthday;
   @override
-  bool get requestPassword;
+  bool? get requestPassword;
   @override
-  bool get isActivated;
+  bool? get isActivated;
   @override
-  bool get isPhoneActivated;
+  bool? get isPhoneActivated;
   @override
-  String get requireNote;
+  String? get requireNote;
   @override
-  int get timezone;
+  int? get timezone;
   @override
-  dynamic get phoneAuth;
+  String? get phoneAuth;
   @override
-  bool get isPhoneAuthActivated;
+  bool? get isPhoneAuthActivated;
   @override
-  String get studySchedule;
+  String? get studySchedule;
   @override
-  bool get canSendMessage;
+  bool? get canSendMessage;
   @override
-  bool get isPublicRecord;
+  bool? get isPublicRecord;
   @override
-  dynamic get caredByStaffId;
+  String? get caredByStaffId;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
-  dynamic get deletedAt;
+  String? get deletedAt;
   @override
-  dynamic get studentGroupId;
+  String? get studentGroupId;
   @override
   @JsonKey(ignore: true)
   _$$_FirstInfoCopyWith<_$_FirstInfo> get copyWith =>

@@ -1,28 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lettutor/application/teacher/providers.dart';
-import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
+import 'package:lettutor/shared/teacher_providers.dart';
 
 import '../../gen/colors.gen.dart';
 
 class TeacherInfo extends StatelessWidget {
   const TeacherInfo({
     super.key,
-    required this.info,
     this.toggleFavorite,
+    required this.id,
+    required this.avatar,
+    required this.name,
   });
-  final TeacherModel info;
   final void Function()? toggleFavorite;
+  final String avatar;
+  final String name;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CircleAvatar(
-          radius: 30,
-          foregroundImage: NetworkImage(info.avatar),
+        // CircleAvatar(
+        //   radius: 30,
+        //   foregroundImage: NetworkImage(avatar),
+        // ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: Image.network(
+            avatar,
+            errorBuilder: (context, error, stackTrace) {
+              return Image.network(
+                'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png?w=300&ssl=1',
+                width: 60,
+                height: 60,
+              );
+            },
+            fit: BoxFit.cover,
+            width: 60,
+            height: 60,
+          ),
         ),
         const SizedBox(
           width: 20,
@@ -31,7 +50,7 @@ class TeacherInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              info.name,
+              name,
               style: const TextStyle(
                   color: ColorName.primary, fontSize: 20, fontWeight: FontWeight.w600),
             ),
@@ -68,16 +87,17 @@ class TeacherInfo extends StatelessWidget {
         const Spacer(),
         if (toggleFavorite != null)
           Consumer(builder: (context, ref, child) {
-            final fav = ref.watch(teacherProvider(info.id).select((value) => value.isFavorite));
-            final icon = fav
-                ? const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                  )
-                : const Icon(
-                    Icons.favorite_outline,
-                    color: ColorName.primary,
-                  );
+            final icon =
+                (ref.watch(teacherCardNotifierProvider(id).select((value) => value.isFavorite)) ??
+                        false)
+                    ? const Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                      )
+                    : const Icon(
+                        Icons.favorite_outline,
+                        color: ColorName.primary,
+                      );
             return GestureDetector(
               onTap: toggleFavorite,
               child: icon,

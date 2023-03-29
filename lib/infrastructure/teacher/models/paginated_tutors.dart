@@ -14,200 +14,196 @@ class PaginatedTutors with _$PaginatedTutors {
     required List<FavoriteTutor> favoriteTutor,
   }) = _PaginatedTutors;
 
-  factory PaginatedTutors.fromJson(Map<String, dynamic> json) =>
-      _$PaginatedTutorsFromJson(json);
+  factory PaginatedTutors.fromJson(Map<String, dynamic> json) => _$PaginatedTutorsFromJson(json);
 }
 
 @freezed
 class FavoriteTutor with _$FavoriteTutor {
   const factory FavoriteTutor({
     required String id,
-    required String firstId,
-    required String secondId,
+    String? firstId,
+    String? secondId,
     required String createdAt,
     required String updatedAt,
-    required SecondInfo secondInfo,
+    SecondInfo? secondInfo,
   }) = _FavoriteTutor;
 
-  factory FavoriteTutor.fromJson(Map<String, dynamic> json) =>
-      _$FavoriteTutorFromJson(json);
+  factory FavoriteTutor.fromJson(Map<String, dynamic> json) => _$FavoriteTutorFromJson(json);
 }
 
 @freezed
 class SecondInfo with _$SecondInfo {
   const factory SecondInfo({
-    required String id,
-    required String level,
-    required String email,
-    required dynamic google,
-    required dynamic facebook,
-    required dynamic apple,
-    required String avatar,
-    required String name,
-    required String country,
-    required String phone,
-    required String language,
+    String? id,
+    String? level,
+    String? email,
+    String? google,
+    String? facebook,
+    String? apple,
+    String? avatar,
+    String? name,
+    String? country,
+    String? phone,
+    String? language,
     required DateTime birthday,
-    required bool requestPassword,
-    required bool isActivated,
-    required dynamic isPhoneActivated,
-    required dynamic requireNote,
+    bool? requestPassword,
+    bool? isActivated,
+    String? isPhoneActivated,
+    String? requireNote,
     required int timezone,
-    required dynamic phoneAuth,
-    required bool isPhoneAuthActivated,
-    required String studySchedule,
-    required bool canSendMessage,
-    required bool isPublicRecord,
-    required dynamic caredByStaffId,
-    required String createdAt,
-    required String updatedAt,
-    required dynamic deletedAt,
-    required dynamic studentGroupId,
+    String? phoneAuth,
+    bool? isPhoneAuthActivated,
+    String? studySchedule,
+    bool? canSendMessage,
+    bool? isPublicRecord,
+    String? caredByStaffId,
+    String? createdAt,
+    String? updatedAt,
+    String? deletedAt,
+    String? studentGroupId,
     required TutorInfo tutorInfo,
   }) = _SecondInfo;
 
-  factory SecondInfo.fromJson(Map<String, dynamic> json) =>
-      _$SecondInfoFromJson(json);
+  factory SecondInfo.fromJson(Map<String, dynamic> json) => _$SecondInfoFromJson(json);
 }
 
 @freezed
 class TutorInfo with _$TutorInfo {
   const factory TutorInfo({
-    required String id,
-    required String userId,
-    required String video,
-    required String bio,
-    required String education,
-    required String experience,
-    required String profession,
-    required dynamic accent,
-    required String targetStudent,
-    required String interests,
-    required String languages,
-    required String specialties,
-    required dynamic resume,
-    required double rating,
-    required bool isActivated,
-    required dynamic isNative,
-    required String createdAt,
-    required String updatedAt,
+    String? id,
+    String? userId,
+    String? video,
+    String? bio,
+    String? education,
+    String? experience,
+    String? profession,
+    String? accent,
+    String? targetStudent,
+    String? interests,
+    String? languages,
+    String? specialties,
+    String? resume,
+    double? rating,
+    bool? isActivated,
+    bool? isNative,
+    String? createdAt,
+    String? updatedAt,
   }) = _TutorInfo;
 
-  factory TutorInfo.fromJson(Map<String, dynamic> json) =>
-      _$TutorInfoFromJson(json);
+  factory TutorInfo.fromJson(Map<String, dynamic> json) => _$TutorInfoFromJson(json);
 }
 
 @freezed
 class Tutors with _$Tutors {
   const factory Tutors({
     required int count,
-    required List<Row> rows,
+    required List<TeacherModel> rows,
   }) = _Tutors;
 
   factory Tutors.fromJson(Map<String, dynamic> json) => _$TutorsFromJson(json);
 }
 
 @freezed
-class Row with _$Row {
-  const factory Row({
-    required String level,
-    required String email,
-    required dynamic google,
-    required dynamic facebook,
-    required dynamic apple,
-    required String avatar,
-    required String name,
-    required String country,
-    required String phone,
-    required String language,
-    required String birthday,
-    required bool requestPassword,
-    required bool isActivated,
-    required dynamic isPhoneActivated,
-    required dynamic requireNote,
-    required int timezone,
-    required dynamic phoneAuth,
-    required bool isPhoneAuthActivated,
-    required String studySchedule,
-    required bool canSendMessage,
-    required bool isPublicRecord,
-    required dynamic caredByStaffId,
-    required String createdAt,
-    required String updatedAt,
-    required dynamic deletedAt,
-    required dynamic studentGroupId,
+class TeacherModel with _$TeacherModel {
+  const factory TeacherModel({
+    String? level,
+    String? email,
+    String? google,
+    String? facebook,
+    String? apple,
+    @Default('https://thumbs.dreamstime.com/z/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg')
+        String avatar,
+    String? name,
+    String? country,
+    String? phone,
+    String? language,
+    String? birthday,
+    bool? requestPassword,
+    bool? isActivated,
+    String? isPhoneActivated,
+    String? requireNote,
+    int? timezone,
+    String? phoneAuth,
+    bool? isPhoneAuthActivated,
+    String? studySchedule,
+    bool? canSendMessage,
+    bool? isPublicRecord,
+    String? caredByStaffId,
+    String? createdAt,
+    String? updatedAt,
+    String? deletedAt,
+    String? studentGroupId,
     required List<Feedback> feedbacks,
-    required String id,
-    required String userId,
-    required String video,
-    required String bio,
-    required String education,
-    required String experience,
-    required String profession,
-    required String accent,
-    required String targetStudent,
-    required String interests,
-    required String languages,
-    required String specialties,
-    required String resume,
-    required double rating,
-    required dynamic isNative,
-    required int price,
-    required bool isOnline,
-  }) = _Row;
+    String? id,
+    String? userId,
+    String? video,
+    String? bio,
+    String? education,
+    String? experience,
+    String? profession,
+    String? accent,
+    String? targetStudent,
+    String? interests,
+    String? languages,
+    String? specialties,
+    String? resume,
+    double? rating,
+    bool? isNative,
+    int? price,
+    bool? isOnline,
+    bool? isFavorite,
+  }) = _TeacherModel;
 
-  factory Row.fromJson(Map<String, dynamic> json) => _$RowFromJson(json);
+  factory TeacherModel.fromJson(Map<String, dynamic> json) => _$TeacherModelFromJson(json);
 }
 
 @freezed
 class Feedback with _$Feedback {
   const factory Feedback({
     required String id,
-    required String bookingId,
-    required String firstId,
-    required String secondId,
+    String? bookingId,
+    String? firstId,
+    String? secondId,
     required int rating,
-    required String content,
-    required String createdAt,
-    required String updatedAt,
-    required FirstInfo firstInfo,
+    String? content,
+    String? createdAt,
+    String? updatedAt,
+    FirstInfo? firstInfo,
   }) = _Feedback;
 
-  factory Feedback.fromJson(Map<String, dynamic> json) =>
-      _$FeedbackFromJson(json);
+  factory Feedback.fromJson(Map<String, dynamic> json) => _$FeedbackFromJson(json);
 }
 
 @freezed
 class FirstInfo with _$FirstInfo {
   const factory FirstInfo({
-    required String level,
-    required String email,
-    required String google,
-    required String facebook,
-    required dynamic apple,
-    required String avatar,
-    required String name,
-    required String country,
-    required String phone,
-    required String language,
-    required String birthday,
-    required bool requestPassword,
-    required bool isActivated,
-    required bool isPhoneActivated,
-    required String requireNote,
-    required int timezone,
-    required dynamic phoneAuth,
-    required bool isPhoneAuthActivated,
-    required String studySchedule,
-    required bool canSendMessage,
-    required bool isPublicRecord,
-    required dynamic caredByStaffId,
-    required String createdAt,
-    required String updatedAt,
-    required dynamic deletedAt,
-    required dynamic studentGroupId,
+    String? level,
+    String? email,
+    String? google,
+    String? facebook,
+    String? apple,
+    String? avatar,
+    String? name,
+    String? country,
+    String? phone,
+    String? language,
+    String? birthday,
+    bool? requestPassword,
+    bool? isActivated,
+    bool? isPhoneActivated,
+    String? requireNote,
+    int? timezone,
+    String? phoneAuth,
+    bool? isPhoneAuthActivated,
+    String? studySchedule,
+    bool? canSendMessage,
+    bool? isPublicRecord,
+    String? caredByStaffId,
+    String? createdAt,
+    String? updatedAt,
+    String? deletedAt,
+    String? studentGroupId,
   }) = _FirstInfo;
 
-  factory FirstInfo.fromJson(Map<String, dynamic> json) =>
-      _$FirstInfoFromJson(json);
+  factory FirstInfo.fromJson(Map<String, dynamic> json) => _$FirstInfoFromJson(json);
 }

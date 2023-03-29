@@ -6,7 +6,7 @@ part 'failure.freezed.dart';
 class Failure with _$Failure {
   const Failure._();
   const factory Failure({
-    required int statusCode,
-    required String message,
+    int? statusCode,
+    String? message,
   }) = _Failure;
 }

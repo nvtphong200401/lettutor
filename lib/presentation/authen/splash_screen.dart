@@ -1,14 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/gen/assets.gen.dart';
+import 'package:lettutor/shared/core_providers.dart';
 
-class SplashScreen extends HookWidget {
+class SplashScreen extends HookConsumerWidget {
   const SplashScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sharedpref = ref.watch(localStorageProvider);
     final fadeAnimationController = useAnimationController(duration: const Duration(seconds: 1))
       ..drive(CurveTween(curve: Curves.easeIn));
     useEffect(() {
@@ -16,7 +20,11 @@ class SplashScreen extends HookWidget {
 
       onStatusChanged(AnimationStatus status) {
         if (status == AnimationStatus.completed) {
-          context.router.replace(const LoginRoute());
+          if (sharedpref.getString(accessTokenKey) != null) {
+            context.router.replace(const MyHomeRoute());
+          } else {
+            context.router.replace(const LoginRoute());
+          }
         }
       }
 

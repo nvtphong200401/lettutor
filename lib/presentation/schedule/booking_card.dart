@@ -34,7 +34,9 @@ class BookingCard extends StatelessWidget {
         ),
         WhiteBoxContainer(
           child: TeacherInfo(
-            info: bookInfo.tutorInfo,
+            id: bookInfo.tutorInfo?.user.id ?? '',
+            avatar: bookInfo.tutorInfo?.user.avatar ?? '',
+            name: bookInfo.tutorInfo?.user.name ?? '',
           ),
         ),
         const SizedBox(
@@ -111,7 +113,7 @@ class BookingSession extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tutor = bookingModel.tutorInfo;
+    final tutor = bookingModel.tutorInfo!.user;
     final visible = useState(true);
     return Visibility(
       visible: visible.value,

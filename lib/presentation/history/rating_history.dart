@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:lettutor/infrastructure/teacher/models/teacher_model.dart';
+import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
 
 import '../../core/presentation/common_styles/text_style.dart';
 import '../../core/presentation/common_styles/textfield_style.dart';
@@ -11,7 +11,8 @@ class RatingHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final teacher = TeacherModel.init();
+    final tutor = TutorDetail.init();
+    final teacher = tutor.user;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: AlertDialog(
