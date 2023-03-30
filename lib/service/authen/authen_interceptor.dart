@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +15,6 @@ class AuthenticationInterceptor extends QueuedInterceptor {
 
   Future<void> _assignHeaders(RequestOptions options) async {
     final accessToken = _preferences.getString(accessTokenKey);
-    log('$accessToken');
     options.headers['Authorization'] = 'Bearer $accessToken';
     options.headers['Content-Type'] = 'application/json';
   }

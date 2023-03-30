@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
@@ -25,18 +27,28 @@ class TeachersNotifier extends StateNotifier<TeachersState> {
     getTeacherList();
   }
   final TeacherRepository _teacherRepository;
+  Timer? timer;
 
   Future getTeacherList() async {
     final result = await _teacherRepository.getListTeacher(9, 1);
     state = result.fold((l) => state, (r) => TeachersState.data(teachers: r));
   }
+
+  void searchTeacher(String keyword) {
+    state = const TeachersState.loading(teachers: []);
+    timer?.cancel();
+    timer = Timer(const Duration(seconds: 1), () async {
+      final result = await _teacherRepository.searchTeacher(keyword);
+      state = result.fold((l) => state, (r) => TeachersState.data(teachers: r));
+    });
+  }
 }
 
-class TutorDetailNotifier extends StateNotifier<TeacherModel> {
+class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
   TutorDetailNotifier(this.tutor) : super(tutor);
-  final TeacherModel tutor;
+  final TeacherModel? tutor;
 
   Future updateFavorite() async {
-    state = state.copyWith(isFavorite: !(state.isFavorite ?? false));
+    state = state?.copyWith(isFavorite: !(state?.isFavorite ?? false));
   }
 }

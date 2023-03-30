@@ -10,9 +10,10 @@ import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
+import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
 import 'package:lettutor/presentation/teacher/detail/report_modal.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_video.dart';
+import 'package:lettutor/shared/teacher_providers.dart';
 
 import '../../../core/presentation/common_styles/common_styles.dart';
 import '../../../core/presentation/common_widgets/common_back_button.dart';
@@ -27,7 +28,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useScrollController();
-    final info = TutorDetail.init();
+    final info = ref.watch(teacherCardNotifierProvider(teacherId));
 
     return DismissKeyboardScaffold(
         // appBar: const CommonAppBar(),
@@ -40,8 +41,10 @@ class TeacherDetailScreen extends HookConsumerWidget {
           title: CommonSliverAppbarTitle(scrollController: scrollController),
           expandedHeight: 400,
           collapsedHeight: 60,
-          flexibleSpace: const FlexibleSpaceBar(
-            background: TeacherVideo(),
+          flexibleSpace: FlexibleSpaceBar(
+            background: TeacherVideo(
+              videoUrl: info?.video ?? '',
+            ),
           ),
         ),
         SliverPadding(
@@ -52,17 +55,18 @@ class TeacherDetailScreen extends HookConsumerWidget {
               height: 20,
             ),
             TeacherInfo(
-              id: info.user.id,
-              avatar: info.user.avatar,
-              name: info.user.name,
+              id: info?.id ?? '',
+              avatar: info?.avatar ?? '',
+              name: info?.name ?? '',
+              rating: info?.rating,
             ),
             const SizedBox(
               height: 10,
             ),
-            const ReadMoreText(
-                moreStyle: TextStyle(color: Colors.blue),
-                lessStyle: TextStyle(color: Colors.blue),
-                'I am passionate about running and fitness, I often compete in trail/mountain running events and I love pushing myself. I am training to one day take part in ultra-endurance events. I also enjoy watching rugby on the weekends, reading and watching podcasts on Youtube. My most memorable life experience would be living in and traveling around Southeast Asia.'),
+            ReadMoreText(
+                moreStyle: const TextStyle(color: Colors.blue),
+                lessStyle: const TextStyle(color: Colors.blue),
+                info?.bio ?? ''),
             const SizedBox(
               height: 15,
             ),
@@ -79,9 +83,10 @@ class TeacherDetailScreen extends HookConsumerWidget {
             const SizedBox(
               height: 10,
             ),
-            Wrap(
-              children: const [CommonTag(title: 'English')],
-            ),
+            if (info?.language != null)
+              Wrap(
+                children: [CommonTag(title: info?.language ?? '')],
+              ),
             const SizedBox(
               height: 20,
             ),
@@ -93,12 +98,8 @@ class TeacherDetailScreen extends HookConsumerWidget {
               height: 10,
             ),
             Wrap(
-              children: const [
-                CommonTag(title: 'English for Business'),
-                CommonTag(title: 'Consersational'),
-                CommonTag(title: 'English for kids'),
-              ],
-            ),
+                children:
+                    info?.specialties?.split(',').map((e) => CommonTag(title: e)).toList() ?? []),
             const SizedBox(
               height: 20,
             ),
@@ -109,21 +110,35 @@ class TeacherDetailScreen extends HookConsumerWidget {
             const SizedBox(
               height: 10,
             ),
-            buildPartContent(content: 'Basic Conversation Topics', link: ''),
-            buildPartContent(content: 'Life in the Internet Age', link: ''),
+            Consumer(builder: (context, ref, child) {
+              final data = ref.watch(courseFutureProvider(info?.userId ?? ''));
+              return data.when(
+                data: (data) {
+                  if (data == null) return const SizedBox.shrink();
+                  debugPrint('${data.user.courses!.length}');
+                  return Column(
+                    children: data.user.courses
+                            ?.map((e) => buildPartContent(content: e.name ?? '', link: ''))
+                            .toList() ??
+                        [],
+                  );
+                },
+                loading: () {
+                  return const CircularProgressIndicator();
+                },
+                error: (error, stackTrace) {
+                  return const SizedBox.shrink();
+                },
+              );
+            }),
             const SizedBox(
               height: 20,
             ),
-            buildPartDesc(
-                title: 'Interests',
-                desc:
-                    'I loved the weather, the scenery and the laid-back lifestyle of the locals.'),
+            buildPartDesc(title: 'Interests', desc: info?.interests?.trim() ?? ''),
             const SizedBox(
               height: 20,
             ),
-            buildPartDesc(
-                title: 'Teaching experience',
-                desc: 'I have more than 10 years of teaching english experience'),
+            buildPartDesc(title: 'Teaching experience', desc: info?.experience?.trim() ?? ''),
             const SizedBox(
               height: 20,
             ),
@@ -260,7 +275,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
 
 class IconGroup extends ConsumerWidget {
   const IconGroup({super.key, required this.teacher});
-  final TutorDetail teacher;
+  final TeacherModel? teacher;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -268,14 +283,14 @@ class IconGroup extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         HookBuilder(builder: (context) {
-          final fav = teacher.isFavorite;
+          final fav = teacher?.isFavorite ?? false;
           final icon = fav
               ? _buildIcon('Favorite', Icons.favorite, Colors.red)
               : _buildIcon('Favorite', Icons.favorite_outline);
           return GestureDetector(
             child: icon,
             onTap: () {
-              // ref.read(teacherProvider(teacher.user.id).notifier).updateFavorite();
+              ref.read(teacherCardNotifierProvider(teacher?.id).notifier).updateFavorite();
             },
           );
         }),

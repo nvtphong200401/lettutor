@@ -19,7 +19,7 @@ class TutorDetail with _$TutorDetail {
     String? specialties,
     double? rating,
     bool? isNative,
-    required User user,
+    @JsonKey(name: 'User') required User user,
     @Default(false) bool isFavorite,
     double? avgRating,
     int? totalFeedback,

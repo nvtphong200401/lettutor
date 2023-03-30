@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class TeacherVideo extends StatefulWidget {
-  const TeacherVideo({super.key});
+  const TeacherVideo({super.key, required this.videoUrl});
+  final String videoUrl;
 
   @override
   State<TeacherVideo> createState() => _TeacherVideoState();
@@ -20,7 +21,7 @@ class _TeacherVideoState extends State<TeacherVideo> {
 
   Future<void> initPlayer() async {
     videoController = VideoPlayerController.network(
-      'https://api.app.lettutor.com/video/4d54d3d7-d2a9-42e5-97a2-5ed38af5789avideo1627913015871.mp4',
+      widget.videoUrl,
     );
     await videoController.initialize();
     chewieController = ChewieController(videoPlayerController: videoController);

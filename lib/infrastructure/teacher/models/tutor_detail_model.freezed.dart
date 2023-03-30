@@ -32,6 +32,7 @@ mixin _$TutorDetail {
   String? get specialties => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
   bool? get isNative => throw _privateConstructorUsedError;
+  @JsonKey(name: 'User')
   User get user => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
   double? get avgRating => throw _privateConstructorUsedError;
@@ -62,7 +63,7 @@ abstract class $TutorDetailCopyWith<$Res> {
       String? specialties,
       double? rating,
       bool? isNative,
-      User user,
+      @JsonKey(name: 'User') User user,
       bool isFavorite,
       double? avgRating,
       int? totalFeedback});
@@ -198,7 +199,7 @@ abstract class _$$_TutorDetailCopyWith<$Res>
       String? specialties,
       double? rating,
       bool? isNative,
-      User user,
+      @JsonKey(name: 'User') User user,
       bool isFavorite,
       double? avgRating,
       int? totalFeedback});
@@ -320,7 +321,7 @@ class _$_TutorDetail extends _TutorDetail {
       this.specialties,
       this.rating,
       this.isNative,
-      required this.user,
+      @JsonKey(name: 'User') required this.user,
       this.isFavorite = false,
       this.avgRating,
       this.totalFeedback})
@@ -355,6 +356,7 @@ class _$_TutorDetail extends _TutorDetail {
   @override
   final bool? isNative;
   @override
+  @JsonKey(name: 'User')
   final User user;
   @override
   @JsonKey()
@@ -452,7 +454,7 @@ abstract class _TutorDetail extends TutorDetail {
       final String? specialties,
       final double? rating,
       final bool? isNative,
-      required final User user,
+      @JsonKey(name: 'User') required final User user,
       final bool isFavorite,
       final double? avgRating,
       final int? totalFeedback}) = _$_TutorDetail;
@@ -486,6 +488,7 @@ abstract class _TutorDetail extends TutorDetail {
   @override
   bool? get isNative;
   @override
+  @JsonKey(name: 'User')
   User get user;
   @override
   bool get isFavorite;

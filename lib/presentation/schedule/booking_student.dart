@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
+import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/presentation/schedule/booking_card.dart';
+import 'package:lettutor/shared/schedule_providers.dart';
 
 import '../../core/presentation/common_styles/common_styles.dart';
 
@@ -51,8 +54,7 @@ class BookingStudentScreen extends StatelessWidget {
                 Table(
                   border: TableBorder.all(
                       borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(5),
-                          topRight: Radius.circular(5))),
+                          topLeft: Radius.circular(5), topRight: Radius.circular(5))),
                   children: [
                     TableRow(children: [
                       _tableItem(text: 'Name', bgColor: ColorName.cardhistory),
@@ -74,25 +76,30 @@ class BookingStudentScreen extends StatelessWidget {
                     right: BorderSide(),
                   ),
                   children: [
-                    TableRow(
-                        children: [
-                          _tableItem(
-                              text: 'Description',
-                              bgColor: ColorName.cardhistory),
-                          _tableItem(text: ''),
-                        ],
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10))),
+                    TableRow(children: [
+                      _tableItem(text: 'Description', bgColor: ColorName.cardhistory),
+                      _tableItem(text: ''),
+                    ], decoration: BoxDecoration(borderRadius: BorderRadius.circular(10))),
                   ],
                 ),
               ],
             ),
           ),
-          const BookingCard(),
-          const SizedBox(
-            height: 10,
-          ),
-          const BookingCard(),
+          Consumer(builder: (context, ref, child) {
+            return ref.watch(scheduleNotifierProvider).when(
+                data: (data) {
+                  var schedule = data.groupByDate();
+                  return Column(
+                    children: schedule.entries
+                        .map((entry) => BookingCard(
+                              date: entry.key,
+                              schedules: entry.value,
+                            ))
+                        .toList(),
+                  );
+                },
+                loading: () => const Center(child: CircularProgressIndicator()));
+          }),
         ],
       ),
     );

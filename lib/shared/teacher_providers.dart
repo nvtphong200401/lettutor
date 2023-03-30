@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/application/teacher/teachers_notifier.dart';
 import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
+import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
 import 'package:lettutor/infrastructure/teacher/teacher_repo.dart';
 import 'package:lettutor/shared/core_providers.dart';
 
@@ -17,5 +20,12 @@ final teacherMap = Provider.autoDispose(
 );
 
 final teacherCardNotifierProvider = StateNotifierProvider.autoDispose
-    .family<TutorDetailNotifier, TeacherModel, String>(
-        (ref, arg) => TutorDetailNotifier(ref.watch(teacherMap)[arg]!));
+    .family<TutorDetailNotifier, TeacherModel?, String?>((ref, arg) {
+  return TutorDetailNotifier(ref.watch(teacherMap)[arg]);
+});
+
+final courseFutureProvider =
+    FutureProvider.autoDispose.family<TutorDetail?, String>((ref, tutorId) {
+  log(tutorId);
+  return ref.watch(teacherRepoProvider).getTutorDetail(tutorId);
+});

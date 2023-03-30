@@ -6,27 +6,30 @@ import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/infrastructure/schedule/models/booking_model.dart';
+import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 import 'package:lettutor/presentation/schedule/cancel_booking.dart';
 
 import '../teacher/teacher_info.dart';
 
 class BookingCard extends StatelessWidget {
-  const BookingCard({super.key});
-
+  const BookingCard({super.key, required this.date, required this.schedules});
+  final DateTime date;
+  final List<ScheduleModel> schedules;
   @override
   Widget build(BuildContext context) {
-    final bookInfo = BookingModel.init();
+    final dayPass = DateTime.now().difference(date).inDays;
+    final scheduleInfo = schedules[0].scheduleDetailInfo?.scheduleInfo;
+    final tutorInfo = scheduleInfo?.tutorInfo;
     return GreyBoxContainer(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          DateFormat('EEE, dd MMM yy').format(DateTime.now()),
+          DateFormat('EEE, dd MMM yy').format(date),
           style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
         ),
         Text(
-          '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
+          dayPass > 0 ? '$dayPass day(s) ago' : '${schedules.length} Lesson',
           style: const TextStyle(fontStyle: FontStyle.italic),
         ),
         const SizedBox(
@@ -34,28 +37,31 @@ class BookingCard extends StatelessWidget {
         ),
         WhiteBoxContainer(
           child: TeacherInfo(
-            id: bookInfo.tutorInfo?.user.id ?? '',
-            avatar: bookInfo.tutorInfo?.user.avatar ?? '',
-            name: bookInfo.tutorInfo?.user.name ?? '',
+            id: tutorInfo?.id ?? '',
+            avatar: tutorInfo?.avatar ?? '',
+            name: tutorInfo?.name ?? '',
           ),
         ),
         const SizedBox(
           height: 10,
         ),
         WhiteBoxContainer(
-          child: CommonLessonTime(startTime: bookInfo.startTime, endTime: bookInfo.endTime),
+          child: CommonLessonTime(
+              startTime: scheduleInfo?.startTime ?? '', endTime: scheduleInfo?.endTime ?? ''),
         ),
         const SizedBox(
           height: 1,
         ),
-        BookingSession(bookingModel: bookInfo),
-        const SizedBox(
-          height: 1,
-        ),
-        BookingSession(bookingModel: bookInfo),
-        const SizedBox(
-          height: 1,
-        ),
+        for (int i = 0; i < schedules.length; ++i) ...[
+          Padding(
+            padding: const EdgeInsets.only(bottom: 1.0),
+            child: BookingSession(
+              tutorInfo: tutorInfo,
+              scheduleInfo: schedules[i].scheduleDetailInfo?.scheduleInfo,
+              session: i + 1,
+            ),
+          ),
+        ],
         WhiteBoxContainer(
           child: ExpandablePanel(
             header: const Padding(
@@ -108,12 +114,13 @@ class BookingCard extends StatelessWidget {
 }
 
 class BookingSession extends HookWidget {
-  const BookingSession({super.key, required this.bookingModel});
-  final BookingModel bookingModel;
+  const BookingSession({super.key, this.tutorInfo, this.scheduleInfo, required this.session});
+  final TutorInfo? tutorInfo;
+  final ScheduleInfo? scheduleInfo;
+  final int session;
 
   @override
   Widget build(BuildContext context) {
-    final tutor = bookingModel.tutorInfo!.user;
     final visible = useState(true);
     return Visibility(
       visible: visible.value,
@@ -121,15 +128,15 @@ class BookingSession extends HookWidget {
         child: Row(
           children: [
             Text(
-              'Sesson 1: ${bookingModel.startTime} - ${bookingModel.endTime}',
+              'Session $session: ${scheduleInfo?.startTime} - ${scheduleInfo?.endTime}',
             ),
             const Spacer(),
             GestureDetector(
               onTap: () => showDialog(
                   context: context,
                   builder: (context) => CancelBookingDialog(
-                        avatarUrl: tutor.avatar,
-                        teacherName: tutor.name,
+                        avatarUrl: tutorInfo?.avatar ?? '',
+                        teacherName: tutorInfo?.name ?? '',
                         lessonTime: 'Wed, 14 Mar 23',
                         onSubmit: () => visible.value = false,
                       )),

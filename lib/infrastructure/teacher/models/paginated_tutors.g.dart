@@ -55,12 +55,14 @@ _$_SecondInfo _$$_SecondInfoFromJson(Map<String, dynamic> json) =>
       country: json['country'] as String?,
       phone: json['phone'] as String?,
       language: json['language'] as String?,
-      birthday: DateTime.parse(json['birthday'] as String),
+      birthday: json['birthday'] == null
+          ? null
+          : DateTime.parse(json['birthday'] as String),
       requestPassword: json['requestPassword'] as bool?,
       isActivated: json['isActivated'] as bool?,
       isPhoneActivated: json['isPhoneActivated'] as String?,
       requireNote: json['requireNote'] as String?,
-      timezone: json['timezone'] as int,
+      timezone: json['timezone'] as int?,
       phoneAuth: json['phoneAuth'] as String?,
       isPhoneAuthActivated: json['isPhoneAuthActivated'] as bool?,
       studySchedule: json['studySchedule'] as String?,
@@ -87,7 +89,7 @@ Map<String, dynamic> _$$_SecondInfoToJson(_$_SecondInfo instance) =>
       'country': instance.country,
       'phone': instance.phone,
       'language': instance.language,
-      'birthday': instance.birthday.toIso8601String(),
+      'birthday': instance.birthday?.toIso8601String(),
       'requestPassword': instance.requestPassword,
       'isActivated': instance.isActivated,
       'isPhoneActivated': instance.isPhoneActivated,
@@ -190,8 +192,8 @@ _$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updatedAt'] as String?,
       deletedAt: json['deletedAt'] as String?,
       studentGroupId: json['studentGroupId'] as String?,
-      feedbacks: (json['feedbacks'] as List<dynamic>)
-          .map((e) => Feedback.fromJson(e as Map<String, dynamic>))
+      feedbacks: (json['feedbacks'] as List<dynamic>?)
+          ?.map((e) => Feedback.fromJson(e as Map<String, dynamic>))
           .toList(),
       id: json['id'] as String?,
       userId: json['userId'] as String?,
@@ -267,7 +269,7 @@ _$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
       bookingId: json['bookingId'] as String?,
       firstId: json['firstId'] as String?,
       secondId: json['secondId'] as String?,
-      rating: json['rating'] as int,
+      rating: json['rating'] as int?,
       content: json['content'] as String?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,

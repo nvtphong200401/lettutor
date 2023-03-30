@@ -469,12 +469,12 @@ mixin _$SecondInfo {
   String? get country => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get language => throw _privateConstructorUsedError;
-  DateTime get birthday => throw _privateConstructorUsedError;
+  DateTime? get birthday => throw _privateConstructorUsedError;
   bool? get requestPassword => throw _privateConstructorUsedError;
   bool? get isActivated => throw _privateConstructorUsedError;
   String? get isPhoneActivated => throw _privateConstructorUsedError;
   String? get requireNote => throw _privateConstructorUsedError;
-  int get timezone => throw _privateConstructorUsedError;
+  int? get timezone => throw _privateConstructorUsedError;
   String? get phoneAuth => throw _privateConstructorUsedError;
   bool? get isPhoneAuthActivated => throw _privateConstructorUsedError;
   String? get studySchedule => throw _privateConstructorUsedError;
@@ -511,12 +511,12 @@ abstract class $SecondInfoCopyWith<$Res> {
       String? country,
       String? phone,
       String? language,
-      DateTime birthday,
+      DateTime? birthday,
       bool? requestPassword,
       bool? isActivated,
       String? isPhoneActivated,
       String? requireNote,
-      int timezone,
+      int? timezone,
       String? phoneAuth,
       bool? isPhoneAuthActivated,
       String? studySchedule,
@@ -556,12 +556,12 @@ class _$SecondInfoCopyWithImpl<$Res, $Val extends SecondInfo>
     Object? country = freezed,
     Object? phone = freezed,
     Object? language = freezed,
-    Object? birthday = null,
+    Object? birthday = freezed,
     Object? requestPassword = freezed,
     Object? isActivated = freezed,
     Object? isPhoneActivated = freezed,
     Object? requireNote = freezed,
-    Object? timezone = null,
+    Object? timezone = freezed,
     Object? phoneAuth = freezed,
     Object? isPhoneAuthActivated = freezed,
     Object? studySchedule = freezed,
@@ -619,10 +619,10 @@ class _$SecondInfoCopyWithImpl<$Res, $Val extends SecondInfo>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as String?,
-      birthday: null == birthday
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       requestPassword: freezed == requestPassword
           ? _value.requestPassword
           : requestPassword // ignore: cast_nullable_to_non_nullable
@@ -639,10 +639,10 @@ class _$SecondInfoCopyWithImpl<$Res, $Val extends SecondInfo>
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
               as String?,
-      timezone: null == timezone
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       phoneAuth: freezed == phoneAuth
           ? _value.phoneAuth
           : phoneAuth // ignore: cast_nullable_to_non_nullable
@@ -719,12 +719,12 @@ abstract class _$$_SecondInfoCopyWith<$Res>
       String? country,
       String? phone,
       String? language,
-      DateTime birthday,
+      DateTime? birthday,
       bool? requestPassword,
       bool? isActivated,
       String? isPhoneActivated,
       String? requireNote,
-      int timezone,
+      int? timezone,
       String? phoneAuth,
       bool? isPhoneAuthActivated,
       String? studySchedule,
@@ -763,12 +763,12 @@ class __$$_SecondInfoCopyWithImpl<$Res>
     Object? country = freezed,
     Object? phone = freezed,
     Object? language = freezed,
-    Object? birthday = null,
+    Object? birthday = freezed,
     Object? requestPassword = freezed,
     Object? isActivated = freezed,
     Object? isPhoneActivated = freezed,
     Object? requireNote = freezed,
-    Object? timezone = null,
+    Object? timezone = freezed,
     Object? phoneAuth = freezed,
     Object? isPhoneAuthActivated = freezed,
     Object? studySchedule = freezed,
@@ -826,10 +826,10 @@ class __$$_SecondInfoCopyWithImpl<$Res>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as String?,
-      birthday: null == birthday
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       requestPassword: freezed == requestPassword
           ? _value.requestPassword
           : requestPassword // ignore: cast_nullable_to_non_nullable
@@ -846,10 +846,10 @@ class __$$_SecondInfoCopyWithImpl<$Res>
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
               as String?,
-      timezone: null == timezone
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       phoneAuth: freezed == phoneAuth
           ? _value.phoneAuth
           : phoneAuth // ignore: cast_nullable_to_non_nullable
@@ -913,12 +913,12 @@ class _$_SecondInfo implements _SecondInfo {
       this.country,
       this.phone,
       this.language,
-      required this.birthday,
+      this.birthday,
       this.requestPassword,
       this.isActivated,
       this.isPhoneActivated,
       this.requireNote,
-      required this.timezone,
+      this.timezone,
       this.phoneAuth,
       this.isPhoneAuthActivated,
       this.studySchedule,
@@ -957,7 +957,7 @@ class _$_SecondInfo implements _SecondInfo {
   @override
   final String? language;
   @override
-  final DateTime birthday;
+  final DateTime? birthday;
   @override
   final bool? requestPassword;
   @override
@@ -967,7 +967,7 @@ class _$_SecondInfo implements _SecondInfo {
   @override
   final String? requireNote;
   @override
-  final int timezone;
+  final int? timezone;
   @override
   final String? phoneAuth;
   @override
@@ -1111,12 +1111,12 @@ abstract class _SecondInfo implements SecondInfo {
       final String? country,
       final String? phone,
       final String? language,
-      required final DateTime birthday,
+      final DateTime? birthday,
       final bool? requestPassword,
       final bool? isActivated,
       final String? isPhoneActivated,
       final String? requireNote,
-      required final int timezone,
+      final int? timezone,
       final String? phoneAuth,
       final bool? isPhoneAuthActivated,
       final String? studySchedule,
@@ -1155,7 +1155,7 @@ abstract class _SecondInfo implements SecondInfo {
   @override
   String? get language;
   @override
-  DateTime get birthday;
+  DateTime? get birthday;
   @override
   bool? get requestPassword;
   @override
@@ -1165,7 +1165,7 @@ abstract class _SecondInfo implements SecondInfo {
   @override
   String? get requireNote;
   @override
-  int get timezone;
+  int? get timezone;
   @override
   String? get phoneAuth;
   @override
@@ -1889,7 +1889,7 @@ mixin _$TeacherModel {
   String? get updatedAt => throw _privateConstructorUsedError;
   String? get deletedAt => throw _privateConstructorUsedError;
   String? get studentGroupId => throw _privateConstructorUsedError;
-  List<Feedback> get feedbacks => throw _privateConstructorUsedError;
+  List<Feedback>? get feedbacks => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
   String? get video => throw _privateConstructorUsedError;
@@ -1948,7 +1948,7 @@ abstract class $TeacherModelCopyWith<$Res> {
       String? updatedAt,
       String? deletedAt,
       String? studentGroupId,
-      List<Feedback> feedbacks,
+      List<Feedback>? feedbacks,
       String? id,
       String? userId,
       String? video,
@@ -2008,7 +2008,7 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
     Object? updatedAt = freezed,
     Object? deletedAt = freezed,
     Object? studentGroupId = freezed,
-    Object? feedbacks = null,
+    Object? feedbacks = freezed,
     Object? id = freezed,
     Object? userId = freezed,
     Object? video = freezed,
@@ -2133,10 +2133,10 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
           ? _value.studentGroupId
           : studentGroupId // ignore: cast_nullable_to_non_nullable
               as String?,
-      feedbacks: null == feedbacks
+      feedbacks: freezed == feedbacks
           ? _value.feedbacks
           : feedbacks // ignore: cast_nullable_to_non_nullable
-              as List<Feedback>,
+              as List<Feedback>?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2248,7 +2248,7 @@ abstract class _$$_TeacherModelCopyWith<$Res>
       String? updatedAt,
       String? deletedAt,
       String? studentGroupId,
-      List<Feedback> feedbacks,
+      List<Feedback>? feedbacks,
       String? id,
       String? userId,
       String? video,
@@ -2306,7 +2306,7 @@ class __$$_TeacherModelCopyWithImpl<$Res>
     Object? updatedAt = freezed,
     Object? deletedAt = freezed,
     Object? studentGroupId = freezed,
-    Object? feedbacks = null,
+    Object? feedbacks = freezed,
     Object? id = freezed,
     Object? userId = freezed,
     Object? video = freezed,
@@ -2431,10 +2431,10 @@ class __$$_TeacherModelCopyWithImpl<$Res>
           ? _value.studentGroupId
           : studentGroupId // ignore: cast_nullable_to_non_nullable
               as String?,
-      feedbacks: null == feedbacks
+      feedbacks: freezed == feedbacks
           ? _value._feedbacks
           : feedbacks // ignore: cast_nullable_to_non_nullable
-              as List<Feedback>,
+              as List<Feedback>?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2542,7 +2542,7 @@ class _$_TeacherModel implements _TeacherModel {
       this.updatedAt,
       this.deletedAt,
       this.studentGroupId,
-      required final List<Feedback> feedbacks,
+      final List<Feedback>? feedbacks,
       this.id,
       this.userId,
       this.video,
@@ -2619,12 +2619,14 @@ class _$_TeacherModel implements _TeacherModel {
   final String? deletedAt;
   @override
   final String? studentGroupId;
-  final List<Feedback> _feedbacks;
+  final List<Feedback>? _feedbacks;
   @override
-  List<Feedback> get feedbacks {
+  List<Feedback>? get feedbacks {
+    final value = _feedbacks;
+    if (value == null) return null;
     if (_feedbacks is EqualUnmodifiableListView) return _feedbacks;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_feedbacks);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -2843,7 +2845,7 @@ abstract class _TeacherModel implements TeacherModel {
       final String? updatedAt,
       final String? deletedAt,
       final String? studentGroupId,
-      required final List<Feedback> feedbacks,
+      final List<Feedback>? feedbacks,
       final String? id,
       final String? userId,
       final String? video,
@@ -2919,7 +2921,7 @@ abstract class _TeacherModel implements TeacherModel {
   @override
   String? get studentGroupId;
   @override
-  List<Feedback> get feedbacks;
+  List<Feedback>? get feedbacks;
   @override
   String? get id;
   @override
@@ -2972,7 +2974,7 @@ mixin _$Feedback {
   String? get bookingId => throw _privateConstructorUsedError;
   String? get firstId => throw _privateConstructorUsedError;
   String? get secondId => throw _privateConstructorUsedError;
-  int get rating => throw _privateConstructorUsedError;
+  int? get rating => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get updatedAt => throw _privateConstructorUsedError;
@@ -2994,7 +2996,7 @@ abstract class $FeedbackCopyWith<$Res> {
       String? bookingId,
       String? firstId,
       String? secondId,
-      int rating,
+      int? rating,
       String? content,
       String? createdAt,
       String? updatedAt,
@@ -3020,7 +3022,7 @@ class _$FeedbackCopyWithImpl<$Res, $Val extends Feedback>
     Object? bookingId = freezed,
     Object? firstId = freezed,
     Object? secondId = freezed,
-    Object? rating = null,
+    Object? rating = freezed,
     Object? content = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -3043,10 +3045,10 @@ class _$FeedbackCopyWithImpl<$Res, $Val extends Feedback>
           ? _value.secondId
           : secondId // ignore: cast_nullable_to_non_nullable
               as String?,
-      rating: null == rating
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -3091,7 +3093,7 @@ abstract class _$$_FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
       String? bookingId,
       String? firstId,
       String? secondId,
-      int rating,
+      int? rating,
       String? content,
       String? createdAt,
       String? updatedAt,
@@ -3116,7 +3118,7 @@ class __$$_FeedbackCopyWithImpl<$Res>
     Object? bookingId = freezed,
     Object? firstId = freezed,
     Object? secondId = freezed,
-    Object? rating = null,
+    Object? rating = freezed,
     Object? content = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -3139,10 +3141,10 @@ class __$$_FeedbackCopyWithImpl<$Res>
           ? _value.secondId
           : secondId // ignore: cast_nullable_to_non_nullable
               as String?,
-      rating: null == rating
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -3171,7 +3173,7 @@ class _$_Feedback implements _Feedback {
       this.bookingId,
       this.firstId,
       this.secondId,
-      required this.rating,
+      this.rating,
       this.content,
       this.createdAt,
       this.updatedAt,
@@ -3189,7 +3191,7 @@ class _$_Feedback implements _Feedback {
   @override
   final String? secondId;
   @override
-  final int rating;
+  final int? rating;
   @override
   final String? content;
   @override
@@ -3250,7 +3252,7 @@ abstract class _Feedback implements Feedback {
       final String? bookingId,
       final String? firstId,
       final String? secondId,
-      required final int rating,
+      final int? rating,
       final String? content,
       final String? createdAt,
       final String? updatedAt,
@@ -3267,7 +3269,7 @@ abstract class _Feedback implements Feedback {
   @override
   String? get secondId;
   @override
-  int get rating;
+  int? get rating;
   @override
   String? get content;
   @override

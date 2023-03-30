@@ -6,17 +6,20 @@ import 'package:lettutor/shared/teacher_providers.dart';
 import '../../gen/colors.gen.dart';
 
 class TeacherInfo extends StatelessWidget {
-  const TeacherInfo({
-    super.key,
-    this.toggleFavorite,
-    required this.id,
-    required this.avatar,
-    required this.name,
-  });
+  const TeacherInfo(
+      {super.key,
+      this.toggleFavorite,
+      required this.id,
+      required this.avatar,
+      required this.name,
+      this.rating,
+      this.totalRating});
   final void Function()? toggleFavorite;
   final String avatar;
   final String name;
   final String id;
+  final double? rating;
+  final int? totalRating;
 
   @override
   Widget build(BuildContext context) {
@@ -57,15 +60,25 @@ class TeacherInfo extends StatelessWidget {
             const SizedBox(
               height: 2,
             ),
-            Row(
-              children: List.filled(
-                  5,
-                  const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                    size: 20,
-                  )),
-            ),
+            if (rating != null)
+              Row(
+                children: [
+                  ...List.filled(
+                      rating!.toInt(),
+                      const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                        size: 20,
+                      )),
+                  ...List.filled(
+                      5 - rating!.toInt(),
+                      Icon(
+                        Icons.star,
+                        color: Colors.grey.shade300,
+                        size: 20,
+                      ))
+                ],
+              ),
             const SizedBox(
               height: 5,
             ),
@@ -88,7 +101,7 @@ class TeacherInfo extends StatelessWidget {
         if (toggleFavorite != null)
           Consumer(builder: (context, ref, child) {
             final icon =
-                (ref.watch(teacherCardNotifierProvider(id).select((value) => value.isFavorite)) ??
+                (ref.watch(teacherCardNotifierProvider(id).select((value) => value?.isFavorite)) ??
                         false)
                     ? const Icon(
                         Icons.favorite,

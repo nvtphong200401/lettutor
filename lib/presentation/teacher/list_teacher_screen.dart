@@ -18,7 +18,8 @@ class ListTeachScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dropdownKey = useMemoized(() => GlobalKey<DropdownButton2State>());
-    final searchController = useTextEditingController();
+    final searchNationalityController = useTextEditingController();
+    final searchNameController = useTextEditingController();
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
       body: ListView(
@@ -40,8 +41,16 @@ class ListTeachScreen extends HookConsumerWidget {
           ),
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: CommonTextFormField(
+                  controller: searchNameController,
+                  onChanged: (value) {
+                    ref.read(teachersProvider.notifier).searchTeacher(value);
+                  },
+                  // onFieldSubmitted: (value) {
+                  //   if (value.isEmpty) return;
+                  //   ref.read(teachersProvider.notifier).searchTeacher(value);
+                  // },
                   capsuleShape: true,
                   hintText: 'Enter tutor name...',
                   autofocus: false,
@@ -56,11 +65,11 @@ class ListTeachScreen extends HookConsumerWidget {
                     DropdownButtonFormField2(
                       dropdownButtonKey: dropdownKey,
                       dropdownSearchData: DropdownSearchData(
-                          searchController: searchController,
+                          searchController: searchNationalityController,
                           searchInnerWidgetHeight: 45,
                           searchInnerWidget: CommonTextFormField(
                             hintText: 'Select nationality',
-                            controller: searchController,
+                            controller: searchNationalityController,
                             capsuleShape: true,
                             autofocus: true,
                           )),
