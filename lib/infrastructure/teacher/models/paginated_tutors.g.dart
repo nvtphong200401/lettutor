@@ -213,6 +213,12 @@ _$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) =>
       price: json['price'] as int?,
       isOnline: json['isOnline'] as bool?,
       isFavorite: json['isFavorite'] as bool?,
+      schedules: (json['schedules'] as List<dynamic>?)
+          ?.map((e) => ScheduleOfTutor.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      courses: (json['courses'] as List<dynamic>?)
+          ?.map((e) => Course.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) =>
@@ -262,6 +268,8 @@ Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) =>
       'price': instance.price,
       'isOnline': instance.isOnline,
       'isFavorite': instance.isFavorite,
+      'schedules': instance.schedules,
+      'courses': instance.courses,
     };
 
 _$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(

@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +18,7 @@ import 'package:lettutor/shared/teacher_providers.dart';
 import '../../../core/presentation/common_styles/common_styles.dart';
 import '../../../core/presentation/common_widgets/common_back_button.dart';
 import '../../../core/presentation/common_widgets/common_sliver_appbar.dart';
+import '../../../infrastructure/teacher/models/teacher_schedule_result.dart';
 import '../teacher_info.dart';
 
 class TeacherDetailScreen extends HookConsumerWidget {
@@ -110,27 +111,10 @@ class TeacherDetailScreen extends HookConsumerWidget {
             const SizedBox(
               height: 10,
             ),
-            Consumer(builder: (context, ref, child) {
-              final data = ref.watch(courseFutureProvider(info?.userId ?? ''));
-              return data.when(
-                data: (data) {
-                  if (data == null) return const SizedBox.shrink();
-                  debugPrint('${data.user.courses!.length}');
-                  return Column(
-                    children: data.user.courses
-                            ?.map((e) => buildPartContent(content: e.name ?? '', link: ''))
-                            .toList() ??
-                        [],
-                  );
-                },
-                loading: () {
-                  return const CircularProgressIndicator();
-                },
-                error: (error, stackTrace) {
-                  return const SizedBox.shrink();
-                },
-              );
-            }),
+            ...(info?.courses
+                    ?.map((e) => buildPartContent(content: e.name ?? '', link: ''))
+                    .toList() ??
+                []),
             const SizedBox(
               height: 20,
             ),
@@ -156,23 +140,22 @@ class TeacherDetailScreen extends HookConsumerWidget {
                 Text(DateFormat('MMM y').format(DateTime.now()))
               ],
             ),
-            MediaQuery.removePadding(
-              context: context,
-              removeTop: true,
+            SizedBox(
+              height: 500,
               child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
+                // physics: const NeverScrollableScrollPhysics(),
+                // shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
                 ),
-                itemCount: 30,
+                itemCount: (_scheduleTime.length + 1) * 5,
                 itemBuilder: (context, index) => DecoratedBox(
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: ColorName.grey,
                           width: 0.5,
                           strokeAlign: BorderSide.strokeAlignCenter)),
-                  child: Center(child: buildSchedule(index)),
+                  child: Center(child: buildSchedule(index, info?.schedules ?? [])),
                 ),
               ),
             )
@@ -182,28 +165,59 @@ class TeacherDetailScreen extends HookConsumerWidget {
     ));
   }
 
-  Widget buildSchedule(int index) {
+  Widget buildSchedule(int index, List<ScheduleOfTutor> schedules) {
+    final DateTime now = DateTime.now();
+    final currDay = DateTime(now.year, now.month, now.day + index % 5 - 1);
+
     if (index == 0) return const SizedBox.shrink();
     if (index < 5) {
-      final DateTime now = DateTime.now();
-      String date = DateFormat('dd/MM EE').format(now.copyWith(day: now.day + index));
+      String date = DateFormat('dd/MM EE').format(currDay);
       return Text(date);
     }
+
     if (index % 5 == 0) {
-      return const CommonLessonTime(
-        startTime: '01:30',
-        endTime: '01:55',
+      return CommonLessonTime(
+        startTime: _scheduleTime[index ~/ 5 - 1].startTime,
+        endTime: _scheduleTime[index ~/ 5 - 1].endTime,
         axis: Axis.vertical,
       );
     }
-    final bool isBook = Random().nextBool();
-    if (isBook) {
+
+    final itemSchedule = scheduleTutor(_scheduleTime[index ~/ 5 - 1].startTime, currDay, schedules);
+    if (itemSchedule?.isBooked != null) {
+      log('$currDay - ${itemSchedule?.isBooked} - ${DateTime.fromMillisecondsSinceEpoch(itemSchedule?.startTimestamp ?? 0).toLocal()} - ${index ~/ 5 - 1}');
+    }
+    if (itemSchedule?.isBooked ?? false) {
       return const Text(
-        'Book',
+        'Booked',
         style: TextStyle(color: ColorName.green),
       );
     }
+    if (itemSchedule?.isBooked == false) {
+      return TextButton(
+        onPressed: () {},
+        style: CommonButtonStyle.primaryButtonStyle.customCopyWith(),
+        child: const Text(
+          'Book',
+          style: TextStyle(color: Colors.white),
+        ),
+      );
+    }
     return const SizedBox.shrink();
+  }
+
+  ScheduleOfTutor? scheduleTutor(
+      String startTimeRow, DateTime dateColumn, List<ScheduleOfTutor> schedules) {
+    final index = schedules.indexWhere((element) {
+      final scheduleDate =
+          DateTime.fromMillisecondsSinceEpoch(element.startTimestamp ?? 0).toLocal();
+      return DateFormat('YYYY-MM-DD').format(scheduleDate) ==
+              DateFormat('YYYY-MM-DD').format(dateColumn) &&
+          DateFormat('HH:mm').format(scheduleDate) == startTimeRow;
+    });
+
+    if (index >= 0) return schedules[index];
+    return null;
   }
 
   Widget buildPartDesc({required String title, required String desc}) {
@@ -271,6 +285,28 @@ class TeacherDetailScreen extends HookConsumerWidget {
       ),
     );
   }
+}
+
+List<ScheduleTime> _scheduleTime = generate();
+List<ScheduleTime> generate() {
+  final List<ScheduleTime> result = [];
+  for (int i = 0; i < 24; i++) {
+    final converted = transform(i);
+    ScheduleTime a = ScheduleTime('$converted:00', '$converted:25');
+    result.add(a);
+    ScheduleTime b = ScheduleTime('$converted:30', '$converted:55');
+    result.add(b);
+  }
+
+  return result;
+}
+
+String transform(int i) => i < 10 ? '0$i' : i.toString();
+
+class ScheduleTime {
+  final String startTime;
+  final String endTime;
+  ScheduleTime(this.startTime, this.endTime);
 }
 
 class IconGroup extends ConsumerWidget {

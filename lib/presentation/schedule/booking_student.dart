@@ -88,7 +88,8 @@ class BookingStudentScreen extends StatelessWidget {
           Consumer(builder: (context, ref, child) {
             return ref.watch(scheduleNotifierProvider).when(
                 data: (data) {
-                  var schedule = data.groupByDate();
+                  // get schedule in the future
+                  var schedule = data.inFuture();
                   return Column(
                     children: schedule.entries
                         .map((entry) => BookingCard(

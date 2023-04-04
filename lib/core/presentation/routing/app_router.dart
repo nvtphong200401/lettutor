@@ -6,6 +6,7 @@ import 'package:lettutor/presentation/authen/login_screen.dart';
 import 'package:lettutor/presentation/authen/splash_screen.dart';
 import 'package:lettutor/presentation/courses/courses_screen.dart';
 import 'package:lettutor/presentation/courses/detail/course_detail_screen.dart';
+import 'package:lettutor/presentation/courses/detail/course_info_screen.dart';
 import 'package:lettutor/presentation/history/history_student_screen.dart';
 import 'package:lettutor/presentation/schedule/booking_student.dart';
 import 'package:lettutor/presentation/stream/stream_screen.dart';
@@ -31,16 +32,6 @@ part 'app_router.gr.dart';
       path: '/home',
       page: MyHomePage,
       children: [
-        // AutoRoute(
-        //   path: 'list-teach',
-        //   page: ListTeachScreen,
-        //   children: [
-        //     AutoRoute(
-        //       path: ':teacherId',
-        //       page: TeacherDetailScreen,
-        //     ),
-        //   ],
-        // ),
         AutoRoute(
             path: 'list-teacher',
             name: 'ListTeacherRouter',
@@ -69,7 +60,8 @@ part 'app_router.gr.dart';
           name: 'CoursesRouter',
           children: [
             AutoRoute(path: '', page: CoursesScreen),
-            AutoRoute(path: ':courseId', page: CourseDetailScreen),
+            AutoRoute(path: ':courseId', page: CourseInfoScreen),
+            AutoRoute(path: ':courseId/:topicId', page: CourseDetailScreen),
           ],
         ),
       ],

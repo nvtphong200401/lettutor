@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/infrastructure/courses/models/course_model.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 
 extension BuildContextX on BuildContext {
@@ -27,5 +28,43 @@ extension GroupByDate on List<ScheduleModel> {
       });
       return MapEntry(key, value);
     });
+  }
+
+  Map<DateTime, List<ScheduleModel>> inHistory() {
+    var schedule = groupByDate()
+      ..removeWhere((key, value) => key.difference(DateTime.now()).inDays > 0);
+    return schedule;
+  }
+
+  Map<DateTime, List<ScheduleModel>> inFuture() {
+    var schedule = groupByDate()
+      ..removeWhere((key, value) => key.difference(DateTime.now()).inDays < 0);
+    return schedule;
+  }
+
+  MapEntry<DateTime, List<ScheduleModel>> getUpcoming() {
+    final upcomings = inFuture();
+    var result = upcomings.entries.first;
+    for (var schedule in upcomings.entries) {
+      if (result.key.difference(schedule.key).inDays < 0) {
+        result = schedule;
+      }
+    }
+    return result;
+  }
+}
+
+extension GroupByCategory on List<CourseModel> {
+  Map<String, List<CourseModel>> groupByCategory() {
+    Map<String, List<CourseModel>> group = {};
+    for (var course in this) {
+      final category = course.categories?[0].title ?? '';
+      if (group.containsKey(category)) {
+        group[category]?.add(course);
+      } else {
+        group[category] = [course];
+      }
+    }
+    return group;
   }
 }

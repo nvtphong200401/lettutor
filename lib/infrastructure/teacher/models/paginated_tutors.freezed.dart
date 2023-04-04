@@ -1908,6 +1908,8 @@ mixin _$TeacherModel {
   int? get price => throw _privateConstructorUsedError;
   bool? get isOnline => throw _privateConstructorUsedError;
   bool? get isFavorite => throw _privateConstructorUsedError;
+  List<ScheduleOfTutor>? get schedules => throw _privateConstructorUsedError;
+  List<Course>? get courses => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1966,7 +1968,9 @@ abstract class $TeacherModelCopyWith<$Res> {
       bool? isNative,
       int? price,
       bool? isOnline,
-      bool? isFavorite});
+      bool? isFavorite,
+      List<ScheduleOfTutor>? schedules,
+      List<Course>? courses});
 }
 
 /// @nodoc
@@ -2027,6 +2031,8 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
     Object? price = freezed,
     Object? isOnline = freezed,
     Object? isFavorite = freezed,
+    Object? schedules = freezed,
+    Object? courses = freezed,
   }) {
     return _then(_value.copyWith(
       level: freezed == level
@@ -2209,6 +2215,14 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool?,
+      schedules: freezed == schedules
+          ? _value.schedules
+          : schedules // ignore: cast_nullable_to_non_nullable
+              as List<ScheduleOfTutor>?,
+      courses: freezed == courses
+          ? _value.courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as List<Course>?,
     ) as $Val);
   }
 }
@@ -2266,7 +2280,9 @@ abstract class _$$_TeacherModelCopyWith<$Res>
       bool? isNative,
       int? price,
       bool? isOnline,
-      bool? isFavorite});
+      bool? isFavorite,
+      List<ScheduleOfTutor>? schedules,
+      List<Course>? courses});
 }
 
 /// @nodoc
@@ -2325,6 +2341,8 @@ class __$$_TeacherModelCopyWithImpl<$Res>
     Object? price = freezed,
     Object? isOnline = freezed,
     Object? isFavorite = freezed,
+    Object? schedules = freezed,
+    Object? courses = freezed,
   }) {
     return _then(_$_TeacherModel(
       level: freezed == level
@@ -2507,6 +2525,14 @@ class __$$_TeacherModelCopyWithImpl<$Res>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool?,
+      schedules: freezed == schedules
+          ? _value._schedules
+          : schedules // ignore: cast_nullable_to_non_nullable
+              as List<ScheduleOfTutor>?,
+      courses: freezed == courses
+          ? _value._courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as List<Course>?,
     ));
   }
 }
@@ -2560,8 +2586,12 @@ class _$_TeacherModel implements _TeacherModel {
       this.isNative,
       this.price,
       this.isOnline,
-      this.isFavorite})
-      : _feedbacks = feedbacks;
+      this.isFavorite,
+      final List<ScheduleOfTutor>? schedules,
+      final List<Course>? courses})
+      : _feedbacks = feedbacks,
+        _schedules = schedules,
+        _courses = courses;
 
   factory _$_TeacherModel.fromJson(Map<String, dynamic> json) =>
       _$$_TeacherModelFromJson(json);
@@ -2665,10 +2695,29 @@ class _$_TeacherModel implements _TeacherModel {
   final bool? isOnline;
   @override
   final bool? isFavorite;
+  final List<ScheduleOfTutor>? _schedules;
+  @override
+  List<ScheduleOfTutor>? get schedules {
+    final value = _schedules;
+    if (value == null) return null;
+    if (_schedules is EqualUnmodifiableListView) return _schedules;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Course>? _courses;
+  @override
+  List<Course>? get courses {
+    final value = _courses;
+    if (value == null) return null;
+    if (_courses is EqualUnmodifiableListView) return _courses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'TeacherModel(level: $level, email: $email, google: $google, facebook: $facebook, apple: $apple, avatar: $avatar, name: $name, country: $country, phone: $phone, language: $language, birthday: $birthday, requestPassword: $requestPassword, isActivated: $isActivated, isPhoneActivated: $isPhoneActivated, requireNote: $requireNote, timezone: $timezone, phoneAuth: $phoneAuth, isPhoneAuthActivated: $isPhoneAuthActivated, studySchedule: $studySchedule, canSendMessage: $canSendMessage, isPublicRecord: $isPublicRecord, caredByStaffId: $caredByStaffId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, studentGroupId: $studentGroupId, feedbacks: $feedbacks, id: $id, userId: $userId, video: $video, bio: $bio, education: $education, experience: $experience, profession: $profession, accent: $accent, targetStudent: $targetStudent, interests: $interests, languages: $languages, specialties: $specialties, resume: $resume, rating: $rating, isNative: $isNative, price: $price, isOnline: $isOnline, isFavorite: $isFavorite)';
+    return 'TeacherModel(level: $level, email: $email, google: $google, facebook: $facebook, apple: $apple, avatar: $avatar, name: $name, country: $country, phone: $phone, language: $language, birthday: $birthday, requestPassword: $requestPassword, isActivated: $isActivated, isPhoneActivated: $isPhoneActivated, requireNote: $requireNote, timezone: $timezone, phoneAuth: $phoneAuth, isPhoneAuthActivated: $isPhoneAuthActivated, studySchedule: $studySchedule, canSendMessage: $canSendMessage, isPublicRecord: $isPublicRecord, caredByStaffId: $caredByStaffId, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, studentGroupId: $studentGroupId, feedbacks: $feedbacks, id: $id, userId: $userId, video: $video, bio: $bio, education: $education, experience: $experience, profession: $profession, accent: $accent, targetStudent: $targetStudent, interests: $interests, languages: $languages, specialties: $specialties, resume: $resume, rating: $rating, isNative: $isNative, price: $price, isOnline: $isOnline, isFavorite: $isFavorite, schedules: $schedules, courses: $courses)';
   }
 
   @override
@@ -2749,7 +2798,10 @@ class _$_TeacherModel implements _TeacherModel {
             (identical(other.isOnline, isOnline) ||
                 other.isOnline == isOnline) &&
             (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite));
+                other.isFavorite == isFavorite) &&
+            const DeepCollectionEquality()
+                .equals(other._schedules, _schedules) &&
+            const DeepCollectionEquality().equals(other._courses, _courses));
   }
 
   @JsonKey(ignore: true)
@@ -2800,7 +2852,9 @@ class _$_TeacherModel implements _TeacherModel {
         isNative,
         price,
         isOnline,
-        isFavorite
+        isFavorite,
+        const DeepCollectionEquality().hash(_schedules),
+        const DeepCollectionEquality().hash(_courses)
       ]);
 
   @JsonKey(ignore: true)
@@ -2863,7 +2917,9 @@ abstract class _TeacherModel implements TeacherModel {
       final bool? isNative,
       final int? price,
       final bool? isOnline,
-      final bool? isFavorite}) = _$_TeacherModel;
+      final bool? isFavorite,
+      final List<ScheduleOfTutor>? schedules,
+      final List<Course>? courses}) = _$_TeacherModel;
 
   factory _TeacherModel.fromJson(Map<String, dynamic> json) =
       _$_TeacherModel.fromJson;
@@ -2958,6 +3014,10 @@ abstract class _TeacherModel implements TeacherModel {
   bool? get isOnline;
   @override
   bool? get isFavorite;
+  @override
+  List<ScheduleOfTutor>? get schedules;
+  @override
+  List<Course>? get courses;
   @override
   @JsonKey(ignore: true)
   _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith =>

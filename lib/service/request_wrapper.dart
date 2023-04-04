@@ -3,8 +3,11 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:lettutor/core/infrastructure/failure.dart';
+import 'package:lettutor/infrastructure/courses/models/course_model.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
+import 'package:lettutor/infrastructure/teacher/models/teacher_schedule_result.dart';
 import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
+import 'package:lettutor/infrastructure/user/models/user_model.dart';
 
 import '../infrastructure/authen/models/auth_result.dart';
 import '../infrastructure/course/models/course_detail.dart';
@@ -45,6 +48,15 @@ T _mapJsonToData<T>(Map<String, dynamic> json) {
       break;
     case Tutors:
       result = Tutors.fromJson(json);
+      break;
+    case UserModel:
+      result = UserModel.fromJson(json);
+      break;
+    case ListCoursesResult:
+      result = ListCoursesResult.fromJson(json);
+      break;
+    case TeacherScheduleResult:
+      result = TeacherScheduleResult.fromJson(json);
       break;
   }
   return result as T;

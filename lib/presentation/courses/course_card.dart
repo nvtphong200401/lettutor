@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../../core/presentation/common_styles/text_style.dart';
-import 'detail/course_info_screen.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard(
@@ -13,7 +12,8 @@ class CourseCard extends StatelessWidget {
       this.subtitle2,
       this.height = 340,
       this.width = 300,
-      this.imageHeight});
+      this.imageHeight,
+      this.onTap});
 
   final String imageUrl;
   final String title;
@@ -22,19 +22,18 @@ class CourseCard extends StatelessWidget {
   final double height;
   final double width;
   final double? imageHeight;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const CourseInfoScreen())),
+      onTap: onTap,
       child: Container(
         height: height,
         width: width,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

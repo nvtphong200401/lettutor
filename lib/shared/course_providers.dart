@@ -1,0 +1,25 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/application/courses/courses_notifier.dart';
+import 'package:lettutor/infrastructure/courses/course_repository.dart';
+import 'package:lettutor/infrastructure/courses/models/course_model.dart';
+import 'package:lettutor/shared/core_providers.dart';
+
+final courseRepoProvider = Provider.autoDispose<CourseRepository>((ref) {
+  return CourseRepository(ref.watch(authenticatedHttpService));
+});
+
+final coursesNotifierProvider =
+    StateNotifierProvider.autoDispose<CoursesNotifier, AsyncValue<List<CourseModel>>>((ref) {
+  return CoursesNotifier(ref.watch(courseRepoProvider));
+});
+
+final listCourseProvider =
+    Provider.autoDispose<List<CourseModel>>((ref) => ref.watch(coursesNotifierProvider).maybeWhen(
+          orElse: () => [],
+          data: (data) => data,
+        ));
+
+final courseInfoProvider = Provider.family
+    .autoDispose<CourseModel?, String>((ref, id) => ref.watch(listCourseProvider).firstWhere(
+          (element) => element.id == id,
+        ));

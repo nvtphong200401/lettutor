@@ -17,9 +17,9 @@ class BookingCard extends StatelessWidget {
   final List<ScheduleModel> schedules;
   @override
   Widget build(BuildContext context) {
-    final dayPass = DateTime.now().difference(date).inDays;
-    final scheduleInfo = schedules[0].scheduleDetailInfo?.scheduleInfo;
-    final tutorInfo = scheduleInfo?.tutorInfo;
+    final scheduleInfoFirst = schedules[0].scheduleDetailInfo?.scheduleInfo;
+    final scheduleInfoLast = schedules[schedules.length - 1].scheduleDetailInfo?.scheduleInfo;
+    final tutorInfo = scheduleInfoFirst?.tutorInfo;
     return GreyBoxContainer(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,7 +29,7 @@ class BookingCard extends StatelessWidget {
           style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
         ),
         Text(
-          dayPass > 0 ? '$dayPass day(s) ago' : '${schedules.length} Lesson',
+          '${schedules.length} Lesson',
           style: const TextStyle(fontStyle: FontStyle.italic),
         ),
         const SizedBox(
@@ -47,7 +47,8 @@ class BookingCard extends StatelessWidget {
         ),
         WhiteBoxContainer(
           child: CommonLessonTime(
-              startTime: scheduleInfo?.startTime ?? '', endTime: scheduleInfo?.endTime ?? ''),
+              startTime: scheduleInfoFirst?.startTime ?? '',
+              endTime: scheduleInfoLast?.endTime ?? ''),
         ),
         const SizedBox(
           height: 1,

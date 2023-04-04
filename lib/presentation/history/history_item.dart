@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/gen/colors.gen.dart';
-import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
+import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 import 'package:lettutor/presentation/history/rating_history.dart';
 import 'package:lettutor/presentation/teacher/teacher_info.dart';
 
@@ -11,22 +11,26 @@ import '../../core/presentation/common_styles/common_styles.dart';
 import '../teacher/detail/report_modal.dart';
 
 class HistoryItem extends StatelessWidget {
-  const HistoryItem({super.key});
+  const HistoryItem({super.key, required this.date, required this.schedules});
+  final DateTime date;
+  final List<ScheduleModel> schedules;
 
   @override
   Widget build(BuildContext context) {
-    final info = TutorDetail.init();
+    final scheduleInfoFirst = schedules[0].scheduleDetailInfo?.scheduleInfo;
+    final scheduleInfoLast = schedules[schedules.length - 1].scheduleDetailInfo?.scheduleInfo;
+    final info = scheduleInfoFirst?.tutorInfo;
 
     return GreyBoxContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            DateFormat('EEE, dd MMM yy').format(DateTime.now()),
+            DateFormat('EEE, dd MMM yy').format(date),
             style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
           ),
           Text(
-            '${DateTime.now().difference(DateTime(2023, 3, 5)).inDays} days ago',
+            '${DateTime.now().difference(date).inDays} days ago',
             style: const TextStyle(fontStyle: FontStyle.italic),
           ),
           const SizedBox(
@@ -34,15 +38,18 @@ class HistoryItem extends StatelessWidget {
           ),
           WhiteBoxContainer(
             child: TeacherInfo(
-              id: info.user.id,
-              avatar: info.user.avatar,
-              name: info.user.name,
+              id: info?.id ?? '',
+              avatar: info?.avatar ?? '',
+              name: info?.name ?? '',
             ),
           ),
           const SizedBox(
             height: 10,
           ),
-          const WhiteBoxContainer(child: CommonLessonTime(startTime: '08:30', endTime: '09:30')),
+          WhiteBoxContainer(
+              child: CommonLessonTime(
+                  startTime: scheduleInfoFirst?.startTime ?? '',
+                  endTime: scheduleInfoLast?.endTime ?? '')),
           const SizedBox(
             height: 1,
           ),
@@ -50,7 +57,7 @@ class HistoryItem extends StatelessWidget {
           const SizedBox(
             height: 1,
           ),
-          const WhiteBoxContainer(child: Text('Tutor haven\'t reviewed yet')),
+          WhiteBoxContainer(child: Text(schedules[0].tutorReview ?? 'Tutor haven\'t reviewed yet')),
           const SizedBox(
             height: 1,
           ),

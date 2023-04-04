@@ -3,6 +3,9 @@
 //     final paginatedTutors = paginatedTutorsFromJson(jsonString);
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:lettutor/infrastructure/teacher/models/teacher_schedule_result.dart';
+
+import 'tutor_detail_model.dart';
 
 part 'paginated_tutors.freezed.dart';
 part 'paginated_tutors.g.dart';
@@ -152,6 +155,8 @@ class TeacherModel with _$TeacherModel {
     int? price,
     bool? isOnline,
     bool? isFavorite,
+    List<ScheduleOfTutor>? schedules,
+    List<Course>? courses,
   }) = _TeacherModel;
 
   factory TeacherModel.fromJson(Map<String, dynamic> json) => _$TeacherModelFromJson(json);

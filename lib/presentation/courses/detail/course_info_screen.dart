@@ -1,22 +1,28 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_back_button.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 // import 'package:lettutor/core/presentation/common_widgets/common_sliver_appbar.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
+import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/shared/course_providers.dart';
 import '../../../core/presentation/common_widgets/common_sliver_appbar.dart';
 import 'course_flexible_spacebar.dart';
 import 'course_header.dart';
 import 'course_topic_item.dart';
 
-class CourseInfoScreen extends HookWidget {
-  const CourseInfoScreen({super.key});
+class CourseInfoScreen extends HookConsumerWidget {
+  const CourseInfoScreen({super.key, @pathParam required this.courseId});
+  final String courseId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useScrollController();
+    final course = ref.watch(courseInfoProvider(courseId));
     return DismissKeyboardScaffold(
       // appBar: const LeadingButtonAppBar(),
       body: CustomScrollView(
@@ -25,8 +31,7 @@ class CourseInfoScreen extends HookWidget {
           SliverAppBar(
               pinned: true,
               leading: const CommonBackButton(),
-              title:
-                  CommonSliverAppbarTitle(scrollController: scrollController),
+              title: CommonSliverAppbarTitle(scrollController: scrollController),
               expandedHeight: 390,
               collapsedHeight: 60,
               flexibleSpace: const CourseInfoFlexibleSpaceBar()),
@@ -35,30 +40,25 @@ class CourseInfoScreen extends HookWidget {
             sliver: SliverList(
                 delegate: SliverChildListDelegate([
               const CourseHeader(header: 'Overview'),
-              buildDescription('Why take this course',
-                  "It can be intimidating to speak with a foreigner, no matter how much grammar and vocabulary you've mastered. If you have basic knowledge of English but have not spent much time speaking, this course will help you ease into your first English conversations."),
-              buildDescription('What will you be able to do',
-                  "This course covers vocabulary at the CEFR A2 level. You will build confidence while learning to speak about a variety of common, everyday topics. In addition, you will build implicit grammar knowledge as your tutor models correct answers and corrects your mistakes."),
+              buildDescription('Why take this course', course?.reason ?? ''),
+              buildDescription('What will you be able to do', course?.purpose ?? ''),
               const CourseHeader(header: 'Experience Level'),
-              buildContent(Icons.people_outline_outlined, 'Beginner'),
+              buildContent(Icons.people_outline_outlined, course?.level ?? ''),
               const CourseHeader(header: 'Course Length'),
-              buildContent(Icons.book_outlined, '10 topics'),
+              buildContent(Icons.book_outlined, '${course?.topics?.length} topics'),
               const CourseHeader(header: 'List Topics'),
               const SizedBox(
-                height: 20,
-              ),
-              const TopicItem(topic: '1. Foods You Love'),
-              const SizedBox(
                 height: 10,
               ),
-              const TopicItem(topic: '2. Your Job'),
-              const SizedBox(
-                height: 10,
-              ),
-              const TopicItem(topic: '3. Playing and watching Sports'),
-              const SizedBox(
-                height: 100,
-              )
+              for (int i = 0; i < (course?.topics?.length ?? 0); ++i)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: TopicItem(
+                    topic: '${i + 1}. ${course?.topics?[i].name}',
+                    onPressed: () =>
+                        context.router.push(CourseDetailRoute(courseId: courseId, topicId: i)),
+                  ),
+                ),
             ])),
           )
         ],
@@ -99,8 +99,7 @@ class CourseInfoScreen extends HookWidget {
             ),
             Text(
               title,
-              style: CommonTextStyle.textSize16
-                  .copyWith(fontWeight: FontWeight.w500),
+              style: CommonTextStyle.textSize16.copyWith(fontWeight: FontWeight.w500),
             ),
           ]),
           Row(

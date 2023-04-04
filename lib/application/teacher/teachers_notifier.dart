@@ -45,10 +45,23 @@ class TeachersNotifier extends StateNotifier<TeachersState> {
 }
 
 class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
-  TutorDetailNotifier(this.tutor) : super(tutor);
+  TutorDetailNotifier(this.tutor, this._teacherRepository) : super(tutor) {
+    getSchedulesAndCourses();
+  }
   final TeacherModel? tutor;
+  final TeacherRepository _teacherRepository;
 
   Future updateFavorite() async {
     state = state?.copyWith(isFavorite: !(state?.isFavorite ?? false));
+  }
+
+  Future getSchedulesAndCourses() async {
+    final schedule = _teacherRepository.getTeacherSchedule(tutor?.userId ?? '');
+    final detail = _teacherRepository.getTutorDetail(tutor?.userId ?? '');
+    if (mounted) {
+      state = state?.copyWith(
+          courses: (await detail)?.user.courses,
+          schedules: (await schedule).fold((l) => [], (r) => r));
+    }
   }
 }

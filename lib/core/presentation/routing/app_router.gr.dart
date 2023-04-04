@@ -94,14 +94,32 @@ class _$AppRouter extends RootStackRouter {
         child: const CoursesScreen(),
       );
     },
+    CourseInfoRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<CourseInfoRouteArgs>(
+          orElse: () =>
+              CourseInfoRouteArgs(courseId: pathParams.getString('courseId')));
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: CourseInfoScreen(
+          key: args.key,
+          courseId: args.courseId,
+        ),
+      );
+    },
     CourseDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<CourseDetailRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<CourseDetailRouteArgs>(
+          orElse: () => CourseDetailRouteArgs(
+                courseId: pathParams.getString('courseId'),
+                topicId: pathParams.getInt('topicId'),
+              ));
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: CourseDetailScreen(
           key: args.key,
-          title: args.title,
-          courseUrl: args.courseUrl,
+          courseId: args.courseId,
+          topicId: args.topicId,
         ),
       );
     },
@@ -165,8 +183,13 @@ class _$AppRouter extends RootStackRouter {
                   parent: CoursesRouter.name,
                 ),
                 RouteConfig(
-                  CourseDetailRoute.name,
+                  CourseInfoRoute.name,
                   path: ':courseId',
+                  parent: CoursesRouter.name,
+                ),
+                RouteConfig(
+                  CourseDetailRoute.name,
+                  path: ':courseId/:topicId',
                   parent: CoursesRouter.name,
                 ),
               ],
@@ -339,20 +362,59 @@ class CoursesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CourseInfoScreen]
+class CourseInfoRoute extends PageRouteInfo<CourseInfoRouteArgs> {
+  CourseInfoRoute({
+    Key? key,
+    required String courseId,
+  }) : super(
+          CourseInfoRoute.name,
+          path: ':courseId',
+          args: CourseInfoRouteArgs(
+            key: key,
+            courseId: courseId,
+          ),
+          rawPathParams: {'courseId': courseId},
+        );
+
+  static const String name = 'CourseInfoRoute';
+}
+
+class CourseInfoRouteArgs {
+  const CourseInfoRouteArgs({
+    this.key,
+    required this.courseId,
+  });
+
+  final Key? key;
+
+  final String courseId;
+
+  @override
+  String toString() {
+    return 'CourseInfoRouteArgs{key: $key, courseId: $courseId}';
+  }
+}
+
+/// generated route for
 /// [CourseDetailScreen]
 class CourseDetailRoute extends PageRouteInfo<CourseDetailRouteArgs> {
   CourseDetailRoute({
     Key? key,
-    required String title,
-    required String courseUrl,
+    required String courseId,
+    required int topicId,
   }) : super(
           CourseDetailRoute.name,
-          path: ':courseId',
+          path: ':courseId/:topicId',
           args: CourseDetailRouteArgs(
             key: key,
-            title: title,
-            courseUrl: courseUrl,
+            courseId: courseId,
+            topicId: topicId,
           ),
+          rawPathParams: {
+            'courseId': courseId,
+            'topicId': topicId,
+          },
         );
 
   static const String name = 'CourseDetailRoute';
@@ -361,18 +423,18 @@ class CourseDetailRoute extends PageRouteInfo<CourseDetailRouteArgs> {
 class CourseDetailRouteArgs {
   const CourseDetailRouteArgs({
     this.key,
-    required this.title,
-    required this.courseUrl,
+    required this.courseId,
+    required this.topicId,
   });
 
   final Key? key;
 
-  final String title;
+  final String courseId;
 
-  final String courseUrl;
+  final int topicId;
 
   @override
   String toString() {
-    return 'CourseDetailRouteArgs{key: $key, title: $title, courseUrl: $courseUrl}';
+    return 'CourseDetailRouteArgs{key: $key, courseId: $courseId, topicId: $topicId}';
   }
 }
