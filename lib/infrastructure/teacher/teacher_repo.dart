@@ -3,9 +3,11 @@ import 'package:lettutor/core/infrastructure/failure.dart';
 import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_schedule_result.dart';
 import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
+import 'package:lettutor/infrastructure/teacher/params/book_class_param.dart';
 import 'package:lettutor/infrastructure/teacher/params/detail_teacher_param.dart';
 import 'package:lettutor/infrastructure/teacher/params/list_teacher_param.dart';
 import 'package:lettutor/infrastructure/teacher/params/search_teacher_param.dart';
+import 'package:lettutor/infrastructure/teacher/params/teacher_favorite_param.dart';
 import 'package:lettutor/infrastructure/teacher/params/teacher_schedule_param.dart';
 import 'package:lettutor/service/http_service.dart';
 
@@ -61,5 +63,16 @@ class TeacherRepository {
     final result = await _httpService.getData<TeacherScheduleResult>(TeacherScheduleParam(tutorId));
 
     return result.fold((l) => left(l), (r) => right(r.scheduleOfTutor ?? []));
+  }
+
+  Future<Either<Failure, Unit>> updateFavorite(String tutorId) async {
+    final result = await _httpService.postData<Unit>(ToggleFavoriteParam(tutorId));
+
+    return result;
+  }
+
+  Future<Either<Failure, Unit>> bookClass(String scheduleDetailId) async {
+    final result = await _httpService.postData<Unit>(BookClassParam(scheduleDetailId));
+    return result;
   }
 }

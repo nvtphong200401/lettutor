@@ -1,7 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lettutor/core/infrastructure/failure.dart';
 import 'package:lettutor/infrastructure/authen/auth_repository.dart';
 import 'package:lettutor/infrastructure/authen/models/auth_result.dart';
 
@@ -11,7 +9,7 @@ part 'auth_notifier.freezed.dart';
 class AuthState with _$AuthState {
   const AuthState._();
   const factory AuthState.unAuthenticated({String? message}) = _UnAuthenticated;
-  const factory AuthState.authenticated(AuthResult auth) = _Authenticated;
+  const factory AuthState.authenticated() = _Authenticated;
   const factory AuthState.authenticating() = _Authenticating;
 }
 
@@ -27,7 +25,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
     state = const AuthState.authenticating();
     final res = await _repo.login(email, password);
-    state = res.foldRight(state, (r, oldState) => AuthState.authenticated(r));
+    state = res.foldRight(state, (r, oldState) => const AuthState.authenticated());
     // return res;
+  }
+
+  void updateAuthState(AuthState newState) {
+    state = newState;
   }
 }

@@ -10,7 +10,8 @@ extension GroupByDate on List<ScheduleModel> {
   Map<DateTime, List<ScheduleModel>> groupByDate() {
     Map<DateTime, List<ScheduleModel>> group = {};
     for (var schedule in this) {
-      final date = schedule.scheduleDetailInfo?.scheduleInfo?.date ?? DateTime.now();
+      final date =
+          schedule.scheduleDetailInfo?.scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now();
       if (group.containsKey(date)) {
         group[date]?.add(schedule);
       } else {
@@ -68,3 +69,15 @@ extension GroupByCategory on List<CourseModel> {
     return group;
   }
 }
+
+extension IntToDateLocal on int? {
+  DateTime toLocal() {
+    return DateTime.fromMillisecondsSinceEpoch(this ?? 0);
+  }
+}
+
+// extension NullableIntToDateLocal on int? {
+//   DateTime toLocal() {
+//     return DateTime.fromMillisecondsSinceEpoch(this ?? 0);
+//   }
+// }

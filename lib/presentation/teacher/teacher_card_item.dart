@@ -56,11 +56,8 @@ class TeacherCardItem extends ConsumerWidget {
               alignment: Alignment.centerRight,
               child: ElevatedButton(
                 onPressed: () {
-                  debugPrint(context.router.stack.toString());
-                  // context.router.pushNamed('/detail/${info.id}');
                   context.pushRoute(
                       TeacherDetailRoute(teacherId: teacher.id!, key: ValueKey(teacher.id)));
-                  // context.router.push(TeacherDetailRoute(teacherId: info.id));
                 },
                 style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
                     capsuleShape: true,

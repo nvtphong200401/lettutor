@@ -40,8 +40,10 @@ class UpcommingLessonBoard extends StatelessWidget {
                 final firstScheduleInfo = upCommingLesson.value[0].scheduleDetailInfo?.scheduleInfo;
                 final lastScheduleInfo = upCommingLesson
                     .value[upCommingLesson.value.length - 1].scheduleDetailInfo?.scheduleInfo;
-                final startTime = DateFormat('HH:mm').parse(firstScheduleInfo?.startTime ?? '');
-                final endTime = DateFormat('HH:mm').parse(lastScheduleInfo?.endTime ?? '');
+                final startTime = DateFormat('HH:mm')
+                    .format(firstScheduleInfo?.startTimestamp?.toLocal() ?? DateTime.now());
+                final endTime = DateFormat('HH:mm')
+                    .format(lastScheduleInfo?.endTimestamp.toLocal() ?? DateTime.now());
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -69,7 +71,7 @@ class UpcommingLessonBoard extends StatelessWidget {
                                   height: 7,
                                 ),
                                 Text(
-                                  '${firstScheduleInfo?.startTime} - ${lastScheduleInfo?.endTime}',
+                                  '$startTime - $endTime',
                                   style: CommonTextStyle.textSize20,
                                 ),
                                 const SizedBox(
@@ -120,7 +122,7 @@ class UpcommingLessonBoard extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      'Total lesson time is ${endTime.difference(startTime).inHours} hours ${endTime.difference(startTime).inMinutes - endTime.difference(startTime).inHours * 60} minutes',
+                      'Total lesson time is 0 hours 55 minutes',
                       style: CommonTextStyle.textSize16.copyWith(color: Colors.white),
                     )
                   ],

@@ -52,6 +52,7 @@ class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
   final TeacherRepository _teacherRepository;
 
   Future updateFavorite() async {
+    _teacherRepository.updateFavorite(tutor?.userId ?? '');
     state = state?.copyWith(isFavorite: !(state?.isFavorite ?? false));
   }
 
@@ -63,5 +64,14 @@ class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
           courses: (await detail)?.user.courses,
           schedules: (await schedule).fold((l) => [], (r) => r));
     }
+  }
+
+  Future bookClass(String scheduleDetailId) async {
+    final schedule = await _teacherRepository.bookClass(scheduleDetailId);
+    state = schedule.fold((l) => state, (r) {
+      final newSchedules = [...(state?.schedules ?? [])];
+      newSchedules.removeWhere((element) => element.id == scheduleDetailId);
+      return state?.copyWith(schedules: newSchedules);
+    });
   }
 }

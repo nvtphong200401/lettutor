@@ -58,6 +58,10 @@ T _mapJsonToData<T>(Map<String, dynamic> json) {
     case TeacherScheduleResult:
       result = TeacherScheduleResult.fromJson(json);
       break;
+    case Unit:
+      log(json.toString());
+      result = unit;
+      break;
   }
   return result as T;
 }

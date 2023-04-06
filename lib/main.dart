@@ -6,7 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/shared/auth_providers.dart';
 import 'package:lettutor/shared/core_providers.dart';
+import 'package:lettutor/shared/user_providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late List<CameraDescription> cameras;
@@ -21,13 +23,32 @@ Future<void> main() async {
   ));
 }
 
-class MyApp extends HookWidget {
+class MyApp extends HookConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final appRouter = useMemoized(() => AppRouter());
+    ref.listen(userNotifierProvider, (_, user) {
+      user.when(
+          data: (data) => appRouter.pushAndPopUntil(const MyHomeRoute(), predicate: (_) => false),
+          error: (_, __) {
+            appRouter.replace(
+              const LoginRoute(),
+              // predicate: (_) => false,
+            );
+          },
+          loading: () {});
+    });
+    ref.listen(authNotifierProvider, (previous, next) {
+      next.maybeWhen(
+        orElse: () {},
+        authenticated: () {
+          ref.read(userNotifierProvider.notifier).getUserInfo();
+        },
+      );
+    });
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(

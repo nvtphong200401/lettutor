@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:lettutor/core/infrastructure/request_param.dart';
 
 class TeacherScheduleParam extends IParam {
@@ -9,7 +8,6 @@ class TeacherScheduleParam extends IParam {
 
   @override
   Map<String, dynamic>? get queryParam {
-    debugPrint('timestamp ${DateTime.now().millisecondsSinceEpoch}');
     return {
       'tutorId': tutorId,
       'startTimestamp': DateTime.now().millisecondsSinceEpoch,

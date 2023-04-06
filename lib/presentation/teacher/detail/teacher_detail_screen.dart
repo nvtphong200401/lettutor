@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -9,8 +7,10 @@ import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dar
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
+import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
+import 'package:lettutor/presentation/teacher/detail/book_dialog.dart';
 import 'package:lettutor/presentation/teacher/detail/report_modal.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_video.dart';
 import 'package:lettutor/shared/teacher_providers.dart';
@@ -155,7 +155,18 @@ class TeacherDetailScreen extends HookConsumerWidget {
                           color: ColorName.grey,
                           width: 0.5,
                           strokeAlign: BorderSide.strokeAlignCenter)),
-                  child: Center(child: buildSchedule(index, info?.schedules ?? [])),
+                  child: Center(
+                      child: buildSchedule(index, info?.schedules ?? [], (schedule) {
+                    showModalBottomSheet(
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+                        builder: (context) {
+                          // return const ReportModal();
+                          return BookDialog(schedule: schedule);
+                        });
+                  })),
                 ),
               ),
             )
@@ -165,7 +176,8 @@ class TeacherDetailScreen extends HookConsumerWidget {
     ));
   }
 
-  Widget buildSchedule(int index, List<ScheduleOfTutor> schedules) {
+  Widget buildSchedule(
+      int index, List<ScheduleOfTutor> schedules, void Function(ScheduleOfTutor) onBook) {
     final DateTime now = DateTime.now();
     final currDay = DateTime(now.year, now.month, now.day + index % 5 - 1);
 
@@ -184,9 +196,6 @@ class TeacherDetailScreen extends HookConsumerWidget {
     }
 
     final itemSchedule = scheduleTutor(_scheduleTime[index ~/ 5 - 1].startTime, currDay, schedules);
-    if (itemSchedule?.isBooked != null) {
-      log('$currDay - ${itemSchedule?.isBooked} - ${DateTime.fromMillisecondsSinceEpoch(itemSchedule?.startTimestamp ?? 0).toLocal()} - ${index ~/ 5 - 1}');
-    }
     if (itemSchedule?.isBooked ?? false) {
       return const Text(
         'Booked',
@@ -194,12 +203,19 @@ class TeacherDetailScreen extends HookConsumerWidget {
       );
     }
     if (itemSchedule?.isBooked == false) {
-      return TextButton(
-        onPressed: () {},
-        style: CommonButtonStyle.primaryButtonStyle.customCopyWith(),
-        child: const Text(
-          'Book',
-          style: TextStyle(color: Colors.white),
+      return GestureDetector(
+        onTap: () => onBook(itemSchedule!),
+        child: Container(
+          decoration: BoxDecoration(
+            color: ColorName.primary,
+            border: Border.all(color: Colors.blue),
+            borderRadius: BorderRadius.circular(100),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+          child: Text(
+            'Book',
+            style: CommonTextStyle.textSize14.copyWith(color: Colors.white),
+          ),
         ),
       );
     }
@@ -209,8 +225,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
   ScheduleOfTutor? scheduleTutor(
       String startTimeRow, DateTime dateColumn, List<ScheduleOfTutor> schedules) {
     final index = schedules.indexWhere((element) {
-      final scheduleDate =
-          DateTime.fromMillisecondsSinceEpoch(element.startTimestamp ?? 0).toLocal();
+      final scheduleDate = element.startTimestamp.toLocal();
       return DateFormat('YYYY-MM-DD').format(scheduleDate) ==
               DateFormat('YYYY-MM-DD').format(dateColumn) &&
           DateFormat('HH:mm').format(scheduleDate) == startTimeRow;
