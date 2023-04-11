@@ -14,3 +14,4 @@ const levelList = [
   'ADVANCED',
   'PROFICIENCY',
 ];
+const baseUrl = 'https://sandbox.api.lettutor.com/';

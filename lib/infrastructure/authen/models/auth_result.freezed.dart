@@ -369,8 +369,8 @@ Access _$AccessFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Access {
-  String get token => throw _privateConstructorUsedError;
-  String get expires => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  String? get expires => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -382,7 +382,7 @@ abstract class $AccessCopyWith<$Res> {
   factory $AccessCopyWith(Access value, $Res Function(Access) then) =
       _$AccessCopyWithImpl<$Res, Access>;
   @useResult
-  $Res call({String token, String expires});
+  $Res call({String? token, String? expires});
 }
 
 /// @nodoc
@@ -398,18 +398,18 @@ class _$AccessCopyWithImpl<$Res, $Val extends Access>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
-    Object? expires = null,
+    Object? token = freezed,
+    Object? expires = freezed,
   }) {
     return _then(_value.copyWith(
-      token: null == token
+      token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      expires: null == expires
+              as String?,
+      expires: freezed == expires
           ? _value.expires
           : expires // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -420,7 +420,7 @@ abstract class _$$_AccessCopyWith<$Res> implements $AccessCopyWith<$Res> {
       __$$_AccessCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token, String expires});
+  $Res call({String? token, String? expires});
 }
 
 /// @nodoc
@@ -433,18 +433,18 @@ class __$$_AccessCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
-    Object? expires = null,
+    Object? token = freezed,
+    Object? expires = freezed,
   }) {
     return _then(_$_Access(
-      token: null == token
+      token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      expires: null == expires
+              as String?,
+      expires: freezed == expires
           ? _value.expires
           : expires // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -452,15 +452,15 @@ class __$$_AccessCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Access implements _Access {
-  const _$_Access({required this.token, required this.expires});
+  const _$_Access({this.token, this.expires});
 
   factory _$_Access.fromJson(Map<String, dynamic> json) =>
       _$$_AccessFromJson(json);
 
   @override
-  final String token;
+  final String? token;
   @override
-  final String expires;
+  final String? expires;
 
   @override
   String toString() {
@@ -495,15 +495,15 @@ class _$_Access implements _Access {
 }
 
 abstract class _Access implements Access {
-  const factory _Access(
-      {required final String token, required final String expires}) = _$_Access;
+  const factory _Access({final String? token, final String? expires}) =
+      _$_Access;
 
   factory _Access.fromJson(Map<String, dynamic> json) = _$_Access.fromJson;
 
   @override
-  String get token;
+  String? get token;
   @override
-  String get expires;
+  String? get expires;
   @override
   @JsonKey(ignore: true)
   _$$_AccessCopyWith<_$_Access> get copyWith =>
@@ -516,26 +516,26 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  String get id => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get avatar => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  List<String> get roles => throw _privateConstructorUsedError;
-  dynamic get language => throw _privateConstructorUsedError;
-  String get birthday => throw _privateConstructorUsedError;
-  bool get isActivated => throw _privateConstructorUsedError;
-  WalletInfo get walletInfo => throw _privateConstructorUsedError;
-  List<dynamic> get courses => throw _privateConstructorUsedError;
-  String get requireNote => throw _privateConstructorUsedError;
-  String get level => throw _privateConstructorUsedError;
-  List<dynamic> get learnTopics => throw _privateConstructorUsedError;
-  List<dynamic> get testPreparations => throw _privateConstructorUsedError;
-  bool get isPhoneActivated => throw _privateConstructorUsedError;
-  int get timezone => throw _privateConstructorUsedError;
-  dynamic get studySchedule => throw _privateConstructorUsedError;
-  bool get canSendMessage => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  List<String>? get roles => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  String? get birthday => throw _privateConstructorUsedError;
+  bool? get isActivated => throw _privateConstructorUsedError;
+  WalletInfo? get walletInfo => throw _privateConstructorUsedError;
+  List<String>? get courses => throw _privateConstructorUsedError;
+  String? get requireNote => throw _privateConstructorUsedError;
+  String? get level => throw _privateConstructorUsedError;
+  List<dynamic>? get learnTopics => throw _privateConstructorUsedError;
+  List<String>? get testPreparations => throw _privateConstructorUsedError;
+  bool? get isPhoneActivated => throw _privateConstructorUsedError;
+  int? get timezone => throw _privateConstructorUsedError;
+  String? get studySchedule => throw _privateConstructorUsedError;
+  bool? get canSendMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -548,28 +548,28 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {String id,
-      String email,
-      String name,
-      String avatar,
-      String country,
-      String phone,
-      List<String> roles,
-      dynamic language,
-      String birthday,
-      bool isActivated,
-      WalletInfo walletInfo,
-      List<dynamic> courses,
-      String requireNote,
-      String level,
-      List<dynamic> learnTopics,
-      List<dynamic> testPreparations,
-      bool isPhoneActivated,
-      int timezone,
-      dynamic studySchedule,
-      bool canSendMessage});
+      {String? id,
+      String? email,
+      String? name,
+      String? avatar,
+      String? country,
+      String? phone,
+      List<String>? roles,
+      String? language,
+      String? birthday,
+      bool? isActivated,
+      WalletInfo? walletInfo,
+      List<String>? courses,
+      String? requireNote,
+      String? level,
+      List<dynamic>? learnTopics,
+      List<String>? testPreparations,
+      bool? isPhoneActivated,
+      int? timezone,
+      String? studySchedule,
+      bool? canSendMessage});
 
-  $WalletInfoCopyWith<$Res> get walletInfo;
+  $WalletInfoCopyWith<$Res>? get walletInfo;
 }
 
 /// @nodoc
@@ -585,115 +585,119 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? email = null,
-    Object? name = null,
-    Object? avatar = null,
-    Object? country = null,
-    Object? phone = null,
-    Object? roles = null,
+    Object? id = freezed,
+    Object? email = freezed,
+    Object? name = freezed,
+    Object? avatar = freezed,
+    Object? country = freezed,
+    Object? phone = freezed,
+    Object? roles = freezed,
     Object? language = freezed,
-    Object? birthday = null,
-    Object? isActivated = null,
-    Object? walletInfo = null,
-    Object? courses = null,
-    Object? requireNote = null,
-    Object? level = null,
-    Object? learnTopics = null,
-    Object? testPreparations = null,
-    Object? isPhoneActivated = null,
-    Object? timezone = null,
+    Object? birthday = freezed,
+    Object? isActivated = freezed,
+    Object? walletInfo = freezed,
+    Object? courses = freezed,
+    Object? requireNote = freezed,
+    Object? level = freezed,
+    Object? learnTopics = freezed,
+    Object? testPreparations = freezed,
+    Object? isPhoneActivated = freezed,
+    Object? timezone = freezed,
     Object? studySchedule = freezed,
-    Object? canSendMessage = null,
+    Object? canSendMessage = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
+              as String?,
+      avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      roles: null == roles
+              as String?,
+      roles: freezed == roles
           ? _value.roles
           : roles // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      isActivated: null == isActivated
+              as String?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      walletInfo: null == walletInfo
+              as bool?,
+      walletInfo: freezed == walletInfo
           ? _value.walletInfo
           : walletInfo // ignore: cast_nullable_to_non_nullable
-              as WalletInfo,
-      courses: null == courses
+              as WalletInfo?,
+      courses: freezed == courses
           ? _value.courses
           : courses // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      requireNote: null == requireNote
+              as List<String>?,
+      requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
-              as String,
-      level: null == level
+              as String?,
+      level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String,
-      learnTopics: null == learnTopics
+              as String?,
+      learnTopics: freezed == learnTopics
           ? _value.learnTopics
           : learnTopics // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      testPreparations: null == testPreparations
+              as List<dynamic>?,
+      testPreparations: freezed == testPreparations
           ? _value.testPreparations
           : testPreparations // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      isPhoneActivated: null == isPhoneActivated
+              as List<String>?,
+      isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      timezone: null == timezone
+              as bool?,
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       studySchedule: freezed == studySchedule
           ? _value.studySchedule
           : studySchedule // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      canSendMessage: null == canSendMessage
+              as String?,
+      canSendMessage: freezed == canSendMessage
           ? _value.canSendMessage
           : canSendMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $WalletInfoCopyWith<$Res> get walletInfo {
-    return $WalletInfoCopyWith<$Res>(_value.walletInfo, (value) {
+  $WalletInfoCopyWith<$Res>? get walletInfo {
+    if (_value.walletInfo == null) {
+      return null;
+    }
+
+    return $WalletInfoCopyWith<$Res>(_value.walletInfo!, (value) {
       return _then(_value.copyWith(walletInfo: value) as $Val);
     });
   }
@@ -706,29 +710,29 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String email,
-      String name,
-      String avatar,
-      String country,
-      String phone,
-      List<String> roles,
-      dynamic language,
-      String birthday,
-      bool isActivated,
-      WalletInfo walletInfo,
-      List<dynamic> courses,
-      String requireNote,
-      String level,
-      List<dynamic> learnTopics,
-      List<dynamic> testPreparations,
-      bool isPhoneActivated,
-      int timezone,
-      dynamic studySchedule,
-      bool canSendMessage});
+      {String? id,
+      String? email,
+      String? name,
+      String? avatar,
+      String? country,
+      String? phone,
+      List<String>? roles,
+      String? language,
+      String? birthday,
+      bool? isActivated,
+      WalletInfo? walletInfo,
+      List<String>? courses,
+      String? requireNote,
+      String? level,
+      List<dynamic>? learnTopics,
+      List<String>? testPreparations,
+      bool? isPhoneActivated,
+      int? timezone,
+      String? studySchedule,
+      bool? canSendMessage});
 
   @override
-  $WalletInfoCopyWith<$Res> get walletInfo;
+  $WalletInfoCopyWith<$Res>? get walletInfo;
 }
 
 /// @nodoc
@@ -740,108 +744,108 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? email = null,
-    Object? name = null,
-    Object? avatar = null,
-    Object? country = null,
-    Object? phone = null,
-    Object? roles = null,
+    Object? id = freezed,
+    Object? email = freezed,
+    Object? name = freezed,
+    Object? avatar = freezed,
+    Object? country = freezed,
+    Object? phone = freezed,
+    Object? roles = freezed,
     Object? language = freezed,
-    Object? birthday = null,
-    Object? isActivated = null,
-    Object? walletInfo = null,
-    Object? courses = null,
-    Object? requireNote = null,
-    Object? level = null,
-    Object? learnTopics = null,
-    Object? testPreparations = null,
-    Object? isPhoneActivated = null,
-    Object? timezone = null,
+    Object? birthday = freezed,
+    Object? isActivated = freezed,
+    Object? walletInfo = freezed,
+    Object? courses = freezed,
+    Object? requireNote = freezed,
+    Object? level = freezed,
+    Object? learnTopics = freezed,
+    Object? testPreparations = freezed,
+    Object? isPhoneActivated = freezed,
+    Object? timezone = freezed,
     Object? studySchedule = freezed,
-    Object? canSendMessage = null,
+    Object? canSendMessage = freezed,
   }) {
     return _then(_$_User(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
+              as String?,
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
+              as String?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
+              as String?,
+      avatar: freezed == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
+              as String?,
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      roles: null == roles
+              as String?,
+      roles: freezed == roles
           ? _value._roles
           : roles // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      birthday: null == birthday
+              as String?,
+      birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as String,
-      isActivated: null == isActivated
+              as String?,
+      isActivated: freezed == isActivated
           ? _value.isActivated
           : isActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      walletInfo: null == walletInfo
+              as bool?,
+      walletInfo: freezed == walletInfo
           ? _value.walletInfo
           : walletInfo // ignore: cast_nullable_to_non_nullable
-              as WalletInfo,
-      courses: null == courses
+              as WalletInfo?,
+      courses: freezed == courses
           ? _value._courses
           : courses // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      requireNote: null == requireNote
+              as List<String>?,
+      requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
-              as String,
-      level: null == level
+              as String?,
+      level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as String,
-      learnTopics: null == learnTopics
+              as String?,
+      learnTopics: freezed == learnTopics
           ? _value._learnTopics
           : learnTopics // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      testPreparations: null == testPreparations
+              as List<dynamic>?,
+      testPreparations: freezed == testPreparations
           ? _value._testPreparations
           : testPreparations // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      isPhoneActivated: null == isPhoneActivated
+              as List<String>?,
+      isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
-              as bool,
-      timezone: null == timezone
+              as bool?,
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       studySchedule: freezed == studySchedule
           ? _value.studySchedule
           : studySchedule // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      canSendMessage: null == canSendMessage
+              as String?,
+      canSendMessage: freezed == canSendMessage
           ? _value.canSendMessage
           : canSendMessage // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -850,26 +854,26 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 @JsonSerializable()
 class _$_User implements _User {
   const _$_User(
-      {required this.id,
-      required this.email,
-      required this.name,
-      required this.avatar,
-      required this.country,
-      required this.phone,
-      required final List<String> roles,
-      required this.language,
-      required this.birthday,
-      required this.isActivated,
-      required this.walletInfo,
-      required final List<dynamic> courses,
-      required this.requireNote,
-      required this.level,
-      required final List<dynamic> learnTopics,
-      required final List<dynamic> testPreparations,
-      required this.isPhoneActivated,
-      required this.timezone,
-      required this.studySchedule,
-      required this.canSendMessage})
+      {this.id,
+      this.email,
+      this.name,
+      this.avatar,
+      this.country,
+      this.phone,
+      final List<String>? roles,
+      this.language,
+      this.birthday,
+      this.isActivated,
+      this.walletInfo,
+      final List<String>? courses,
+      this.requireNote,
+      this.level,
+      final List<dynamic>? learnTopics,
+      final List<String>? testPreparations,
+      this.isPhoneActivated,
+      this.timezone,
+      this.studySchedule,
+      this.canSendMessage})
       : _roles = roles,
         _courses = courses,
         _learnTopics = learnTopics,
@@ -878,70 +882,78 @@ class _$_User implements _User {
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String email;
+  final String? email;
   @override
-  final String name;
+  final String? name;
   @override
-  final String avatar;
+  final String? avatar;
   @override
-  final String country;
+  final String? country;
   @override
-  final String phone;
-  final List<String> _roles;
+  final String? phone;
+  final List<String>? _roles;
   @override
-  List<String> get roles {
+  List<String>? get roles {
+    final value = _roles;
+    if (value == null) return null;
     if (_roles is EqualUnmodifiableListView) return _roles;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_roles);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final dynamic language;
+  final String? language;
   @override
-  final String birthday;
+  final String? birthday;
   @override
-  final bool isActivated;
+  final bool? isActivated;
   @override
-  final WalletInfo walletInfo;
-  final List<dynamic> _courses;
+  final WalletInfo? walletInfo;
+  final List<String>? _courses;
   @override
-  List<dynamic> get courses {
+  List<String>? get courses {
+    final value = _courses;
+    if (value == null) return null;
     if (_courses is EqualUnmodifiableListView) return _courses;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_courses);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final String requireNote;
+  final String? requireNote;
   @override
-  final String level;
-  final List<dynamic> _learnTopics;
+  final String? level;
+  final List<dynamic>? _learnTopics;
   @override
-  List<dynamic> get learnTopics {
+  List<dynamic>? get learnTopics {
+    final value = _learnTopics;
+    if (value == null) return null;
     if (_learnTopics is EqualUnmodifiableListView) return _learnTopics;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_learnTopics);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<dynamic> _testPreparations;
+  final List<String>? _testPreparations;
   @override
-  List<dynamic> get testPreparations {
+  List<String>? get testPreparations {
+    final value = _testPreparations;
+    if (value == null) return null;
     if (_testPreparations is EqualUnmodifiableListView)
       return _testPreparations;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_testPreparations);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  final bool isPhoneActivated;
+  final bool? isPhoneActivated;
   @override
-  final int timezone;
+  final int? timezone;
   @override
-  final dynamic studySchedule;
+  final String? studySchedule;
   @override
-  final bool canSendMessage;
+  final bool? canSendMessage;
 
   @override
   String toString() {
@@ -960,7 +972,8 @@ class _$_User implements _User {
             (identical(other.country, country) || other.country == country) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             const DeepCollectionEquality().equals(other._roles, _roles) &&
-            const DeepCollectionEquality().equals(other.language, language) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
             (identical(other.birthday, birthday) ||
                 other.birthday == birthday) &&
             (identical(other.isActivated, isActivated) ||
@@ -979,8 +992,8 @@ class _$_User implements _User {
                 other.isPhoneActivated == isPhoneActivated) &&
             (identical(other.timezone, timezone) ||
                 other.timezone == timezone) &&
-            const DeepCollectionEquality()
-                .equals(other.studySchedule, studySchedule) &&
+            (identical(other.studySchedule, studySchedule) ||
+                other.studySchedule == studySchedule) &&
             (identical(other.canSendMessage, canSendMessage) ||
                 other.canSendMessage == canSendMessage));
   }
@@ -996,7 +1009,7 @@ class _$_User implements _User {
         country,
         phone,
         const DeepCollectionEquality().hash(_roles),
-        const DeepCollectionEquality().hash(language),
+        language,
         birthday,
         isActivated,
         walletInfo,
@@ -1007,7 +1020,7 @@ class _$_User implements _User {
         const DeepCollectionEquality().hash(_testPreparations),
         isPhoneActivated,
         timezone,
-        const DeepCollectionEquality().hash(studySchedule),
+        studySchedule,
         canSendMessage
       ]);
 
@@ -1027,69 +1040,69 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final String id,
-      required final String email,
-      required final String name,
-      required final String avatar,
-      required final String country,
-      required final String phone,
-      required final List<String> roles,
-      required final dynamic language,
-      required final String birthday,
-      required final bool isActivated,
-      required final WalletInfo walletInfo,
-      required final List<dynamic> courses,
-      required final String requireNote,
-      required final String level,
-      required final List<dynamic> learnTopics,
-      required final List<dynamic> testPreparations,
-      required final bool isPhoneActivated,
-      required final int timezone,
-      required final dynamic studySchedule,
-      required final bool canSendMessage}) = _$_User;
+      {final String? id,
+      final String? email,
+      final String? name,
+      final String? avatar,
+      final String? country,
+      final String? phone,
+      final List<String>? roles,
+      final String? language,
+      final String? birthday,
+      final bool? isActivated,
+      final WalletInfo? walletInfo,
+      final List<String>? courses,
+      final String? requireNote,
+      final String? level,
+      final List<dynamic>? learnTopics,
+      final List<String>? testPreparations,
+      final bool? isPhoneActivated,
+      final int? timezone,
+      final String? studySchedule,
+      final bool? canSendMessage}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
-  String get email;
+  String? get email;
   @override
-  String get name;
+  String? get name;
   @override
-  String get avatar;
+  String? get avatar;
   @override
-  String get country;
+  String? get country;
   @override
-  String get phone;
+  String? get phone;
   @override
-  List<String> get roles;
+  List<String>? get roles;
   @override
-  dynamic get language;
+  String? get language;
   @override
-  String get birthday;
+  String? get birthday;
   @override
-  bool get isActivated;
+  bool? get isActivated;
   @override
-  WalletInfo get walletInfo;
+  WalletInfo? get walletInfo;
   @override
-  List<dynamic> get courses;
+  List<String>? get courses;
   @override
-  String get requireNote;
+  String? get requireNote;
   @override
-  String get level;
+  String? get level;
   @override
-  List<dynamic> get learnTopics;
+  List<dynamic>? get learnTopics;
   @override
-  List<dynamic> get testPreparations;
+  List<String>? get testPreparations;
   @override
-  bool get isPhoneActivated;
+  bool? get isPhoneActivated;
   @override
-  int get timezone;
+  int? get timezone;
   @override
-  dynamic get studySchedule;
+  String? get studySchedule;
   @override
-  bool get canSendMessage;
+  bool? get canSendMessage;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
@@ -1101,12 +1114,12 @@ WalletInfo _$WalletInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WalletInfo {
-  String get id => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  String get amount => throw _privateConstructorUsedError;
-  bool get isBlocked => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get updatedAt => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
+  String? get amount => throw _privateConstructorUsedError;
+  bool? get isBlocked => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
   int get bonus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1122,12 +1135,12 @@ abstract class $WalletInfoCopyWith<$Res> {
       _$WalletInfoCopyWithImpl<$Res, WalletInfo>;
   @useResult
   $Res call(
-      {String id,
-      String userId,
-      String amount,
-      bool isBlocked,
-      String createdAt,
-      String updatedAt,
+      {String? id,
+      String? userId,
+      String? amount,
+      bool? isBlocked,
+      String? createdAt,
+      String? updatedAt,
       int bonus});
 }
 
@@ -1144,39 +1157,39 @@ class _$WalletInfoCopyWithImpl<$Res, $Val extends WalletInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? userId = null,
-    Object? amount = null,
-    Object? isBlocked = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? amount = freezed,
+    Object? isBlocked = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? bonus = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
+              as String?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
+              as String?,
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      isBlocked: null == isBlocked
+              as String?,
+      isBlocked: freezed == isBlocked
           ? _value.isBlocked
           : isBlocked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      createdAt: null == createdAt
+              as bool?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       bonus: null == bonus
           ? _value.bonus
           : bonus // ignore: cast_nullable_to_non_nullable
@@ -1194,12 +1207,12 @@ abstract class _$$_WalletInfoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String userId,
-      String amount,
-      bool isBlocked,
-      String createdAt,
-      String updatedAt,
+      {String? id,
+      String? userId,
+      String? amount,
+      bool? isBlocked,
+      String? createdAt,
+      String? updatedAt,
       int bonus});
 }
 
@@ -1214,39 +1227,39 @@ class __$$_WalletInfoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? userId = null,
-    Object? amount = null,
-    Object? isBlocked = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? amount = freezed,
+    Object? isBlocked = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? bonus = null,
   }) {
     return _then(_$_WalletInfo(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
+              as String?,
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
+              as String?,
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      isBlocked: null == isBlocked
+              as String?,
+      isBlocked: freezed == isBlocked
           ? _value.isBlocked
           : isBlocked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      createdAt: null == createdAt
+              as bool?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       bonus: null == bonus
           ? _value.bonus
           : bonus // ignore: cast_nullable_to_non_nullable
@@ -1259,29 +1272,29 @@ class __$$_WalletInfoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_WalletInfo implements _WalletInfo {
   const _$_WalletInfo(
-      {required this.id,
-      required this.userId,
-      required this.amount,
-      required this.isBlocked,
-      required this.createdAt,
-      required this.updatedAt,
+      {this.id,
+      this.userId,
+      this.amount,
+      this.isBlocked,
+      this.createdAt,
+      this.updatedAt,
       required this.bonus});
 
   factory _$_WalletInfo.fromJson(Map<String, dynamic> json) =>
       _$$_WalletInfoFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String userId;
+  final String? userId;
   @override
-  final String amount;
+  final String? amount;
   @override
-  final bool isBlocked;
+  final bool? isBlocked;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
   @override
   final int bonus;
 
@@ -1328,29 +1341,29 @@ class _$_WalletInfo implements _WalletInfo {
 
 abstract class _WalletInfo implements WalletInfo {
   const factory _WalletInfo(
-      {required final String id,
-      required final String userId,
-      required final String amount,
-      required final bool isBlocked,
-      required final String createdAt,
-      required final String updatedAt,
+      {final String? id,
+      final String? userId,
+      final String? amount,
+      final bool? isBlocked,
+      final String? createdAt,
+      final String? updatedAt,
       required final int bonus}) = _$_WalletInfo;
 
   factory _WalletInfo.fromJson(Map<String, dynamic> json) =
       _$_WalletInfo.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
-  String get userId;
+  String? get userId;
   @override
-  String get amount;
+  String? get amount;
   @override
-  bool get isBlocked;
+  bool? get isBlocked;
   @override
-  String get createdAt;
+  String? get createdAt;
   @override
-  String get updatedAt;
+  String? get updatedAt;
   @override
   int get bonus;
   @override

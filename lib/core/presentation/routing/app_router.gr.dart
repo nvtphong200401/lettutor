@@ -28,9 +28,15 @@ class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: const LoginScreen(),
         transitionsBuilder: TransitionsBuilders.fadeIn,
-        durationInMilliseconds: 1000,
+        durationInMilliseconds: 500,
         opaque: true,
         barrierDismissible: false,
+      );
+    },
+    ForgotPasswordRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ForgotPasswordScreen(),
       );
     },
     MyHomeRoute.name: (routeData) {
@@ -43,12 +49,6 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const UserProfileScreen(),
-      );
-    },
-    StreamRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const StreamScreen(),
       );
     },
     ListTeacherRouter.name: (routeData) {
@@ -148,6 +148,10 @@ class _$AppRouter extends RootStackRouter {
           path: '/login',
         ),
         RouteConfig(
+          ForgotPasswordRoute.name,
+          path: 'password',
+        ),
+        RouteConfig(
           MyHomeRoute.name,
           path: '/home',
           children: [
@@ -206,10 +210,6 @@ class _$AppRouter extends RootStackRouter {
           UserProfileRoute.name,
           path: 'user-profile',
         ),
-        RouteConfig(
-          StreamRoute.name,
-          path: 'call',
-        ),
       ];
 }
 
@@ -238,6 +238,18 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ForgotPasswordScreen]
+class ForgotPasswordRoute extends PageRouteInfo<void> {
+  const ForgotPasswordRoute()
+      : super(
+          ForgotPasswordRoute.name,
+          path: 'password',
+        );
+
+  static const String name = 'ForgotPasswordRoute';
+}
+
+/// generated route for
 /// [MyHomePage]
 class MyHomeRoute extends PageRouteInfo<void> {
   const MyHomeRoute({List<PageRouteInfo>? children})
@@ -260,18 +272,6 @@ class UserProfileRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'UserProfileRoute';
-}
-
-/// generated route for
-/// [StreamScreen]
-class StreamRoute extends PageRouteInfo<void> {
-  const StreamRoute()
-      : super(
-          StreamRoute.name,
-          path: 'call',
-        );
-
-  static const String name = 'StreamRoute';
 }
 
 /// generated route for

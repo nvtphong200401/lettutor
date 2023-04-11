@@ -6,19 +6,22 @@ part of 'paginated_tutors.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PaginatedTutors _$$_PaginatedTutorsFromJson(Map<String, dynamic> json) => _$_PaginatedTutors(
+_$_PaginatedTutors _$$_PaginatedTutorsFromJson(Map<String, dynamic> json) =>
+    _$_PaginatedTutors(
       tutors: Tutors.fromJson(json['tutors'] as Map<String, dynamic>),
       favoriteTutor: (json['favoriteTutor'] as List<dynamic>)
           .map((e) => FavoriteTutor.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_PaginatedTutorsToJson(_$_PaginatedTutors instance) => <String, dynamic>{
+Map<String, dynamic> _$$_PaginatedTutorsToJson(_$_PaginatedTutors instance) =>
+    <String, dynamic>{
       'tutors': instance.tutors,
       'favoriteTutor': instance.favoriteTutor,
     };
 
-_$_FavoriteTutor _$$_FavoriteTutorFromJson(Map<String, dynamic> json) => _$_FavoriteTutor(
+_$_FavoriteTutor _$$_FavoriteTutorFromJson(Map<String, dynamic> json) =>
+    _$_FavoriteTutor(
       id: json['id'] as String,
       firstId: json['firstId'] as String?,
       secondId: json['secondId'] as String?,
@@ -29,7 +32,8 @@ _$_FavoriteTutor _$$_FavoriteTutorFromJson(Map<String, dynamic> json) => _$_Favo
           : SecondInfo.fromJson(json['secondInfo'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_FavoriteTutorToJson(_$_FavoriteTutor instance) => <String, dynamic>{
+Map<String, dynamic> _$$_FavoriteTutorToJson(_$_FavoriteTutor instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'firstId': instance.firstId,
       'secondId': instance.secondId,
@@ -38,7 +42,8 @@ Map<String, dynamic> _$$_FavoriteTutorToJson(_$_FavoriteTutor instance) => <Stri
       'secondInfo': instance.secondInfo,
     };
 
-_$_SecondInfo _$$_SecondInfoFromJson(Map<String, dynamic> json) => _$_SecondInfo(
+_$_SecondInfo _$$_SecondInfoFromJson(Map<String, dynamic> json) =>
+    _$_SecondInfo(
       id: json['id'] as String?,
       level: json['level'] as String?,
       email: json['email'] as String?,
@@ -50,7 +55,9 @@ _$_SecondInfo _$$_SecondInfoFromJson(Map<String, dynamic> json) => _$_SecondInfo
       country: json['country'] as String?,
       phone: json['phone'] as String?,
       language: json['language'] as String?,
-      birthday: json['birthday'] == null ? null : DateTime.parse(json['birthday'] as String),
+      birthday: json['birthday'] == null
+          ? null
+          : DateTime.parse(json['birthday'] as String),
       requestPassword: json['requestPassword'] as bool?,
       isActivated: json['isActivated'] as bool?,
       isPhoneActivated: json['isPhoneActivated'] as String?,
@@ -69,7 +76,8 @@ _$_SecondInfo _$$_SecondInfoFromJson(Map<String, dynamic> json) => _$_SecondInfo
       tutorInfo: TutorInfo.fromJson(json['tutorInfo'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_SecondInfoToJson(_$_SecondInfo instance) => <String, dynamic>{
+Map<String, dynamic> _$$_SecondInfoToJson(_$_SecondInfo instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'level': instance.level,
       'email': instance.email,
@@ -121,7 +129,8 @@ _$_TutorInfo _$$_TutorInfoFromJson(Map<String, dynamic> json) => _$_TutorInfo(
       updatedAt: json['updatedAt'] as String?,
     );
 
-Map<String, dynamic> _$$_TutorInfoToJson(_$_TutorInfo instance) => <String, dynamic>{
+Map<String, dynamic> _$$_TutorInfoToJson(_$_TutorInfo instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'video': instance.video,
@@ -154,7 +163,8 @@ Map<String, dynamic> _$$_TutorsToJson(_$_Tutors instance) => <String, dynamic>{
       'rows': instance.rows,
     };
 
-_$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) => _$_TeacherModel(
+_$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) =>
+    _$_TeacherModel(
       level: json['level'] as String?,
       email: json['email'] as String?,
       google: json['google'] as String?,
@@ -211,7 +221,8 @@ _$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) => _$_Teache
           .toList(),
     );
 
-Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) => <String, dynamic>{
+Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) =>
+    <String, dynamic>{
       'level': instance.level,
       'email': instance.email,
       'google': instance.google,
@@ -261,7 +272,8 @@ Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) => <String
       'courses': instance.courses,
     };
 
-_$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
+_$_FeedbackModel _$$_FeedbackModelFromJson(Map<String, dynamic> json) =>
+    _$_FeedbackModel(
       id: json['id'] as String,
       bookingId: json['bookingId'] as String?,
       firstId: json['firstId'] as String?,
@@ -275,7 +287,8 @@ _$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
           : FirstInfo.fromJson(json['firstInfo'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_FeedbackToJson(_$_Feedback instance) => <String, dynamic>{
+Map<String, dynamic> _$$_FeedbackModelToJson(_$_FeedbackModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'bookingId': instance.bookingId,
       'firstId': instance.firstId,
@@ -316,7 +329,8 @@ _$_FirstInfo _$$_FirstInfoFromJson(Map<String, dynamic> json) => _$_FirstInfo(
       studentGroupId: json['studentGroupId'] as String?,
     );
 
-Map<String, dynamic> _$$_FirstInfoToJson(_$_FirstInfo instance) => <String, dynamic>{
+Map<String, dynamic> _$$_FirstInfoToJson(_$_FirstInfo instance) =>
+    <String, dynamic>{
       'level': instance.level,
       'email': instance.email,
       'google': instance.google,

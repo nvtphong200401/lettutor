@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/main.dart';
+import 'package:lettutor/presentation/authen/forgot_password_screen.dart';
 import 'package:lettutor/presentation/authen/login_screen.dart';
 import 'package:lettutor/presentation/authen/splash_screen.dart';
 import 'package:lettutor/presentation/courses/courses_screen.dart';
@@ -9,7 +10,6 @@ import 'package:lettutor/presentation/courses/detail/course_detail_screen.dart';
 import 'package:lettutor/presentation/courses/detail/course_info_screen.dart';
 import 'package:lettutor/presentation/history/history_student_screen.dart';
 import 'package:lettutor/presentation/schedule/booking_student.dart';
-import 'package:lettutor/presentation/stream/stream_screen.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_detail_screen.dart';
 import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
 import 'package:lettutor/presentation/user/user_profile_screen.dart';
@@ -28,7 +28,11 @@ part 'app_router.gr.dart';
         page: LoginScreen,
         path: '/login',
         transitionsBuilder: TransitionsBuilders.fadeIn,
-        durationInMilliseconds: 1000),
+        durationInMilliseconds: 500),
+    AutoRoute(
+      page: ForgotPasswordScreen,
+      path: '/password',
+    ),
     AutoRoute(
       path: '/home',
       page: MyHomePage,
@@ -70,10 +74,6 @@ part 'app_router.gr.dart';
     AutoRoute(
       path: 'user-profile',
       page: UserProfileScreen,
-    ),
-    AutoRoute(
-      path: 'call',
-      page: StreamScreen,
     ),
   ],
 )

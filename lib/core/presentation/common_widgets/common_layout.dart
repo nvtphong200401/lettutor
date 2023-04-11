@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
+import 'package:lettutor/shared/core_providers.dart';
 
-class DismissKeyboardScaffold extends StatelessWidget {
+class DismissKeyboardScaffold extends ConsumerWidget {
   const DismissKeyboardScaffold(
       {super.key,
       this.appBar,
@@ -17,7 +19,7 @@ class DismissKeyboardScaffold extends StatelessWidget {
   final bool isLogin;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -37,7 +39,10 @@ class DismissKeyboardScaffold extends StatelessWidget {
                     title: const Text('Profile'),
                   ),
                   ListTile(
-                    onTap: () => context.router.replace(const LoginRoute()),
+                    onTap: () {
+                      ref.read(localStorageProvider).clear();
+                      context.router.replace(const LoginRoute());
+                    },
                     leading: const Icon(Icons.logout),
                     title: const Text('Logout'),
                   ),

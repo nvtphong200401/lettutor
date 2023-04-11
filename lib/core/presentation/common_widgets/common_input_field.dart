@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 
-class CommonInputField extends StatelessWidget {
-  const CommonInputField({
-    super.key,
-    required this.title,
-    this.controller,
-    this.autofocus = true,
-    this.obscureText = false,
-    this.hintText,
-  });
+class TitleWithChild extends StatelessWidget {
+  const TitleWithChild(
+      {super.key,
+      required this.title,
+      // this.controller,
+      // this.autofocus = true,
+      // this.obscureText = false,
+      // this.hintText,
+      required this.child});
   final String title;
-  final bool autofocus;
-  final TextEditingController? controller;
-  final bool obscureText;
-  final String? hintText;
+  // final bool autofocus;
+  // final TextEditingController? controller;
+  // final bool obscureText;
+  // final String? hintText;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +30,13 @@ class CommonInputField extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        CommonTextFormField(
-          autofocus: autofocus,
-          obscureText: obscureText,
-          controller: controller,
-          hintText: hintText,
-        ),
+        // CommonTextFormField(
+        //   autofocus: autofocus,
+        //   obscureText: obscureText,
+        //   controller: controller,
+        //   hintText: hintText,
+        // ),
+        child,
         const SizedBox(
           height: 24,
         )
@@ -57,6 +59,7 @@ class CommonTextFormField extends HookWidget {
       this.focusNode,
       this.onChanged,
       this.prefixIcon,
+      this.validator,
       this.onFieldSubmitted});
   final bool autofocus;
   final TextEditingController? controller;
@@ -70,6 +73,7 @@ class CommonTextFormField extends HookWidget {
   final FocusNode? focusNode;
   final Widget? prefixIcon;
   final void Function(String)? onFieldSubmitted;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +103,7 @@ class CommonTextFormField extends HookWidget {
         focusNode: focusNode,
         onChanged: onChanged,
         onTap: onTap,
+        validator: validator,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: borderColor ?? ColorName.grey, width: 1.5),

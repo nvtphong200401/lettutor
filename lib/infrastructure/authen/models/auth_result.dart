@@ -30,8 +30,8 @@ class Tokens with _$Tokens {
 @freezed
 class Access with _$Access {
   const factory Access({
-    required String token,
-    required String expires,
+    String? token,
+    String? expires,
   }) = _Access;
 
   factory Access.fromJson(Map<String, dynamic> json) => _$AccessFromJson(json);
@@ -40,26 +40,26 @@ class Access with _$Access {
 @freezed
 class User with _$User {
   const factory User({
-    required String id,
-    required String email,
-    required String name,
-    required String avatar,
-    required String country,
-    required String phone,
-    required List<String> roles,
-    required dynamic language,
-    required String birthday,
-    required bool isActivated,
-    required WalletInfo walletInfo,
-    required List<dynamic> courses,
-    required String requireNote,
-    required String level,
-    required List<dynamic> learnTopics,
-    required List<dynamic> testPreparations,
-    required bool isPhoneActivated,
-    required int timezone,
-    required dynamic studySchedule,
-    required bool canSendMessage,
+    String? id,
+    String? email,
+    String? name,
+    String? avatar,
+    String? country,
+    String? phone,
+    List<String>? roles,
+    String? language,
+    String? birthday,
+    bool? isActivated,
+    WalletInfo? walletInfo,
+    List<String>? courses,
+    String? requireNote,
+    String? level,
+    List<dynamic>? learnTopics,
+    List<String>? testPreparations,
+    bool? isPhoneActivated,
+    int? timezone,
+    String? studySchedule,
+    bool? canSendMessage,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -68,12 +68,12 @@ class User with _$User {
 @freezed
 class WalletInfo with _$WalletInfo {
   const factory WalletInfo({
-    required String id,
-    required String userId,
-    required String amount,
-    required bool isBlocked,
-    required String createdAt,
-    required String updatedAt,
+    String? id,
+    String? userId,
+    String? amount,
+    bool? isBlocked,
+    String? createdAt,
+    String? updatedAt,
     required int bonus,
   }) = _WalletInfo;
 

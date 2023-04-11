@@ -29,8 +29,8 @@ Map<String, dynamic> _$$_TokensToJson(_$_Tokens instance) => <String, dynamic>{
     };
 
 _$_Access _$$_AccessFromJson(Map<String, dynamic> json) => _$_Access(
-      token: json['token'] as String,
-      expires: json['expires'] as String,
+      token: json['token'] as String?,
+      expires: json['expires'] as String?,
     );
 
 Map<String, dynamic> _$$_AccessToJson(_$_Access instance) => <String, dynamic>{
@@ -39,27 +39,32 @@ Map<String, dynamic> _$$_AccessToJson(_$_Access instance) => <String, dynamic>{
     };
 
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
-      id: json['id'] as String,
-      email: json['email'] as String,
-      name: json['name'] as String,
-      avatar: json['avatar'] as String,
-      country: json['country'] as String,
-      phone: json['phone'] as String,
-      roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
-      language: json['language'],
-      birthday: json['birthday'] as String,
-      isActivated: json['isActivated'] as bool,
-      walletInfo:
-          WalletInfo.fromJson(json['walletInfo'] as Map<String, dynamic>),
-      courses: json['courses'] as List<dynamic>,
-      requireNote: json['requireNote'] as String,
-      level: json['level'] as String,
-      learnTopics: json['learnTopics'] as List<dynamic>,
-      testPreparations: json['testPreparations'] as List<dynamic>,
-      isPhoneActivated: json['isPhoneActivated'] as bool,
-      timezone: json['timezone'] as int,
-      studySchedule: json['studySchedule'],
-      canSendMessage: json['canSendMessage'] as bool,
+      id: json['id'] as String?,
+      email: json['email'] as String?,
+      name: json['name'] as String?,
+      avatar: json['avatar'] as String?,
+      country: json['country'] as String?,
+      phone: json['phone'] as String?,
+      roles:
+          (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      language: json['language'] as String?,
+      birthday: json['birthday'] as String?,
+      isActivated: json['isActivated'] as bool?,
+      walletInfo: json['walletInfo'] == null
+          ? null
+          : WalletInfo.fromJson(json['walletInfo'] as Map<String, dynamic>),
+      courses:
+          (json['courses'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      requireNote: json['requireNote'] as String?,
+      level: json['level'] as String?,
+      learnTopics: json['learnTopics'] as List<dynamic>?,
+      testPreparations: (json['testPreparations'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      isPhoneActivated: json['isPhoneActivated'] as bool?,
+      timezone: json['timezone'] as int?,
+      studySchedule: json['studySchedule'] as String?,
+      canSendMessage: json['canSendMessage'] as bool?,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -87,12 +92,12 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
 
 _$_WalletInfo _$$_WalletInfoFromJson(Map<String, dynamic> json) =>
     _$_WalletInfo(
-      id: json['id'] as String,
-      userId: json['userId'] as String,
-      amount: json['amount'] as String,
-      isBlocked: json['isBlocked'] as bool,
-      createdAt: json['createdAt'] as String,
-      updatedAt: json['updatedAt'] as String,
+      id: json['id'] as String?,
+      userId: json['userId'] as String?,
+      amount: json['amount'] as String?,
+      isBlocked: json['isBlocked'] as bool?,
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
       bonus: json['bonus'] as int,
     );
 

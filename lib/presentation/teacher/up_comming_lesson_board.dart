@@ -1,15 +1,13 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:lettutor/core/presentation/common_widgets/common_dialog.dart';
+import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
 import 'package:lettutor/core/presentation/extensions.dart';
-import 'package:lettutor/core/presentation/routing/app_router.dart';
-import 'package:lettutor/main.dart';
 import 'package:lettutor/shared/schedule_providers.dart';
+import 'package:lettutor/shared/user_providers.dart';
 
 import '../../core/presentation/common_styles/common_styles.dart';
 import '../../gen/colors.gen.dart';
@@ -92,14 +90,26 @@ class UpcommingLessonBoard extends StatelessWidget {
                             SizedBox(
                               height: 40,
                               child: ElevatedButton(
-                                onPressed: () {
-                                  if (cameras.isNotEmpty) {
-                                    context.router.push(const StreamRoute());
-                                  } else {
-                                    CommonDialog(context).infoDialog(
-                                        title: 'Permission denied',
-                                        body: 'Camera permission is denied');
-                                  }
+                                onPressed: () async {
+                                  final user = ref.read(userNotifierProvider).asData?.value.user;
+                                  var options = JitsiMeetingOptions(
+                                      roomNameOrUrl: upCommingLesson.value[0].tutorMeetingLink
+                                              ?.substring(13) ??
+                                          '',
+                                      userDisplayName: user?.name,
+                                      userEmail: user?.email,
+                                      userAvatarUrl: user?.avatar);
+                                  await JitsiMeetWrapper.joinMeeting(
+                                    options: options,
+                                    listener: JitsiMeetingListener(
+                                      onConferenceWillJoin: (url) =>
+                                          debugPrint("onConferenceWillJoin: url: $url"),
+                                      onConferenceJoined: (url) =>
+                                          debugPrint("onConferenceJoined: url: $url"),
+                                      onConferenceTerminated: (url, error) => debugPrint(
+                                          "onConferenceTerminated: url: $url, error: $error"),
+                                    ),
+                                  );
                                 },
                                 style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
                                     textColor: ColorName.primary,

@@ -163,7 +163,7 @@ class TeacherModel with _$TeacherModel {
 }
 
 @freezed
-class FeedbackModel with _$Feedback {
+class FeedbackModel with _$FeedbackModel {
   const factory FeedbackModel({
     required String id,
     String? bookingId,
@@ -174,9 +174,9 @@ class FeedbackModel with _$Feedback {
     String? createdAt,
     String? updatedAt,
     FirstInfo? firstInfo,
-  }) = _Feedback;
+  }) = _FeedbackModel;
 
-  factory FeedbackModel.fromJson(Map<String, dynamic> json) => _$FeedbackFromJson(json);
+  factory FeedbackModel.fromJson(Map<String, dynamic> json) => _$FeedbackModelFromJson(json);
 }
 
 @freezed
