@@ -12,6 +12,7 @@ import 'package:lettutor/presentation/schedule/booking_student.dart';
 import 'package:lettutor/presentation/stream/stream_screen.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_detail_screen.dart';
 import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
+import 'package:lettutor/presentation/user/user_profile_screen.dart';
 
 part 'app_router.gr.dart';
 
@@ -65,6 +66,10 @@ part 'app_router.gr.dart';
           ],
         ),
       ],
+    ),
+    AutoRoute(
+      path: 'user-profile',
+      page: UserProfileScreen,
     ),
     AutoRoute(
       path: 'call',

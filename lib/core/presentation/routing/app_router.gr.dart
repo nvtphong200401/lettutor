@@ -39,6 +39,12 @@ class _$AppRouter extends RootStackRouter {
         child: const MyHomePage(),
       );
     },
+    UserProfileRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const UserProfileScreen(),
+      );
+    },
     StreamRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -197,6 +203,10 @@ class _$AppRouter extends RootStackRouter {
           ],
         ),
         RouteConfig(
+          UserProfileRoute.name,
+          path: 'user-profile',
+        ),
+        RouteConfig(
           StreamRoute.name,
           path: 'call',
         ),
@@ -238,6 +248,18 @@ class MyHomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MyHomeRoute';
+}
+
+/// generated route for
+/// [UserProfileScreen]
+class UserProfileRoute extends PageRouteInfo<void> {
+  const UserProfileRoute()
+      : super(
+          UserProfileRoute.name,
+          path: 'user-profile',
+        );
+
+  static const String name = 'UserProfileRoute';
 }
 
 /// generated route for

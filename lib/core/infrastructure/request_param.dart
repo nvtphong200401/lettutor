@@ -1,5 +1,5 @@
 abstract class IParam {
-  Map<String, dynamic> get json;
+  dynamic get json;
   String get link;
   Map<String, dynamic>? get queryParam => null;
 }

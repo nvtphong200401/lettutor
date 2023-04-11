@@ -1,9 +1,15 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
 import 'package:lettutor/infrastructure/teacher/teacher_repo.dart';
+
+import '../../core/infrastructure/failure.dart';
+import '../../infrastructure/teacher/models/teacher_schedule_result.dart';
+import '../../infrastructure/teacher/models/tutor_detail_model.dart';
 
 part 'teachers_notifier.freezed.dart';
 
@@ -46,6 +52,7 @@ class TeachersNotifier extends StateNotifier<TeachersState> {
 
 class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
   TutorDetailNotifier(this.tutor, this._teacherRepository) : super(tutor) {
+    log(tutor?.userId ?? 'hi');
     getSchedulesAndCourses();
   }
   final TeacherModel? tutor;
@@ -57,21 +64,33 @@ class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
   }
 
   Future getSchedulesAndCourses() async {
-    final schedule = _teacherRepository.getTeacherSchedule(tutor?.userId ?? '');
-    final detail = _teacherRepository.getTutorDetail(tutor?.userId ?? '');
+    // final schedule = await _teacherRepository.getTeacherSchedule(tutor?.userId ?? '');
+    // final detail = await _teacherRepository.getTutorDetail(tutor?.userId ?? '');
+    final result = await Future.wait([
+      _teacherRepository.getTeacherSchedule(tutor?.userId ?? ''),
+      _teacherRepository.getTutorDetail(tutor?.userId ?? '')
+    ]);
+    final schedule = result[0] as Either<Failure, List<ScheduleOfTutor>>;
+    final detail = result[1] as TutorDetail?;
     if (mounted) {
       state = state?.copyWith(
-          courses: (await detail)?.user.courses,
-          schedules: (await schedule).fold((l) => [], (r) => r));
+          courses: (detail)?.user.courses, schedules: (schedule).fold((l) => [], (r) => r));
     }
   }
 
-  Future bookClass(String scheduleDetailId) async {
-    final schedule = await _teacherRepository.bookClass(scheduleDetailId);
-    state = schedule.fold((l) => state, (r) {
-      final newSchedules = [...(state?.schedules ?? [])];
-      newSchedules.removeWhere((element) => element.id == scheduleDetailId);
-      return state?.copyWith(schedules: newSchedules);
-    });
+  Future bookClass(String scheduleDetailId, String note) async {
+    final schedule = await _teacherRepository.bookClass(scheduleDetailId, note);
+    if (mounted) {
+      state = schedule.fold((l) => state, (r) {
+        log('success');
+        final index = state?.schedules
+                ?.indexWhere((element) => element.scheduleDetails?.first.id == scheduleDetailId) ??
+            -1;
+        if (index == -1) return state;
+        final newSchedules = <ScheduleOfTutor>[...(state?.schedules ?? [])];
+        newSchedules[index] = newSchedules[index].copyWith(isBooked: true);
+        return state?.copyWith(schedules: newSchedules);
+      });
+    }
   }
 }

@@ -11,4 +11,12 @@ class UserRepository {
   Future<Either<Failure, UserModel>> getUserInfo() async {
     return _httpService.getData<UserModel>(GetUserInfoParam());
   }
+
+  Future<Either<Failure, Unit>> updateUserInfo(UpdateUserInfoParam param) async {
+    return _httpService.putData<Unit>(param);
+  }
+
+  Future<Either<Failure, User>> changeUserAvatar(ChangeAvatarParam param) async {
+    return _httpService.postData<User>(param);
+  }
 }

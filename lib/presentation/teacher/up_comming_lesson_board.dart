@@ -37,87 +37,96 @@ class UpcommingLessonBoard extends StatelessWidget {
           return schedule.when(
               data: (data) {
                 final upCommingLesson = data.getUpcoming();
-                final firstScheduleInfo = upCommingLesson.value[0].scheduleDetailInfo?.scheduleInfo;
-                final lastScheduleInfo = upCommingLesson
-                    .value[upCommingLesson.value.length - 1].scheduleDetailInfo?.scheduleInfo;
-                final startTime = DateFormat('HH:mm')
-                    .format(firstScheduleInfo?.startTimestamp?.toLocal() ?? DateTime.now());
-                final endTime = DateFormat('HH:mm')
-                    .format(lastScheduleInfo?.endTimestamp.toLocal() ?? DateTime.now());
+
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Up comming lesson',
-                      style: CommonTextStyle.textSize30,
+                    Text(
+                      upCommingLesson == null
+                          ? 'You have no upcomming lesson.'
+                          : 'Up comming lesson',
+                      style: CommonTextStyle.textSize24,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  DateFormat('EEE, dd MMM yy').format(upCommingLesson.key),
-                                  style: CommonTextStyle.textSize20,
-                                ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
-                                Text(
-                                  '$startTime - $endTime',
-                                  style: CommonTextStyle.textSize20,
-                                ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
-                                CountDownText(endTime: upCommingLesson.key)
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 40,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (cameras.isNotEmpty) {
-                                  context.router.push(const StreamRoute());
-                                } else {
-                                  CommonDialog(context).infoDialog(
-                                      title: 'Permission denied',
-                                      body: 'Camera permission is denied');
-                                }
-                              },
-                              style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
-                                  textColor: ColorName.primary,
-                                  capsuleShape: true,
-                                  backgroundColor: ColorName.background),
-                              child: Row(
-                                children: const [
-                                  Icon(
-                                    FontAwesomeIcons.youtube,
-                                    size: 16,
-                                    color: ColorName.primary,
+                    Builder(builder: (context) {
+                      if (upCommingLesson == null) {
+                        return const SizedBox.shrink();
+                      }
+                      final firstScheduleInfo =
+                          upCommingLesson.value[0].scheduleDetailInfo?.scheduleInfo;
+                      final lastScheduleInfo = upCommingLesson
+                          .value[upCommingLesson.value.length - 1].scheduleDetailInfo?.scheduleInfo;
+                      final startTime = DateFormat('HH:mm')
+                          .format(firstScheduleInfo?.startTimestamp?.toLocal() ?? DateTime.now());
+                      final endTime = DateFormat('HH:mm')
+                          .format(lastScheduleInfo?.endTimestamp.toLocal() ?? DateTime.now());
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    DateFormat('EEE, dd MMM yy').format(upCommingLesson.key),
+                                    style: CommonTextStyle.textSize20,
                                   ),
-                                  SizedBox(
-                                    width: 10,
+                                  const SizedBox(
+                                    height: 7,
                                   ),
                                   Text(
-                                    'Enter lesson room',
-                                    style: TextStyle(color: ColorName.primary),
-                                  )
+                                    '$startTime - $endTime',
+                                    style: CommonTextStyle.textSize20,
+                                  ),
+                                  const SizedBox(
+                                    height: 7,
+                                  ),
+                                  CountDownText(endTime: upCommingLesson.key)
                                 ],
                               ),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
+                            SizedBox(
+                              height: 40,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (cameras.isNotEmpty) {
+                                    context.router.push(const StreamRoute());
+                                  } else {
+                                    CommonDialog(context).infoDialog(
+                                        title: 'Permission denied',
+                                        body: 'Camera permission is denied');
+                                  }
+                                },
+                                style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
+                                    textColor: ColorName.primary,
+                                    capsuleShape: true,
+                                    backgroundColor: ColorName.background),
+                                child: Row(
+                                  children: const [
+                                    Icon(
+                                      FontAwesomeIcons.youtube,
+                                      size: 16,
+                                      color: ColorName.primary,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      'Enter lesson room',
+                                      style: TextStyle(color: ColorName.primary),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }),
                     const SizedBox(
                       height: 20,
                     ),

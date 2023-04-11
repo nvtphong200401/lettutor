@@ -12,6 +12,13 @@ class CommonDialog {
         iconColor: ColorName.grey,
       );
 
+  Future successDialog({
+    required String title,
+    required String body,
+  }) =>
+      _commonDialog(
+          title: title, body: body, icon: Icons.check_circle_outline, iconColor: Colors.green);
+
   Future errorDialog({
     required String title,
     required String body,
@@ -76,7 +83,7 @@ class CommonDialog {
                     style: const ButtonStyle(
                         overlayColor: MaterialStatePropertyAll(ColorName.activeTag)),
                     onPressed: () {
-                      context.router.pop();
+                      context.router.root.pop();
                     },
                     child: const Text('OK',
                         style: TextStyle(

@@ -1,26 +1,33 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/shared/user_providers.dart';
 
 import '../../../gen/assets.gen.dart';
 
-class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CommonAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const CommonAppBar({
     super.key,
+    this.isLogin = false,
   });
-
+  final bool isLogin;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userNotifierProvider);
     return AppBar(
       leading: context.router.canPop()
-          ? Container(
-              width: 50,
-              height: 50,
-              decoration:
-                  BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(50)),
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: ColorName.primary,
+          ? GestureDetector(
+              onTap: () => context.router.pop(),
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration:
+                    BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(50)),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: ColorName.primary,
+                ),
               ),
             )
           : null,
@@ -32,6 +39,21 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Assets.images.appLogo.svg(height: 45),
         ),
       ),
+      actions: [
+        if (!isLogin)
+          user.maybeWhen(
+            orElse: () => const SizedBox.shrink(),
+            data: (data) => GestureDetector(
+              onTap: () => Scaffold.of(context).openEndDrawer(),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(data.user?.avatar ?? ''),
+                ),
+              ),
+            ),
+          )
+      ],
     );
   }
 

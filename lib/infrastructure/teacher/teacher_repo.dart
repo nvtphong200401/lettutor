@@ -71,8 +71,8 @@ class TeacherRepository {
     return result;
   }
 
-  Future<Either<Failure, Unit>> bookClass(String scheduleDetailId) async {
-    final result = await _httpService.postData<Unit>(BookClassParam(scheduleDetailId));
+  Future<Either<Failure, Unit>> bookClass(String scheduleDetailId, String note) async {
+    final result = await _httpService.postData<Unit>(BookClassParam(scheduleDetailId, note));
     return result;
   }
 }

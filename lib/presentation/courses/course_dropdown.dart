@@ -170,7 +170,8 @@ class DropdownFieldMultipleSelection extends HookWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(3),
                 side: BorderSide(
-                    color: useValueListenable(hasFocus) ? ColorName.primary : Colors.grey),
+                    color: useValueListenable(hasFocus) ? ColorName.primary : ColorName.grey,
+                    width: 1.5),
               ),
             ),
             child: Row(

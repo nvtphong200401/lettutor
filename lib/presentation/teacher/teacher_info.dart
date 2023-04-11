@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/shared/teacher_providers.dart';
 
 import '../../gen/colors.gen.dart';
@@ -36,7 +37,7 @@ class TeacherInfo extends StatelessWidget {
             avatar,
             errorBuilder: (context, error, stackTrace) {
               return Image.network(
-                'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png?w=300&ssl=1',
+                defaultAvatar,
                 width: 60,
                 height: 60,
               );

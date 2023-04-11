@@ -43,8 +43,9 @@ extension GroupByDate on List<ScheduleModel> {
     return schedule;
   }
 
-  MapEntry<DateTime, List<ScheduleModel>> getUpcoming() {
+  MapEntry<DateTime, List<ScheduleModel>>? getUpcoming() {
     final upcomings = inFuture();
+    if (upcomings.isEmpty) return null;
     var result = upcomings.entries.first;
     for (var schedule in upcomings.entries) {
       if (result.key.difference(schedule.key).inDays < 0) {

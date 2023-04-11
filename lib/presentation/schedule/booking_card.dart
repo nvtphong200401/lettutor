@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
+import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 import 'package:lettutor/presentation/schedule/cancel_booking.dart';
@@ -38,7 +39,7 @@ class BookingCard extends StatelessWidget {
         WhiteBoxContainer(
           child: TeacherInfo(
             id: tutorInfo?.id ?? '',
-            avatar: tutorInfo?.avatar ?? '',
+            avatar: tutorInfo?.avatar ?? defaultAvatar,
             name: tutorInfo?.name ?? '',
           ),
         ),
@@ -136,7 +137,7 @@ class BookingSession extends HookWidget {
               onTap: () => showDialog(
                   context: context,
                   builder: (context) => CancelBookingDialog(
-                        avatarUrl: tutorInfo?.avatar ?? '',
+                        avatarUrl: tutorInfo?.avatar ?? defaultAvatar,
                         teacherName: tutorInfo?.name ?? '',
                         lessonTime: 'Wed, 14 Mar 23',
                         onSubmit: () => visible.value = false,

@@ -7,7 +7,7 @@ import 'package:lettutor/infrastructure/courses/models/course_model.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_schedule_result.dart';
 import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
-import 'package:lettutor/infrastructure/user/models/user_model.dart';
+import 'package:lettutor/infrastructure/user/models/user_model.dart' as usermodel;
 
 import '../infrastructure/authen/models/auth_result.dart';
 import '../infrastructure/course/models/course_detail.dart';
@@ -18,6 +18,7 @@ Future<Either<Failure, T>> requestWrapper<T>(Future<Response> call) async {
   try {
     final response = await call;
     final jsonData = response.data;
+    // log('$jsonData');
     return right(_mapJsonToData<T>(jsonData));
   } on DioError catch (err) {
     log('phongdz ${err.message}');
@@ -49,8 +50,8 @@ T _mapJsonToData<T>(Map<String, dynamic> json) {
     case Tutors:
       result = Tutors.fromJson(json);
       break;
-    case UserModel:
-      result = UserModel.fromJson(json);
+    case usermodel.UserModel:
+      result = usermodel.UserModel.fromJson(json);
       break;
     case ListCoursesResult:
       result = ListCoursesResult.fromJson(json);
@@ -59,8 +60,10 @@ T _mapJsonToData<T>(Map<String, dynamic> json) {
       result = TeacherScheduleResult.fromJson(json);
       break;
     case Unit:
-      log(json.toString());
       result = unit;
+      break;
+    case usermodel.User:
+      result = usermodel.User.fromJson(json);
       break;
   }
   return result as T;

@@ -19,7 +19,10 @@ class LoginScreen extends HookConsumerWidget {
     final txtPassword = useTextEditingController();
 
     return DismissKeyboardScaffold(
-      appBar: const CommonAppBar(),
+      isLogin: true,
+      appBar: const CommonAppBar(
+        isLogin: true,
+      ),
       body: ListView(
         padding: paddingLayout,
         children: [
@@ -103,9 +106,11 @@ class LoginScreen extends HookConsumerWidget {
             onPressed: () async {
               CommonDialog(context).loadingDialog();
               await ref.read(authNotifierProvider.notifier).login(txtEmail.text, txtPassword.text);
-              if (context.mounted) {
-                context.router.root.pop();
-              }
+              await Future(() {
+                if (context.mounted) {
+                  context.router.root.pop();
+                }
+              });
             },
             style: CommonButtonStyle.primaryButtonStyle,
             child: const Text('LOGIN', style: TextStyle(color: ColorName.background)),

@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_styles/textfield_style.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+
+import '../../core/presentation/common_widgets/common_dropdown.dart';
 
 final _reasonList = [
   'Reschedule at another time',
@@ -13,7 +14,7 @@ final _reasonList = [
   'Other',
 ];
 
-class CancelBookingDialog extends StatelessWidget {
+class CancelBookingDialog extends HookWidget {
   const CancelBookingDialog(
       {super.key,
       required this.avatarUrl,
@@ -27,6 +28,7 @@ class CancelBookingDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reason = useValueNotifier(_reasonList[0]);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: AlertDialog(
@@ -71,37 +73,11 @@ class CancelBookingDialog extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            HookBuilder(builder: (context) {
-              final selection = useState<String?>(null);
-              return DropdownButton2(
-                  dropdownStyleData: const DropdownStyleData(
-                    offset: Offset(0, 30),
-                    width: 250,
-                  ),
-                  isExpanded: true,
-                  buttonStyleData: ButtonStyleData(
-                    padding: const EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: ColorName.grey, width: 1.5),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  underline: const SizedBox.shrink(),
-                  value: selection.value,
-                  menuItemStyleData: const MenuItemStyleData(
-                    height: 44,
-                  ),
-                  onChanged: (value) {
-                    selection.value = value.toString();
-                  },
-                  hint: const Text(
-                    'Choose reason',
-                    style: TextStyle(color: ColorName.grey),
-                  ),
-                  items: _reasonList
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                      .toList());
-            }),
+            CommonDropdownButton(
+              selection: reason,
+              items: _reasonList,
+              hintText: 'Choose reason',
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -118,9 +94,7 @@ class CancelBookingDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
-                    onPressed: () => context.router.root.pop(),
-                    child: const Text('Later')),
+                TextButton(onPressed: () => context.router.root.pop(), child: const Text('Later')),
                 const SizedBox(
                   width: 10,
                 ),

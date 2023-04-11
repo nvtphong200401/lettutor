@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
@@ -7,11 +9,13 @@ import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_schedule_result.dart';
+import 'package:lettutor/shared/teacher_providers.dart';
 import 'package:lettutor/shared/user_providers.dart';
 
-class BookDialog extends ConsumerWidget {
-  const BookDialog({super.key, required this.schedule});
+class BookDialog extends HookConsumerWidget {
+  const BookDialog({super.key, required this.schedule, required this.teacherId});
   final ScheduleOfTutor schedule;
+  final String teacherId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,6 +26,7 @@ class BookDialog extends ConsumerWidget {
           orElse: () => 0,
           data: (data) => int.parse(data.user?.walletInfo?.amount ?? '0'),
         );
+    final txtNote = useTextEditingController();
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: ListView(
@@ -69,6 +74,7 @@ class BookDialog extends ConsumerWidget {
           )),
           const Text('Notes'),
           TextField(
+            controller: txtNote,
             decoration: CommonTextFieldStyle.primaryInputDecoration,
             maxLines: 3,
           ),
@@ -88,7 +94,12 @@ class BookDialog extends ConsumerWidget {
                 width: 5,
               ),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  ref
+                      .read(teacherCardNotifierProvider(teacherId).notifier)
+                      .bookClass(schedule.scheduleDetails?.first.id ?? '', txtNote.text);
+                  context.router.pop();
+                },
                 style: CommonButtonStyle.primaryButtonStyle
                     .customCopyWith(foregroundColor: Colors.white),
                 child: const Text(

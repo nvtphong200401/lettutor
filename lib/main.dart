@@ -30,9 +30,13 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appRouter = useMemoized(() => AppRouter());
-    ref.listen(userNotifierProvider, (_, user) {
+    ref.listen(userNotifierProvider, (prev, user) {
       user.when(
-          data: (data) => appRouter.pushAndPopUntil(const MyHomeRoute(), predicate: (_) => false),
+          data: (data) {
+            if (prev?.isLoading ?? false) {
+              appRouter.pushAndPopUntil(const MyHomeRoute(), predicate: (_) => false);
+            }
+          },
           error: (_, __) {
             appRouter.replace(
               const LoginRoute(),

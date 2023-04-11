@@ -6,12 +6,14 @@ import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
+import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
 import 'package:lettutor/presentation/teacher/detail/book_dialog.dart';
 import 'package:lettutor/presentation/teacher/detail/report_modal.dart';
+import 'package:lettutor/presentation/teacher/detail/review_modal.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_video.dart';
 import 'package:lettutor/shared/teacher_providers.dart';
 
@@ -57,7 +59,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
             ),
             TeacherInfo(
               id: info?.id ?? '',
-              avatar: info?.avatar ?? '',
+              avatar: info?.avatar ?? defaultAvatar,
               name: info?.name ?? '',
               rating: info?.rating,
             ),
@@ -164,7 +166,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
                                 topLeft: Radius.circular(10), topRight: Radius.circular(10))),
                         builder: (context) {
                           // return const ReportModal();
-                          return BookDialog(schedule: schedule);
+                          return BookDialog(schedule: schedule, teacherId: teacherId);
                         });
                   })),
                 ),
@@ -356,7 +358,19 @@ class IconGroup extends ConsumerWidget {
                 return const ReportModal();
               }),
         ),
-        _buildIcon('Reviews', Icons.star_outline),
+        GestureDetector(
+          child: _buildIcon('Reviews', Icons.star_outline),
+          onTap: () => showModalBottomSheet(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+              builder: (context) {
+                return FeedbackModal(
+                  feedbacks: teacher?.feedbacks ?? [],
+                );
+              }),
+        ),
       ],
     );
   }

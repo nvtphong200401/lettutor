@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
+import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 import 'package:lettutor/presentation/history/rating_history.dart';
@@ -39,7 +40,7 @@ class HistoryItem extends StatelessWidget {
           WhiteBoxContainer(
             child: TeacherInfo(
               id: info?.id ?? '',
-              avatar: info?.avatar ?? '',
+              avatar: info?.avatar ?? defaultAvatar,
               name: info?.name ?? '',
             ),
           ),

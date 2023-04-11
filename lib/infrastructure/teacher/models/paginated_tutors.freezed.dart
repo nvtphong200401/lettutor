@@ -25,14 +25,12 @@ mixin _$PaginatedTutors {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PaginatedTutorsCopyWith<PaginatedTutors> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PaginatedTutorsCopyWith<PaginatedTutors> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PaginatedTutorsCopyWith<$Res> {
-  factory $PaginatedTutorsCopyWith(
-          PaginatedTutors value, $Res Function(PaginatedTutors) then) =
+  factory $PaginatedTutorsCopyWith(PaginatedTutors value, $Res Function(PaginatedTutors) then) =
       _$PaginatedTutorsCopyWithImpl<$Res, PaginatedTutors>;
   @useResult
   $Res call({Tutors tutors, List<FavoriteTutor> favoriteTutor});
@@ -78,8 +76,7 @@ class _$PaginatedTutorsCopyWithImpl<$Res, $Val extends PaginatedTutors>
 }
 
 /// @nodoc
-abstract class _$$_PaginatedTutorsCopyWith<$Res>
-    implements $PaginatedTutorsCopyWith<$Res> {
+abstract class _$$_PaginatedTutorsCopyWith<$Res> implements $PaginatedTutorsCopyWith<$Res> {
   factory _$$_PaginatedTutorsCopyWith(
           _$_PaginatedTutors value, $Res Function(_$_PaginatedTutors) then) =
       __$$_PaginatedTutorsCopyWithImpl<$Res>;
@@ -121,8 +118,7 @@ class __$$_PaginatedTutorsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PaginatedTutors implements _PaginatedTutors {
-  const _$_PaginatedTutors(
-      {required this.tutors, required final List<FavoriteTutor> favoriteTutor})
+  const _$_PaginatedTutors({required this.tutors, required final List<FavoriteTutor> favoriteTutor})
       : _favoriteTutor = favoriteTutor;
 
   factory _$_PaginatedTutors.fromJson(Map<String, dynamic> json) =>
@@ -149,14 +145,13 @@ class _$_PaginatedTutors implements _PaginatedTutors {
         (other.runtimeType == runtimeType &&
             other is _$_PaginatedTutors &&
             (identical(other.tutors, tutors) || other.tutors == tutors) &&
-            const DeepCollectionEquality()
-                .equals(other._favoriteTutor, _favoriteTutor));
+            const DeepCollectionEquality().equals(other._favoriteTutor, _favoriteTutor));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, tutors, const DeepCollectionEquality().hash(_favoriteTutor));
+  int get hashCode =>
+      Object.hash(runtimeType, tutors, const DeepCollectionEquality().hash(_favoriteTutor));
 
   @JsonKey(ignore: true)
   @override
@@ -177,8 +172,7 @@ abstract class _PaginatedTutors implements PaginatedTutors {
       {required final Tutors tutors,
       required final List<FavoriteTutor> favoriteTutor}) = _$_PaginatedTutors;
 
-  factory _PaginatedTutors.fromJson(Map<String, dynamic> json) =
-      _$_PaginatedTutors.fromJson;
+  factory _PaginatedTutors.fromJson(Map<String, dynamic> json) = _$_PaginatedTutors.fromJson;
 
   @override
   Tutors get tutors;
@@ -205,14 +199,12 @@ mixin _$FavoriteTutor {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FavoriteTutorCopyWith<FavoriteTutor> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FavoriteTutorCopyWith<FavoriteTutor> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $FavoriteTutorCopyWith<$Res> {
-  factory $FavoriteTutorCopyWith(
-          FavoriteTutor value, $Res Function(FavoriteTutor) then) =
+  factory $FavoriteTutorCopyWith(FavoriteTutor value, $Res Function(FavoriteTutor) then) =
       _$FavoriteTutorCopyWithImpl<$Res, FavoriteTutor>;
   @useResult
   $Res call(
@@ -288,10 +280,8 @@ class _$FavoriteTutorCopyWithImpl<$Res, $Val extends FavoriteTutor>
 }
 
 /// @nodoc
-abstract class _$$_FavoriteTutorCopyWith<$Res>
-    implements $FavoriteTutorCopyWith<$Res> {
-  factory _$$_FavoriteTutorCopyWith(
-          _$_FavoriteTutor value, $Res Function(_$_FavoriteTutor) then) =
+abstract class _$$_FavoriteTutorCopyWith<$Res> implements $FavoriteTutorCopyWith<$Res> {
+  factory _$$_FavoriteTutorCopyWith(_$_FavoriteTutor value, $Res Function(_$_FavoriteTutor) then) =
       __$$_FavoriteTutorCopyWithImpl<$Res>;
   @override
   @useResult
@@ -311,8 +301,7 @@ abstract class _$$_FavoriteTutorCopyWith<$Res>
 class __$$_FavoriteTutorCopyWithImpl<$Res>
     extends _$FavoriteTutorCopyWithImpl<$Res, _$_FavoriteTutor>
     implements _$$_FavoriteTutorCopyWith<$Res> {
-  __$$_FavoriteTutorCopyWithImpl(
-      _$_FavoriteTutor _value, $Res Function(_$_FavoriteTutor) _then)
+  __$$_FavoriteTutorCopyWithImpl(_$_FavoriteTutor _value, $Res Function(_$_FavoriteTutor) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -365,8 +354,7 @@ class _$_FavoriteTutor implements _FavoriteTutor {
       required this.updatedAt,
       this.secondInfo});
 
-  factory _$_FavoriteTutor.fromJson(Map<String, dynamic> json) =>
-      _$$_FavoriteTutorFromJson(json);
+  factory _$_FavoriteTutor.fromJson(Map<String, dynamic> json) => _$$_FavoriteTutorFromJson(json);
 
   @override
   final String id;
@@ -393,20 +381,16 @@ class _$_FavoriteTutor implements _FavoriteTutor {
             other is _$_FavoriteTutor &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.firstId, firstId) || other.firstId == firstId) &&
-            (identical(other.secondId, secondId) ||
-                other.secondId == secondId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.secondInfo, secondInfo) ||
-                other.secondInfo == secondInfo));
+            (identical(other.secondId, secondId) || other.secondId == secondId) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
+            (identical(other.secondInfo, secondInfo) || other.secondInfo == secondInfo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, firstId, secondId, createdAt, updatedAt, secondInfo);
+  int get hashCode =>
+      Object.hash(runtimeType, id, firstId, secondId, createdAt, updatedAt, secondInfo);
 
   @JsonKey(ignore: true)
   @override
@@ -431,8 +415,7 @@ abstract class _FavoriteTutor implements FavoriteTutor {
       required final String updatedAt,
       final SecondInfo? secondInfo}) = _$_FavoriteTutor;
 
-  factory _FavoriteTutor.fromJson(Map<String, dynamic> json) =
-      _$_FavoriteTutor.fromJson;
+  factory _FavoriteTutor.fromJson(Map<String, dynamic> json) = _$_FavoriteTutor.fromJson;
 
   @override
   String get id;
@@ -448,8 +431,7 @@ abstract class _FavoriteTutor implements FavoriteTutor {
   SecondInfo? get secondInfo;
   @override
   @JsonKey(ignore: true)
-  _$$_FavoriteTutorCopyWith<_$_FavoriteTutor> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_FavoriteTutorCopyWith<_$_FavoriteTutor> get copyWith => throw _privateConstructorUsedError;
 }
 
 SecondInfo _$SecondInfoFromJson(Map<String, dynamic> json) {
@@ -489,14 +471,12 @@ mixin _$SecondInfo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SecondInfoCopyWith<SecondInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SecondInfoCopyWith<SecondInfo> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SecondInfoCopyWith<$Res> {
-  factory $SecondInfoCopyWith(
-          SecondInfo value, $Res Function(SecondInfo) then) =
+  factory $SecondInfoCopyWith(SecondInfo value, $Res Function(SecondInfo) then) =
       _$SecondInfoCopyWithImpl<$Res, SecondInfo>;
   @useResult
   $Res call(
@@ -533,8 +513,7 @@ abstract class $SecondInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SecondInfoCopyWithImpl<$Res, $Val extends SecondInfo>
-    implements $SecondInfoCopyWith<$Res> {
+class _$SecondInfoCopyWithImpl<$Res, $Val extends SecondInfo> implements $SecondInfoCopyWith<$Res> {
   _$SecondInfoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -700,10 +679,8 @@ class _$SecondInfoCopyWithImpl<$Res, $Val extends SecondInfo>
 }
 
 /// @nodoc
-abstract class _$$_SecondInfoCopyWith<$Res>
-    implements $SecondInfoCopyWith<$Res> {
-  factory _$$_SecondInfoCopyWith(
-          _$_SecondInfo value, $Res Function(_$_SecondInfo) then) =
+abstract class _$$_SecondInfoCopyWith<$Res> implements $SecondInfoCopyWith<$Res> {
+  factory _$$_SecondInfoCopyWith(_$_SecondInfo value, $Res Function(_$_SecondInfo) then) =
       __$$_SecondInfoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -742,11 +719,9 @@ abstract class _$$_SecondInfoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SecondInfoCopyWithImpl<$Res>
-    extends _$SecondInfoCopyWithImpl<$Res, _$_SecondInfo>
+class __$$_SecondInfoCopyWithImpl<$Res> extends _$SecondInfoCopyWithImpl<$Res, _$_SecondInfo>
     implements _$$_SecondInfoCopyWith<$Res> {
-  __$$_SecondInfoCopyWithImpl(
-      _$_SecondInfo _value, $Res Function(_$_SecondInfo) _then)
+  __$$_SecondInfoCopyWithImpl(_$_SecondInfo _value, $Res Function(_$_SecondInfo) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -931,8 +906,7 @@ class _$_SecondInfo implements _SecondInfo {
       this.studentGroupId,
       required this.tutorInfo});
 
-  factory _$_SecondInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_SecondInfoFromJson(json);
+  factory _$_SecondInfo.fromJson(Map<String, dynamic> json) => _$$_SecondInfoFromJson(json);
 
   @override
   final String? id;
@@ -1005,29 +979,22 @@ class _$_SecondInfo implements _SecondInfo {
             (identical(other.level, level) || other.level == level) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.google, google) || other.google == google) &&
-            (identical(other.facebook, facebook) ||
-                other.facebook == facebook) &&
+            (identical(other.facebook, facebook) || other.facebook == facebook) &&
             (identical(other.apple, apple) || other.apple == apple) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.language, language) ||
-                other.language == language) &&
-            (identical(other.birthday, birthday) ||
-                other.birthday == birthday) &&
+            (identical(other.language, language) || other.language == language) &&
+            (identical(other.birthday, birthday) || other.birthday == birthday) &&
             (identical(other.requestPassword, requestPassword) ||
                 other.requestPassword == requestPassword) &&
-            (identical(other.isActivated, isActivated) ||
-                other.isActivated == isActivated) &&
+            (identical(other.isActivated, isActivated) || other.isActivated == isActivated) &&
             (identical(other.isPhoneActivated, isPhoneActivated) ||
                 other.isPhoneActivated == isPhoneActivated) &&
-            (identical(other.requireNote, requireNote) ||
-                other.requireNote == requireNote) &&
-            (identical(other.timezone, timezone) ||
-                other.timezone == timezone) &&
-            (identical(other.phoneAuth, phoneAuth) ||
-                other.phoneAuth == phoneAuth) &&
+            (identical(other.requireNote, requireNote) || other.requireNote == requireNote) &&
+            (identical(other.timezone, timezone) || other.timezone == timezone) &&
+            (identical(other.phoneAuth, phoneAuth) || other.phoneAuth == phoneAuth) &&
             (identical(other.isPhoneAuthActivated, isPhoneAuthActivated) ||
                 other.isPhoneAuthActivated == isPhoneAuthActivated) &&
             (identical(other.studySchedule, studySchedule) ||
@@ -1038,16 +1005,12 @@ class _$_SecondInfo implements _SecondInfo {
                 other.isPublicRecord == isPublicRecord) &&
             (identical(other.caredByStaffId, caredByStaffId) ||
                 other.caredByStaffId == caredByStaffId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.deletedAt, deletedAt) ||
-                other.deletedAt == deletedAt) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
+            (identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt) &&
             (identical(other.studentGroupId, studentGroupId) ||
                 other.studentGroupId == studentGroupId) &&
-            (identical(other.tutorInfo, tutorInfo) ||
-                other.tutorInfo == tutorInfo));
+            (identical(other.tutorInfo, tutorInfo) || other.tutorInfo == tutorInfo));
   }
 
   @JsonKey(ignore: true)
@@ -1129,8 +1092,7 @@ abstract class _SecondInfo implements SecondInfo {
       final String? studentGroupId,
       required final TutorInfo tutorInfo}) = _$_SecondInfo;
 
-  factory _SecondInfo.fromJson(Map<String, dynamic> json) =
-      _$_SecondInfo.fromJson;
+  factory _SecondInfo.fromJson(Map<String, dynamic> json) = _$_SecondInfo.fromJson;
 
   @override
   String? get id;
@@ -1190,8 +1152,7 @@ abstract class _SecondInfo implements SecondInfo {
   TutorInfo get tutorInfo;
   @override
   @JsonKey(ignore: true)
-  _$$_SecondInfoCopyWith<_$_SecondInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_SecondInfoCopyWith<_$_SecondInfo> get copyWith => throw _privateConstructorUsedError;
 }
 
 TutorInfo _$TutorInfoFromJson(Map<String, dynamic> json) {
@@ -1221,8 +1182,7 @@ mixin _$TutorInfo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TutorInfoCopyWith<TutorInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+  $TutorInfoCopyWith<TutorInfo> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1252,8 +1212,7 @@ abstract class $TutorInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TutorInfoCopyWithImpl<$Res, $Val extends TutorInfo>
-    implements $TutorInfoCopyWith<$Res> {
+class _$TutorInfoCopyWithImpl<$Res, $Val extends TutorInfo> implements $TutorInfoCopyWith<$Res> {
   _$TutorInfoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -1362,8 +1321,7 @@ class _$TutorInfoCopyWithImpl<$Res, $Val extends TutorInfo>
 
 /// @nodoc
 abstract class _$$_TutorInfoCopyWith<$Res> implements $TutorInfoCopyWith<$Res> {
-  factory _$$_TutorInfoCopyWith(
-          _$_TutorInfo value, $Res Function(_$_TutorInfo) then) =
+  factory _$$_TutorInfoCopyWith(_$_TutorInfo value, $Res Function(_$_TutorInfo) then) =
       __$$_TutorInfoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -1389,11 +1347,9 @@ abstract class _$$_TutorInfoCopyWith<$Res> implements $TutorInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TutorInfoCopyWithImpl<$Res>
-    extends _$TutorInfoCopyWithImpl<$Res, _$_TutorInfo>
+class __$$_TutorInfoCopyWithImpl<$Res> extends _$TutorInfoCopyWithImpl<$Res, _$_TutorInfo>
     implements _$$_TutorInfoCopyWith<$Res> {
-  __$$_TutorInfoCopyWithImpl(
-      _$_TutorInfo _value, $Res Function(_$_TutorInfo) _then)
+  __$$_TutorInfoCopyWithImpl(_$_TutorInfo _value, $Res Function(_$_TutorInfo) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1518,8 +1474,7 @@ class _$_TutorInfo implements _TutorInfo {
       this.createdAt,
       this.updatedAt});
 
-  factory _$_TutorInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_TutorInfoFromJson(json);
+  factory _$_TutorInfo.fromJson(Map<String, dynamic> json) => _$$_TutorInfoFromJson(json);
 
   @override
   final String? id;
@@ -1572,31 +1527,21 @@ class _$_TutorInfo implements _TutorInfo {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.video, video) || other.video == video) &&
             (identical(other.bio, bio) || other.bio == bio) &&
-            (identical(other.education, education) ||
-                other.education == education) &&
-            (identical(other.experience, experience) ||
-                other.experience == experience) &&
-            (identical(other.profession, profession) ||
-                other.profession == profession) &&
+            (identical(other.education, education) || other.education == education) &&
+            (identical(other.experience, experience) || other.experience == experience) &&
+            (identical(other.profession, profession) || other.profession == profession) &&
             (identical(other.accent, accent) || other.accent == accent) &&
             (identical(other.targetStudent, targetStudent) ||
                 other.targetStudent == targetStudent) &&
-            (identical(other.interests, interests) ||
-                other.interests == interests) &&
-            (identical(other.languages, languages) ||
-                other.languages == languages) &&
-            (identical(other.specialties, specialties) ||
-                other.specialties == specialties) &&
+            (identical(other.interests, interests) || other.interests == interests) &&
+            (identical(other.languages, languages) || other.languages == languages) &&
+            (identical(other.specialties, specialties) || other.specialties == specialties) &&
             (identical(other.resume, resume) || other.resume == resume) &&
             (identical(other.rating, rating) || other.rating == rating) &&
-            (identical(other.isActivated, isActivated) ||
-                other.isActivated == isActivated) &&
-            (identical(other.isNative, isNative) ||
-                other.isNative == isNative) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.isActivated, isActivated) || other.isActivated == isActivated) &&
+            (identical(other.isNative, isNative) || other.isNative == isNative) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
@@ -1657,8 +1602,7 @@ abstract class _TutorInfo implements TutorInfo {
       final String? createdAt,
       final String? updatedAt}) = _$_TutorInfo;
 
-  factory _TutorInfo.fromJson(Map<String, dynamic> json) =
-      _$_TutorInfo.fromJson;
+  factory _TutorInfo.fromJson(Map<String, dynamic> json) = _$_TutorInfo.fromJson;
 
   @override
   String? get id;
@@ -1698,8 +1642,7 @@ abstract class _TutorInfo implements TutorInfo {
   String? get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$_TutorInfoCopyWith<_$_TutorInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_TutorInfoCopyWith<_$_TutorInfo> get copyWith => throw _privateConstructorUsedError;
 }
 
 Tutors _$TutorsFromJson(Map<String, dynamic> json) {
@@ -1725,8 +1668,7 @@ abstract class $TutorsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TutorsCopyWithImpl<$Res, $Val extends Tutors>
-    implements $TutorsCopyWith<$Res> {
+class _$TutorsCopyWithImpl<$Res, $Val extends Tutors> implements $TutorsCopyWith<$Res> {
   _$TutorsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -1763,11 +1705,9 @@ abstract class _$$_TutorsCopyWith<$Res> implements $TutorsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TutorsCopyWithImpl<$Res>
-    extends _$TutorsCopyWithImpl<$Res, _$_Tutors>
+class __$$_TutorsCopyWithImpl<$Res> extends _$TutorsCopyWithImpl<$Res, _$_Tutors>
     implements _$$_TutorsCopyWith<$Res> {
-  __$$_TutorsCopyWithImpl(_$_Tutors _value, $Res Function(_$_Tutors) _then)
-      : super(_value, _then);
+  __$$_TutorsCopyWithImpl(_$_Tutors _value, $Res Function(_$_Tutors) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -1791,11 +1731,9 @@ class __$$_TutorsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Tutors implements _Tutors {
-  const _$_Tutors({required this.count, required final List<TeacherModel> rows})
-      : _rows = rows;
+  const _$_Tutors({required this.count, required final List<TeacherModel> rows}) : _rows = rows;
 
-  factory _$_Tutors.fromJson(Map<String, dynamic> json) =>
-      _$$_TutorsFromJson(json);
+  factory _$_Tutors.fromJson(Map<String, dynamic> json) => _$$_TutorsFromJson(json);
 
   @override
   final int count;
@@ -1823,8 +1761,7 @@ class _$_Tutors implements _Tutors {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, count, const DeepCollectionEquality().hash(_rows));
+  int get hashCode => Object.hash(runtimeType, count, const DeepCollectionEquality().hash(_rows));
 
   @JsonKey(ignore: true)
   @override
@@ -1841,9 +1778,8 @@ class _$_Tutors implements _Tutors {
 }
 
 abstract class _Tutors implements Tutors {
-  const factory _Tutors(
-      {required final int count,
-      required final List<TeacherModel> rows}) = _$_Tutors;
+  const factory _Tutors({required final int count, required final List<TeacherModel> rows}) =
+      _$_Tutors;
 
   factory _Tutors.fromJson(Map<String, dynamic> json) = _$_Tutors.fromJson;
 
@@ -1853,8 +1789,7 @@ abstract class _Tutors implements Tutors {
   List<TeacherModel> get rows;
   @override
   @JsonKey(ignore: true)
-  _$$_TutorsCopyWith<_$_Tutors> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_TutorsCopyWith<_$_Tutors> get copyWith => throw _privateConstructorUsedError;
 }
 
 TeacherModel _$TeacherModelFromJson(Map<String, dynamic> json) {
@@ -1889,7 +1824,7 @@ mixin _$TeacherModel {
   String? get updatedAt => throw _privateConstructorUsedError;
   String? get deletedAt => throw _privateConstructorUsedError;
   String? get studentGroupId => throw _privateConstructorUsedError;
-  List<Feedback>? get feedbacks => throw _privateConstructorUsedError;
+  List<FeedbackModel>? get feedbacks => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
   String? get video => throw _privateConstructorUsedError;
@@ -1913,14 +1848,12 @@ mixin _$TeacherModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TeacherModelCopyWith<TeacherModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $TeacherModelCopyWith<TeacherModel> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $TeacherModelCopyWith<$Res> {
-  factory $TeacherModelCopyWith(
-          TeacherModel value, $Res Function(TeacherModel) then) =
+  factory $TeacherModelCopyWith(TeacherModel value, $Res Function(TeacherModel) then) =
       _$TeacherModelCopyWithImpl<$Res, TeacherModel>;
   @useResult
   $Res call(
@@ -1950,7 +1883,7 @@ abstract class $TeacherModelCopyWith<$Res> {
       String? updatedAt,
       String? deletedAt,
       String? studentGroupId,
-      List<Feedback>? feedbacks,
+      List<FeedbackModel>? feedbacks,
       String? id,
       String? userId,
       String? video,
@@ -2142,7 +2075,7 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
       feedbacks: freezed == feedbacks
           ? _value.feedbacks
           : feedbacks // ignore: cast_nullable_to_non_nullable
-              as List<Feedback>?,
+              as List<FeedbackModel>?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2228,10 +2161,8 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
 }
 
 /// @nodoc
-abstract class _$$_TeacherModelCopyWith<$Res>
-    implements $TeacherModelCopyWith<$Res> {
-  factory _$$_TeacherModelCopyWith(
-          _$_TeacherModel value, $Res Function(_$_TeacherModel) then) =
+abstract class _$$_TeacherModelCopyWith<$Res> implements $TeacherModelCopyWith<$Res> {
+  factory _$$_TeacherModelCopyWith(_$_TeacherModel value, $Res Function(_$_TeacherModel) then) =
       __$$_TeacherModelCopyWithImpl<$Res>;
   @override
   @useResult
@@ -2262,7 +2193,7 @@ abstract class _$$_TeacherModelCopyWith<$Res>
       String? updatedAt,
       String? deletedAt,
       String? studentGroupId,
-      List<Feedback>? feedbacks,
+      List<FeedbackModel>? feedbacks,
       String? id,
       String? userId,
       String? video,
@@ -2286,11 +2217,9 @@ abstract class _$$_TeacherModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TeacherModelCopyWithImpl<$Res>
-    extends _$TeacherModelCopyWithImpl<$Res, _$_TeacherModel>
+class __$$_TeacherModelCopyWithImpl<$Res> extends _$TeacherModelCopyWithImpl<$Res, _$_TeacherModel>
     implements _$$_TeacherModelCopyWith<$Res> {
-  __$$_TeacherModelCopyWithImpl(
-      _$_TeacherModel _value, $Res Function(_$_TeacherModel) _then)
+  __$$_TeacherModelCopyWithImpl(_$_TeacherModel _value, $Res Function(_$_TeacherModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2452,7 +2381,7 @@ class __$$_TeacherModelCopyWithImpl<$Res>
       feedbacks: freezed == feedbacks
           ? _value._feedbacks
           : feedbacks // ignore: cast_nullable_to_non_nullable
-              as List<Feedback>?,
+              as List<FeedbackModel>?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2568,7 +2497,7 @@ class _$_TeacherModel implements _TeacherModel {
       this.updatedAt,
       this.deletedAt,
       this.studentGroupId,
-      final List<Feedback>? feedbacks,
+      final List<FeedbackModel>? feedbacks,
       this.id,
       this.userId,
       this.video,
@@ -2593,8 +2522,7 @@ class _$_TeacherModel implements _TeacherModel {
         _schedules = schedules,
         _courses = courses;
 
-  factory _$_TeacherModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TeacherModelFromJson(json);
+  factory _$_TeacherModel.fromJson(Map<String, dynamic> json) => _$$_TeacherModelFromJson(json);
 
   @override
   final String? level;
@@ -2649,9 +2577,9 @@ class _$_TeacherModel implements _TeacherModel {
   final String? deletedAt;
   @override
   final String? studentGroupId;
-  final List<Feedback>? _feedbacks;
+  final List<FeedbackModel>? _feedbacks;
   @override
-  List<Feedback>? get feedbacks {
+  List<FeedbackModel>? get feedbacks {
     final value = _feedbacks;
     if (value == null) return null;
     if (_feedbacks is EqualUnmodifiableListView) return _feedbacks;
@@ -2728,29 +2656,22 @@ class _$_TeacherModel implements _TeacherModel {
             (identical(other.level, level) || other.level == level) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.google, google) || other.google == google) &&
-            (identical(other.facebook, facebook) ||
-                other.facebook == facebook) &&
+            (identical(other.facebook, facebook) || other.facebook == facebook) &&
             (identical(other.apple, apple) || other.apple == apple) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.language, language) ||
-                other.language == language) &&
-            (identical(other.birthday, birthday) ||
-                other.birthday == birthday) &&
+            (identical(other.language, language) || other.language == language) &&
+            (identical(other.birthday, birthday) || other.birthday == birthday) &&
             (identical(other.requestPassword, requestPassword) ||
                 other.requestPassword == requestPassword) &&
-            (identical(other.isActivated, isActivated) ||
-                other.isActivated == isActivated) &&
+            (identical(other.isActivated, isActivated) || other.isActivated == isActivated) &&
             (identical(other.isPhoneActivated, isPhoneActivated) ||
                 other.isPhoneActivated == isPhoneActivated) &&
-            (identical(other.requireNote, requireNote) ||
-                other.requireNote == requireNote) &&
-            (identical(other.timezone, timezone) ||
-                other.timezone == timezone) &&
-            (identical(other.phoneAuth, phoneAuth) ||
-                other.phoneAuth == phoneAuth) &&
+            (identical(other.requireNote, requireNote) || other.requireNote == requireNote) &&
+            (identical(other.timezone, timezone) || other.timezone == timezone) &&
+            (identical(other.phoneAuth, phoneAuth) || other.phoneAuth == phoneAuth) &&
             (identical(other.isPhoneAuthActivated, isPhoneAuthActivated) ||
                 other.isPhoneAuthActivated == isPhoneAuthActivated) &&
             (identical(other.studySchedule, studySchedule) ||
@@ -2761,46 +2682,32 @@ class _$_TeacherModel implements _TeacherModel {
                 other.isPublicRecord == isPublicRecord) &&
             (identical(other.caredByStaffId, caredByStaffId) ||
                 other.caredByStaffId == caredByStaffId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.deletedAt, deletedAt) ||
-                other.deletedAt == deletedAt) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
+            (identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt) &&
             (identical(other.studentGroupId, studentGroupId) ||
                 other.studentGroupId == studentGroupId) &&
-            const DeepCollectionEquality()
-                .equals(other._feedbacks, _feedbacks) &&
+            const DeepCollectionEquality().equals(other._feedbacks, _feedbacks) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.video, video) || other.video == video) &&
             (identical(other.bio, bio) || other.bio == bio) &&
-            (identical(other.education, education) ||
-                other.education == education) &&
-            (identical(other.experience, experience) ||
-                other.experience == experience) &&
-            (identical(other.profession, profession) ||
-                other.profession == profession) &&
+            (identical(other.education, education) || other.education == education) &&
+            (identical(other.experience, experience) || other.experience == experience) &&
+            (identical(other.profession, profession) || other.profession == profession) &&
             (identical(other.accent, accent) || other.accent == accent) &&
             (identical(other.targetStudent, targetStudent) ||
                 other.targetStudent == targetStudent) &&
-            (identical(other.interests, interests) ||
-                other.interests == interests) &&
-            (identical(other.languages, languages) ||
-                other.languages == languages) &&
-            (identical(other.specialties, specialties) ||
-                other.specialties == specialties) &&
+            (identical(other.interests, interests) || other.interests == interests) &&
+            (identical(other.languages, languages) || other.languages == languages) &&
+            (identical(other.specialties, specialties) || other.specialties == specialties) &&
             (identical(other.resume, resume) || other.resume == resume) &&
             (identical(other.rating, rating) || other.rating == rating) &&
-            (identical(other.isNative, isNative) ||
-                other.isNative == isNative) &&
+            (identical(other.isNative, isNative) || other.isNative == isNative) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.isOnline, isOnline) ||
-                other.isOnline == isOnline) &&
-            (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite) &&
-            const DeepCollectionEquality()
-                .equals(other._schedules, _schedules) &&
+            (identical(other.isOnline, isOnline) || other.isOnline == isOnline) &&
+            (identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite) &&
+            const DeepCollectionEquality().equals(other._schedules, _schedules) &&
             const DeepCollectionEquality().equals(other._courses, _courses));
   }
 
@@ -2899,7 +2806,7 @@ abstract class _TeacherModel implements TeacherModel {
       final String? updatedAt,
       final String? deletedAt,
       final String? studentGroupId,
-      final List<Feedback>? feedbacks,
+      final List<FeedbackModel>? feedbacks,
       final String? id,
       final String? userId,
       final String? video,
@@ -2921,8 +2828,7 @@ abstract class _TeacherModel implements TeacherModel {
       final List<ScheduleOfTutor>? schedules,
       final List<Course>? courses}) = _$_TeacherModel;
 
-  factory _TeacherModel.fromJson(Map<String, dynamic> json) =
-      _$_TeacherModel.fromJson;
+  factory _TeacherModel.fromJson(Map<String, dynamic> json) = _$_TeacherModel.fromJson;
 
   @override
   String? get level;
@@ -2977,7 +2883,7 @@ abstract class _TeacherModel implements TeacherModel {
   @override
   String? get studentGroupId;
   @override
-  List<Feedback>? get feedbacks;
+  List<FeedbackModel>? get feedbacks;
   @override
   String? get id;
   @override
@@ -3020,11 +2926,10 @@ abstract class _TeacherModel implements TeacherModel {
   List<Course>? get courses;
   @override
   @JsonKey(ignore: true)
-  _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith => throw _privateConstructorUsedError;
 }
 
-Feedback _$FeedbackFromJson(Map<String, dynamic> json) {
+FeedbackModel _$FeedbackFromJson(Map<String, dynamic> json) {
   return _Feedback.fromJson(json);
 }
 
@@ -3042,14 +2947,13 @@ mixin _$Feedback {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FeedbackCopyWith<Feedback> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FeedbackCopyWith<FeedbackModel> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $FeedbackCopyWith<$Res> {
-  factory $FeedbackCopyWith(Feedback value, $Res Function(Feedback) then) =
-      _$FeedbackCopyWithImpl<$Res, Feedback>;
+  factory $FeedbackCopyWith(FeedbackModel value, $Res Function(FeedbackModel) then) =
+      _$FeedbackCopyWithImpl<$Res, FeedbackModel>;
   @useResult
   $Res call(
       {String id,
@@ -3066,8 +2970,7 @@ abstract class $FeedbackCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FeedbackCopyWithImpl<$Res, $Val extends Feedback>
-    implements $FeedbackCopyWith<$Res> {
+class _$FeedbackCopyWithImpl<$Res, $Val extends FeedbackModel> implements $FeedbackCopyWith<$Res> {
   _$FeedbackCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -3143,8 +3046,7 @@ class _$FeedbackCopyWithImpl<$Res, $Val extends Feedback>
 
 /// @nodoc
 abstract class _$$_FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
-  factory _$$_FeedbackCopyWith(
-          _$_Feedback value, $Res Function(_$_Feedback) then) =
+  factory _$$_FeedbackCopyWith(_$_Feedback value, $Res Function(_$_Feedback) then) =
       __$$_FeedbackCopyWithImpl<$Res>;
   @override
   @useResult
@@ -3164,11 +3066,9 @@ abstract class _$$_FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FeedbackCopyWithImpl<$Res>
-    extends _$FeedbackCopyWithImpl<$Res, _$_Feedback>
+class __$$_FeedbackCopyWithImpl<$Res> extends _$FeedbackCopyWithImpl<$Res, _$_Feedback>
     implements _$$_FeedbackCopyWith<$Res> {
-  __$$_FeedbackCopyWithImpl(
-      _$_Feedback _value, $Res Function(_$_Feedback) _then)
+  __$$_FeedbackCopyWithImpl(_$_Feedback _value, $Res Function(_$_Feedback) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3239,8 +3139,7 @@ class _$_Feedback implements _Feedback {
       this.updatedAt,
       this.firstInfo});
 
-  factory _$_Feedback.fromJson(Map<String, dynamic> json) =>
-      _$$_FeedbackFromJson(json);
+  factory _$_Feedback.fromJson(Map<String, dynamic> json) => _$$_FeedbackFromJson(json);
 
   @override
   final String id;
@@ -3272,25 +3171,20 @@ class _$_Feedback implements _Feedback {
         (other.runtimeType == runtimeType &&
             other is _$_Feedback &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.bookingId, bookingId) ||
-                other.bookingId == bookingId) &&
+            (identical(other.bookingId, bookingId) || other.bookingId == bookingId) &&
             (identical(other.firstId, firstId) || other.firstId == firstId) &&
-            (identical(other.secondId, secondId) ||
-                other.secondId == secondId) &&
+            (identical(other.secondId, secondId) || other.secondId == secondId) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.firstInfo, firstInfo) ||
-                other.firstInfo == firstInfo));
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
+            (identical(other.firstInfo, firstInfo) || other.firstInfo == firstInfo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, bookingId, firstId, secondId,
-      rating, content, createdAt, updatedAt, firstInfo);
+  int get hashCode => Object.hash(runtimeType, id, bookingId, firstId, secondId, rating, content,
+      createdAt, updatedAt, firstInfo);
 
   @JsonKey(ignore: true)
   @override
@@ -3306,7 +3200,7 @@ class _$_Feedback implements _Feedback {
   }
 }
 
-abstract class _Feedback implements Feedback {
+abstract class _Feedback implements FeedbackModel {
   const factory _Feedback(
       {required final String id,
       final String? bookingId,
@@ -3340,8 +3234,7 @@ abstract class _Feedback implements Feedback {
   FirstInfo? get firstInfo;
   @override
   @JsonKey(ignore: true)
-  _$$_FeedbackCopyWith<_$_Feedback> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_FeedbackCopyWith<_$_Feedback> get copyWith => throw _privateConstructorUsedError;
 }
 
 FirstInfo _$FirstInfoFromJson(Map<String, dynamic> json) {
@@ -3379,8 +3272,7 @@ mixin _$FirstInfo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FirstInfoCopyWith<FirstInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FirstInfoCopyWith<FirstInfo> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -3418,8 +3310,7 @@ abstract class $FirstInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FirstInfoCopyWithImpl<$Res, $Val extends FirstInfo>
-    implements $FirstInfoCopyWith<$Res> {
+class _$FirstInfoCopyWithImpl<$Res, $Val extends FirstInfo> implements $FirstInfoCopyWith<$Res> {
   _$FirstInfoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -3568,8 +3459,7 @@ class _$FirstInfoCopyWithImpl<$Res, $Val extends FirstInfo>
 
 /// @nodoc
 abstract class _$$_FirstInfoCopyWith<$Res> implements $FirstInfoCopyWith<$Res> {
-  factory _$$_FirstInfoCopyWith(
-          _$_FirstInfo value, $Res Function(_$_FirstInfo) then) =
+  factory _$$_FirstInfoCopyWith(_$_FirstInfo value, $Res Function(_$_FirstInfo) then) =
       __$$_FirstInfoCopyWithImpl<$Res>;
   @override
   @useResult
@@ -3603,11 +3493,9 @@ abstract class _$$_FirstInfoCopyWith<$Res> implements $FirstInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FirstInfoCopyWithImpl<$Res>
-    extends _$FirstInfoCopyWithImpl<$Res, _$_FirstInfo>
+class __$$_FirstInfoCopyWithImpl<$Res> extends _$FirstInfoCopyWithImpl<$Res, _$_FirstInfo>
     implements _$$_FirstInfoCopyWith<$Res> {
-  __$$_FirstInfoCopyWithImpl(
-      _$_FirstInfo _value, $Res Function(_$_FirstInfo) _then)
+  __$$_FirstInfoCopyWithImpl(_$_FirstInfo _value, $Res Function(_$_FirstInfo) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3780,8 +3668,7 @@ class _$_FirstInfo implements _FirstInfo {
       this.deletedAt,
       this.studentGroupId});
 
-  factory _$_FirstInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_FirstInfoFromJson(json);
+  factory _$_FirstInfo.fromJson(Map<String, dynamic> json) => _$$_FirstInfoFromJson(json);
 
   @override
   final String? level;
@@ -3849,29 +3736,22 @@ class _$_FirstInfo implements _FirstInfo {
             (identical(other.level, level) || other.level == level) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.google, google) || other.google == google) &&
-            (identical(other.facebook, facebook) ||
-                other.facebook == facebook) &&
+            (identical(other.facebook, facebook) || other.facebook == facebook) &&
             (identical(other.apple, apple) || other.apple == apple) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.language, language) ||
-                other.language == language) &&
-            (identical(other.birthday, birthday) ||
-                other.birthday == birthday) &&
+            (identical(other.language, language) || other.language == language) &&
+            (identical(other.birthday, birthday) || other.birthday == birthday) &&
             (identical(other.requestPassword, requestPassword) ||
                 other.requestPassword == requestPassword) &&
-            (identical(other.isActivated, isActivated) ||
-                other.isActivated == isActivated) &&
+            (identical(other.isActivated, isActivated) || other.isActivated == isActivated) &&
             (identical(other.isPhoneActivated, isPhoneActivated) ||
                 other.isPhoneActivated == isPhoneActivated) &&
-            (identical(other.requireNote, requireNote) ||
-                other.requireNote == requireNote) &&
-            (identical(other.timezone, timezone) ||
-                other.timezone == timezone) &&
-            (identical(other.phoneAuth, phoneAuth) ||
-                other.phoneAuth == phoneAuth) &&
+            (identical(other.requireNote, requireNote) || other.requireNote == requireNote) &&
+            (identical(other.timezone, timezone) || other.timezone == timezone) &&
+            (identical(other.phoneAuth, phoneAuth) || other.phoneAuth == phoneAuth) &&
             (identical(other.isPhoneAuthActivated, isPhoneAuthActivated) ||
                 other.isPhoneAuthActivated == isPhoneAuthActivated) &&
             (identical(other.studySchedule, studySchedule) ||
@@ -3882,12 +3762,9 @@ class _$_FirstInfo implements _FirstInfo {
                 other.isPublicRecord == isPublicRecord) &&
             (identical(other.caredByStaffId, caredByStaffId) ||
                 other.caredByStaffId == caredByStaffId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.deletedAt, deletedAt) ||
-                other.deletedAt == deletedAt) &&
+            (identical(other.createdAt, createdAt) || other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt) &&
+            (identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt) &&
             (identical(other.studentGroupId, studentGroupId) ||
                 other.studentGroupId == studentGroupId));
   }
@@ -3967,8 +3844,7 @@ abstract class _FirstInfo implements FirstInfo {
       final String? deletedAt,
       final String? studentGroupId}) = _$_FirstInfo;
 
-  factory _FirstInfo.fromJson(Map<String, dynamic> json) =
-      _$_FirstInfo.fromJson;
+  factory _FirstInfo.fromJson(Map<String, dynamic> json) = _$_FirstInfo.fromJson;
 
   @override
   String? get level;
@@ -4024,6 +3900,5 @@ abstract class _FirstInfo implements FirstInfo {
   String? get studentGroupId;
   @override
   @JsonKey(ignore: true)
-  _$$_FirstInfoCopyWith<_$_FirstInfo> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_FirstInfoCopyWith<_$_FirstInfo> get copyWith => throw _privateConstructorUsedError;
 }
