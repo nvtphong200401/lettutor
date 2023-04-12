@@ -6,6 +6,7 @@ import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
+import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 import 'package:lettutor/presentation/schedule/cancel_booking.dart';
@@ -48,8 +49,8 @@ class BookingCard extends StatelessWidget {
         ),
         WhiteBoxContainer(
           child: CommonLessonTime(
-              startTime: scheduleInfoFirst?.startTime ?? '',
-              endTime: scheduleInfoLast?.endTime ?? ''),
+              startTime: scheduleInfoFirst?.startTimestamp.toHourAndMinLocal() ?? '',
+              endTime: scheduleInfoLast?.endTimestamp.toHourAndMinLocal() ?? ''),
         ),
         const SizedBox(
           height: 1,
@@ -130,7 +131,7 @@ class BookingSession extends HookWidget {
         child: Row(
           children: [
             Text(
-              'Session $session: ${scheduleInfo?.startTime} - ${scheduleInfo?.endTime}',
+              'Session $session: ${scheduleInfo?.startTimestamp.toHourAndMinLocal()} - ${scheduleInfo?.endTimestamp.toHourAndMinLocal()}',
             ),
             const Spacer(),
             GestureDetector(

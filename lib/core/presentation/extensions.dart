@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lettutor/infrastructure/courses/models/course_model.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 
@@ -18,28 +21,21 @@ extension GroupByDate on List<ScheduleModel> {
         group[date] = [schedule];
       }
     }
-    return group.map((key, value) {
-      value.sort((a, b) {
-        int timeA = a.scheduleDetailInfo?.startPeriodTimestamp ?? 0;
-        int timeB = b.scheduleDetailInfo?.startPeriodTimestamp ?? 0;
-        if (timeA > timeB) {
-          return 1;
-        }
-        return -1;
-      });
-      return MapEntry(key, value);
-    });
+    return group.sort();
   }
 
   Map<DateTime, List<ScheduleModel>> inHistory() {
     var schedule = groupByDate()
-      ..removeWhere((key, value) => key.difference(DateTime.now()).inDays > 0);
+      ..removeWhere((key, value) => key.difference(DateTime.now()).inMinutes > 0);
     return schedule;
   }
 
   Map<DateTime, List<ScheduleModel>> inFuture() {
     var schedule = groupByDate()
-      ..removeWhere((key, value) => key.difference(DateTime.now()).inDays < 0);
+      ..removeWhere((key, value) => key.difference(DateTime.now()).inSeconds < 0);
+    for (var element in schedule.keys) {
+      log(element.toString());
+    }
     return schedule;
   }
 
@@ -48,7 +44,7 @@ extension GroupByDate on List<ScheduleModel> {
     if (upcomings.isEmpty) return null;
     var result = upcomings.entries.first;
     for (var schedule in upcomings.entries) {
-      if (result.key.difference(schedule.key).inDays < 0) {
+      if (result.key.difference(schedule.key).inMinutes > 0) {
         result = schedule;
       }
     }
@@ -75,10 +71,30 @@ extension IntToDateLocal on int? {
   DateTime toLocal() {
     return DateTime.fromMillisecondsSinceEpoch(this ?? 0);
   }
+
+  String toHourAndMinLocal() {
+    return DateFormat('HH:mm').format(toLocal());
+  }
 }
 
-// extension NullableIntToDateLocal on int? {
-//   DateTime toLocal() {
-//     return DateTime.fromMillisecondsSinceEpoch(this ?? 0);
+extension SortScheduleX on Map<DateTime, List<ScheduleModel>> {
+  Map<DateTime, List<ScheduleModel>> sort() {
+    return map((key, value) {
+      value.sort((a, b) {
+        int timeA = a.scheduleDetailInfo?.startPeriodTimestamp ?? 0;
+        int timeB = b.scheduleDetailInfo?.startPeriodTimestamp ?? 0;
+        if (timeA > timeB) {
+          return 1;
+        }
+        return -1;
+      });
+      return MapEntry(key, value);
+    });
+  }
+}
+
+// extension DateTimeEx on DateTime {
+//   String toHourAndMin() {
+//     return DateFormat('HH:mm').format(this);
 //   }
 // }

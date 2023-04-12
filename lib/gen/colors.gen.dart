@@ -34,6 +34,12 @@ class ColorName {
   /// Color: #A4B0BE
   static const Color grey = Color(0xFFA4B0BE);
 
+  /// Color: #646464
+  static const Color inActiveText = Color(0xFF646464);
+
+  /// Color: #E4E6EB
+  static const Color inactiveTag = Color(0xFFE4E6EB);
+
   /// Color: #787878
   static const Color partDesc = Color(0xFF787878);
 

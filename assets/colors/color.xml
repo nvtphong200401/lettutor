@@ -12,6 +12,8 @@
     <color name="textButton">#1890FF</color>
     <color name="course_desc">#808080</color>
     <color name="activeTag">#DDEAFF</color>
+    <color name="inactiveTag">#E4E6EB</color>
+    <color name="inActiveText">#646464</color>
 
 
 

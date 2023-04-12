@@ -17,23 +17,29 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TeachersState {
   List<TeacherModel> get teachers => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<TeacherModel> teachers) loading,
-    required TResult Function(List<TeacherModel> teachers, String? errorMessage)
+    required TResult Function(List<TeacherModel> teachers, int count) loading,
+    required TResult Function(List<TeacherModel> teachers, int count,
+            int currentPage, String? errorMessage)
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TeacherModel> teachers)? loading,
-    TResult? Function(List<TeacherModel> teachers, String? errorMessage)? data,
+    TResult? Function(List<TeacherModel> teachers, int count)? loading,
+    TResult? Function(List<TeacherModel> teachers, int count, int currentPage,
+            String? errorMessage)?
+        data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TeacherModel> teachers)? loading,
-    TResult Function(List<TeacherModel> teachers, String? errorMessage)? data,
+    TResult Function(List<TeacherModel> teachers, int count)? loading,
+    TResult Function(List<TeacherModel> teachers, int count, int currentPage,
+            String? errorMessage)?
+        data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,7 +74,7 @@ abstract class $TeachersStateCopyWith<$Res> {
           TeachersState value, $Res Function(TeachersState) then) =
       _$TeachersStateCopyWithImpl<$Res, TeachersState>;
   @useResult
-  $Res call({List<TeacherModel> teachers});
+  $Res call({List<TeacherModel> teachers, int count});
 }
 
 /// @nodoc
@@ -85,12 +91,17 @@ class _$TeachersStateCopyWithImpl<$Res, $Val extends TeachersState>
   @override
   $Res call({
     Object? teachers = null,
+    Object? count = null,
   }) {
     return _then(_value.copyWith(
       teachers: null == teachers
           ? _value.teachers
           : teachers // ignore: cast_nullable_to_non_nullable
               as List<TeacherModel>,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -103,7 +114,7 @@ abstract class _$$_LoadingCopyWith<$Res>
       __$$_LoadingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<TeacherModel> teachers});
+  $Res call({List<TeacherModel> teachers, int count});
 }
 
 /// @nodoc
@@ -117,12 +128,17 @@ class __$$_LoadingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? teachers = null,
+    Object? count = null,
   }) {
     return _then(_$_Loading(
       teachers: null == teachers
           ? _value._teachers
           : teachers // ignore: cast_nullable_to_non_nullable
               as List<TeacherModel>,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -130,7 +146,8 @@ class __$$_LoadingCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loading extends _Loading {
-  const _$_Loading({required final List<TeacherModel> teachers})
+  const _$_Loading(
+      {required final List<TeacherModel> teachers, required this.count})
       : _teachers = teachers,
         super._();
 
@@ -143,8 +160,11 @@ class _$_Loading extends _Loading {
   }
 
   @override
+  final int count;
+
+  @override
   String toString() {
-    return 'TeachersState.loading(teachers: $teachers)';
+    return 'TeachersState.loading(teachers: $teachers, count: $count)';
   }
 
   @override
@@ -152,12 +172,13 @@ class _$_Loading extends _Loading {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loading &&
-            const DeepCollectionEquality().equals(other._teachers, _teachers));
+            const DeepCollectionEquality().equals(other._teachers, _teachers) &&
+            (identical(other.count, count) || other.count == count));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_teachers));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_teachers), count);
 
   @JsonKey(ignore: true)
   @override
@@ -168,31 +189,36 @@ class _$_Loading extends _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<TeacherModel> teachers) loading,
-    required TResult Function(List<TeacherModel> teachers, String? errorMessage)
+    required TResult Function(List<TeacherModel> teachers, int count) loading,
+    required TResult Function(List<TeacherModel> teachers, int count,
+            int currentPage, String? errorMessage)
         data,
   }) {
-    return loading(teachers);
+    return loading(teachers, count);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TeacherModel> teachers)? loading,
-    TResult? Function(List<TeacherModel> teachers, String? errorMessage)? data,
+    TResult? Function(List<TeacherModel> teachers, int count)? loading,
+    TResult? Function(List<TeacherModel> teachers, int count, int currentPage,
+            String? errorMessage)?
+        data,
   }) {
-    return loading?.call(teachers);
+    return loading?.call(teachers, count);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TeacherModel> teachers)? loading,
-    TResult Function(List<TeacherModel> teachers, String? errorMessage)? data,
+    TResult Function(List<TeacherModel> teachers, int count)? loading,
+    TResult Function(List<TeacherModel> teachers, int count, int currentPage,
+            String? errorMessage)?
+        data,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(teachers);
+      return loading(teachers, count);
     }
     return orElse();
   }
@@ -230,12 +256,15 @@ class _$_Loading extends _Loading {
 }
 
 abstract class _Loading extends TeachersState {
-  const factory _Loading({required final List<TeacherModel> teachers}) =
-      _$_Loading;
+  const factory _Loading(
+      {required final List<TeacherModel> teachers,
+      required final int count}) = _$_Loading;
   const _Loading._() : super._();
 
   @override
   List<TeacherModel> get teachers;
+  @override
+  int get count;
   @override
   @JsonKey(ignore: true)
   _$$_LoadingCopyWith<_$_Loading> get copyWith =>
@@ -248,7 +277,11 @@ abstract class _$$_DataCopyWith<$Res> implements $TeachersStateCopyWith<$Res> {
       __$$_DataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<TeacherModel> teachers, String? errorMessage});
+  $Res call(
+      {List<TeacherModel> teachers,
+      int count,
+      int currentPage,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -262,6 +295,8 @@ class __$$_DataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? teachers = null,
+    Object? count = null,
+    Object? currentPage = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_$_Data(
@@ -269,6 +304,14 @@ class __$$_DataCopyWithImpl<$Res>
           ? _value._teachers
           : teachers // ignore: cast_nullable_to_non_nullable
               as List<TeacherModel>,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -280,7 +323,11 @@ class __$$_DataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Data extends _Data {
-  _$_Data({required final List<TeacherModel> teachers, this.errorMessage})
+  _$_Data(
+      {required final List<TeacherModel> teachers,
+      required this.count,
+      required this.currentPage,
+      this.errorMessage})
       : _teachers = teachers,
         super._();
 
@@ -293,11 +340,15 @@ class _$_Data extends _Data {
   }
 
   @override
+  final int count;
+  @override
+  final int currentPage;
+  @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'TeachersState.data(teachers: $teachers, errorMessage: $errorMessage)';
+    return 'TeachersState.data(teachers: $teachers, count: $count, currentPage: $currentPage, errorMessage: $errorMessage)';
   }
 
   @override
@@ -306,13 +357,20 @@ class _$_Data extends _Data {
         (other.runtimeType == runtimeType &&
             other is _$_Data &&
             const DeepCollectionEquality().equals(other._teachers, _teachers) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_teachers), errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_teachers),
+      count,
+      currentPage,
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -323,31 +381,36 @@ class _$_Data extends _Data {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<TeacherModel> teachers) loading,
-    required TResult Function(List<TeacherModel> teachers, String? errorMessage)
+    required TResult Function(List<TeacherModel> teachers, int count) loading,
+    required TResult Function(List<TeacherModel> teachers, int count,
+            int currentPage, String? errorMessage)
         data,
   }) {
-    return data(teachers, errorMessage);
+    return data(teachers, count, currentPage, errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<TeacherModel> teachers)? loading,
-    TResult? Function(List<TeacherModel> teachers, String? errorMessage)? data,
+    TResult? Function(List<TeacherModel> teachers, int count)? loading,
+    TResult? Function(List<TeacherModel> teachers, int count, int currentPage,
+            String? errorMessage)?
+        data,
   }) {
-    return data?.call(teachers, errorMessage);
+    return data?.call(teachers, count, currentPage, errorMessage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<TeacherModel> teachers)? loading,
-    TResult Function(List<TeacherModel> teachers, String? errorMessage)? data,
+    TResult Function(List<TeacherModel> teachers, int count)? loading,
+    TResult Function(List<TeacherModel> teachers, int count, int currentPage,
+            String? errorMessage)?
+        data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(teachers, errorMessage);
+      return data(teachers, count, currentPage, errorMessage);
     }
     return orElse();
   }
@@ -387,11 +450,16 @@ class _$_Data extends _Data {
 abstract class _Data extends TeachersState {
   factory _Data(
       {required final List<TeacherModel> teachers,
+      required final int count,
+      required final int currentPage,
       final String? errorMessage}) = _$_Data;
   _Data._() : super._();
 
   @override
   List<TeacherModel> get teachers;
+  @override
+  int get count;
+  int get currentPage;
   String? get errorMessage;
   @override
   @JsonKey(ignore: true)

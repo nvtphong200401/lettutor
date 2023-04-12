@@ -2,24 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/core/presentation/common_styles/text_style.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 
-class TabInteractiveBooks extends StatelessWidget {
-  const TabInteractiveBooks({super.key});
+class NotFoundScreen extends StatelessWidget {
+  const NotFoundScreen({super.key, this.placeHolderString = 'No data'});
+  final String placeHolderString;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        SizedBox(
+      children: [
+        const SizedBox(
           height: 50,
         ),
-        Icon(
+        const Icon(
           Icons.inbox_rounded,
           color: ColorName.partDesc,
           size: 35,
         ),
         Text(
-          'No data',
+          placeHolderString,
           style: CommonTextStyle.partDesc,
         )
       ],

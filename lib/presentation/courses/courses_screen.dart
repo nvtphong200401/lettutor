@@ -15,7 +15,7 @@ const tabsItem = [
   'Interactive E-book',
 ];
 
-const tabsWidget = [TabCourse(), TabBooks(), TabInteractiveBooks()];
+const tabsWidget = [TabCourse(), TabBooks(), NotFoundScreen()];
 
 class CoursesScreen extends HookWidget {
   const CoursesScreen({super.key});

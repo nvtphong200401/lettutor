@@ -149,7 +149,7 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           ForgotPasswordRoute.name,
-          path: 'password',
+          path: '/password',
         ),
         RouteConfig(
           MyHomeRoute.name,
@@ -243,7 +243,7 @@ class ForgotPasswordRoute extends PageRouteInfo<void> {
   const ForgotPasswordRoute()
       : super(
           ForgotPasswordRoute.name,
-          path: 'password',
+          path: '/password',
         );
 
   static const String name = 'ForgotPasswordRoute';

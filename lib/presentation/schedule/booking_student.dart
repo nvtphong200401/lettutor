@@ -90,8 +90,10 @@ class BookingStudentScreen extends StatelessWidget {
                 data: (data) {
                   // get schedule in the future
                   var schedule = data.inFuture();
+                  final listCard = schedule.entries.toList()
+                    ..sort((a, b) => a.key.compareTo(b.key));
                   return Column(
-                    children: schedule.entries
+                    children: listCard
                         .map((entry) => BookingCard(
                               date: entry.key,
                               schedules: entry.value,

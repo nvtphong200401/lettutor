@@ -22,7 +22,9 @@ class ScheduleNotifier extends StateNotifier<ScheduleState> {
   Future<void> getSchedule() async {
     state = const ScheduleState.loading();
     final result = await _scheduleRepository.getScheduleList();
-    state = result.fold((l) => state, (r) => ScheduleState.data(r));
+    if (mounted) {
+      state = result.fold((l) => state, (r) => ScheduleState.data(r));
+    }
   }
 }
 

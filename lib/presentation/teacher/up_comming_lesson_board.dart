@@ -56,10 +56,13 @@ class UpcommingLessonBoard extends StatelessWidget {
                           upCommingLesson.value[0].scheduleDetailInfo?.scheduleInfo;
                       final lastScheduleInfo = upCommingLesson
                           .value[upCommingLesson.value.length - 1].scheduleDetailInfo?.scheduleInfo;
-                      final startTime = DateFormat('HH:mm')
-                          .format(firstScheduleInfo?.startTimestamp?.toLocal() ?? DateTime.now());
-                      final endTime = DateFormat('HH:mm')
-                          .format(lastScheduleInfo?.endTimestamp.toLocal() ?? DateTime.now());
+                      final startTime = firstScheduleInfo?.startTimestamp?.toHourAndMinLocal();
+
+                      // DateFormat('HH:mm')
+                      //     .format(firstScheduleInfo?.startTimestamp?.toLocal() ?? DateTime.now());
+                      final endTime = lastScheduleInfo?.endTimestamp.toHourAndMinLocal();
+                      // DateFormat('HH:mm')
+                      //     .format(lastScheduleInfo?.endTimestamp.toLocal() ?? DateTime.now());
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(

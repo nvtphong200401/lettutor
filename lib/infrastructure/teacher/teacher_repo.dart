@@ -16,29 +16,34 @@ class TeacherRepository {
   TeacherRepository(this._httpService);
   PaginatedTutors? paginatedTutors;
 
-  Future<Either<Failure, List<TeacherModel>>> getListTeacher(int perPage, int page) async {
+  Future<Either<Failure, Tutors>> getListTeacher(int perPage, int page) async {
     final result = await _httpService.getData<PaginatedTutors>(GetListTeacherParam(perPage, page));
     return result.fold((l) => left(l), (r) {
       paginatedTutors = r;
 
-      return right(r.tutors.rows.map((e) {
-        return e.copyWith(
-            isFavorite: r.favoriteTutor
-                    .indexWhere((favoriteTutor) => favoriteTutor.secondInfo?.id == e.userId) !=
-                -1);
-      }).toList());
+      return right(Tutors(
+          count: r.tutors.count,
+          rows: r.tutors.rows.map((e) {
+            return e.copyWith(
+                isFavorite: r.favoriteTutor
+                        .indexWhere((favoriteTutor) => favoriteTutor.secondInfo?.id == e.userId) !=
+                    -1);
+          }).toList()));
     });
   }
 
-  Future<Either<Failure, List<TeacherModel>>> searchTeacher(String keyword) async {
-    final result = await _httpService.postData<Tutors>(SearchTeacherParam(keyword));
+  Future<Either<Failure, Tutors>> searchTeacher(
+      String? keyword, List<String>? specialties, int page) async {
+    final result = await _httpService.postData<Tutors>(
+        SearchTeacherParam(keyword: keyword, specialties: specialties, page: page));
     return result.fold((l) => left(l), (r) {
-      return right(r.rows.map((e) {
+      return right(r.copyWith(
+          rows: r.rows.map((e) {
         return e.copyWith(
             isFavorite: paginatedTutors?.favoriteTutor
                     .indexWhere((favoriteTutor) => favoriteTutor.secondInfo?.id == e.userId) !=
                 -1);
-      }).toList());
+      }).toList()));
     });
   }
 

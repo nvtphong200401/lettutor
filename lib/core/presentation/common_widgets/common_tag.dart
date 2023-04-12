@@ -17,12 +17,12 @@ class CommonTag extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onPressed,
           style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
-            backgroundColor: ColorName.activeTag,
+            backgroundColor: onPressed != null ? ColorName.inactiveTag : ColorName.activeTag,
             capsuleShape: true,
           ),
           child: Text(
             title,
-            style: const TextStyle(color: ColorName.primary),
+            style: TextStyle(color: onPressed != null ? ColorName.inActiveText : ColorName.primary),
           ),
         ),
       ),

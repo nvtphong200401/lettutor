@@ -18,9 +18,12 @@ class TeachersState with _$TeachersState {
   const TeachersState._();
   const factory TeachersState.loading({
     required List<TeacherModel> teachers,
+    required int count,
   }) = _Loading;
   factory TeachersState.data({
     required List<TeacherModel> teachers,
+    required int count,
+    required int currentPage,
     String? errorMessage,
   }) = _Data;
 
@@ -29,23 +32,27 @@ class TeachersState with _$TeachersState {
 }
 
 class TeachersNotifier extends StateNotifier<TeachersState> {
-  TeachersNotifier(this._teacherRepository) : super(const TeachersState.loading(teachers: [])) {
+  TeachersNotifier(this._teacherRepository)
+      : super(const TeachersState.loading(teachers: [], count: 99)) {
     getTeacherList();
   }
   final TeacherRepository _teacherRepository;
   Timer? timer;
 
-  Future getTeacherList() async {
-    final result = await _teacherRepository.getListTeacher(9, 1);
-    state = result.fold((l) => state, (r) => TeachersState.data(teachers: r));
+  Future getTeacherList({int perPage = 9, int currPage = 1}) async {
+    if (currPage < 1 || currPage > (state.count / perPage).ceil()) return;
+    final result = await _teacherRepository.getListTeacher(perPage, currPage);
+    state = result.fold((l) => state,
+        (r) => TeachersState.data(teachers: r.rows, count: r.count, currentPage: currPage));
   }
 
-  void searchTeacher(String keyword) {
-    state = const TeachersState.loading(teachers: []);
+  void searchTeacher({String? keyword, List<String>? specialties, int currPage = 1}) {
+    state = const TeachersState.loading(teachers: [], count: 0);
     timer?.cancel();
     timer = Timer(const Duration(seconds: 1), () async {
-      final result = await _teacherRepository.searchTeacher(keyword);
-      state = result.fold((l) => state, (r) => TeachersState.data(teachers: r));
+      final result = await _teacherRepository.searchTeacher(keyword, specialties, currPage);
+      state = result.fold((l) => state,
+          (r) => TeachersState.data(teachers: r.rows, count: r.count, currentPage: currPage));
     });
   }
 }

@@ -14,4 +14,19 @@ const levelList = [
   'ADVANCED',
   'PROFICIENCY',
 ];
+const tutorNationality = ['Vietnamese Tutor', 'Foreign Tutor', 'Native English Tutor'];
+const specialties = {
+  '': 'All',
+  'business-english': 'English for Business',
+  'conversational-english': 'Conversational',
+  'english-for-kids': 'English for kids',
+  'starters': 'STARTERS',
+  'movers': 'MOVERS',
+  'flyers': 'FLYERS',
+  'ket': 'KET',
+  'pet': 'PET',
+  'ielts': 'IELTS',
+  'toefl': 'TOEFL',
+  'toeic': 'TOEIC',
+};
 const baseUrl = 'https://sandbox.api.lettutor.com/';

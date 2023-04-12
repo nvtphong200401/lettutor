@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -5,12 +7,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/gen/colors.gen.dart';
+import 'package:lettutor/presentation/courses/tab_interactive_book.dart';
 import 'package:lettutor/presentation/teacher/teacher_card_item.dart';
 import 'package:lettutor/presentation/teacher/up_comming_lesson_board.dart';
 
+import '../../core/presentation/common_widgets/constant.dart';
 import '../../shared/teacher_providers.dart';
-
-const tutorNationality = ['Vietnamese Tutor', 'Foreign Tutor', 'Native English Tutor'];
 
 class ListTeachScreen extends HookConsumerWidget {
   const ListTeachScreen({super.key});
@@ -20,6 +22,7 @@ class ListTeachScreen extends HookConsumerWidget {
     final dropdownKey = useMemoized(() => GlobalKey<DropdownButton2State>());
     final searchNationalityController = useTextEditingController();
     final searchNameController = useTextEditingController();
+    final specialtiesNotifier = useValueNotifier('');
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
       body: ListView(
@@ -45,12 +48,10 @@ class ListTeachScreen extends HookConsumerWidget {
                 child: CommonTextFormField(
                   controller: searchNameController,
                   onChanged: (value) {
-                    ref.read(teachersProvider.notifier).searchTeacher(value);
+                    ref
+                        .read(teachersProvider.notifier)
+                        .searchTeacher(keyword: value, specialties: [specialtiesNotifier.value]);
                   },
-                  // onFieldSubmitted: (value) {
-                  //   if (value.isEmpty) return;
-                  //   ref.read(teachersProvider.notifier).searchTeacher(value);
-                  // },
                   capsuleShape: true,
                   hintText: 'Enter tutor name...',
                   autofocus: false,
@@ -82,7 +83,7 @@ class ListTeachScreen extends HookConsumerWidget {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(22), topRight: Radius.circular(22))),
                         offset: Offset(0, 30),
-                        width: 200,
+                        width: 198,
                       ),
                       iconStyleData: const IconStyleData(iconSize: 18),
                       onChanged: (value) {
@@ -123,14 +124,22 @@ class ListTeachScreen extends HookConsumerWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: const [
-                CommonTag(title: 'IELTS'),
-                CommonTag(title: 'English for kids'),
-                CommonTag(title: 'Conversational'),
-                CommonTag(title: 'TOEIC'),
-                CommonTag(title: 'English for Business'),
-              ],
-            ),
+                children: specialties.entries
+                    .map((e) => HookBuilder(builder: (context) {
+                          final category = useValueListenable(specialtiesNotifier);
+                          return CommonTag(
+                            title: e.value,
+                            onPressed: e.key == category
+                                ? null
+                                : () {
+                                    specialtiesNotifier.value = e.key;
+                                    ref.read(teachersProvider.notifier).searchTeacher(
+                                        keyword: searchNameController.text,
+                                        specialties: [specialtiesNotifier.value]);
+                                  },
+                          );
+                        }))
+                    .toList()),
           ),
           const SizedBox(
             height: 10,
@@ -147,21 +156,106 @@ class ListTeachScreen extends HookConsumerWidget {
             height: 20,
           ),
           ref.watch(teachersProvider).when(
-            loading: (data) {
+            loading: (_, __) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             },
-            data: (teachers, errorMessage) {
+            data: (teachers, total, currentPage, errorMessage) {
+              if (teachers.isEmpty) {
+                return const NotFoundScreen(
+                  placeHolderString: 'Cannot find any tutor',
+                );
+              }
+              final pageLength = (total / 9).ceil();
               return Column(
-                children: teachers
-                    .map((e) => Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
-                          child: TeacherCardItem(
-                            teacher: e,
-                          ),
-                        ))
-                    .toList(),
+                children: [
+                  ...teachers
+                      .map((e) => Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: TeacherCardItem(
+                              teacher: e,
+                            ),
+                          ))
+                      .toList(),
+                  if (total > 18)
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          for (int index = 0; index < pageLength + 2; ++index)
+                            GestureDetector(
+                              onTap: () {
+                                if ((index == 0 && currentPage - 1 < 1) ||
+                                    (index == pageLength + 1 && currentPage + 1 > pageLength)) {
+                                  return;
+                                }
+                                log('$index - $currentPage - $pageLength');
+                                if (index == 0) {
+                                  ref.read(teachersProvider.notifier).searchTeacher(
+                                      keyword: searchNameController.text,
+                                      specialties: [specialtiesNotifier.value],
+                                      currPage: currentPage - 1);
+                                } else if (index == pageLength + 1) {
+                                  ref.read(teachersProvider.notifier).searchTeacher(
+                                      keyword: searchNameController.text,
+                                      specialties: [specialtiesNotifier.value],
+                                      currPage: currentPage + 1);
+                                } else {
+                                  ref.read(teachersProvider.notifier).searchTeacher(
+                                      keyword: searchNameController.text,
+                                      specialties: [specialtiesNotifier.value],
+                                      currPage: index);
+                                }
+                              },
+                              child: Container(
+                                padding: index == 0 || index == pageLength + 1
+                                    ? const EdgeInsets.all(8)
+                                    : const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                                margin: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: index == currentPage
+                                            ? ColorName.primary
+                                            : (index == 0 && currentPage == 1) ||
+                                                    (index == pageLength + 1 &&
+                                                        currentPage == pageLength)
+                                                ? ColorName.inactiveTag
+                                                : ColorName.courseDesc),
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: Builder(builder: (context) {
+                                  if (index == 0) {
+                                    return const Padding(
+                                      padding: EdgeInsets.zero,
+                                      child: Icon(
+                                        Icons.keyboard_arrow_left,
+                                        size: 18,
+                                      ),
+                                    );
+                                  }
+                                  if (index == pageLength + 1) {
+                                    return const Padding(
+                                      padding: EdgeInsets.zero,
+                                      child: Icon(
+                                        Icons.keyboard_arrow_right,
+                                        size: 18,
+                                      ),
+                                    );
+                                  }
+                                  return Text(
+                                    '$index',
+                                    style: TextStyle(
+                                      color: currentPage == index ? ColorName.primary : null,
+                                    ),
+                                  );
+                                }),
+                              ),
+                            )
+                        ],
+                      ),
+                    ),
+                ],
               );
             },
           )

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
+import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/core/presentation/common_widgets/read_more_text.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
@@ -40,11 +41,11 @@ class TeacherCardItem extends ConsumerWidget {
               height: 20,
             ),
             Wrap(
-              children: const [
-                CommonTag(title: 'English for kids'),
-                CommonTag(title: 'IELTS'),
-              ],
-            ),
+                children: teacher.specialties
+                        ?.split(',')
+                        .map((e) => CommonTag(title: specialties[e] ?? e))
+                        .toList() ??
+                    []),
             const SizedBox(
               height: 20,
             ),
