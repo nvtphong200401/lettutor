@@ -18,19 +18,24 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ScheduleState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<ScheduleModel> schedules) data,
+    required TResult Function(
+            List<ScheduleModel> schedules, int count, int currentPage)
+        data,
     required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ScheduleModel> schedules)? data,
+    TResult? Function(
+            List<ScheduleModel> schedules, int count, int currentPage)?
+        data,
     TResult? Function()? loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ScheduleModel> schedules)? data,
+    TResult Function(List<ScheduleModel> schedules, int count, int currentPage)?
+        data,
     TResult Function()? loading,
     required TResult orElse(),
   }) =>
@@ -80,7 +85,7 @@ abstract class _$$_ScheduleDataCopyWith<$Res> {
           _$_ScheduleData value, $Res Function(_$_ScheduleData) then) =
       __$$_ScheduleDataCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ScheduleModel> schedules});
+  $Res call({List<ScheduleModel> schedules, int count, int currentPage});
 }
 
 /// @nodoc
@@ -95,12 +100,22 @@ class __$$_ScheduleDataCopyWithImpl<$Res>
   @override
   $Res call({
     Object? schedules = null,
+    Object? count = null,
+    Object? currentPage = null,
   }) {
     return _then(_$_ScheduleData(
       null == schedules
           ? _value._schedules
           : schedules // ignore: cast_nullable_to_non_nullable
               as List<ScheduleModel>,
+      null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -108,7 +123,8 @@ class __$$_ScheduleDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ScheduleData extends _ScheduleData {
-  const _$_ScheduleData(final List<ScheduleModel> schedules)
+  const _$_ScheduleData(
+      final List<ScheduleModel> schedules, this.count, this.currentPage)
       : _schedules = schedules,
         super._();
 
@@ -121,8 +137,13 @@ class _$_ScheduleData extends _ScheduleData {
   }
 
   @override
+  final int count;
+  @override
+  final int currentPage;
+
+  @override
   String toString() {
-    return 'ScheduleState.data(schedules: $schedules)';
+    return 'ScheduleState.data(schedules: $schedules, count: $count, currentPage: $currentPage)';
   }
 
   @override
@@ -131,12 +152,15 @@ class _$_ScheduleData extends _ScheduleData {
         (other.runtimeType == runtimeType &&
             other is _$_ScheduleData &&
             const DeepCollectionEquality()
-                .equals(other._schedules, _schedules));
+                .equals(other._schedules, _schedules) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_schedules));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_schedules), count, currentPage);
 
   @JsonKey(ignore: true)
   @override
@@ -147,30 +171,35 @@ class _$_ScheduleData extends _ScheduleData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<ScheduleModel> schedules) data,
+    required TResult Function(
+            List<ScheduleModel> schedules, int count, int currentPage)
+        data,
     required TResult Function() loading,
   }) {
-    return data(schedules);
+    return data(schedules, count, currentPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ScheduleModel> schedules)? data,
+    TResult? Function(
+            List<ScheduleModel> schedules, int count, int currentPage)?
+        data,
     TResult? Function()? loading,
   }) {
-    return data?.call(schedules);
+    return data?.call(schedules, count, currentPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ScheduleModel> schedules)? data,
+    TResult Function(List<ScheduleModel> schedules, int count, int currentPage)?
+        data,
     TResult Function()? loading,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(schedules);
+      return data(schedules, count, currentPage);
     }
     return orElse();
   }
@@ -208,11 +237,13 @@ class _$_ScheduleData extends _ScheduleData {
 }
 
 abstract class _ScheduleData extends ScheduleState {
-  const factory _ScheduleData(final List<ScheduleModel> schedules) =
-      _$_ScheduleData;
+  const factory _ScheduleData(final List<ScheduleModel> schedules,
+      final int count, final int currentPage) = _$_ScheduleData;
   const _ScheduleData._() : super._();
 
   List<ScheduleModel> get schedules;
+  int get count;
+  int get currentPage;
   @JsonKey(ignore: true)
   _$$_ScheduleDataCopyWith<_$_ScheduleData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -256,7 +287,9 @@ class _$_ScheduleLoading extends _ScheduleLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<ScheduleModel> schedules) data,
+    required TResult Function(
+            List<ScheduleModel> schedules, int count, int currentPage)
+        data,
     required TResult Function() loading,
   }) {
     return loading();
@@ -265,7 +298,9 @@ class _$_ScheduleLoading extends _ScheduleLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ScheduleModel> schedules)? data,
+    TResult? Function(
+            List<ScheduleModel> schedules, int count, int currentPage)?
+        data,
     TResult? Function()? loading,
   }) {
     return loading?.call();
@@ -274,7 +309,8 @@ class _$_ScheduleLoading extends _ScheduleLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ScheduleModel> schedules)? data,
+    TResult Function(List<ScheduleModel> schedules, int count, int currentPage)?
+        data,
     TResult Function()? loading,
     required TResult orElse(),
   }) {

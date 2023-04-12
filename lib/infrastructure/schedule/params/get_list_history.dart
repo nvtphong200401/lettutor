@@ -1,9 +1,9 @@
-import 'package:lettutor/core/infrastructure/request_param.dart';
+import '../../../core/infrastructure/request_param.dart';
 
-class GetListScheduleParam extends IParam {
+class GetListHistoryParam extends IParam {
   final int? page;
   final int? perPage;
-  GetListScheduleParam({this.page, this.perPage});
+  GetListHistoryParam({this.page, this.perPage});
   @override
   Map<String, dynamic> get json => {};
   @override
@@ -11,8 +11,8 @@ class GetListScheduleParam extends IParam {
         'page': page,
         'perPage': perPage,
         'orderBy': 'meeting',
-        'dateTimeGte': DateTime.now().toUtc().millisecondsSinceEpoch,
-        'sortBy': 'asc',
+        'dateTimeLte': DateTime.now().toUtc().millisecondsSinceEpoch,
+        'sortBy': 'desc',
       };
 
   @override

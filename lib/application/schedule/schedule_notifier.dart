@@ -9,7 +9,8 @@ part 'schedule_notifier.freezed.dart';
 @freezed
 class ScheduleState with _$ScheduleState {
   const ScheduleState._();
-  const factory ScheduleState.data(List<ScheduleModel> schedules) = _ScheduleData;
+  const factory ScheduleState.data(List<ScheduleModel> schedules, int count, int currentPage) =
+      _ScheduleData;
   const factory ScheduleState.loading() = _ScheduleLoading;
 }
 
@@ -19,11 +20,12 @@ class ScheduleNotifier extends StateNotifier<ScheduleState> {
   }
   final ScheduleRepository _scheduleRepository;
 
-  Future<void> getSchedule() async {
+  Future<void> getSchedule({int perPage = 9, int page = 1}) async {
     state = const ScheduleState.loading();
-    final result = await _scheduleRepository.getScheduleList();
+    final result = await _scheduleRepository.getScheduleList(perPage, page);
     if (mounted) {
-      state = result.fold((l) => state, (r) => ScheduleState.data(r));
+      state =
+          result.fold((l) => state, (r) => ScheduleState.data(r.rows ?? [], r.count ?? 0, page));
     }
   }
 }

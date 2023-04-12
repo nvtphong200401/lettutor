@@ -33,7 +33,7 @@ class UpcommingLessonBoard extends StatelessWidget {
         child: Consumer(builder: (context, ref, child) {
           final schedule = ref.watch(scheduleNotifierProvider);
           return schedule.when(
-              data: (data) {
+              data: (data, _, __) {
                 final upCommingLesson = data.getUpcoming();
 
                 return Column(

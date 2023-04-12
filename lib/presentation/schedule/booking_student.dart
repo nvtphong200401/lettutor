@@ -8,12 +8,14 @@ import 'package:lettutor/presentation/schedule/booking_card.dart';
 import 'package:lettutor/shared/schedule_providers.dart';
 
 import '../../core/presentation/common_styles/common_styles.dart';
+import '../../core/presentation/common_widgets/pagination_row.dart';
+import '../courses/tab_interactive_book.dart';
 
-class BookingStudentScreen extends StatelessWidget {
+class BookingStudentScreen extends ConsumerWidget {
   const BookingStudentScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
       body: ListView(
@@ -87,18 +89,45 @@ class BookingStudentScreen extends StatelessWidget {
           ),
           Consumer(builder: (context, ref, child) {
             return ref.watch(scheduleNotifierProvider).when(
-                data: (data) {
+                data: (data, total, currentPage) {
                   // get schedule in the future
                   var schedule = data.inFuture();
                   final listCard = schedule.entries.toList()
                     ..sort((a, b) => a.key.compareTo(b.key));
+
+                  if (listCard.isEmpty) {
+                    return const NotFoundScreen(
+                      placeHolderString: 'Cannot find any schedules',
+                    );
+                  }
+
                   return Column(
-                    children: listCard
-                        .map((entry) => BookingCard(
-                              date: entry.key,
-                              schedules: entry.value,
-                            ))
-                        .toList(),
+                    children: [
+                      ...listCard
+                          .map((entry) => BookingCard(
+                                date: entry.key,
+                                schedules: entry.value,
+                              ))
+                          .toList(),
+                      if (total > 18)
+                        PaginationRow(
+                          pageLength: (total / 9).ceil(),
+                          currentPage: currentPage,
+                          onPrevious: () {
+                            ref
+                                .read(scheduleNotifierProvider.notifier)
+                                .getSchedule(page: currentPage - 1);
+                          },
+                          onNext: () {
+                            ref
+                                .read(scheduleNotifierProvider.notifier)
+                                .getSchedule(page: currentPage + 1);
+                          },
+                          onTapIndex: (index) {
+                            ref.read(scheduleNotifierProvider.notifier).getSchedule(page: index);
+                          },
+                        ),
+                    ],
                   );
                 },
                 loading: () => const Center(child: CircularProgressIndicator()));

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor/infrastructure/courses/models/course_model.dart';
@@ -33,9 +31,6 @@ extension GroupByDate on List<ScheduleModel> {
   Map<DateTime, List<ScheduleModel>> inFuture() {
     var schedule = groupByDate()
       ..removeWhere((key, value) => key.difference(DateTime.now()).inSeconds < 0);
-    for (var element in schedule.keys) {
-      log(element.toString());
-    }
     return schedule;
   }
 

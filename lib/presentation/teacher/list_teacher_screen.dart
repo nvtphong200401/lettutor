@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,6 +10,7 @@ import 'package:lettutor/presentation/teacher/teacher_card_item.dart';
 import 'package:lettutor/presentation/teacher/up_comming_lesson_board.dart';
 
 import '../../core/presentation/common_widgets/constant.dart';
+import '../../core/presentation/common_widgets/pagination_row.dart';
 import '../../shared/teacher_providers.dart';
 
 class ListTeachScreen extends HookConsumerWidget {
@@ -167,7 +166,7 @@ class ListTeachScreen extends HookConsumerWidget {
                   placeHolderString: 'Cannot find any tutor',
                 );
               }
-              final pageLength = (total / 9).ceil();
+
               return Column(
                 children: [
                   ...teachers
@@ -179,81 +178,27 @@ class ListTeachScreen extends HookConsumerWidget {
                           ))
                       .toList(),
                   if (total > 18)
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          for (int index = 0; index < pageLength + 2; ++index)
-                            GestureDetector(
-                              onTap: () {
-                                if ((index == 0 && currentPage - 1 < 1) ||
-                                    (index == pageLength + 1 && currentPage + 1 > pageLength)) {
-                                  return;
-                                }
-                                log('$index - $currentPage - $pageLength');
-                                if (index == 0) {
-                                  ref.read(teachersProvider.notifier).searchTeacher(
-                                      keyword: searchNameController.text,
-                                      specialties: [specialtiesNotifier.value],
-                                      currPage: currentPage - 1);
-                                } else if (index == pageLength + 1) {
-                                  ref.read(teachersProvider.notifier).searchTeacher(
-                                      keyword: searchNameController.text,
-                                      specialties: [specialtiesNotifier.value],
-                                      currPage: currentPage + 1);
-                                } else {
-                                  ref.read(teachersProvider.notifier).searchTeacher(
-                                      keyword: searchNameController.text,
-                                      specialties: [specialtiesNotifier.value],
-                                      currPage: index);
-                                }
-                              },
-                              child: Container(
-                                padding: index == 0 || index == pageLength + 1
-                                    ? const EdgeInsets.all(8)
-                                    : const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                                margin: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: index == currentPage
-                                            ? ColorName.primary
-                                            : (index == 0 && currentPage == 1) ||
-                                                    (index == pageLength + 1 &&
-                                                        currentPage == pageLength)
-                                                ? ColorName.inactiveTag
-                                                : ColorName.courseDesc),
-                                    borderRadius: BorderRadius.circular(100)),
-                                child: Builder(builder: (context) {
-                                  if (index == 0) {
-                                    return const Padding(
-                                      padding: EdgeInsets.zero,
-                                      child: Icon(
-                                        Icons.keyboard_arrow_left,
-                                        size: 18,
-                                      ),
-                                    );
-                                  }
-                                  if (index == pageLength + 1) {
-                                    return const Padding(
-                                      padding: EdgeInsets.zero,
-                                      child: Icon(
-                                        Icons.keyboard_arrow_right,
-                                        size: 18,
-                                      ),
-                                    );
-                                  }
-                                  return Text(
-                                    '$index',
-                                    style: TextStyle(
-                                      color: currentPage == index ? ColorName.primary : null,
-                                    ),
-                                  );
-                                }),
-                              ),
-                            )
-                        ],
-                      ),
+                    PaginationRow(
+                      pageLength: (total / 9).ceil(),
+                      currentPage: currentPage,
+                      onPrevious: () {
+                        ref.read(teachersProvider.notifier).searchTeacher(
+                            keyword: searchNameController.text,
+                            specialties: [specialtiesNotifier.value],
+                            currPage: currentPage - 1);
+                      },
+                      onNext: () {
+                        ref.read(teachersProvider.notifier).searchTeacher(
+                            keyword: searchNameController.text,
+                            specialties: [specialtiesNotifier.value],
+                            currPage: currentPage + 1);
+                      },
+                      onTapIndex: (index) {
+                        ref.read(teachersProvider.notifier).searchTeacher(
+                            keyword: searchNameController.text,
+                            specialties: [specialtiesNotifier.value],
+                            currPage: index);
+                      },
                     ),
                 ],
               );
