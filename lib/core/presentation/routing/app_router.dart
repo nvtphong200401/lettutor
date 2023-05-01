@@ -14,6 +14,8 @@ import 'package:lettutor/presentation/teacher/detail/teacher_detail_screen.dart'
 import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
 import 'package:lettutor/presentation/user/user_profile_screen.dart';
 
+import '../../../presentation/chat/chatgpt.dart';
+
 part 'app_router.gr.dart';
 
 @MaterialAutoRouter(
@@ -75,6 +77,10 @@ part 'app_router.gr.dart';
       path: 'user-profile',
       page: UserProfileScreen,
     ),
+    AutoRoute(
+      path: 'chatgpt',
+      page: ChatGPTScreen,
+    )
   ],
 )
 class AppRouter extends _$AppRouter {}

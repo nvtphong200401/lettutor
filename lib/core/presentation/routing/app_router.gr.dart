@@ -51,6 +51,12 @@ class _$AppRouter extends RootStackRouter {
         child: const UserProfileScreen(),
       );
     },
+    ChatGPTRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ChatGPTScreen(),
+      );
+    },
     ListTeacherRouter.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -210,6 +216,10 @@ class _$AppRouter extends RootStackRouter {
           UserProfileRoute.name,
           path: 'user-profile',
         ),
+        RouteConfig(
+          ChatGPTRoute.name,
+          path: 'chatgpt',
+        ),
       ];
 }
 
@@ -272,6 +282,18 @@ class UserProfileRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'UserProfileRoute';
+}
+
+/// generated route for
+/// [ChatGPTScreen]
+class ChatGPTRoute extends PageRouteInfo<void> {
+  const ChatGPTRoute()
+      : super(
+          ChatGPTRoute.name,
+          path: 'chatgpt',
+        );
+
+  static const String name = 'ChatGPTRoute';
 }
 
 /// generated route for

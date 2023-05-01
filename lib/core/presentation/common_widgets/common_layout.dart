@@ -23,6 +23,9 @@ class DismissKeyboardScaffold extends ConsumerWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          context.router.push(const ChatGPTRoute());
+        }),
         // extendBodyBehindAppBar: true,
         endDrawer: isLogin
             ? null
