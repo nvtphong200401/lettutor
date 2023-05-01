@@ -8,6 +8,7 @@ import 'package:lettutor/presentation/history/history_item.dart';
 import '../../core/presentation/common_styles/common_styles.dart';
 import '../../core/presentation/common_widgets/common_widgets.dart';
 import '../../shared/history_providers.dart';
+import '../courses/tab_interactive_book.dart';
 
 class HistoryStudentScreen extends StatelessWidget {
   const HistoryStudentScreen({super.key});
@@ -41,6 +42,11 @@ class HistoryStudentScreen extends StatelessWidget {
                 data: (data, total, currentPage) {
                   // get schedule in the future
                   var schedule = data.inHistory();
+                  if (schedule.isEmpty) {
+                    return const NotFoundScreen(
+                      placeHolderString: 'Cannot find history',
+                    );
+                  }
                   return Column(
                     children: [
                       ...schedule.entries

@@ -64,7 +64,8 @@ dependencies:
   countries_utils: ^1.0.1
   image_picker: ^0.8.7+1
   jitsi_meet_wrapper: ^0.0.6
-  nvtphong200401_19127646_voicegpt: ^1.0.0+13
+  nvtphong200401_19127646_voicegpt: ^1.0.6+13
+  get_storage: ^2.1.1
 
 dev_dependencies:
   auto_route_generator: ^5.0.3

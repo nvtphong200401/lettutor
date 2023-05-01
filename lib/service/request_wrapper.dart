@@ -22,7 +22,8 @@ Future<Either<Failure, T>> requestWrapper<T>(Future<Response> call) async {
     return right(_mapJsonToData<T>(jsonData));
   } on DioError catch (err) {
     log('phongdz ${err.message}');
-    return left(Failure(statusCode: err.response?.statusCode, message: err.message));
+    return left(
+        Failure(statusCode: err.response?.statusCode, message: err.response?.data['message']));
   }
 }
 

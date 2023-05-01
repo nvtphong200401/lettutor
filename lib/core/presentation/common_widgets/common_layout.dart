@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
+import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/shared/core_providers.dart';
 
 class DismissKeyboardScaffold extends ConsumerWidget {
@@ -23,9 +24,13 @@ class DismissKeyboardScaffold extends ConsumerWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          context.router.push(const ChatGPTRoute());
-        }),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.router.push(const ChatGPTRoute());
+          },
+          backgroundColor: ColorName.primary,
+          child: const Icon(Icons.chat),
+        ),
         // extendBodyBehindAppBar: true,
         endDrawer: isLogin
             ? null

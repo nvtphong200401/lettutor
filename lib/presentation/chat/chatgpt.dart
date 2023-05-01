@@ -1,5 +1,5 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart';
+import 'package:lettutor/core/presentation/common_widgets/common_layout.dart';
 import 'package:nvtphong200401_19127646_voicegpt/presentation/chat/chat_screen.dart';
 
 class ChatGPTScreen extends StatelessWidget {

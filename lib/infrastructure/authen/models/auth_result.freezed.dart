@@ -526,12 +526,12 @@ mixin _$User {
   String? get language => throw _privateConstructorUsedError;
   String? get birthday => throw _privateConstructorUsedError;
   bool? get isActivated => throw _privateConstructorUsedError;
-  WalletInfo? get walletInfo => throw _privateConstructorUsedError;
-  List<String>? get courses => throw _privateConstructorUsedError;
+  WalletInfo? get walletInfo =>
+      throw _privateConstructorUsedError; // List<dynamic>? courses,
   String? get requireNote => throw _privateConstructorUsedError;
   String? get level => throw _privateConstructorUsedError;
-  List<dynamic>? get learnTopics => throw _privateConstructorUsedError;
-  List<String>? get testPreparations => throw _privateConstructorUsedError;
+  List<dynamic>? get learnTopics =>
+      throw _privateConstructorUsedError; // List<String>? testPreparations,
   bool? get isPhoneActivated => throw _privateConstructorUsedError;
   int? get timezone => throw _privateConstructorUsedError;
   String? get studySchedule => throw _privateConstructorUsedError;
@@ -559,11 +559,9 @@ abstract class $UserCopyWith<$Res> {
       String? birthday,
       bool? isActivated,
       WalletInfo? walletInfo,
-      List<String>? courses,
       String? requireNote,
       String? level,
       List<dynamic>? learnTopics,
-      List<String>? testPreparations,
       bool? isPhoneActivated,
       int? timezone,
       String? studySchedule,
@@ -596,11 +594,9 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? birthday = freezed,
     Object? isActivated = freezed,
     Object? walletInfo = freezed,
-    Object? courses = freezed,
     Object? requireNote = freezed,
     Object? level = freezed,
     Object? learnTopics = freezed,
-    Object? testPreparations = freezed,
     Object? isPhoneActivated = freezed,
     Object? timezone = freezed,
     Object? studySchedule = freezed,
@@ -651,10 +647,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.walletInfo
           : walletInfo // ignore: cast_nullable_to_non_nullable
               as WalletInfo?,
-      courses: freezed == courses
-          ? _value.courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
@@ -667,10 +659,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.learnTopics
           : learnTopics // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-      testPreparations: freezed == testPreparations
-          ? _value.testPreparations
-          : testPreparations // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
@@ -721,11 +709,9 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? birthday,
       bool? isActivated,
       WalletInfo? walletInfo,
-      List<String>? courses,
       String? requireNote,
       String? level,
       List<dynamic>? learnTopics,
-      List<String>? testPreparations,
       bool? isPhoneActivated,
       int? timezone,
       String? studySchedule,
@@ -755,11 +741,9 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? birthday = freezed,
     Object? isActivated = freezed,
     Object? walletInfo = freezed,
-    Object? courses = freezed,
     Object? requireNote = freezed,
     Object? level = freezed,
     Object? learnTopics = freezed,
-    Object? testPreparations = freezed,
     Object? isPhoneActivated = freezed,
     Object? timezone = freezed,
     Object? studySchedule = freezed,
@@ -810,10 +794,6 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.walletInfo
           : walletInfo // ignore: cast_nullable_to_non_nullable
               as WalletInfo?,
-      courses: freezed == courses
-          ? _value._courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       requireNote: freezed == requireNote
           ? _value.requireNote
           : requireNote // ignore: cast_nullable_to_non_nullable
@@ -826,10 +806,6 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value._learnTopics
           : learnTopics // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-      testPreparations: freezed == testPreparations
-          ? _value._testPreparations
-          : testPreparations // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       isPhoneActivated: freezed == isPhoneActivated
           ? _value.isPhoneActivated
           : isPhoneActivated // ignore: cast_nullable_to_non_nullable
@@ -865,19 +841,15 @@ class _$_User implements _User {
       this.birthday,
       this.isActivated,
       this.walletInfo,
-      final List<String>? courses,
       this.requireNote,
       this.level,
       final List<dynamic>? learnTopics,
-      final List<String>? testPreparations,
       this.isPhoneActivated,
       this.timezone,
       this.studySchedule,
       this.canSendMessage})
       : _roles = roles,
-        _courses = courses,
-        _learnTopics = learnTopics,
-        _testPreparations = testPreparations;
+        _learnTopics = learnTopics;
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -911,16 +883,7 @@ class _$_User implements _User {
   final bool? isActivated;
   @override
   final WalletInfo? walletInfo;
-  final List<String>? _courses;
-  @override
-  List<String>? get courses {
-    final value = _courses;
-    if (value == null) return null;
-    if (_courses is EqualUnmodifiableListView) return _courses;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+// List<dynamic>? courses,
   @override
   final String? requireNote;
   @override
@@ -935,17 +898,7 @@ class _$_User implements _User {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<String>? _testPreparations;
-  @override
-  List<String>? get testPreparations {
-    final value = _testPreparations;
-    if (value == null) return null;
-    if (_testPreparations is EqualUnmodifiableListView)
-      return _testPreparations;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+// List<String>? testPreparations,
   @override
   final bool? isPhoneActivated;
   @override
@@ -957,7 +910,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, name: $name, avatar: $avatar, country: $country, phone: $phone, roles: $roles, language: $language, birthday: $birthday, isActivated: $isActivated, walletInfo: $walletInfo, courses: $courses, requireNote: $requireNote, level: $level, learnTopics: $learnTopics, testPreparations: $testPreparations, isPhoneActivated: $isPhoneActivated, timezone: $timezone, studySchedule: $studySchedule, canSendMessage: $canSendMessage)';
+    return 'User(id: $id, email: $email, name: $name, avatar: $avatar, country: $country, phone: $phone, roles: $roles, language: $language, birthday: $birthday, isActivated: $isActivated, walletInfo: $walletInfo, requireNote: $requireNote, level: $level, learnTopics: $learnTopics, isPhoneActivated: $isPhoneActivated, timezone: $timezone, studySchedule: $studySchedule, canSendMessage: $canSendMessage)';
   }
 
   @override
@@ -980,14 +933,11 @@ class _$_User implements _User {
                 other.isActivated == isActivated) &&
             (identical(other.walletInfo, walletInfo) ||
                 other.walletInfo == walletInfo) &&
-            const DeepCollectionEquality().equals(other._courses, _courses) &&
             (identical(other.requireNote, requireNote) ||
                 other.requireNote == requireNote) &&
             (identical(other.level, level) || other.level == level) &&
             const DeepCollectionEquality()
                 .equals(other._learnTopics, _learnTopics) &&
-            const DeepCollectionEquality()
-                .equals(other._testPreparations, _testPreparations) &&
             (identical(other.isPhoneActivated, isPhoneActivated) ||
                 other.isPhoneActivated == isPhoneActivated) &&
             (identical(other.timezone, timezone) ||
@@ -1000,29 +950,26 @@ class _$_User implements _User {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        email,
-        name,
-        avatar,
-        country,
-        phone,
-        const DeepCollectionEquality().hash(_roles),
-        language,
-        birthday,
-        isActivated,
-        walletInfo,
-        const DeepCollectionEquality().hash(_courses),
-        requireNote,
-        level,
-        const DeepCollectionEquality().hash(_learnTopics),
-        const DeepCollectionEquality().hash(_testPreparations),
-        isPhoneActivated,
-        timezone,
-        studySchedule,
-        canSendMessage
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      email,
+      name,
+      avatar,
+      country,
+      phone,
+      const DeepCollectionEquality().hash(_roles),
+      language,
+      birthday,
+      isActivated,
+      walletInfo,
+      requireNote,
+      level,
+      const DeepCollectionEquality().hash(_learnTopics),
+      isPhoneActivated,
+      timezone,
+      studySchedule,
+      canSendMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -1051,11 +998,9 @@ abstract class _User implements User {
       final String? birthday,
       final bool? isActivated,
       final WalletInfo? walletInfo,
-      final List<String>? courses,
       final String? requireNote,
       final String? level,
       final List<dynamic>? learnTopics,
-      final List<String>? testPreparations,
       final bool? isPhoneActivated,
       final int? timezone,
       final String? studySchedule,
@@ -1085,17 +1030,13 @@ abstract class _User implements User {
   bool? get isActivated;
   @override
   WalletInfo? get walletInfo;
-  @override
-  List<String>? get courses;
-  @override
+  @override // List<dynamic>? courses,
   String? get requireNote;
   @override
   String? get level;
   @override
   List<dynamic>? get learnTopics;
-  @override
-  List<String>? get testPreparations;
-  @override
+  @override // List<String>? testPreparations,
   bool? get isPhoneActivated;
   @override
   int? get timezone;

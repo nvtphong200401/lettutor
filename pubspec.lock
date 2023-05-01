@@ -512,6 +512,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  get:
+    dependency: transitive
+    description:
+      name: get
+      sha256: "2ba20a47c8f1f233bed775ba2dd0d3ac97b4cf32fc17731b3dfc672b06b0e92a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.6.5"
+  get_storage:
+    dependency: "direct main"
+    description:
+      name: get_storage
+      sha256: "39db1fffe779d0c22b3a744376e86febe4ade43bf65e06eab5af707dc84185a2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   glob:
     dependency: transitive
     description:
@@ -528,14 +544,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.3"
-  google_mobile_ads:
-    dependency: transitive
-    description:
-      name: google_mobile_ads
-      sha256: "0814e2ae9600cc485bf98bd7474f8e2730d0252799151ea3fdd459113e887b90"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   graphs:
     dependency: transitive
     description:
@@ -788,10 +796,10 @@ packages:
     dependency: "direct main"
     description:
       name: nvtphong200401_19127646_voicegpt
-      sha256: ee387cca251807552f12129ddf53fb995f5f5cb66a1cde38dc88d8e005742466
+      sha256: "27c1bfb85e88ca65cddbbef6f61fa360853f420a5427d89a08196db81dd68abb"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0+13"
+    version: "1.0.6+13"
   package_config:
     dependency: transitive
     description:

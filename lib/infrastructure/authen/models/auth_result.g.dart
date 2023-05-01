@@ -53,14 +53,9 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       walletInfo: json['walletInfo'] == null
           ? null
           : WalletInfo.fromJson(json['walletInfo'] as Map<String, dynamic>),
-      courses:
-          (json['courses'] as List<dynamic>?)?.map((e) => e as String).toList(),
       requireNote: json['requireNote'] as String?,
       level: json['level'] as String?,
       learnTopics: json['learnTopics'] as List<dynamic>?,
-      testPreparations: (json['testPreparations'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
       isPhoneActivated: json['isPhoneActivated'] as bool?,
       timezone: json['timezone'] as int?,
       studySchedule: json['studySchedule'] as String?,
@@ -79,11 +74,9 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'birthday': instance.birthday,
       'isActivated': instance.isActivated,
       'walletInfo': instance.walletInfo,
-      'courses': instance.courses,
       'requireNote': instance.requireNote,
       'level': instance.level,
       'learnTopics': instance.learnTopics,
-      'testPreparations': instance.testPreparations,
       'isPhoneActivated': instance.isPhoneActivated,
       'timezone': instance.timezone,
       'studySchedule': instance.studySchedule,

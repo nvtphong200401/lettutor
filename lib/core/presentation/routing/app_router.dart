@@ -74,13 +74,13 @@ part 'app_router.gr.dart';
       ],
     ),
     AutoRoute(
+      path: 'chatgpt',
+      page: ChatGPTScreen,
+    ),
+    AutoRoute(
       path: 'user-profile',
       page: UserProfileScreen,
     ),
-    AutoRoute(
-      path: 'chatgpt',
-      page: ChatGPTScreen,
-    )
   ],
 )
 class AppRouter extends _$AppRouter {}

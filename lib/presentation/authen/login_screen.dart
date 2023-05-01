@@ -25,6 +25,7 @@ class LoginScreen extends HookConsumerWidget {
       current.maybeWhen(
           orElse: () {},
           signupFailed: (message) {
+            // debugPrint('$message');
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message ?? 'Error')));
           },
           signupSuccess: () async {
