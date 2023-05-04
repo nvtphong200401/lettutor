@@ -45,10 +45,22 @@ class _$AppRouter extends RootStackRouter {
         child: const MyHomePage(),
       );
     },
+    BecomeTeacherRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const BecomeTeacherScreen(),
+      );
+    },
     ChatGPTRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const ChatGPTScreen(),
+      );
+    },
+    SettingsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SettingsScreen(),
       );
     },
     UserProfileRoute.name: (routeData) {
@@ -213,8 +225,16 @@ class _$AppRouter extends RootStackRouter {
           ],
         ),
         RouteConfig(
+          BecomeTeacherRoute.name,
+          path: 'register-tutor',
+        ),
+        RouteConfig(
           ChatGPTRoute.name,
           path: 'chatgpt',
+        ),
+        RouteConfig(
+          SettingsRoute.name,
+          path: 'settings',
         ),
         RouteConfig(
           UserProfileRoute.name,
@@ -273,6 +293,18 @@ class MyHomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BecomeTeacherScreen]
+class BecomeTeacherRoute extends PageRouteInfo<void> {
+  const BecomeTeacherRoute()
+      : super(
+          BecomeTeacherRoute.name,
+          path: 'register-tutor',
+        );
+
+  static const String name = 'BecomeTeacherRoute';
+}
+
+/// generated route for
 /// [ChatGPTScreen]
 class ChatGPTRoute extends PageRouteInfo<void> {
   const ChatGPTRoute()
@@ -282,6 +314,18 @@ class ChatGPTRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ChatGPTRoute';
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute()
+      : super(
+          SettingsRoute.name,
+          path: 'settings',
+        );
+
+  static const String name = 'SettingsRoute';
 }
 
 /// generated route for

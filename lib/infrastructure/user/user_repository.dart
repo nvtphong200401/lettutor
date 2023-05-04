@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:lettutor/core/infrastructure/failure.dart';
 import 'package:lettutor/infrastructure/user/models/user_model.dart';
 import 'package:lettutor/infrastructure/user/params/get_user_info_param.dart';
+import 'package:lettutor/infrastructure/user/params/register_teacher_param.dart';
 import 'package:lettutor/service/http_service.dart';
 
 class UserRepository {
@@ -18,5 +19,9 @@ class UserRepository {
 
   Future<Either<Failure, User>> changeUserAvatar(ChangeAvatarParam param) async {
     return _httpService.postData<User>(param);
+  }
+
+  Future<Either<Failure, Unit>> registerTeacher(RegisterTeacherParam param) async {
+    return _httpService.postData<Unit>(param);
   }
 }

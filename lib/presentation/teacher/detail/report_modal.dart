@@ -1,14 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_styles/textfield_style.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 
-class ReportModal extends StatelessWidget {
+class ReportModal extends HookWidget {
   const ReportModal({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final txtComment = useTextEditingController();
     return ListView(
       padding: paddingLayout,
       children: [
@@ -29,12 +32,13 @@ class ReportModal extends StatelessWidget {
             )
           ],
         ),
-        buildCheckBox('This tutor is annoying me'),
-        buildCheckBox('This profile is pretending be someone or is fake'),
-        buildCheckBox('Inapproriate profile photo'),
+        buildCheckBox('This tutor is annoying me', txtComment),
+        buildCheckBox('This profile is pretending be someone or is fake', txtComment),
+        buildCheckBox('Inapproriate profile photo', txtComment),
         SizedBox(
           height: 80,
           child: TextFormField(
+            controller: txtComment,
             cursorColor: ColorName.primary,
             expands: true,
             maxLines: null,
@@ -51,7 +55,9 @@ class ReportModal extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.router.pop();
+              },
               style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
                 backgroundColor: ColorName.background,
                 foregroundColor: ColorName.textButton,
@@ -66,7 +72,16 @@ class ReportModal extends StatelessWidget {
               width: 10,
             ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.router.pop();
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text(
+                    'Success',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  backgroundColor: Colors.green,
+                ));
+              },
               style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
                   foregroundColor: ColorName.background, borderColor: ColorName.textButton),
               child: const Text('Submit'),
@@ -81,19 +96,46 @@ class ReportModal extends StatelessWidget {
     );
   }
 
-  Widget buildCheckBox(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0),
-      child: Row(
-        children: [
-          Checkbox(value: false, onChanged: (value) {}),
-          Expanded(
-              child: Text(
-            title,
-            style: CommonTextStyle.textSize15,
-          ))
-        ],
-      ),
-    );
+  Widget buildCheckBox(
+    String title,
+    TextEditingController txtController,
+  ) {
+    return HookBuilder(builder: (context) {
+      final isChecked = useState(false);
+      useEffect(() {
+        onChange() {
+          if (isChecked.value == true) {
+            txtController.text += '$title\n';
+          } else {
+            txtController.text = txtController.text.replaceAll('$title\n', '');
+          }
+        }
+
+        isChecked.addListener(onChange);
+        return () => isChecked.removeListener(onChange);
+      }, [isChecked]);
+      return GestureDetector(
+        onTap: () {
+          isChecked.value = !isChecked.value;
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Row(
+            children: [
+              Checkbox(
+                  value: isChecked.value,
+                  onChanged: (value) {
+                    isChecked.value = value ?? false;
+                  }),
+              Expanded(
+                  child: Text(
+                title,
+                style: CommonTextStyle.textSize15,
+              ))
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

@@ -66,6 +66,9 @@ T _mapJsonToData<T>(Map<String, dynamic> json) {
     case usermodel.User:
       result = usermodel.User.fromJson(json);
       break;
+    default:
+      result = json;
+      break;
   }
   return result as T;
 }

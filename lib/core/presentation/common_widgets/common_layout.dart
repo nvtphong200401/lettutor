@@ -24,13 +24,15 @@ class DismissKeyboardScaffold extends ConsumerWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            context.router.push(const ChatGPTRoute());
-          },
-          backgroundColor: ColorName.primary,
-          child: const Icon(Icons.chat),
-        ),
+        floatingActionButton: isLogin
+            ? null
+            : FloatingActionButton(
+                onPressed: () {
+                  context.router.push(const ChatGPTRoute());
+                },
+                backgroundColor: ColorName.primary,
+                child: const Icon(Icons.chat),
+              ),
         // extendBodyBehindAppBar: true,
         endDrawer: isLogin
             ? null
@@ -45,6 +47,22 @@ class DismissKeyboardScaffold extends ConsumerWidget {
                     },
                     leading: const Icon(Icons.person),
                     title: const Text('Profile'),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.menu_book),
+                    title: const Text('Become a tutor'),
+                    onTap: () {
+                      context.router.pop();
+                      context.router.push(const BecomeTeacherRoute());
+                    },
+                  ),
+                  ListTile(
+                    onTap: () {
+                      context.router.pop();
+                      context.router.push(const SettingsRoute());
+                    },
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Settings'),
                   ),
                   ListTile(
                     onTap: () {

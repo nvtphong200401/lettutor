@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 const paddingLayout = EdgeInsets.all(24);
 const accessTokenKey = 'access_token';
@@ -30,3 +30,11 @@ const specialties = {
   'toeic': 'TOEIC',
 };
 const baseUrl = 'https://sandbox.api.lettutor.com/';
+
+const _vietnamIcon = 'assets/images/vietnam.png';
+const _usIcon = 'assets/images/us.png';
+
+const contries = {'vi-VN': _vietnamIcon, 'en-US': _usIcon};
+const theme = {'Dark': Icon(Icons.dark_mode), 'Light': Icon(Icons.light_mode)};
+const becomeTeacherImage =
+    'https://tools-competition.org/wp-content/uploads/2021/07/tool-competition-1.jpg';

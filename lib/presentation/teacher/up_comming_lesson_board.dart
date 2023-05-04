@@ -86,7 +86,11 @@ class UpcommingLessonBoard extends StatelessWidget {
                                   const SizedBox(
                                     height: 7,
                                   ),
-                                  CountDownText(endTime: upCommingLesson.key)
+                                  CountDownText(
+                                      endTime: upCommingLesson
+                                              .value.first.scheduleDetailInfo?.startPeriodTimestamp
+                                              .toLocal() ??
+                                          DateTime.now())
                                 ],
                               ),
                             ),
@@ -143,10 +147,16 @@ class UpcommingLessonBoard extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      'Total lesson time is 0 hours 55 minutes',
-                      style: CommonTextStyle.textSize16.copyWith(color: Colors.white),
-                    )
+                    Consumer(builder: (context, ref, child) {
+                      final totalTime = ref.watch(totalLessonNotifierProvider).maybeWhen(
+                            data: (data) => data,
+                            orElse: () => 0,
+                          );
+                      return Text(
+                        'Total lesson time is ${(totalTime / 60).floor()} hours ${(totalTime % 60)} minutes',
+                        style: CommonTextStyle.textSize16.copyWith(color: Colors.white),
+                      );
+                    })
                   ],
                 );
               },

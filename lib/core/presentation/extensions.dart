@@ -13,24 +13,35 @@ extension GroupByDate on List<ScheduleModel> {
     for (var schedule in this) {
       final date =
           schedule.scheduleDetailInfo?.scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now();
-      if (group.containsKey(date)) {
-        group[date]?.add(schedule);
+      final d = DateTime.parse(DateFormat('yyyy-MM-dd').format(date));
+      if (group.containsKey(d)) {
+        group[d]?.add(schedule);
       } else {
-        group[date] = [schedule];
+        group[d] = [schedule];
       }
     }
     return group.sort();
   }
 
   Map<DateTime, List<ScheduleModel>> inHistory() {
-    var schedule = groupByDate()
-      ..removeWhere((key, value) => key.difference(DateTime.now()).inMinutes > 0);
+    final myList = [...this];
+    myList.removeWhere((element) =>
+        (element.scheduleDetailInfo?.scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now())
+            .difference(DateTime.now())
+            .inMinutes >
+        0);
+    var schedule = myList.groupByDate();
     return schedule;
   }
 
   Map<DateTime, List<ScheduleModel>> inFuture() {
-    var schedule = groupByDate()
-      ..removeWhere((key, value) => key.difference(DateTime.now()).inSeconds < 0);
+    final myList = [...this];
+    myList.removeWhere((element) =>
+        (element.scheduleDetailInfo?.scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now())
+            .difference(DateTime.now())
+            .inSeconds <
+        0);
+    var schedule = myList.groupByDate();
     return schedule;
   }
 

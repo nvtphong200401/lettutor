@@ -10,8 +10,10 @@ import 'package:lettutor/presentation/courses/detail/course_detail_screen.dart';
 import 'package:lettutor/presentation/courses/detail/course_info_screen.dart';
 import 'package:lettutor/presentation/history/history_student_screen.dart';
 import 'package:lettutor/presentation/schedule/booking_student.dart';
+import 'package:lettutor/presentation/settings/settings_screen.dart';
 import 'package:lettutor/presentation/teacher/detail/teacher_detail_screen.dart';
 import 'package:lettutor/presentation/teacher/list_teacher_screen.dart';
+import 'package:lettutor/presentation/user/becom_teacher_screen.dart';
 import 'package:lettutor/presentation/user/user_profile_screen.dart';
 
 import '../../../presentation/chat/chatgpt.dart';
@@ -74,9 +76,14 @@ part 'app_router.gr.dart';
       ],
     ),
     AutoRoute(
+      path: 'register-tutor',
+      page: BecomeTeacherScreen,
+    ),
+    AutoRoute(
       path: 'chatgpt',
       page: ChatGPTScreen,
     ),
+    AutoRoute(path: 'settings', page: SettingsScreen),
     AutoRoute(
       path: 'user-profile',
       page: UserProfileScreen,

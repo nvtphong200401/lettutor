@@ -20,21 +20,22 @@ class LoginScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final txtEmail = useTextEditingController();
     final txtPassword = useTextEditingController();
+    final focusNode = useFocusNode();
     final loginscreen = useValueNotifier(true);
     ref.listen<AuthState>(authNotifierProvider, (_, current) {
-      current.maybeWhen(
-          orElse: () {},
-          signupFailed: (message) {
-            // debugPrint('$message');
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message ?? 'Error')));
-          },
-          signupSuccess: () async {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Sign up success')));
-            txtEmail.clear();
-            txtPassword.clear();
-            loginscreen.value = true;
-          });
+      current.maybeWhen(orElse: () {
+        debugPrint('eoelse');
+      }, signupFailed: (message) {
+        debugPrint('$message');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message ?? 'Error')));
+      }, signupSuccess: () async {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Sign up success')));
+        txtPassword.clear();
+        txtEmail.clear();
+        focusNode.requestFocus();
+        loginscreen.value = true;
+      });
     });
 
     Future login() async {
@@ -93,6 +94,7 @@ class LoginScreen extends HookConsumerWidget {
                   title: 'Email',
                   child: CommonTextFormField(
                     hintText: 'mail@example.com',
+                    focusNode: focusNode,
                     controller: txtEmail,
                     validator: isLoginScreen ? null : CommonValidators.emailValidator,
                   ),
@@ -157,7 +159,9 @@ class LoginScreen extends HookConsumerWidget {
                 )),
           ),
           ElevatedButton(
-            onPressed: loginscreen.value ? login : signup,
+            onPressed: () {
+              loginscreen.value ? login.call() : signup.call();
+            },
             style: CommonButtonStyle.primaryButtonStyle,
             child: HookBuilder(builder: (context) {
               return Text(useValueListenable(loginscreen) ? 'LOGIN' : 'SIGN UP',

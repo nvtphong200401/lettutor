@@ -36,9 +36,23 @@ class $AssetsImagesGen {
   SvgGenImage get mobileLogo =>
       const SvgGenImage('assets/images/mobile_logo.svg');
 
+  /// File path: assets/images/us.png
+  AssetGenImage get us => const AssetGenImage('assets/images/us.png');
+
+  /// File path: assets/images/vietnam.png
+  AssetGenImage get vietnam => const AssetGenImage('assets/images/vietnam.png');
+
   /// List of all assets
-  List<dynamic> get values =>
-      [appLogo, facebookLogo, googleLogo, loginBanner, logo, mobileLogo];
+  List<dynamic> get values => [
+        appLogo,
+        facebookLogo,
+        googleLogo,
+        loginBanner,
+        logo,
+        mobileLogo,
+        us,
+        vietnam
+      ];
 }
 
 class Assets {
