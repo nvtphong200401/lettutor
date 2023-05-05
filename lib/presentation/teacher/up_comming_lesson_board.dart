@@ -63,6 +63,10 @@ class UpcommingLessonBoard extends StatelessWidget {
                       final endTime = lastScheduleInfo?.endTimestamp.toHourAndMinLocal();
                       // DateFormat('HH:mm')
                       //     .format(lastScheduleInfo?.endTimestamp.toLocal() ?? DateTime.now());
+                      final startTimestamp = upCommingLesson
+                          .value.first.scheduleDetailInfo?.startPeriodTimestamp
+                          .toLocal();
+
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -87,10 +91,8 @@ class UpcommingLessonBoard extends StatelessWidget {
                                     height: 7,
                                   ),
                                   CountDownText(
-                                      endTime: upCommingLesson
-                                              .value.first.scheduleDetailInfo?.startPeriodTimestamp
-                                              .toLocal() ??
-                                          DateTime.now())
+                                    startTime: startTimestamp ?? DateTime.now(),
+                                  )
                                 ],
                               ),
                             ),
@@ -169,15 +171,16 @@ class UpcommingLessonBoard extends StatelessWidget {
   }
 }
 
-class CountDownText extends StatefulWidget {
-  const CountDownText({super.key, required this.endTime});
-  final DateTime endTime;
+class CountDownText extends ConsumerStatefulWidget {
+  const CountDownText({super.key, required this.startTime});
+
+  final DateTime startTime;
 
   @override
-  State<CountDownText> createState() => _CountDownTextState();
+  ConsumerState<CountDownText> createState() => _CountDownTextState();
 }
 
-class _CountDownTextState extends State<CountDownText> {
+class _CountDownTextState extends ConsumerState<CountDownText> {
   Timer? countDownTimer;
   @override
   void initState() {
@@ -198,14 +201,38 @@ class _CountDownTextState extends State<CountDownText> {
   String strDigits(int n) => n.toString().padLeft(2, '0');
   @override
   Widget build(BuildContext context) {
-    final distanceTime = widget.endTime.difference(DateTime.now());
+    final fromStartTime = DateTime.now().difference(widget.startTime);
 
-    final hours = strDigits(distanceTime.inHours);
-    final minutes = strDigits(distanceTime.inMinutes.remainder(60));
-    final seconds = strDigits(distanceTime.inSeconds.remainder(60));
-    if (distanceTime.inSeconds < 0) {
-      countDownTimer?.cancel();
+    String hours = "";
+    String minutes = "";
+    String seconds = "";
+    if (fromStartTime.inSeconds > 0) {
+      hours = strDigits(fromStartTime.inHours);
+      minutes = strDigits(fromStartTime.inMinutes.remainder(60));
+      seconds = strDigits(fromStartTime.inSeconds.remainder(60));
+      return Text(
+        '(class time: $hours:$minutes:$seconds)',
+        style: const TextStyle(color: Colors.green),
+      );
+    } else if (fromStartTime.inSeconds < 0) {
+      final distanceTime = widget.startTime.difference(DateTime.now());
+      hours = strDigits(distanceTime.inHours);
+      minutes = strDigits(distanceTime.inMinutes.remainder(60));
+      seconds = strDigits(distanceTime.inSeconds.remainder(60));
+      return Text(
+        '(starts in $hours:$minutes:$seconds)',
+        style: const TextStyle(color: Colors.yellow),
+      );
+    } else {
+      ref.read(scheduleNotifierProvider.notifier).getSchedule();
     }
+
+    // final hours = strDigits(distanceTime.inHours);
+    // final minutes = strDigits(distanceTime.inMinutes.remainder(60));
+    // final seconds = strDigits(distanceTime.inSeconds.remainder(60));
+    // if (distanceTime.inSeconds < 0) {
+    //   countDownTimer?.cancel();
+    // }
     return Text(
       '(starts in $hours:$minutes:$seconds)',
       style: const TextStyle(color: Colors.yellow),

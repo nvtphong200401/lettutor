@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/presentation/courses/tab_books.dart';
 import 'package:lettutor/presentation/courses/tab_course.dart';
 import 'package:lettutor/presentation/courses/tab_interactive_book.dart';
+import 'package:lettutor/shared/course_providers.dart';
 
 import 'course_dropdown.dart';
 
@@ -17,16 +19,17 @@ const tabsItem = [
 
 const tabsWidget = [TabCourse(), TabBooks(), NotFoundScreen()];
 
-class CoursesScreen extends HookWidget {
+class CoursesScreen extends HookConsumerWidget {
   const CoursesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final tabController = useTabController(initialLength: 3);
     final currentIndex = useValueNotifier(0);
     // final scrollController = useScrollController();
     // final appBarHeight = useState(0.0);
     final selectedCategories = useValueNotifier(<String>{});
+    final txtSearchCourse = useTextEditingController();
 
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
@@ -37,6 +40,7 @@ class CoursesScreen extends HookWidget {
             HookBuilder(builder: (context) {
               final selectedCatesListener = useValueListenable(selectedCategories);
               return SliverAppBar(
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 expandedHeight: 220 + selectedCatesListener.length * 20,
                 actions: const [],
                 // title: CommonSliverAppbarTitle(scrollController: scrollController),
@@ -63,34 +67,41 @@ class CoursesScreen extends HookWidget {
                               child: SizedBox(
                                 height: 36,
                                 child: TextField(
+                                  controller: txtSearchCourse,
                                   autofocus: false,
                                   textInputAction: TextInputAction.search,
                                   keyboardType: TextInputType.text,
+                                  onChanged: (value) {
+                                    ref
+                                        .read(coursesNotifierProvider.notifier)
+                                        .getCourseList(query: value);
+                                  },
                                   // cursorHeight: 20,
                                   decoration: InputDecoration(
-                                      prefixIconConstraints:
-                                          const BoxConstraints(minWidth: 18, maxHeight: 18),
-                                      prefixIcon: const Padding(
-                                        padding: EdgeInsets.only(left: 12, right: 6),
-                                        child: Icon(Icons.search, size: 18, color: ColorName.grey),
-                                      ),
-                                      contentPadding: const EdgeInsets.fromLTRB(6, 6, 12, 6),
-                                      border: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey, width: 1),
-                                        borderRadius: BorderRadius.circular(2.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey, width: 1),
-                                        borderRadius: BorderRadius.circular(2.0),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey, width: 1),
-                                        borderRadius: BorderRadius.circular(2.0),
-                                      ),
-                                      filled: true,
-                                      hintStyle: const TextStyle(color: ColorName.grey),
-                                      hintText: 'Search courses',
-                                      fillColor: Colors.white70),
+                                    prefixIconConstraints:
+                                        const BoxConstraints(minWidth: 18, maxHeight: 18),
+                                    prefixIcon: const Padding(
+                                      padding: EdgeInsets.only(left: 12, right: 6),
+                                      child: Icon(Icons.search, size: 18, color: ColorName.grey),
+                                    ),
+                                    contentPadding: const EdgeInsets.fromLTRB(6, 6, 12, 6),
+                                    border: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                      borderRadius: BorderRadius.circular(2.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                      borderRadius: BorderRadius.circular(2.0),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                      borderRadius: BorderRadius.circular(2.0),
+                                    ),
+                                    filled: true,
+                                    hintStyle: const TextStyle(color: ColorName.grey),
+                                    hintText: 'Search courses',
+                                    // fillColor: Theme.of(context).,
+                                  ),
                                 ),
                               ),
                             ),
@@ -126,7 +137,7 @@ class CoursesScreen extends HookWidget {
                           ),
                         ),
                         TabBar(
-                          labelColor: ColorName.primary,
+                          labelColor: Theme.of(context).primaryColor, // ColorName.primary,
                           tabs: tabsItem
                               .map((e) => Tab(
                                     text: e,

@@ -34,9 +34,11 @@ class ListTeachScreen extends HookConsumerWidget {
           const SizedBox(
             height: 20,
           ),
-          const Text(
+          Text(
             'Find a tutor',
-            style: TextStyle(color: ColorName.textColor, fontSize: 25, fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge, // TextStyle(color: Theme.of(context).textTheme., fontSize: 25, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 20,
@@ -147,9 +149,9 @@ class ListTeachScreen extends HookConsumerWidget {
           const SizedBox(
             height: 10,
           ),
-          const Text(
+          Text(
             'Recommended Tutors',
-            style: TextStyle(color: ColorName.textColor, fontSize: 25, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(
             height: 20,

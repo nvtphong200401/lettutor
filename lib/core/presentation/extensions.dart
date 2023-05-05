@@ -46,7 +46,14 @@ extension GroupByDate on List<ScheduleModel> {
   }
 
   MapEntry<DateTime, List<ScheduleModel>>? getUpcoming() {
-    final upcomings = inFuture();
+    final myList = [...this];
+    myList.removeWhere((element) =>
+        (element.scheduleDetailInfo?.scheduleInfo?.endTimestamp.toLocal() ?? DateTime.now())
+            .difference(DateTime.now())
+            .inSeconds <
+        0);
+
+    final upcomings = myList.groupByDate();
     if (upcomings.isEmpty) return null;
     var result = upcomings.entries.first;
     for (var schedule in upcomings.entries) {

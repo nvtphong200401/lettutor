@@ -25,6 +25,7 @@ class _TabCourseState extends ConsumerState<TabCourse> {
       data: (data) {
         final categories = data.groupByCategory();
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: categories.entries.map((e) => _buildSection(e.key, e.value)).toList(),
         );
       },

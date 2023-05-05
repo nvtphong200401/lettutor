@@ -8,9 +8,9 @@ class CourseRepository {
   final HttpService _httpService;
   CourseRepository(this._httpService);
 
-  Future<Either<Failure, List<CourseModel>>> getListCourses() async {
-    final res =
-        await _httpService.getData<ListCoursesResult>(GetListCourseParam(page: 1, size: 100));
+  Future<Either<Failure, List<CourseModel>>> getListCourses({String? query}) async {
+    final res = await _httpService
+        .getData<ListCoursesResult>(GetListCourseParam(page: 1, size: 100, query: query));
     return res.fold((l) => left(l), (r) {
       return right(r.data?.rows ?? []);
     });

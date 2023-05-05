@@ -85,7 +85,9 @@ class BookDialog extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.router.pop();
+                },
                 style: CommonButtonStyle.primaryButtonStyle
                     .customCopyWith(backgroundColor: Colors.white),
                 child: const Text('Cancel'),

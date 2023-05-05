@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/infrastructure/courses/course_repository.dart';
 
@@ -9,8 +10,11 @@ class CoursesNotifier extends StateNotifier<AsyncValue<List<CourseModel>>> {
   }
   final CourseRepository _courseRepository;
 
-  Future<void> getCourseList() async {
-    final result = await _courseRepository.getListCourses();
-    state = result.fold((l) => AsyncError(l, StackTrace.current), (r) => AsyncData(r));
+  Future<void> getCourseList({String? query}) async {
+    final result = await _courseRepository.getListCourses(query: query);
+    state = result.fold((l) => AsyncError(l, StackTrace.current), (r) {
+      debugPrint(r.toString());
+      return AsyncData(r);
+    });
   }
 }

@@ -198,19 +198,21 @@ class UserProfileScreen extends HookConsumerWidget {
       {required String title, required TextEditingController controller, bool isDisabled = false}) {
     return titleWithChild(
       title: title,
-      child: TextFormField(
-        readOnly: isDisabled,
-        controller: controller,
-        decoration: CommonTextFieldStyle.primaryInputDecoration.copyWith(
-            fillColor: ColorName.cardhistory,
-            filled: isDisabled,
-            focusedBorder: isDisabled
-                ? OutlineInputBorder(
-                    borderSide: const BorderSide(color: ColorName.grey, width: 1.5),
-                    borderRadius: BorderRadius.circular(6),
-                  )
-                : null),
-      ),
+      child: Builder(builder: (context) {
+        return TextFormField(
+          readOnly: isDisabled,
+          controller: controller,
+          decoration: CommonTextFieldStyle.primaryInputDecoration.copyWith(
+              fillColor: Theme.of(context).appBarTheme.backgroundColor, // ColorName.cardhistory,
+              filled: isDisabled,
+              focusedBorder: isDisabled
+                  ? OutlineInputBorder(
+                      borderSide: const BorderSide(color: ColorName.grey, width: 1.5),
+                      borderRadius: BorderRadius.circular(6),
+                    )
+                  : null),
+        );
+      }),
     );
   }
 

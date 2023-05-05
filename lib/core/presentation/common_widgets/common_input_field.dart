@@ -98,6 +98,7 @@ class CommonTextFormField extends HookWidget {
       height: size?.height ?? 45,
       width: size?.width,
       child: TextFormField(
+        style: Theme.of(context).textTheme.bodyLarge,
         onFieldSubmitted: onFieldSubmitted,
         cursorColor: ColorName.primary,
         focusNode: focusNode,

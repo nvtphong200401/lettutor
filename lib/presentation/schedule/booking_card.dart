@@ -87,13 +87,14 @@ class BookingCard extends StatelessWidget {
                 ),
               ],
             ),
-            theme: const ExpandableThemeData(
+            theme: ExpandableThemeData(
                 iconRotationAngle: 2,
+                iconColor: Theme.of(context).textTheme.bodyLarge?.color,
                 iconPlacement: ExpandablePanelIconPlacement.left,
                 iconSize: 14,
                 expandIcon: Icons.arrow_forward_ios,
                 // collapseIcon: Icons.keyboard_arrow_down,
-                iconPadding: EdgeInsets.only(top: 1)),
+                iconPadding: const EdgeInsets.only(top: 1)),
           ),
         ),
         const SizedBox(

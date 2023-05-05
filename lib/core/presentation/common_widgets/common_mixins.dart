@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../gen/colors.gen.dart';
-
 class WhiteBoxContainer extends StatelessWidget {
   const WhiteBoxContainer({super.key, required this.child});
   final Widget child;
@@ -11,7 +9,7 @@ class WhiteBoxContainer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
       ),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       child: child,
@@ -27,7 +25,7 @@ class GreyBoxContainer extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: ColorName.cardhistory,
+          color: Theme.of(context).appBarTheme.backgroundColor,
         ),
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(vertical: 12),

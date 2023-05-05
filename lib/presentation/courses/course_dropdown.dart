@@ -290,7 +290,7 @@ class SelectedTextItem extends HookWidget {
       // width: 200,
       padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
       decoration: ShapeDecoration(
-        color: Colors.grey.shade200,
+        color: Theme.of(context).appBarTheme.backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(2),
           side: const BorderSide(color: Colors.grey, width: 0.2),
@@ -359,7 +359,7 @@ class SelectDropdownItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: CommonTextStyle.textSize16.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: ColorName.textColor,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
                       ),
                     ),
                   ),

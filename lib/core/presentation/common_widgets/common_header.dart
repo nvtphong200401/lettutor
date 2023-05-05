@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../common_styles/common_styles.dart';
-
 class CommonHeader extends StatelessWidget {
-  const CommonHeader(
-      {super.key, required this.avatar, required this.title, this.children});
+  const CommonHeader({super.key, required this.avatar, required this.title, this.children});
   final Widget avatar;
   final String title;
   final List<Widget>? children;
@@ -22,8 +19,8 @@ class CommonHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
-                style: CommonTextStyle.textSize30,
+                title, style: Theme.of(context).textTheme.headlineLarge,
+                // CommonTextStyle.textSize30,
               ),
               if (children != null) ...children!,
             ],

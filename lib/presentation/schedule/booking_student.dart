@@ -27,14 +27,16 @@ class BookingStudentScreen extends ConsumerWidget {
               width: 100,
             ),
             title: 'Schedule',
-            children: const [
+            children: [
               Text(
                 'Here is a list of the sessions you have booked',
-                style: CommonTextStyle.textSize16,
+                style: Theme.of(context).textTheme.bodyLarge,
+                // CommonTextStyle.textSize16,
               ),
               Text(
                 'You can track when the meeting starts, join the meeting with one click or can cancel the meeting before 2 hours',
-                style: CommonTextStyle.textSize16,
+                style: Theme.of(context).textTheme.bodyLarge,
+                // CommonTextStyle.textSize16,
               ),
             ],
           ),
@@ -59,9 +61,11 @@ class BookingStudentScreen extends ConsumerWidget {
                           topLeft: Radius.circular(5), topRight: Radius.circular(5))),
                   children: [
                     TableRow(children: [
-                      _tableItem(text: 'Name', bgColor: ColorName.cardhistory),
+                      _tableItem(
+                          text: 'Name', bgColor: Theme.of(context).appBarTheme.backgroundColor),
                       _tableItem(text: '3.pdf', textColor: ColorName.primary),
-                      _tableItem(text: 'Page', bgColor: ColorName.cardhistory),
+                      _tableItem(
+                          text: 'Page', bgColor: Theme.of(context).appBarTheme.backgroundColor),
                       _tableItem(text: '1'),
                     ], decoration: const BoxDecoration()),
                   ],
@@ -79,7 +83,9 @@ class BookingStudentScreen extends ConsumerWidget {
                   ),
                   children: [
                     TableRow(children: [
-                      _tableItem(text: 'Description', bgColor: ColorName.cardhistory),
+                      _tableItem(
+                          text: 'Description',
+                          bgColor: Theme.of(context).appBarTheme.backgroundColor),
                       _tableItem(text: ''),
                     ], decoration: BoxDecoration(borderRadius: BorderRadius.circular(10))),
                   ],

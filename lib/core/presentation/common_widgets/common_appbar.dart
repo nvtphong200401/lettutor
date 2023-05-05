@@ -22,8 +22,9 @@ class CommonAppBar extends ConsumerWidget implements PreferredSizeWidget {
               child: Container(
                 width: 50,
                 height: 50,
-                decoration:
-                    BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(50)),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).appBarTheme.backgroundColor,
+                    borderRadius: BorderRadius.circular(50)),
                 child: const Icon(
                   Icons.arrow_back_ios,
                   color: ColorName.primary,

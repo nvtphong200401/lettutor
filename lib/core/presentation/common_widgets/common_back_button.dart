@@ -13,10 +13,11 @@ class CommonBackButton extends StatelessWidget {
     return InkWell(
       onTap: () => context.router.pop(),
       child: Container(
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius:
-                BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5))),
+        decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            // Colors.white,
+            borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(5), bottomRight: Radius.circular(5))),
         child: const Icon(
           Icons.arrow_back_ios,
           color: ColorName.primary,

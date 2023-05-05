@@ -1,7 +1,7 @@
 
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#0071F0</color>
+    <color name="primary" type="material">#0071F0</color>
     <color name="background">#FFFFFF</color>
     <color name="form_desc">#2A3453</color>
     <color name="grey">#A4B0BE</color>
@@ -14,6 +14,9 @@
     <color name="activeTag">#DDEAFF</color>
     <color name="inactiveTag">#E4E6EB</color>
     <color name="inActiveText">#646464</color>
+    <color name="darkBackground">#343541</color>
+    <color name="darkAppbar">#444654</color>
+
 
 
 

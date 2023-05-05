@@ -3,12 +3,13 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
+import 'package:lettutor/core/presentation/themes.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/shared/auth_providers.dart';
 import 'package:lettutor/shared/core_providers.dart';
+import 'package:lettutor/shared/settings_provider.dart';
 import 'package:lettutor/shared/user_providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -57,17 +58,20 @@ class MyApp extends HookConsumerWidget {
     });
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme()
-            .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
-        primarySwatch: Colors.blue,
-        primaryColor: ColorName.primary,
-        scaffoldBackgroundColor: ColorName.background,
-        appBarTheme: const AppBarTheme(
-            backgroundColor: ColorName.background, foregroundColor: ColorName.primary),
-        // colorScheme:
-        //     const ColorScheme.light(background: ColorName.background, primary: ColorName.primary),
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ref.watch(themeProvider),
+      // ThemeData(
+      //   textTheme: GoogleFonts.poppinsTextTheme()
+      //       .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
+      //   primarySwatch: Colors.blue,
+      //   primaryColor: ColorName.primary,
+      //   scaffoldBackgroundColor: ColorName.background,
+      //   appBarTheme: const AppBarTheme(
+      //       backgroundColor: ColorName.background, foregroundColor: ColorName.primary),
+      //   // colorScheme:
+      //   //     const ColorScheme.light(background: ColorName.background, primary: ColorName.primary),
+      // ),
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
     );

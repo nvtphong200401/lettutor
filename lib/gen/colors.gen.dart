@@ -25,6 +25,12 @@ class ColorName {
   /// Color: #808080
   static const Color courseDesc = Color(0xFF808080);
 
+  /// Color: #444654
+  static const Color darkAppbar = Color(0xFF444654);
+
+  /// Color: #343541
+  static const Color darkBackground = Color(0xFF343541);
+
   /// Color: #2A3453
   static const Color formDesc = Color(0xFF2A3453);
 
@@ -43,8 +49,32 @@ class ColorName {
   /// Color: #787878
   static const Color partDesc = Color(0xFF787878);
 
-  /// Color: #0071F0
-  static const Color primary = Color(0xFF0071F0);
+  /// MaterialColor:
+  ///   50: #FFE0EEFD
+  ///   100: #FFB3D4FB
+  ///   200: #FF80B8F8
+  ///   300: #FF4D9CF5
+  ///   400: #FF2686F2
+  ///   500: #FF0071F0
+  ///   600: #FF0069EE
+  ///   700: #FF005EEC
+  ///   800: #FF0054E9
+  ///   900: #FF0042E5
+  static const MaterialColor primary = MaterialColor(
+    0xFF0071F0,
+    <int, Color>{
+      50: Color(0xFFE0EEFD),
+      100: Color(0xFFB3D4FB),
+      200: Color(0xFF80B8F8),
+      300: Color(0xFF4D9CF5),
+      400: Color(0xFF2686F2),
+      500: Color(0xFF0071F0),
+      600: Color(0xFF0069EE),
+      700: Color(0xFF005EEC),
+      800: Color(0xFF0054E9),
+      900: Color(0xFF0042E5),
+    },
+  );
 
   /// Color: #1890FF
   static const Color textButton = Color(0xFF1890FF);

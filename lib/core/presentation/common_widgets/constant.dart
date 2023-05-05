@@ -35,6 +35,6 @@ const _vietnamIcon = 'assets/images/vietnam.png';
 const _usIcon = 'assets/images/us.png';
 
 const contries = {'vi-VN': _vietnamIcon, 'en-US': _usIcon};
-const theme = {'Dark': Icon(Icons.dark_mode), 'Light': Icon(Icons.light_mode)};
+const theme = {ThemeMode.dark: Icon(Icons.dark_mode), ThemeMode.light: Icon(Icons.light_mode)};
 const becomeTeacherImage =
     'https://tools-competition.org/wp-content/uploads/2021/07/tool-competition-1.jpg';

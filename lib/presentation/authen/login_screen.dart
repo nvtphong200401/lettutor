@@ -78,12 +78,11 @@ class LoginScreen extends HookConsumerWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
               'Become fluent faster through one on one video chat lessons tailored to your goals.',
-              style:
-                  TextStyle(color: ColorName.formDesc, fontSize: 16, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
           HookBuilder(builder: (context) {
@@ -173,7 +172,7 @@ class LoginScreen extends HookConsumerWidget {
               padding: EdgeInsets.symmetric(vertical: 24),
               child: Text(
                 'Or continue with',
-                style: TextStyle(color: ColorName.textColor),
+                // style: TextStyle(color: ColorName.textColor),
               ),
             ),
           ),
@@ -205,7 +204,7 @@ class LoginScreen extends HookConsumerWidget {
                   useValueListenable(loginscreen)
                       ? 'Not a member yet? '
                       : 'Already have an account? ',
-                  style: const TextStyle(color: ColorName.textColor, fontSize: 14),
+                  // style: const TextStyle(color: ColorName.textColor, fontSize: 14),
                 );
               }),
               GestureDetector(
