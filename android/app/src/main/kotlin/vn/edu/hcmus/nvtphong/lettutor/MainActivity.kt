@@ -1,4 +1,4 @@
-package com.example.lettutor
+package vn.edu.hcmus.nvtphong.lettutor
 
 import io.flutter.embedding.android.FlutterActivity
 

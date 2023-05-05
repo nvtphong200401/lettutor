@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1015034808131",
+    "project_id": "lettutor-dfe62",
+    "storage_bucket": "lettutor-dfe62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015034808131:android:d9adb174f6db1fba42d1f6",
+        "android_client_info": {
+          "package_name": "com.example.lettutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015034808131-3jp9ulnh4koe3p94a484lfj2b1p6cd6a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyCvV5qkJyjc-goqdL0CoFIEroW0JPthM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015034808131-3jp9ulnh4koe3p94a484lfj2b1p6cd6a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1015034808131-aoit4lqtk9tir1ioqkujcrckl2acbqmb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.edu.hcmus.nvtphong.lettutor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015034808131:android:407343be23173de742d1f6",
+        "android_client_info": {
+          "package_name": "vn.edu.hcmus.nvtphong.lettutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015034808131-3jp9ulnh4koe3p94a484lfj2b1p6cd6a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyCvV5qkJyjc-goqdL0CoFIEroW0JPthM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015034808131-3jp9ulnh4koe3p94a484lfj2b1p6cd6a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1015034808131-aoit4lqtk9tir1ioqkujcrckl2acbqmb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.edu.hcmus.nvtphong.lettutor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
