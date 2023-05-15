@@ -24,7 +24,7 @@ class CancelBookingDialog extends HookWidget {
   final String avatarUrl;
   final String teacherName;
   final String lessonTime;
-  final void Function()? onSubmit;
+  final void Function(int reasonID)? onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class CancelBookingDialog extends HookWidget {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    onSubmit?.call();
+                    onSubmit?.call(_reasonList.indexWhere((element) => element == reason.value));
                     context.router.root.pop();
                   },
                   style: CommonButtonStyle.primaryButtonStyle,

@@ -8,7 +8,6 @@ import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/presentation/courses/tab_interactive_book.dart';
 import 'package:lettutor/presentation/teacher/teacher_card_item.dart';
 import 'package:lettutor/presentation/teacher/up_comming_lesson_board.dart';
-
 import '../../core/presentation/common_widgets/constant.dart';
 import '../../core/presentation/common_widgets/pagination_row.dart';
 import '../../shared/teacher_providers.dart';
@@ -22,6 +21,7 @@ class ListTeachScreen extends HookConsumerWidget {
     final searchNationalityController = useTextEditingController();
     final searchNameController = useTextEditingController();
     final specialtiesNotifier = useValueNotifier('');
+    final nationalityNotifier = useValueNotifier('');
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
       body: ListView(
@@ -44,14 +44,16 @@ class ListTeachScreen extends HookConsumerWidget {
             height: 20,
           ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: CommonTextFormField(
                   controller: searchNameController,
                   onChanged: (value) {
-                    ref
-                        .read(teachersProvider.notifier)
-                        .searchTeacher(keyword: value, specialties: [specialtiesNotifier.value]);
+                    ref.read(teachersProvider.notifier).searchTeacher(
+                        keyword: value,
+                        specialties: [specialtiesNotifier.value],
+                        nationality: nationalityNotifier.value);
                   },
                   capsuleShape: true,
                   hintText: 'Enter tutor name...',
@@ -66,6 +68,7 @@ class ListTeachScreen extends HookConsumerWidget {
                   children: [
                     DropdownButtonFormField2(
                       dropdownButtonKey: dropdownKey,
+                      value: nationalityNotifier.value.isEmpty ? null : nationalityNotifier.value,
                       dropdownSearchData: DropdownSearchData(
                           searchController: searchNationalityController,
                           searchInnerWidgetHeight: 45,
@@ -77,7 +80,7 @@ class ListTeachScreen extends HookConsumerWidget {
                           )),
                       menuItemStyleData: const MenuItemStyleData(),
                       buttonStyleData: const ButtonStyleData(
-                        height: 23,
+                        height: 20,
                       ),
                       dropdownStyleData: const DropdownStyleData(
                         decoration: BoxDecoration(
@@ -88,6 +91,11 @@ class ListTeachScreen extends HookConsumerWidget {
                       ),
                       iconStyleData: const IconStyleData(iconSize: 18),
                       onChanged: (value) {
+                        nationalityNotifier.value = value;
+                        ref.read(teachersProvider.notifier).searchTeacher(
+                            keyword: searchNameController.text,
+                            specialties: [specialtiesNotifier.value],
+                            nationality: value);
                         // focuNode.requestFocus();
                       },
                       decoration: InputDecoration(
@@ -99,8 +107,8 @@ class ListTeachScreen extends HookConsumerWidget {
                         isDense: true,
                         contentPadding: const EdgeInsets.only(
                           left: 10,
-                          top: 10,
-                          bottom: 10,
+                          // top: 10,
+                          bottom: 20,
                         ),
                       ),
                       items: tutorNationality
@@ -109,10 +117,10 @@ class ListTeachScreen extends HookConsumerWidget {
                                 child: Text(e),
                               ))
                           .toList(),
-                      hint: const Text(
-                        'Select nationality',
-                        style: TextStyle(color: ColorName.grey),
-                      ),
+                      hint: Text('Select nationality',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: ColorName.grey) //TextStyle(color: ColorName.grey, ),
+                          ),
                     ),
                   ],
                 ),
@@ -136,7 +144,8 @@ class ListTeachScreen extends HookConsumerWidget {
                                     specialtiesNotifier.value = e.key;
                                     ref.read(teachersProvider.notifier).searchTeacher(
                                         keyword: searchNameController.text,
-                                        specialties: [specialtiesNotifier.value]);
+                                        specialties: [specialtiesNotifier.value],
+                                        nationality: nationalityNotifier.value);
                                   },
                           );
                         }))
@@ -180,32 +189,25 @@ class ListTeachScreen extends HookConsumerWidget {
                           ))
                       .toList(),
                   if (total > 18)
-                    PaginationRow(
-                      pageLength: (total / 9).ceil(),
-                      currentPage: currentPage,
-                      onPrevious: () {
-                        ref.read(teachersProvider.notifier).searchTeacher(
-                            keyword: searchNameController.text,
-                            specialties: [specialtiesNotifier.value],
-                            currPage: currentPage - 1);
-                      },
-                      onNext: () {
-                        ref.read(teachersProvider.notifier).searchTeacher(
-                            keyword: searchNameController.text,
-                            specialties: [specialtiesNotifier.value],
-                            currPage: currentPage + 1);
-                      },
-                      onTapIndex: (index) {
-                        ref.read(teachersProvider.notifier).searchTeacher(
-                            keyword: searchNameController.text,
-                            specialties: [specialtiesNotifier.value],
-                            currPage: index);
-                      },
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Pager(
+                        totalPages: (total / 9).ceil(),
+                        onPageChanged: (page) {
+                          if (page != currentPage) {
+                            ref.read(teachersProvider.notifier).searchTeacher(
+                                keyword: searchNameController.text,
+                                specialties: [specialtiesNotifier.value],
+                                currPage: page);
+                          }
+                        },
+                        currentPage: currentPage,
+                      ),
                     ),
                 ],
               );
             },
-          )
+          ),
         ],
       ),
     );

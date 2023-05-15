@@ -30,6 +30,12 @@ class AuthNotifier extends StateNotifier<AuthState> {
     // return res;
   }
 
+  Future loginWithGoogle() async {
+    state = const AuthState.authenticating();
+    final res = await _repo.signInWithGoogle();
+    state = res.foldRight(state, (r, oldState) => const AuthState.authenticated());
+  }
+
   Future signup(String email, String password) async {
     state = const AuthState.authenticating();
     final res = await _repo.signup(email, password);

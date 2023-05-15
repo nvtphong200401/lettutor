@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:lettutor/service/request_wrapper.dart';
@@ -23,5 +25,10 @@ class HttpService {
 
   Future<Either<Failure, T>> putData<T>(IParam param) async {
     return requestWrapper(_dio.put(param.link, data: param.json));
+  }
+
+  Future<Either<Failure, T>> deleteData<T>(IParam param) async {
+    log(param.json.toString());
+    return requestWrapper(_dio.delete(param.link, data: param.json));
   }
 }

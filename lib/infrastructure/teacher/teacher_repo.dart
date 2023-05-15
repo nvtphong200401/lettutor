@@ -33,11 +33,12 @@ class TeacherRepository {
   }
 
   Future<Either<Failure, Tutors>> searchTeacher(
-      String? keyword, List<String>? specialties, int page) async {
+      String? keyword, List<String>? specialties, String? nationality, int page) async {
     final result = await _httpService.postData<Tutors>(
         SearchTeacherParam(keyword: keyword, specialties: specialties, page: page));
     return result.fold((l) => left(l), (r) {
       return right(r.copyWith(
+          // count: r.count,
           rows: r.rows.map((e) {
         return e.copyWith(
             isFavorite: paginatedTutors?.favoriteTutor
@@ -71,6 +72,7 @@ class TeacherRepository {
   }
 
   Future<Either<Failure, Unit>> updateFavorite(String tutorId) async {
+    getListTeacher(9, 1);
     final result = await _httpService.postData<Unit>(ToggleFavoriteParam(tutorId));
 
     return result;

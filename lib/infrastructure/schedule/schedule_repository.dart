@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:lettutor/core/infrastructure/failure.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
+import 'package:lettutor/infrastructure/schedule/params/cancel_schedule.dart';
 import 'package:lettutor/infrastructure/schedule/params/get_list_schedule.dart';
 import 'package:lettutor/infrastructure/schedule/params/get_total_learned.dart';
 import 'package:lettutor/service/http_service.dart';
@@ -32,5 +33,9 @@ class ScheduleRepository {
     return result.fold((l) => left(l), (r) {
       return right(r['total']);
     });
+  }
+
+  Future<Either<Failure, Unit>> cancelSchedule(int reasonID, String scheduleID) async {
+    return _httpService.deleteData<Unit>(CancelScheduleParam(reasonID, scheduleID));
   }
 }

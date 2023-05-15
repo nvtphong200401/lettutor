@@ -32,10 +32,16 @@ class UserProfileScreen extends HookConsumerWidget {
         final txtEmail = useTextEditingController(text: data.user?.email ?? '');
         final txtPhone = useTextEditingController(text: data.user?.phone ?? '');
         final txtStudySchedule = useTextEditingController(text: data.user?.studySchedule ?? '');
-        final birthday = useValueNotifier(data.user?.birthday ?? DateTime.now());
+        final birthday = useValueNotifier<DateTime>(data.user?.birthday ?? DateTime.now());
         final learn = useValueNotifier(
             <String>{'IELTS', ...?data.user?.learnTopics?.map((e) => e.name ?? '').toList()});
-        final country = useValueNotifier(Countries.byCode(data.user?.country ?? 'VN').name);
+        final country = useValueNotifier(() {
+          try {
+            return Countries.byCode(data.user?.country ?? 'VN').name;
+          } catch (err) {
+            return Countries.byCode('VN').name;
+          }
+        }());
         final level = useValueNotifier(data.user?.level);
         return DismissKeyboardScaffold(
           isLogin: true,

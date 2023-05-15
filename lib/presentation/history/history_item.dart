@@ -66,8 +66,11 @@ class HistoryItem extends StatelessWidget {
               child: Row(
             children: [
               GestureDetector(
-                onTap: () =>
-                    showDialog(builder: (context) => const RatingHistory(), context: context),
+                onTap: () => showDialog(
+                    builder: (context) => RatingHistory(
+                          teacher: info,
+                        ),
+                    context: context),
                 child: const Text(
                   'Add a rating',
                   style: TextStyle(color: ColorName.textButton),

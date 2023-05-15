@@ -48,6 +48,16 @@ class LoginScreen extends HookConsumerWidget {
       });
     }
 
+    Future signInGoogle() async {
+      CommonDialog(context).loadingDialog();
+      await ref.read(authNotifierProvider.notifier).loginWithGoogle();
+      await Future(() {
+        if (context.mounted) {
+          context.router.root.pop();
+        }
+      });
+    }
+
     Future signup() async {
       CommonDialog(context).loadingDialog();
       await ref.read(authNotifierProvider.notifier).signup(txtEmail.text, txtPassword.text);
@@ -180,7 +190,10 @@ class LoginScreen extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Assets.images.facebookLogo.svg(width: 40, height: 40),
-              Assets.images.googleLogo.svg(width: 40, height: 40),
+              GestureDetector(
+                onTap: signInGoogle,
+                child: Assets.images.googleLogo.svg(width: 40, height: 40),
+              ),
               Container(
                   width: 40,
                   height: 40,

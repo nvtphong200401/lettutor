@@ -212,7 +212,7 @@ class _CountDownTextState extends ConsumerState<CountDownText> {
       seconds = strDigits(fromStartTime.inSeconds.remainder(60));
       return Text(
         '(class time: $hours:$minutes:$seconds)',
-        style: const TextStyle(color: Colors.green),
+        style: const TextStyle(color: Colors.green, fontWeight: FontWeight.w600),
       );
     } else if (fromStartTime.inSeconds < 0) {
       final distanceTime = widget.startTime.difference(DateTime.now());

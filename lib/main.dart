@@ -10,6 +10,8 @@ import 'package:lettutor/core/presentation/themes.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/shared/auth_providers.dart';
 import 'package:lettutor/shared/core_providers.dart';
+import 'package:lettutor/shared/history_providers.dart';
+import 'package:lettutor/shared/schedule_providers.dart';
 import 'package:lettutor/shared/settings_provider.dart';
 import 'package:lettutor/shared/user_providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -91,14 +93,14 @@ const navItem = {
   'Courses': Icons.list_rounded,
 };
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+class _MyHomePageState extends ConsumerState<MyHomePage> with TickerProviderStateMixin {
   int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -126,7 +128,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     backgroundColor: ColorName.background,
                   ))
               .toList(),
-          onTap: tabsRouter.setActiveIndex,
+          onTap: (index) {
+            if (index == 1 && tabsRouter.activeIndex != index) {
+              ref.read(scheduleNotifierProvider.notifier).getSchedule();
+            } else if (index == 2 && tabsRouter.activeIndex != index) {
+              ref.read(historyNotifierProvider.notifier).getHistory();
+            }
+            tabsRouter.setActiveIndex(index);
+          },
           currentIndex: tabsRouter.activeIndex,
         );
       },

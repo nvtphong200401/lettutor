@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lettutor/core/infrastructure/failure.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
 import 'package:lettutor/infrastructure/authen/models/auth_result.dart';
@@ -31,5 +32,17 @@ class AuthRepository {
 
   Future<Either<Failure, Unit>> forgotPassword(String email) async {
     return _httpService.postData<Unit>(ForgotPasswordParam(email));
+  }
+
+  Future<Either<Failure, Unit>> signInWithGoogle() async {
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    final account = await googleSignIn.signIn();
+    final authen = await account?.authentication;
+    if (authen == null) {
+      return left(const Failure(message: 'Login error'));
+    } else {
+      await _preferences.setString(accessTokenKey, authen.accessToken!);
+      return right(unit);
+    }
   }
 }

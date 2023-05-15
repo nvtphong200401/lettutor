@@ -28,21 +28,45 @@ extension GroupByDate on List<ScheduleModel> {
     myList.removeWhere((element) =>
         (element.scheduleDetailInfo?.scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now())
             .difference(DateTime.now())
-            .inMinutes >
+            .inSeconds >
         0);
-    var schedule = myList.groupByDate();
-    return schedule;
+    Map<DateTime, List<ScheduleModel>> group = {};
+    for (var schedule in this) {
+      final date =
+          schedule.scheduleDetailInfo?.scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now();
+
+      if (group.containsKey(date)) {
+        group[date]?.add(schedule);
+      } else {
+        group[date] = [schedule];
+      }
+    }
+    // var schedule = myList.groupByDate();
+    return group;
   }
 
-  Map<DateTime, List<ScheduleModel>> inFuture() {
+  Map<String, List<ScheduleModel>> inFuture() {
     final myList = [...this];
     myList.removeWhere((element) =>
         (element.scheduleDetailInfo?.scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now())
             .difference(DateTime.now())
             .inSeconds <
         0);
-    var schedule = myList.groupByDate();
-    return schedule;
+    // var schedule = myList.groupByDate();
+    Map<String, List<ScheduleModel>> group = {};
+    for (var schedule in myList) {
+      final date =
+          schedule.scheduleDetailInfo?.scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now();
+      final d = DateTime.parse(DateFormat('yyyy-MM-dd').format(date));
+      final key = '$d~${schedule.scheduleDetailInfo?.scheduleInfo?.tutorId}';
+      if (group.containsKey(key)) {
+        group[key]?.add(schedule);
+      } else {
+        group[key] = [schedule];
+      }
+    }
+    group.sort();
+    return group;
   }
 
   MapEntry<DateTime, List<ScheduleModel>>? getUpcoming() {
@@ -106,8 +130,31 @@ extension SortScheduleX on Map<DateTime, List<ScheduleModel>> {
   }
 }
 
+extension SortScheduleString on Map<String, List<ScheduleModel>> {
+  Map<String, List<ScheduleModel>> sort() {
+    return map((key, value) {
+      value.sort((a, b) {
+        int timeA = a.scheduleDetailInfo?.startPeriodTimestamp ?? 0;
+        int timeB = b.scheduleDetailInfo?.startPeriodTimestamp ?? 0;
+        if (timeA > timeB) {
+          return 1;
+        }
+        return -1;
+      });
+      return MapEntry(key, value);
+    });
+  }
+}
+
 // extension DateTimeEx on DateTime {
 //   String toHourAndMin() {
 //     return DateFormat('HH:mm').format(this);
 //   }
 // }
+
+extension StringX on String {
+  DateTime toDateTime() {
+    final date = split('-');
+    return DateTime(int.parse(date[0]), int.parse(date[1]), int.parse(date[2]));
+  }
+}

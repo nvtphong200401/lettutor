@@ -24,14 +24,18 @@ class DismissKeyboardScaffold extends ConsumerWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton: isLogin
             ? null
-            : FloatingActionButton(
-                onPressed: () {
-                  context.router.push(const ChatGPTRoute());
-                },
-                backgroundColor: ColorName.primary,
-                child: const Icon(Icons.chat),
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    context.router.push(const ChatGPTRoute());
+                  },
+                  backgroundColor: ColorName.primary,
+                  child: const Icon(Icons.chat),
+                ),
               ),
         // extendBodyBehindAppBar: true,
         endDrawer: isLogin

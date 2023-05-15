@@ -75,7 +75,7 @@ class BecomeTeacherScreen extends HookConsumerWidget {
             final levelNotifier = useState<String?>(null);
             final countries = Countries.all();
             final country = useValueNotifier(Countries.byCode(data.user?.country ?? 'VN').name);
-            final birthday = useValueNotifier(data.user?.birthday ?? DateTime.now());
+            final birthday = useValueNotifier<DateTime>(data.user?.birthday ?? DateTime.now());
             final image = useState<XFile?>(null);
             final certificate = useState<PlatformFile?>(null);
             final specialtiesNotifier = useValueNotifier<List<String>>([]);

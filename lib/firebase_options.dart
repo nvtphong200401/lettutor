@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC5LjZDikDczkpn8zxqUi2IbV243JkvxuE',
-    appId: '1:1015034808131:ios:39193d3661944f7d42d1f6',
+    appId: '1:1015034808131:ios:e2e6e7001ec8fa8842d1f6',
     messagingSenderId: '1015034808131',
     projectId: 'lettutor-dfe62',
     storageBucket: 'lettutor-dfe62.appspot.com',
-    iosClientId: '1015034808131-1prnq57cur6n15opsk676v6p7aqfr6ki.apps.googleusercontent.com',
-    iosBundleId: 'com.example.lettutor',
+    iosClientId: '1015034808131-aoit4lqtk9tir1ioqkujcrckl2acbqmb.apps.googleusercontent.com',
+    iosBundleId: 'vn.edu.hcmus.nvtphong.lettutor',
   );
 }

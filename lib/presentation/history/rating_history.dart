@@ -1,18 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
+import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 
+import '../../core/presentation/common_styles/button_style.dart';
 import '../../core/presentation/common_styles/text_style.dart';
 import '../../core/presentation/common_styles/textfield_style.dart';
 import '../../gen/colors.gen.dart';
 
 class RatingHistory extends StatelessWidget {
-  const RatingHistory({super.key});
+  const RatingHistory({super.key, required this.teacher});
+  final TutorInfo? teacher;
 
   @override
   Widget build(BuildContext context) {
-    final tutor = TutorDetail.init();
-    final teacher = tutor.user;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: AlertDialog(
@@ -21,13 +22,13 @@ class RatingHistory extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 30,
-              foregroundImage: NetworkImage(teacher.avatar),
+              foregroundImage: NetworkImage(teacher?.avatar ?? ''),
             ),
             const SizedBox(
               height: 5,
             ),
             Text(
-              teacher.name,
+              teacher?.name ?? '',
               style: CommonTextStyle.partTitle,
             ),
             const SizedBox(
@@ -46,14 +47,14 @@ class RatingHistory extends StatelessWidget {
               height: 5,
             ),
             Text(
-              'What is your rating for ${teacher.name}',
+              'What is your rating for ${teacher?.name}',
               style: CommonTextStyle.partTitle,
             ),
             const SizedBox(
               height: 5,
             ),
             RatingBar.builder(
-              initialRating: 3,
+              initialRating: 5,
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: true,
@@ -77,6 +78,27 @@ class RatingHistory extends StatelessWidget {
                   hintText: 'Content Review',
                   hintStyle: const TextStyle(color: ColorName.grey, fontSize: 15)),
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: OutlinedButton(
+                onPressed: () {
+                  context.router.pop();
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                      'Success',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    backgroundColor: Colors.green,
+                  ));
+                },
+                style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
+                    foregroundColor: ColorName.background, borderColor: ColorName.textButton),
+                child: const Text('Submit'),
+              ),
+            )
           ],
         ),
       ),

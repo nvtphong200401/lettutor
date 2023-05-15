@@ -52,22 +52,30 @@ class HistoryStudentScreen extends StatelessWidget {
                       ...schedule.entries
                           .map((entry) => HistoryItem(date: entry.key, schedules: entry.value))
                           .toList(),
-                      PaginationRow(
-                          pageLength: (total / 9).ceil(),
+                      Pager(
                           currentPage: currentPage,
-                          onPrevious: () {
-                            ref
-                                .read(historyNotifierProvider.notifier)
-                                .getHistory(page: currentPage - 1);
-                          },
-                          onNext: () {
-                            ref
-                                .read(historyNotifierProvider.notifier)
-                                .getHistory(page: currentPage + 1);
-                          },
-                          onTapIndex: (index) {
-                            ref.read(historyNotifierProvider.notifier).getHistory(page: index);
+                          totalPages: (total / 9).ceil(),
+                          onPageChanged: (page) {
+                            if (page != currentPage) {
+                              ref.read(historyNotifierProvider.notifier).getHistory(page: page);
+                            }
                           })
+                      // PaginationRow(
+                      //     pageLength: (total / 9).ceil(),
+                      //     currentPage: currentPage,
+                      //     onPrevious: () {
+                      //       ref
+                      //           .read(historyNotifierProvider.notifier)
+                      //           .getHistory(page: currentPage - 1);
+                      //     },
+                      //     onNext: () {
+                      //       ref
+                      //           .read(historyNotifierProvider.notifier)
+                      //           .getHistory(page: currentPage + 1);
+                      //     },
+                      //     onTapIndex: (index) {
+                      //       ref.read(historyNotifierProvider.notifier).getHistory(page: index);
+                      //     })
                     ],
                   );
                 },

@@ -15,9 +15,7 @@ class ScheduleState with _$ScheduleState {
 }
 
 class ScheduleNotifier extends StateNotifier<ScheduleState> {
-  ScheduleNotifier(this._scheduleRepository) : super(const ScheduleState.loading()) {
-    getSchedule();
-  }
+  ScheduleNotifier(this._scheduleRepository) : super(const ScheduleState.loading());
   final ScheduleRepository _scheduleRepository;
 
   Future<void> getSchedule({int perPage = 9, int page = 1}) async {
@@ -30,7 +28,19 @@ class ScheduleNotifier extends StateNotifier<ScheduleState> {
   }
 }
 
-class SingleScheduleNotifier extends StateNotifier<ScheduleModel> {
-  SingleScheduleNotifier(this.scheduleModel) : super(scheduleModel);
-  final ScheduleModel scheduleModel;
+class SingleScheduleNotifier extends StateNotifier<List<ScheduleModel>> {
+  SingleScheduleNotifier(this.scheduleModel, this._scheduleRepository) : super(scheduleModel);
+  final List<ScheduleModel> scheduleModel;
+  final ScheduleRepository _scheduleRepository;
+
+  Future cancelSchedule(String id, int reasonID) async {
+    scheduleModel.removeWhere((element) {
+      if (element.scheduleDetailInfo?.scheduleInfo?.id == id) {
+        _scheduleRepository.cancelSchedule(reasonID, element.id ?? '');
+        return true;
+      }
+      return false;
+    });
+    state = [...scheduleModel];
+  }
 }

@@ -11,11 +11,11 @@ import '../../core/presentation/common_styles/common_styles.dart';
 import '../../core/presentation/common_widgets/pagination_row.dart';
 import '../courses/tab_interactive_book.dart';
 
-class BookingStudentScreen extends ConsumerWidget {
+class BookingStudentScreen extends StatelessWidget {
   const BookingStudentScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
       body: ListView(
@@ -111,28 +111,36 @@ class BookingStudentScreen extends ConsumerWidget {
                     children: [
                       ...listCard
                           .map((entry) => BookingCard(
-                                date: entry.key,
+                                date: DateTime.parse(entry.key.split('~')[0]),
                                 schedules: entry.value,
                               ))
                           .toList(),
                       if (total > 18)
-                        PaginationRow(
-                          pageLength: (total / 9).ceil(),
-                          currentPage: currentPage,
-                          onPrevious: () {
-                            ref
-                                .read(scheduleNotifierProvider.notifier)
-                                .getSchedule(page: currentPage - 1);
-                          },
-                          onNext: () {
-                            ref
-                                .read(scheduleNotifierProvider.notifier)
-                                .getSchedule(page: currentPage + 1);
-                          },
-                          onTapIndex: (index) {
-                            ref.read(scheduleNotifierProvider.notifier).getSchedule(page: index);
-                          },
-                        ),
+                        Pager(
+                            currentPage: currentPage,
+                            totalPages: (total / 9).ceil(),
+                            onPageChanged: (page) {
+                              if (page != currentPage) {
+                                ref.read(scheduleNotifierProvider.notifier).getSchedule(page: page);
+                              }
+                            })
+                      // PaginationRow(
+                      //   pageLength: (total / 9).ceil(),
+                      //   currentPage: currentPage,
+                      //   onPrevious: () {
+                      //     ref
+                      //         .read(scheduleNotifierProvider.notifier)
+                      //         .getSchedule(page: currentPage - 1);
+                      //   },
+                      //   onNext: () {
+                      //     ref
+                      //         .read(scheduleNotifierProvider.notifier)
+                      //         .getSchedule(page: currentPage + 1);
+                      //   },
+                      //   onTapIndex: (index) {
+                      //     ref.read(scheduleNotifierProvider.notifier).getSchedule(page: index);
+                      //   },
+                      // ),
                     ],
                   );
                 },

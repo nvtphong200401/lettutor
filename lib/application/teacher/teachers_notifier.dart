@@ -46,11 +46,13 @@ class TeachersNotifier extends StateNotifier<TeachersState> {
         (r) => TeachersState.data(teachers: r.rows, count: r.count, currentPage: currPage));
   }
 
-  void searchTeacher({String? keyword, List<String>? specialties, int currPage = 1}) {
+  void searchTeacher(
+      {String? keyword, List<String>? specialties, String? nationality, int currPage = 1}) {
     state = const TeachersState.loading(teachers: [], count: 0);
     timer?.cancel();
     timer = Timer(const Duration(seconds: 1), () async {
-      final result = await _teacherRepository.searchTeacher(keyword, specialties, currPage);
+      final result =
+          await _teacherRepository.searchTeacher(keyword, specialties, nationality, currPage);
       state = result.fold((l) => state,
           (r) => TeachersState.data(teachers: r.rows, count: r.count, currentPage: currPage));
     });
@@ -73,15 +75,17 @@ class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
   Future getSchedulesAndCourses() async {
     // final schedule = await _teacherRepository.getTeacherSchedule(tutor?.userId ?? '');
     // final detail = await _teacherRepository.getTutorDetail(tutor?.userId ?? '');
-    final result = await Future.wait([
-      _teacherRepository.getTeacherSchedule(tutor?.userId ?? ''),
-      _teacherRepository.getTutorDetail(tutor?.userId ?? '')
-    ]);
-    final schedule = result[0] as Either<Failure, List<ScheduleOfTutor>>;
-    final detail = result[1] as TutorDetail?;
-    if (mounted) {
-      state = state?.copyWith(
-          courses: (detail)?.user.courses, schedules: (schedule).fold((l) => [], (r) => r));
+    if (tutor?.userId != null) {
+      final result = await Future.wait([
+        _teacherRepository.getTeacherSchedule(tutor?.userId ?? ''),
+        _teacherRepository.getTutorDetail(tutor?.userId ?? '')
+      ]);
+      final schedule = result[0] as Either<Failure, List<ScheduleOfTutor>>;
+      final detail = result[1] as TutorDetail?;
+      if (mounted) {
+        state = state?.copyWith(
+            courses: (detail)?.user.courses, schedules: (schedule).fold((l) => [], (r) => r));
+      }
     }
   }
 
