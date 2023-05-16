@@ -15,7 +15,9 @@ class ScheduleState with _$ScheduleState {
 }
 
 class ScheduleNotifier extends StateNotifier<ScheduleState> {
-  ScheduleNotifier(this._scheduleRepository) : super(const ScheduleState.loading());
+  ScheduleNotifier(this._scheduleRepository) : super(const ScheduleState.loading()) {
+    getSchedule();
+  }
   final ScheduleRepository _scheduleRepository;
 
   Future<void> getSchedule({int perPage = 9, int page = 1}) async {
