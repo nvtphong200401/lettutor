@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/core/locales/app_locale.dart';
 import 'package:lettutor/core/presentation/common_widgets/pagination_row.dart';
 import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/presentation/history/history_item.dart';
@@ -25,14 +27,14 @@ class HistoryStudentScreen extends StatelessWidget {
               'https://sandbox.app.lettutor.com/static/media/history.1e097d10.svg',
               width: 100,
             ),
-            title: 'History',
-            children: const [
+            title: AppLocale.history.getString(context),
+            children: [
               Text(
-                'The following is a list of lessons you have attended',
+                AppLocale.historyDesc1.getString(context),
                 style: CommonTextStyle.textSize16,
               ),
               Text(
-                'You can review the details of the lessons you have attended',
+                AppLocale.historyDesc2.getString(context),
                 style: CommonTextStyle.textSize16,
               )
             ],
@@ -43,21 +45,25 @@ class HistoryStudentScreen extends StatelessWidget {
                   // get schedule in the future
                   var schedule = data.inHistory();
                   if (schedule.isEmpty) {
-                    return const NotFoundScreen(
-                      placeHolderString: 'Cannot find history',
+                    return NotFoundScreen(
+                      placeHolderString:
+                          AppLocale.cannotFindHistory.getString(context),
                     );
                   }
                   return Column(
                     children: [
                       ...schedule.entries
-                          .map((entry) => HistoryItem(date: entry.key, schedules: entry.value))
+                          .map((entry) => HistoryItem(
+                              date: entry.key, schedules: entry.value))
                           .toList(),
                       Pager(
                           currentPage: currentPage,
                           totalPages: (total / 9).ceil(),
                           onPageChanged: (page) {
                             if (page != currentPage) {
-                              ref.read(historyNotifierProvider.notifier).getHistory(page: page);
+                              ref
+                                  .read(historyNotifierProvider.notifier)
+                                  .getHistory(page: page);
                             }
                           })
                       // PaginationRow(
@@ -79,7 +85,8 @@ class HistoryStudentScreen extends StatelessWidget {
                     ],
                   );
                 },
-                loading: () => const Center(child: CircularProgressIndicator()));
+                loading: () =>
+                    const Center(child: CircularProgressIndicator()));
           }),
         ],
       ),

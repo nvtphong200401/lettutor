@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lettutor/core/locales/app_local.dart';
+import 'package:lettutor/core/locales/app_locale.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/gen/colors.gen.dart';
@@ -68,12 +68,15 @@ class ListTeachScreen extends HookConsumerWidget {
               Expanded(
                 child: DropdownButtonFormField2(
                   dropdownButtonKey: dropdownKey,
-                  value: nationalityNotifier.value.isEmpty ? null : nationalityNotifier.value,
+                  value: nationalityNotifier.value.isEmpty
+                      ? null
+                      : nationalityNotifier.value,
                   dropdownSearchData: DropdownSearchData(
                       searchController: searchNationalityController,
                       searchInnerWidgetHeight: 45,
                       searchInnerWidget: CommonTextFormField(
-                        hintText: AppLocale.selectNationality.getString(context),
+                        hintText:
+                            AppLocale.selectNationality.getString(context),
                         controller: searchNationalityController,
                         capsuleShape: true,
                         autofocus: true,
@@ -85,7 +88,8 @@ class ListTeachScreen extends HookConsumerWidget {
                   dropdownStyleData: const DropdownStyleData(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(22), topRight: Radius.circular(22))),
+                            topLeft: Radius.circular(22),
+                            topRight: Radius.circular(22))),
                     offset: Offset(0, 30),
                     width: 198,
                   ),
@@ -101,7 +105,8 @@ class ListTeachScreen extends HookConsumerWidget {
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
-                        borderSide: const BorderSide(color: ColorName.grey, width: 1.5)),
+                        borderSide: const BorderSide(
+                            color: ColorName.grey, width: 1.5)),
                     //Add isDense true and zero Padding.
                     //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
                     isDense: true,
@@ -122,7 +127,8 @@ class ListTeachScreen extends HookConsumerWidget {
                     child: Text(AppLocale.selectNationality.getString(context),
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             color: ColorName.grey,
-                            overflow: TextOverflow.ellipsis) //TextStyle(color: ColorName.grey, ),
+                            overflow: TextOverflow
+                                .ellipsis) //TextStyle(color: ColorName.grey, ),
                         ),
                   ),
                 ),
@@ -137,17 +143,23 @@ class ListTeachScreen extends HookConsumerWidget {
             child: Row(
                 children: specialties.entries
                     .map((e) => HookBuilder(builder: (context) {
-                          final category = useValueListenable(specialtiesNotifier);
+                          final category =
+                              useValueListenable(specialtiesNotifier);
                           return CommonTag(
                             title: e.value,
                             onPressed: e.key == category
                                 ? null
                                 : () {
                                     specialtiesNotifier.value = e.key;
-                                    ref.read(teachersProvider.notifier).searchTeacher(
-                                        keyword: searchNameController.text,
-                                        specialties: [specialtiesNotifier.value],
-                                        nationality: nationalityNotifier.value);
+                                    ref
+                                        .read(teachersProvider.notifier)
+                                        .searchTeacher(
+                                            keyword: searchNameController.text,
+                                            specialties: [
+                                              specialtiesNotifier.value
+                                            ],
+                                            nationality:
+                                                nationalityNotifier.value);
                                   },
                           );
                         }))
@@ -161,7 +173,7 @@ class ListTeachScreen extends HookConsumerWidget {
             height: 10,
           ),
           Text(
-            'Recommended Tutors',
+            AppLocale.recommendedTutors.getString(context),
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(
@@ -175,8 +187,9 @@ class ListTeachScreen extends HookConsumerWidget {
             },
             data: (teachers, total, currentPage, errorMessage) {
               if (teachers.isEmpty) {
-                return const NotFoundScreen(
-                  placeHolderString: 'Cannot find any tutor',
+                return NotFoundScreen(
+                  placeHolderString:
+                      AppLocale.cannotFindTutor.getString(context),
                 );
               }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor/core/locales/app_locale.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
@@ -19,7 +21,8 @@ class HistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheduleInfoFirst = schedules[0].scheduleDetailInfo?.scheduleInfo;
-    final scheduleInfoLast = schedules[schedules.length - 1].scheduleDetailInfo?.scheduleInfo;
+    final scheduleInfoLast =
+        schedules[schedules.length - 1].scheduleDetailInfo?.scheduleInfo;
     final info = scheduleInfoFirst?.tutorInfo;
 
     return GreyBoxContainer(
@@ -28,7 +31,8 @@ class HistoryItem extends StatelessWidget {
         children: [
           Text(
             DateFormat('EEE, dd MMM yy').format(date),
-            style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
+            style: CommonTextStyle.textSize24
+                .copyWith(fontWeight: FontWeight.w700),
           ),
           Text(
             '${DateTime.now().difference(date).inDays} days ago',
@@ -54,11 +58,14 @@ class HistoryItem extends StatelessWidget {
           const SizedBox(
             height: 1,
           ),
-          const WhiteBoxContainer(child: Text('Request for lesson')),
+          WhiteBoxContainer(
+              child: Text(AppLocale.requestForLesson.getString(context))),
           const SizedBox(
             height: 1,
           ),
-          WhiteBoxContainer(child: Text(schedules[0].tutorReview ?? 'Tutor haven\'t reviewed yet')),
+          WhiteBoxContainer(
+              child: Text(schedules[0].tutorReview ??
+                  AppLocale.tutorHaventReview.getString(context))),
           const SizedBox(
             height: 1,
           ),
@@ -71,9 +78,9 @@ class HistoryItem extends StatelessWidget {
                           teacher: info,
                         ),
                     context: context),
-                child: const Text(
-                  'Add a rating',
-                  style: TextStyle(color: ColorName.textButton),
+                child: Text(
+                  AppLocale.addARating.getString(context),
+                  style: const TextStyle(color: ColorName.textButton),
                 ),
               ),
               const Spacer(),
@@ -82,13 +89,14 @@ class HistoryItem extends StatelessWidget {
                     context: context,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
                     builder: (context) {
                       return const ReportModal();
                     }),
-                child: const Text(
-                  'Report',
-                  style: TextStyle(color: ColorName.textButton),
+                child: Text(
+                  AppLocale.report.getString(context),
+                  style: const TextStyle(color: ColorName.textButton),
                 ),
               )
             ],

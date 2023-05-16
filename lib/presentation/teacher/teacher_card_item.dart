@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/core/locales/app_locale.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/constant.dart';
@@ -34,7 +36,9 @@ class TeacherCardItem extends ConsumerWidget {
               avatar: teacher.avatar,
               name: teacher.name ?? '',
               toggleFavorite: () {
-                ref.read(teacherCardNotifierProvider(teacher.id!).notifier).updateFavorite();
+                ref
+                    .read(teacherCardNotifierProvider(teacher.id!).notifier)
+                    .updateFavorite();
               },
             ),
             const SizedBox(
@@ -57,8 +61,8 @@ class TeacherCardItem extends ConsumerWidget {
               alignment: Alignment.centerRight,
               child: ElevatedButton(
                 onPressed: () {
-                  context.pushRoute(
-                      TeacherDetailRoute(teacherId: teacher.id!, key: ValueKey(teacher.id)));
+                  context.pushRoute(TeacherDetailRoute(
+                      teacherId: teacher.id!, key: ValueKey(teacher.id)));
                 },
                 style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
                     capsuleShape: true,
@@ -69,14 +73,14 @@ class TeacherCardItem extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    children: const [
-                      Icon(
+                    children: [
+                      const Icon(
                         Icons.calendar_month_sharp,
                         color: ColorName.textButton,
                       ),
                       Text(
-                        'Book',
-                        style: TextStyle(color: ColorName.textButton),
+                        AppLocale.book.getString(context),
+                        style: const TextStyle(color: ColorName.textButton),
                       )
                     ],
                   ),

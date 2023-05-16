@@ -6,11 +6,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
-import 'package:lettutor/core/locales/app_local.dart';
+
 import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/shared/schedule_providers.dart';
 import 'package:lettutor/shared/user_providers.dart';
 
+import '../../core/locales/app_locale.dart';
 import '../../core/presentation/common_styles/common_styles.dart';
 import '../../gen/colors.gen.dart';
 
@@ -54,15 +55,19 @@ class UpcommingLessonBoard extends StatelessWidget {
                       if (upCommingLesson == null) {
                         return const SizedBox.shrink();
                       }
-                      final firstScheduleInfo =
-                          upCommingLesson.value[0].scheduleDetailInfo?.scheduleInfo;
+                      final firstScheduleInfo = upCommingLesson
+                          .value[0].scheduleDetailInfo?.scheduleInfo;
                       final lastScheduleInfo = upCommingLesson
-                          .value[upCommingLesson.value.length - 1].scheduleDetailInfo?.scheduleInfo;
-                      final startTime = firstScheduleInfo?.startTimestamp?.toHourAndMinLocal();
+                          .value[upCommingLesson.value.length - 1]
+                          .scheduleDetailInfo
+                          ?.scheduleInfo;
+                      final startTime = firstScheduleInfo?.startTimestamp
+                          ?.toHourAndMinLocal();
 
                       // DateFormat('HH:mm')
                       //     .format(firstScheduleInfo?.startTimestamp?.toLocal() ?? DateTime.now());
-                      final endTime = lastScheduleInfo?.endTimestamp.toHourAndMinLocal();
+                      final endTime =
+                          lastScheduleInfo?.endTimestamp.toHourAndMinLocal();
                       // DateFormat('HH:mm')
                       //     .format(lastScheduleInfo?.endTimestamp.toLocal() ?? DateTime.now());
                       final startTimestamp = upCommingLesson
@@ -81,8 +86,8 @@ class UpcommingLessonBoard extends StatelessWidget {
                                   Text(
                                     DateFormat(
                                             'EEE, dd MMM yy',
-                                            FlutterLocalization
-                                                .instance.currentLocale?.languageCode)
+                                            FlutterLocalization.instance
+                                                .currentLocale?.languageCode)
                                         .format(upCommingLesson.key),
                                     style: CommonTextStyle.textSize20,
                                   ),
@@ -106,9 +111,14 @@ class UpcommingLessonBoard extends StatelessWidget {
                               height: 40,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  final user = ref.read(userNotifierProvider).asData?.value.user;
+                                  final user = ref
+                                      .read(userNotifierProvider)
+                                      .asData
+                                      ?.value
+                                      .user;
                                   var options = JitsiMeetingOptions(
-                                      roomNameOrUrl: upCommingLesson.value[0].tutorMeetingLink
+                                      roomNameOrUrl: upCommingLesson
+                                              .value[0].tutorMeetingLink
                                               ?.substring(13) ??
                                           '',
                                       userDisplayName: user?.name,
@@ -117,19 +127,21 @@ class UpcommingLessonBoard extends StatelessWidget {
                                   await JitsiMeetWrapper.joinMeeting(
                                     options: options,
                                     listener: JitsiMeetingListener(
-                                      onConferenceWillJoin: (url) =>
-                                          debugPrint("onConferenceWillJoin: url: $url"),
-                                      onConferenceJoined: (url) =>
-                                          debugPrint("onConferenceJoined: url: $url"),
-                                      onConferenceTerminated: (url, error) => debugPrint(
-                                          "onConferenceTerminated: url: $url, error: $error"),
+                                      onConferenceWillJoin: (url) => debugPrint(
+                                          "onConferenceWillJoin: url: $url"),
+                                      onConferenceJoined: (url) => debugPrint(
+                                          "onConferenceJoined: url: $url"),
+                                      onConferenceTerminated: (url, error) =>
+                                          debugPrint(
+                                              "onConferenceTerminated: url: $url, error: $error"),
                                     ),
                                   );
                                 },
-                                style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
-                                    textColor: ColorName.primary,
-                                    capsuleShape: true,
-                                    backgroundColor: ColorName.background),
+                                style: CommonButtonStyle.primaryButtonStyle
+                                    .customCopyWith(
+                                        textColor: ColorName.primary,
+                                        capsuleShape: true,
+                                        backgroundColor: ColorName.background),
                                 child: Row(
                                   children: [
                                     const Icon(
@@ -141,8 +153,10 @@ class UpcommingLessonBoard extends StatelessWidget {
                                       width: 10,
                                     ),
                                     Text(
-                                      AppLocale.enterLessonRoom.getString(context),
-                                      style: const TextStyle(color: ColorName.primary),
+                                      AppLocale.enterLessonRoom
+                                          .getString(context),
+                                      style: const TextStyle(
+                                          color: ColorName.primary),
                                     )
                                   ],
                                 ),
@@ -156,13 +170,15 @@ class UpcommingLessonBoard extends StatelessWidget {
                       height: 20,
                     ),
                     Consumer(builder: (context, ref, child) {
-                      final totalTime = ref.watch(totalLessonNotifierProvider).maybeWhen(
-                            data: (data) => data,
-                            orElse: () => 0,
-                          );
+                      final totalTime =
+                          ref.watch(totalLessonNotifierProvider).maybeWhen(
+                                data: (data) => data,
+                                orElse: () => 0,
+                              );
                       return Text(
                         '${AppLocale.totalLessonTime.getString(context)} ${(totalTime / 60).floor()} ${AppLocale.hours.getString(context)} ${(totalTime % 60)} ${AppLocale.minutes.getString(context)}',
-                        style: CommonTextStyle.textSize16.copyWith(color: Colors.white),
+                        style: CommonTextStyle.textSize16
+                            .copyWith(color: Colors.white),
                       );
                     })
                   ],
@@ -218,7 +234,8 @@ class _CountDownTextState extends ConsumerState<CountDownText> {
       seconds = strDigits(fromStartTime.inSeconds.remainder(60));
       return Text(
         '(class time: $hours:$minutes:$seconds)',
-        style: const TextStyle(color: Colors.green, fontWeight: FontWeight.w600),
+        style:
+            const TextStyle(color: Colors.green, fontWeight: FontWeight.w600),
       );
     } else if (fromStartTime.inSeconds < 0) {
       final distanceTime = widget.startTime.difference(DateTime.now());

@@ -6,7 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lettutor/core/locales/app_local.dart';
+import 'package:lettutor/core/locales/app_locale.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/core/presentation/themes.dart';
 import 'package:lettutor/gen/colors.gen.dart';
@@ -29,9 +29,10 @@ Future<void> main() async {
   // cameras = await availableCameras();
   final pref = await SharedPreferences.getInstance();
   await GetStorage.init();
-  await FlutterLocalization.instance.init(
-      mapLocales: [MapLocale('en', AppLocale.en), const MapLocale('vi', AppLocale.vn)],
-      initLanguageCode: 'vi');
+  await FlutterLocalization.instance.init(mapLocales: [
+    MapLocale('en', AppLocale.en),
+    const MapLocale('vi', AppLocale.vn)
+  ], initLanguageCode: 'vi');
   runApp(ProviderScope(
     overrides: [localStorageProvider.overrideWithValue(pref)],
     child: const MyApp(),
@@ -49,7 +50,8 @@ class MyApp extends HookConsumerWidget {
       user.when(
           data: (data) {
             if (prev?.isLoading ?? false) {
-              appRouter.pushAndPopUntil(const MyHomeRoute(), predicate: (_) => false);
+              appRouter.pushAndPopUntil(const MyHomeRoute(),
+                  predicate: (_) => false);
             }
           },
           error: (_, __) {
@@ -74,7 +76,8 @@ class MyApp extends HookConsumerWidget {
       darkTheme: darkTheme,
       themeMode: ref.watch(themeProvider),
       supportedLocales: FlutterLocalization.instance.supportedLocales,
-      localizationsDelegates: FlutterLocalization.instance.localizationsDelegates,
+      localizationsDelegates:
+          FlutterLocalization.instance.localizationsDelegates,
       // ThemeData(
       //   textTheme: GoogleFonts.poppinsTextTheme()
       //       .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
@@ -99,7 +102,8 @@ class MyHomePage extends ConsumerStatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends ConsumerState<MyHomePage> with TickerProviderStateMixin {
+class _MyHomePageState extends ConsumerState<MyHomePage>
+    with TickerProviderStateMixin {
   int activeIndex = 0;
 
   @override
