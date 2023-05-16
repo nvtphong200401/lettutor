@@ -1,7 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/core/locales/app_local.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_tag.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/gen/colors.gen.dart';
@@ -56,7 +58,7 @@ class ListTeachScreen extends HookConsumerWidget {
                         nationality: nationalityNotifier.value);
                   },
                   capsuleShape: true,
-                  hintText: 'Enter tutor name...',
+                  hintText: '${AppLocale.enterTutorName.getString(context)}...',
                   autofocus: false,
                 ),
               ),
@@ -64,65 +66,65 @@ class ListTeachScreen extends HookConsumerWidget {
                 width: 5,
               ),
               Expanded(
-                child: Stack(
-                  children: [
-                    DropdownButtonFormField2(
-                      dropdownButtonKey: dropdownKey,
-                      value: nationalityNotifier.value.isEmpty ? null : nationalityNotifier.value,
-                      dropdownSearchData: DropdownSearchData(
-                          searchController: searchNationalityController,
-                          searchInnerWidgetHeight: 45,
-                          searchInnerWidget: CommonTextFormField(
-                            hintText: 'Select nationality',
-                            controller: searchNationalityController,
-                            capsuleShape: true,
-                            autofocus: true,
-                          )),
-                      menuItemStyleData: const MenuItemStyleData(),
-                      buttonStyleData: const ButtonStyleData(
-                        height: 20,
-                      ),
-                      dropdownStyleData: const DropdownStyleData(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(22), topRight: Radius.circular(22))),
-                        offset: Offset(0, 30),
-                        width: 198,
-                      ),
-                      iconStyleData: const IconStyleData(iconSize: 18),
-                      onChanged: (value) {
-                        nationalityNotifier.value = value;
-                        ref.read(teachersProvider.notifier).searchTeacher(
-                            keyword: searchNameController.text,
-                            specialties: [specialtiesNotifier.value],
-                            nationality: value);
-                        // focuNode.requestFocus();
-                      },
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50),
-                            borderSide: const BorderSide(color: ColorName.grey, width: 1.5)),
-                        //Add isDense true and zero Padding.
-                        //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
-                        isDense: true,
-                        contentPadding: const EdgeInsets.only(
-                          left: 10,
-                          // top: 10,
-                          bottom: 20,
-                        ),
-                      ),
-                      items: tutorNationality
-                          .map((e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
-                              ))
-                          .toList(),
-                      hint: Text('Select nationality',
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: ColorName.grey) //TextStyle(color: ColorName.grey, ),
-                          ),
+                child: DropdownButtonFormField2(
+                  dropdownButtonKey: dropdownKey,
+                  value: nationalityNotifier.value.isEmpty ? null : nationalityNotifier.value,
+                  dropdownSearchData: DropdownSearchData(
+                      searchController: searchNationalityController,
+                      searchInnerWidgetHeight: 45,
+                      searchInnerWidget: CommonTextFormField(
+                        hintText: AppLocale.selectNationality.getString(context),
+                        controller: searchNationalityController,
+                        capsuleShape: true,
+                        autofocus: true,
+                      )),
+                  menuItemStyleData: const MenuItemStyleData(),
+                  buttonStyleData: const ButtonStyleData(
+                    height: 20,
+                  ),
+                  dropdownStyleData: const DropdownStyleData(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(22), topRight: Radius.circular(22))),
+                    offset: Offset(0, 30),
+                    width: 198,
+                  ),
+                  iconStyleData: const IconStyleData(iconSize: 18),
+                  onChanged: (value) {
+                    nationalityNotifier.value = value;
+                    ref.read(teachersProvider.notifier).searchTeacher(
+                        keyword: searchNameController.text,
+                        specialties: [specialtiesNotifier.value],
+                        nationality: value);
+                    // focuNode.requestFocus();
+                  },
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        borderSide: const BorderSide(color: ColorName.grey, width: 1.5)),
+                    //Add isDense true and zero Padding.
+                    //Add Horizontal padding using buttonPadding and Vertical padding by increasing buttonHeight instead of add Padding here so that The whole TextField Button become clickable, and also the dropdown menu open under The whole TextField Button.
+                    isDense: true,
+                    contentPadding: const EdgeInsets.only(
+                      left: 10,
+                      // top: 10,
+                      bottom: 20,
                     ),
-                  ],
+                  ),
+                  items: tutorNationality
+                      .map((e) => DropdownMenuItem(
+                            value: e,
+                            child: Text(e),
+                          ))
+                      .toList(),
+                  hint: SizedBox(
+                    width: MediaQuery.of(context).size.width / 3,
+                    child: Text(AppLocale.selectNationality.getString(context),
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: ColorName.grey,
+                            overflow: TextOverflow.ellipsis) //TextStyle(color: ColorName.grey, ),
+                        ),
+                  ),
                 ),
               )
             ],

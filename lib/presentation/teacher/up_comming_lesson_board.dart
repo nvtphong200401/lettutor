@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
+import 'package:lettutor/core/locales/app_local.dart';
 import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/shared/schedule_providers.dart';
 import 'package:lettutor/shared/user_providers.dart';
@@ -41,8 +43,8 @@ class UpcommingLessonBoard extends StatelessWidget {
                   children: [
                     Text(
                       upCommingLesson == null
-                          ? 'You have no upcomming lesson.'
-                          : 'Up comming lesson',
+                          ? AppLocale.noUpcommingLesson.getString(context)
+                          : AppLocale.upcommingLesson.getString(context),
                       style: CommonTextStyle.textSize24,
                     ),
                     const SizedBox(
@@ -77,7 +79,11 @@ class UpcommingLessonBoard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    DateFormat('EEE, dd MMM yy').format(upCommingLesson.key),
+                                    DateFormat(
+                                            'EEE, dd MMM yy',
+                                            FlutterLocalization
+                                                .instance.currentLocale?.languageCode)
+                                        .format(upCommingLesson.key),
                                     style: CommonTextStyle.textSize20,
                                   ),
                                   const SizedBox(
@@ -125,18 +131,18 @@ class UpcommingLessonBoard extends StatelessWidget {
                                     capsuleShape: true,
                                     backgroundColor: ColorName.background),
                                 child: Row(
-                                  children: const [
-                                    Icon(
+                                  children: [
+                                    const Icon(
                                       FontAwesomeIcons.youtube,
                                       size: 16,
                                       color: ColorName.primary,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Text(
-                                      'Enter lesson room',
-                                      style: TextStyle(color: ColorName.primary),
+                                      AppLocale.enterLessonRoom.getString(context),
+                                      style: const TextStyle(color: ColorName.primary),
                                     )
                                   ],
                                 ),
@@ -155,7 +161,7 @@ class UpcommingLessonBoard extends StatelessWidget {
                             orElse: () => 0,
                           );
                       return Text(
-                        'Total lesson time is ${(totalTime / 60).floor()} hours ${(totalTime % 60)} minutes',
+                        '${AppLocale.totalLessonTime.getString(context)} ${(totalTime / 60).floor()} ${AppLocale.hours.getString(context)} ${(totalTime % 60)} ${AppLocale.minutes.getString(context)}',
                         style: CommonTextStyle.textSize16.copyWith(color: Colors.white),
                       );
                     })
@@ -220,7 +226,7 @@ class _CountDownTextState extends ConsumerState<CountDownText> {
       minutes = strDigits(distanceTime.inMinutes.remainder(60));
       seconds = strDigits(distanceTime.inSeconds.remainder(60));
       return Text(
-        '(starts in $hours:$minutes:$seconds)',
+        '(${AppLocale.startsIn.getString(context)} $hours:$minutes:$seconds)',
         style: const TextStyle(color: Colors.yellow),
       );
     } else {
