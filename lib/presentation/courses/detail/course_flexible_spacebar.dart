@@ -5,7 +5,11 @@ import '../../../core/presentation/common_styles/button_style.dart';
 import '../../../core/presentation/common_styles/text_style.dart';
 
 class CourseInfoFlexibleSpaceBar extends StatelessWidget {
-  const CourseInfoFlexibleSpaceBar({super.key});
+  const CourseInfoFlexibleSpaceBar(
+      {super.key, required this.title, required this.imageUrl, required this.description});
+  final String title;
+  final String imageUrl;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +22,13 @@ class CourseInfoFlexibleSpaceBar extends StatelessWidget {
             ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: FadeInImage.memoryNetwork(
-                    imageErrorBuilder: (context, error, stackTrace) {
-                      return const SizedBox.shrink();
-                    },
-                    placeholder: kTransparentImage,
-                    image:
-                        'https://camblycurriculumicons.s3.amazonaws.com/5e0e8b212ac750e7dc9886ac?h=d41d8cd98f00b204e9800998ecf8427e')),
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return const SizedBox.shrink();
+                  },
+                  placeholder: kTransparentImage,
+                  image: imageUrl,
+                  height: 320,
+                )),
             const SizedBox(
               height: 10,
             ),
@@ -35,15 +40,15 @@ class CourseInfoFlexibleSpaceBar extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
-                          'Life in the Internet Age',
+                          title,
                           style: CommonTextStyle.titleCourse,
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: 11),
+                          padding: const EdgeInsets.symmetric(vertical: 11),
                           child: Text(
-                            'Let\'s discuss how technology is changing the way we live',
+                            description,
                             style: CommonTextStyle.descCourse,
                           ),
                         ),

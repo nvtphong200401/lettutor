@@ -1,11 +1,11 @@
 import 'package:lettutor/core/infrastructure/request_param.dart';
 
-class GetListCourseParam extends IParam {
+class GetListBookParam extends IParam {
   final int? page;
   final int? size;
   final String? query;
   final List<String>? categories;
-  GetListCourseParam({this.page, this.size, this.query, this.categories = const []});
+  GetListBookParam({this.page, this.size, this.query, this.categories = const []});
   @override
   Map<String, dynamic> get json => {};
 
@@ -14,5 +14,5 @@ class GetListCourseParam extends IParam {
       {'page': page, 'size': size, 'q': query, 'categoryId[]': categories ?? []};
 
   @override
-  String get link => 'course';
+  String get link => 'e-book';
 }

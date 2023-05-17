@@ -34,7 +34,11 @@ class CourseInfoScreen extends HookConsumerWidget {
               title: CommonSliverAppbarTitle(scrollController: scrollController),
               expandedHeight: 390,
               collapsedHeight: 60,
-              flexibleSpace: const CourseInfoFlexibleSpaceBar()),
+              flexibleSpace: CourseInfoFlexibleSpaceBar(
+                title: course?.name ?? '',
+                description: course?.description ?? '',
+                imageUrl: course?.imageUrl ?? '',
+              )),
           SliverPadding(
             padding: paddingLayout,
             sliver: SliverList(

@@ -40,6 +40,8 @@ mixin AppLocale {
   static const String profile = 'Profile';
   static const String becomeTutor = 'Become a tutor';
   static const String logout = 'Logout';
+  static const String searchEbook = 'Search E-book';
+  static const String noData = 'No Data';
 
   static final Map<String, dynamic> en = Map.fromEntries(_enLocale.map((e) => MapEntry(e, e)));
   static const Map<String, dynamic> vn = _viLocale;
@@ -85,7 +87,9 @@ const _enLocale = <String>{
   AppLocale.theme,
   AppLocale.becomeTutor,
   AppLocale.profile,
-  AppLocale.logout
+  AppLocale.logout,
+  AppLocale.searchEbook,
+  AppLocale.noData
 };
 const _viLocale = {
   AppLocale.teacher: 'Giáo viên',
@@ -128,5 +132,7 @@ const _viLocale = {
   AppLocale.theme: 'Màu chủ đề',
   AppLocale.profile: 'Hồ sơ',
   AppLocale.becomeTutor: 'Trở thành gia sư',
-  AppLocale.logout: 'Đăng xuất'
+  AppLocale.logout: 'Đăng xuất',
+  AppLocale.searchEbook: 'Tìm kiếm sách',
+  AppLocale.noData: 'Không có dữ liệu'
 };

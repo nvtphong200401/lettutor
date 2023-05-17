@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -32,6 +34,33 @@ class CoursesScreen extends HookConsumerWidget {
     // final appBarHeight = useState(0.0);
     final selectedCategories = useValueNotifier(<String>{});
     final txtSearchCourse = useTextEditingController();
+    onSearching() {
+      final categories = ref
+          .read(courseCategory)
+          .asData!
+          .value
+          .where((element) => selectedCategories.value.contains(element.title))
+          .map((e) => e.id!)
+          .toList();
+      switch (currentIndex.value) {
+        case 0:
+          ref
+              .read(coursesNotifierProvider.notifier)
+              .getCourseList(query: txtSearchCourse.text, categories: categories);
+          break;
+        case 1:
+          ref
+              .read(coursesNotifierProvider.notifier)
+              .getBookList(query: txtSearchCourse.text, categories: categories);
+          break;
+        default:
+      }
+    }
+
+    useEffect(() {
+      selectedCategories.addListener(onSearching);
+      return () => selectedCategories.removeListener(onSearching);
+    }, [selectedCategories]);
 
     return DismissKeyboardScaffold(
       appBar: const CommonAppBar(),
@@ -43,7 +72,7 @@ class CoursesScreen extends HookConsumerWidget {
               final selectedCatesListener = useValueListenable(selectedCategories);
               return SliverAppBar(
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                expandedHeight: 220 + selectedCatesListener.length * 20,
+                expandedHeight: 220 + selectedCatesListener.length * 25,
                 actions: const [],
                 // title: CommonSliverAppbarTitle(scrollController: scrollController),
                 flexibleSpace: FlexibleSpaceBar(
@@ -68,43 +97,46 @@ class CoursesScreen extends HookConsumerWidget {
                               padding: const EdgeInsets.only(right: 8.0),
                               child: SizedBox(
                                 height: 36,
-                                child: TextField(
-                                  controller: txtSearchCourse,
-                                  autofocus: false,
-                                  textInputAction: TextInputAction.search,
-                                  keyboardType: TextInputType.text,
-                                  onChanged: (value) {
-                                    ref
-                                        .read(coursesNotifierProvider.notifier)
-                                        .getCourseList(query: value);
-                                  },
-                                  // cursorHeight: 20,
-                                  decoration: InputDecoration(
-                                    prefixIconConstraints:
-                                        const BoxConstraints(minWidth: 18, maxHeight: 18),
-                                    prefixIcon: const Padding(
-                                      padding: EdgeInsets.only(left: 12, right: 6),
-                                      child: Icon(Icons.search, size: 18, color: ColorName.grey),
+                                child: HookBuilder(builder: (context) {
+                                  useValueListenable(currentIndex);
+                                  return TextField(
+                                    controller: txtSearchCourse,
+                                    autofocus: false,
+                                    textInputAction: TextInputAction.search,
+                                    keyboardType: TextInputType.text,
+                                    onChanged: (value) {
+                                      onSearching();
+                                    },
+                                    // cursorHeight: 20,
+                                    decoration: InputDecoration(
+                                      prefixIconConstraints:
+                                          const BoxConstraints(minWidth: 18, maxHeight: 18),
+                                      prefixIcon: const Padding(
+                                        padding: EdgeInsets.only(left: 12, right: 6),
+                                        child: Icon(Icons.search, size: 18, color: ColorName.grey),
+                                      ),
+                                      contentPadding: const EdgeInsets.fromLTRB(6, 6, 12, 6),
+                                      border: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                        borderRadius: BorderRadius.circular(2.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                        borderRadius: BorderRadius.circular(2.0),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.grey, width: 1),
+                                        borderRadius: BorderRadius.circular(2.0),
+                                      ),
+                                      filled: true,
+                                      hintStyle: const TextStyle(color: ColorName.grey),
+                                      hintText: currentIndex.value == 0
+                                          ? AppLocale.searchCourses.getString(context)
+                                          : AppLocale.searchEbook.getString(context),
+                                      // fillColor: Theme.of(context).,
                                     ),
-                                    contentPadding: const EdgeInsets.fromLTRB(6, 6, 12, 6),
-                                    border: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: Colors.grey, width: 1),
-                                      borderRadius: BorderRadius.circular(2.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: Colors.grey, width: 1),
-                                      borderRadius: BorderRadius.circular(2.0),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(color: Colors.grey, width: 1),
-                                      borderRadius: BorderRadius.circular(2.0),
-                                    ),
-                                    filled: true,
-                                    hintStyle: const TextStyle(color: ColorName.grey),
-                                    hintText: AppLocale.searchCourses.getString(context),
-                                    // fillColor: Theme.of(context).,
-                                  ),
-                                ),
+                                  );
+                                }),
                               ),
                             ),
                           ],
@@ -114,13 +146,27 @@ class CoursesScreen extends HookConsumerWidget {
                         height: 10,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: DropdownFieldMultipleSelection(
-                          data: categories,
-                          title: AppLocale.selectCategory.getString(context),
-                          valuesSelected: selectedCategories,
-                        ),
-                      ),
+                          padding: const EdgeInsets.all(10),
+                          child: Consumer(builder: (context, ref, child) {
+                            return ref.watch(courseCategory).when(
+                              loading: () {
+                                log('loading');
+                                return const SizedBox();
+                              },
+                              error: (err, _) {
+                                log('error $err');
+                                return const SizedBox();
+                              },
+                              data: (data) {
+                                log('data here');
+                                return DropdownFieldMultipleSelection(
+                                  data: data.map((e) => e.title ?? '').toList(),
+                                  title: AppLocale.selectCategory.getString(context),
+                                  valuesSelected: selectedCategories,
+                                );
+                              },
+                            );
+                          })),
                     ],
                   ),
                 ),
@@ -149,7 +195,10 @@ class CoursesScreen extends HookConsumerWidget {
                           labelPadding: EdgeInsets.zero,
                           padding: EdgeInsets.zero,
                           onTap: (index) {
-                            currentIndex.value = index;
+                            if (index != currentIndex.value) {
+                              currentIndex.value = index;
+                              onSearching();
+                            }
                           },
                         ),
                       ],

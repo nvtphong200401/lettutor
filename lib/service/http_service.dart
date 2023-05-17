@@ -12,6 +12,7 @@ class HttpService {
   HttpService(this._dio);
 
   Future<Either<Failure, T>> getData<T>(IParam param) async {
+    log(param.queryParam.toString());
     return requestWrapper(_dio.get(
       param.link,
       queryParameters: param.queryParam,

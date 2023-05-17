@@ -102,6 +102,18 @@ extension GroupByCategory on List<CourseModel> {
     }
     return group;
   }
+
+  Map<String, String> categories() {
+    Map<String, String> group = {};
+    for (var course in this) {
+      for (Category cate in course.categories ?? []) {
+        if (cate.id != null) {
+          group[cate.id ?? ''] = cate.title ?? '';
+        }
+      }
+    }
+    return group;
+  }
 }
 
 extension IntToDateLocal on int? {

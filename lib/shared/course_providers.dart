@@ -9,17 +9,37 @@ final courseRepoProvider = Provider.autoDispose<CourseRepository>((ref) {
 });
 
 final coursesNotifierProvider =
-    StateNotifierProvider.autoDispose<CoursesNotifier, AsyncValue<List<CourseModel>>>((ref) {
+    StateNotifierProvider.autoDispose<CoursesNotifier, CoursesState>((ref) {
   return CoursesNotifier(ref.watch(courseRepoProvider));
 });
 
 final listCourseProvider =
     Provider.autoDispose<List<CourseModel>>((ref) => ref.watch(coursesNotifierProvider).maybeWhen(
           orElse: () => [],
-          data: (data) => data,
+          data: (data, count, page) => data,
         ));
 
 final courseInfoProvider = Provider.family
     .autoDispose<CourseModel?, String>((ref, id) => ref.watch(listCourseProvider).firstWhere(
           (element) => element.id == id,
         ));
+final courseCategory = FutureProvider.autoDispose<List<Category>>((ref) async {
+  final courseRepo = ref.watch(courseRepoProvider);
+  final res = await courseRepo.getCategories();
+  return res.fold((l) => [], (r) => r.rows ?? []);
+});
+
+// final courseCategory = Provider.autoDispose(
+//   (ref) {
+//     final List<CourseModel> courses = ref.watch(coursesNotifierProvider).maybeWhen(
+//       orElse: () {
+//         return [];
+//       },
+//       data: (courses, count, currentPage) {
+//         return courses;
+//       },
+//     );
+//     log(courses.categories().values.toString());
+//     return courses.categories();
+//   },
+// );

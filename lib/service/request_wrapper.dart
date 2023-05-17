@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:lettutor/core/infrastructure/failure.dart';
+import 'package:lettutor/infrastructure/courses/models/category_model.dart';
 import 'package:lettutor/infrastructure/courses/models/course_model.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_schedule_result.dart';
@@ -56,6 +57,9 @@ T _mapJsonToData<T>(Map<String, dynamic> json) {
       break;
     case ListCoursesResult:
       result = ListCoursesResult.fromJson(json);
+      break;
+    case ListCategoryResult:
+      result = ListCategoryResult.fromJson(json);
       break;
     case TeacherScheduleResult:
       result = TeacherScheduleResult.fromJson(json);
