@@ -56,6 +56,7 @@ class BookingCard extends ConsumerWidget {
             id: tutorInfo?.id ?? '',
             avatar: tutorInfo?.avatar ?? defaultAvatar,
             name: tutorInfo?.name ?? '',
+            nationality: tutorInfo?.country ?? 'Vietnam',
           ),
         ),
         const SizedBox(

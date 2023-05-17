@@ -13,6 +13,7 @@ class TeacherInfo extends StatelessWidget {
       required this.id,
       required this.avatar,
       required this.name,
+      required this.nationality,
       this.rating,
       this.totalRating});
   final void Function()? toggleFavorite;
@@ -21,6 +22,7 @@ class TeacherInfo extends StatelessWidget {
   final String id;
   final double? rating;
   final int? totalRating;
+  final String nationality;
 
   @override
   Widget build(BuildContext context) {
@@ -86,14 +88,14 @@ class TeacherInfo extends StatelessWidget {
             Row(
               children: [
                 SvgPicture.network(
-                  'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/vn.svg',
+                  'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${nationality.toLowerCase()}.svg',
                   width: 18,
                   height: 18,
                 ),
                 const SizedBox(
                   width: 10,
                 ),
-                const Text('Vietnam'),
+                Text(nationality),
               ],
             ),
           ],

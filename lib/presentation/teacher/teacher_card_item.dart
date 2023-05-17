@@ -35,10 +35,9 @@ class TeacherCardItem extends ConsumerWidget {
               id: teacher.id!,
               avatar: teacher.avatar,
               name: teacher.name ?? '',
+              nationality: teacher.country ?? 'Vietnam',
               toggleFavorite: () {
-                ref
-                    .read(teacherCardNotifierProvider(teacher.id!).notifier)
-                    .updateFavorite();
+                ref.read(teacherCardNotifierProvider(teacher.id!).notifier).updateFavorite();
               },
             ),
             const SizedBox(
@@ -61,8 +60,8 @@ class TeacherCardItem extends ConsumerWidget {
               alignment: Alignment.centerRight,
               child: ElevatedButton(
                 onPressed: () {
-                  context.pushRoute(TeacherDetailRoute(
-                      teacherId: teacher.id!, key: ValueKey(teacher.id)));
+                  context.pushRoute(
+                      TeacherDetailRoute(teacherId: teacher.id!, key: ValueKey(teacher.id)));
                 },
                 style: CommonButtonStyle.primaryButtonStyle.customCopyWith(
                     capsuleShape: true,

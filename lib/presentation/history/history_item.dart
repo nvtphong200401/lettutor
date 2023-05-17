@@ -45,6 +45,7 @@ class HistoryItem extends StatelessWidget {
               id: info?.id ?? '',
               avatar: info?.avatar ?? defaultAvatar,
               name: info?.name ?? '',
+              nationality: info?.country ?? 'Vietnam',
             ),
           ),
           const SizedBox(

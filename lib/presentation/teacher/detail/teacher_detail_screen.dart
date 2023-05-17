@@ -26,8 +26,7 @@ import '../../../infrastructure/teacher/models/teacher_schedule_result.dart';
 import '../teacher_info.dart';
 
 class TeacherDetailScreen extends HookConsumerWidget {
-  const TeacherDetailScreen(
-      {super.key, @PathParam('teacherId') required this.teacherId});
+  const TeacherDetailScreen({super.key, @PathParam('teacherId') required this.teacherId});
 
   final String teacherId;
 
@@ -65,6 +64,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
               avatar: info?.avatar ?? defaultAvatar,
               name: info?.name ?? '',
               rating: info?.rating,
+              nationality: info?.country ?? 'Vietnam',
             ),
             const SizedBox(
               height: 10,
@@ -104,11 +104,8 @@ class TeacherDetailScreen extends HookConsumerWidget {
               height: 10,
             ),
             Wrap(
-                children: info?.specialties
-                        ?.split(',')
-                        .map((e) => CommonTag(title: e))
-                        .toList() ??
-                    []),
+                children:
+                    info?.specialties?.split(',').map((e) => CommonTag(title: e)).toList() ?? []),
             const SizedBox(
               height: 20,
             ),
@@ -120,21 +117,17 @@ class TeacherDetailScreen extends HookConsumerWidget {
               height: 10,
             ),
             ...(info?.courses
-                    ?.map((e) =>
-                        buildPartContent(content: e.name ?? '', link: ''))
+                    ?.map((e) => buildPartContent(content: e.name ?? '', link: ''))
                     .toList() ??
                 []),
             const SizedBox(
               height: 20,
             ),
-            buildPartDesc(
-                title: 'Interests', desc: info?.interests?.trim() ?? ''),
+            buildPartDesc(title: 'Interests', desc: info?.interests?.trim() ?? ''),
             const SizedBox(
               height: 20,
             ),
-            buildPartDesc(
-                title: 'Teaching experience',
-                desc: info?.experience?.trim() ?? ''),
+            buildPartDesc(title: 'Teaching experience', desc: info?.experience?.trim() ?? ''),
             const SizedBox(
               height: 20,
             ),
@@ -143,17 +136,12 @@ class TeacherDetailScreen extends HookConsumerWidget {
                 ElevatedButton(
                   onPressed: () {},
                   style: const ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll(ColorName.primary),
+                      backgroundColor: MaterialStatePropertyAll(ColorName.primary),
                       elevation: MaterialStatePropertyAll(0)),
                   child: const Text('Today'),
                 ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.keyboard_arrow_left_outlined)),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.keyboard_arrow_right_outlined)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_left_outlined)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_right_outlined)),
                 Text(DateFormat('MMM y').format(DateTime.now()))
               ],
             ),
@@ -173,18 +161,15 @@ class TeacherDetailScreen extends HookConsumerWidget {
                           width: 0.5,
                           strokeAlign: BorderSide.strokeAlignCenter)),
                   child: Center(
-                      child: buildSchedule(index, info?.schedules ?? [],
-                          (schedule) {
+                      child: buildSchedule(index, info?.schedules ?? [], (schedule) {
                     showModalBottomSheet(
                         context: context,
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10))),
+                                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
                         builder: (context) {
                           // return const ReportModal();
-                          return BookDialog(
-                              schedule: schedule, teacherId: teacherId);
+                          return BookDialog(schedule: schedule, teacherId: teacherId);
                         });
                   })),
                 ),
@@ -196,8 +181,8 @@ class TeacherDetailScreen extends HookConsumerWidget {
     ));
   }
 
-  Widget buildSchedule(int index, List<ScheduleOfTutor> schedules,
-      void Function(ScheduleOfTutor) onBook) {
+  Widget buildSchedule(
+      int index, List<ScheduleOfTutor> schedules, void Function(ScheduleOfTutor) onBook) {
     final DateTime now = DateTime.now();
     final currDay = DateTime(now.year, now.month, now.day + index % 5 - 1);
 
@@ -215,8 +200,7 @@ class TeacherDetailScreen extends HookConsumerWidget {
       );
     }
 
-    final itemSchedule = scheduleTutor(
-        _scheduleTime[index ~/ 5 - 1].startTime, currDay, schedules);
+    final itemSchedule = scheduleTutor(_scheduleTime[index ~/ 5 - 1].startTime, currDay, schedules);
     if (itemSchedule?.isBooked ?? false) {
       return const Text(
         'Booked',
@@ -245,8 +229,8 @@ class TeacherDetailScreen extends HookConsumerWidget {
     return const SizedBox.shrink();
   }
 
-  ScheduleOfTutor? scheduleTutor(String startTimeRow, DateTime dateColumn,
-      List<ScheduleOfTutor> schedules) {
+  ScheduleOfTutor? scheduleTutor(
+      String startTimeRow, DateTime dateColumn, List<ScheduleOfTutor> schedules) {
     final index = schedules.indexWhere((element) {
       final scheduleDate = element.startTimestamp.toLocal();
       return DateFormat('YYYY-MM-DD').format(scheduleDate) ==
@@ -364,9 +348,7 @@ class IconGroup extends ConsumerWidget {
           return GestureDetector(
             child: icon,
             onTap: () {
-              ref
-                  .read(teacherCardNotifierProvider(teacher?.id).notifier)
-                  .updateFavorite();
+              ref.read(teacherCardNotifierProvider(teacher?.id).notifier).updateFavorite();
             },
           );
         }),
@@ -376,8 +358,7 @@ class IconGroup extends ConsumerWidget {
               context: context,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10))),
+                      topLeft: Radius.circular(10), topRight: Radius.circular(10))),
               builder: (context) {
                 return const ReportModal();
               }),
@@ -388,8 +369,7 @@ class IconGroup extends ConsumerWidget {
               context: context,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10))),
+                      topLeft: Radius.circular(10), topRight: Radius.circular(10))),
               builder: (context) {
                 return FeedbackModal(
                   feedbacks: teacher?.feedbacks ?? [],
@@ -400,8 +380,7 @@ class IconGroup extends ConsumerWidget {
     );
   }
 
-  Widget _buildIcon(String text, IconData icon,
-      [Color color = ColorName.primary]) {
+  Widget _buildIcon(String text, IconData icon, [Color color = ColorName.primary]) {
     return Column(
       children: [
         Icon(
