@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/core/locales/app_locale.dart';
 import 'package:lettutor/core/presentation/routing/app_router.dart';
 import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/shared/core_providers.dart';
@@ -50,11 +52,11 @@ class DismissKeyboardScaffold extends ConsumerWidget {
                       context.router.push(const UserProfileRoute());
                     },
                     leading: const Icon(Icons.person),
-                    title: const Text('Profile'),
+                    title: Text(AppLocale.profile.getString(context)),
                   ),
                   ListTile(
                     leading: const Icon(Icons.menu_book),
-                    title: const Text('Become a tutor'),
+                    title: Text(AppLocale.becomeTutor.getString(context)),
                     onTap: () {
                       context.router.pop();
                       context.router.push(const BecomeTeacherRoute());
@@ -66,7 +68,7 @@ class DismissKeyboardScaffold extends ConsumerWidget {
                       context.router.push(const SettingsRoute());
                     },
                     leading: const Icon(Icons.settings),
-                    title: const Text('Settings'),
+                    title: Text(AppLocale.settings.getString(context)),
                   ),
                   ListTile(
                     onTap: () {
@@ -74,7 +76,7 @@ class DismissKeyboardScaffold extends ConsumerWidget {
                       context.router.replace(const LoginRoute());
                     },
                     leading: const Icon(Icons.logout),
-                    title: const Text('Logout'),
+                    title: Text(AppLocale.logout.getString(context)),
                   ),
                 ],
               )),

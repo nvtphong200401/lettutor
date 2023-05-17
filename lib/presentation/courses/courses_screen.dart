@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
@@ -9,6 +10,7 @@ import 'package:lettutor/presentation/courses/tab_course.dart';
 import 'package:lettutor/presentation/courses/tab_interactive_book.dart';
 import 'package:lettutor/shared/course_providers.dart';
 
+import '../../core/locales/app_locale.dart';
 import 'course_dropdown.dart';
 
 const tabsItem = [
@@ -60,7 +62,7 @@ class CoursesScreen extends HookConsumerWidget {
                               width: 100,
                             ),
                           ),
-                          title: 'Discover Courses',
+                          title: AppLocale.discoverCourses.getString(context),
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
@@ -99,7 +101,7 @@ class CoursesScreen extends HookConsumerWidget {
                                     ),
                                     filled: true,
                                     hintStyle: const TextStyle(color: ColorName.grey),
-                                    hintText: 'Search courses',
+                                    hintText: AppLocale.searchCourses.getString(context),
                                     // fillColor: Theme.of(context).,
                                   ),
                                 ),
@@ -115,7 +117,7 @@ class CoursesScreen extends HookConsumerWidget {
                         padding: const EdgeInsets.all(10),
                         child: DropdownFieldMultipleSelection(
                           data: categories,
-                          title: 'Select category',
+                          title: AppLocale.selectCategory.getString(context),
                           valuesSelected: selectedCategories,
                         ),
                       ),

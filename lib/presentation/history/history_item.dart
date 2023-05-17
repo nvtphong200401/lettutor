@@ -21,8 +21,7 @@ class HistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheduleInfoFirst = schedules[0].scheduleDetailInfo?.scheduleInfo;
-    final scheduleInfoLast =
-        schedules[schedules.length - 1].scheduleDetailInfo?.scheduleInfo;
+    final scheduleInfoLast = schedules[schedules.length - 1].scheduleDetailInfo?.scheduleInfo;
     final info = scheduleInfoFirst?.tutorInfo;
 
     return GreyBoxContainer(
@@ -30,12 +29,12 @@ class HistoryItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            DateFormat('EEE, dd MMM yy').format(date),
-            style: CommonTextStyle.textSize24
-                .copyWith(fontWeight: FontWeight.w700),
+            DateFormat('EEE, dd MMM yy', FlutterLocalization.instance.currentLocale?.languageCode)
+                .format(date),
+            style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
           ),
           Text(
-            '${DateTime.now().difference(date).inDays} days ago',
+            '${DateTime.now().difference(date).inDays} ${AppLocale.daysAgo.getString(context)}',
             style: const TextStyle(fontStyle: FontStyle.italic),
           ),
           const SizedBox(
@@ -58,14 +57,13 @@ class HistoryItem extends StatelessWidget {
           const SizedBox(
             height: 1,
           ),
-          WhiteBoxContainer(
-              child: Text(AppLocale.requestForLesson.getString(context))),
+          WhiteBoxContainer(child: Text(AppLocale.requestForLesson.getString(context))),
           const SizedBox(
             height: 1,
           ),
           WhiteBoxContainer(
-              child: Text(schedules[0].tutorReview ??
-                  AppLocale.tutorHaventReview.getString(context))),
+              child:
+                  Text(schedules[0].tutorReview ?? AppLocale.tutorHaventReview.getString(context))),
           const SizedBox(
             height: 1,
           ),
@@ -89,8 +87,7 @@ class HistoryItem extends StatelessWidget {
                     context: context,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10))),
+                            topLeft: Radius.circular(10), topRight: Radius.circular(10))),
                     builder: (context) {
                       return const ReportModal();
                     }),

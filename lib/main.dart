@@ -29,29 +29,31 @@ Future<void> main() async {
   // cameras = await availableCameras();
   final pref = await SharedPreferences.getInstance();
   await GetStorage.init();
-  await FlutterLocalization.instance.init(mapLocales: [
-    MapLocale('en', AppLocale.en),
-    const MapLocale('vi', AppLocale.vn)
-  ], initLanguageCode: 'vi');
+  await FlutterLocalization.instance.init(
+      mapLocales: [MapLocale('en', AppLocale.en), const MapLocale('vi', AppLocale.vn)],
+      initLanguageCode: 'vi');
   runApp(ProviderScope(
     overrides: [localStorageProvider.overrideWithValue(pref)],
     child: const MyApp(),
   ));
 }
 
-class MyApp extends HookConsumerWidget {
+class MyApp extends StatefulHookConsumerWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  Widget build(BuildContext context) {
     final appRouter = useMemoized(() => AppRouter());
     ref.listen(userNotifierProvider, (prev, user) {
       user.when(
           data: (data) {
             if (prev?.isLoading ?? false) {
-              appRouter.pushAndPopUntil(const MyHomeRoute(),
-                  predicate: (_) => false);
+              appRouter.pushAndPopUntil(const MyHomeRoute(), predicate: (_) => false);
             }
           },
           error: (_, __) {
@@ -70,14 +72,18 @@ class MyApp extends HookConsumerWidget {
         },
       );
     });
+
+    FlutterLocalization.instance.onTranslatedLanguage = (locale) {
+      setState(() {});
+    };
+
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ref.watch(themeProvider),
       supportedLocales: FlutterLocalization.instance.supportedLocales,
-      localizationsDelegates:
-          FlutterLocalization.instance.localizationsDelegates,
+      localizationsDelegates: FlutterLocalization.instance.localizationsDelegates,
       // ThemeData(
       //   textTheme: GoogleFonts.poppinsTextTheme()
       //       .copyWith(bodyMedium: const TextStyle(color: ColorName.textColor)),
@@ -102,8 +108,7 @@ class MyHomePage extends ConsumerStatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends ConsumerState<MyHomePage>
-    with TickerProviderStateMixin {
+class _MyHomePageState extends ConsumerState<MyHomePage> with TickerProviderStateMixin {
   int activeIndex = 0;
 
   @override

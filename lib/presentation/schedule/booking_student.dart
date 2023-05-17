@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lettutor/core/locales/app_locale.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_widgets.dart';
 import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/gen/colors.gen.dart';
@@ -26,15 +28,15 @@ class BookingStudentScreen extends StatelessWidget {
               'https://sandbox.app.lettutor.com/static/media/calendar-check.7cf3b05d.svg',
               width: 100,
             ),
-            title: 'Schedule',
+            title: AppLocale.schedule.getString(context),
             children: [
               Text(
-                'Here is a list of the sessions you have booked',
+                AppLocale.scheduleDesc1.getString(context),
                 style: Theme.of(context).textTheme.bodyLarge,
                 // CommonTextStyle.textSize16,
               ),
               Text(
-                'You can track when the meeting starts, join the meeting with one click or can cancel the meeting before 2 hours',
+                AppLocale.scheduleDesc2.getString(context),
                 style: Theme.of(context).textTheme.bodyLarge,
                 // CommonTextStyle.textSize16,
               ),

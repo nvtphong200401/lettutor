@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
@@ -16,6 +17,7 @@ import 'package:lettutor/presentation/schedule/cancel_booking.dart';
 import 'package:lettutor/shared/schedule_providers.dart';
 
 import '../../application/schedule/schedule_notifier.dart';
+import '../../core/locales/app_locale.dart';
 import '../../shared/user_providers.dart';
 import '../teacher/teacher_info.dart';
 
@@ -38,11 +40,12 @@ class BookingCard extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          DateFormat('EEE, dd MMM yy').format(date),
+          DateFormat('EEE, dd MMM yy', FlutterLocalization.instance.currentLocale?.languageCode)
+              .format(date),
           style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
         ),
         Text(
-          '${list.length} Lesson',
+          '${list.length} ${AppLocale.lesson.getString(context)}',
           style: const TextStyle(fontStyle: FontStyle.italic),
         ),
         const SizedBox(
@@ -79,10 +82,10 @@ class BookingCard extends ConsumerWidget {
         ],
         WhiteBoxContainer(
           child: ExpandablePanel(
-            header: const Padding(
-              padding: EdgeInsets.only(left: 10),
+            header: Padding(
+              padding: const EdgeInsets.only(left: 10),
               child: Text(
-                'Request for lesson',
+                AppLocale.requestForLesson.getString(context),
               ),
             ),
             collapsed: const SizedBox.shrink(),
@@ -134,9 +137,9 @@ class BookingCard extends ConsumerWidget {
                 ),
               );
             },
-            child: const Text(
-              'Go to meeting',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+            child: Text(
+              AppLocale.goToMeeting.getString(context),
+              style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),
         )
@@ -163,7 +166,7 @@ class BookingSession extends ConsumerWidget {
       child: Row(
         children: [
           Text(
-            'Session $session: ${scheduleInfo?.startTimestamp.toHourAndMinLocal()} - ${scheduleInfo?.endTimestamp.toHourAndMinLocal()}',
+            '${AppLocale.session.getString(context)} $session: ${scheduleInfo?.startTimestamp.toHourAndMinLocal()} - ${scheduleInfo?.endTimestamp.toHourAndMinLocal()}',
           ),
           const Spacer(),
           GestureDetector(
@@ -172,7 +175,9 @@ class BookingSession extends ConsumerWidget {
                 builder: (context) => CancelBookingDialog(
                       avatarUrl: tutorInfo?.avatar ?? defaultAvatar,
                       teacherName: tutorInfo?.name ?? '',
-                      lessonTime: 'Wed, 14 Mar 23',
+                      lessonTime: DateFormat('EEE, dd MMM yy',
+                              FlutterLocalization.instance.currentLocale?.languageCode)
+                          .format(scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now()),
                       onSubmit: (reasonID) {
                         notifier.cancelSchedule(scheduleInfo?.id ?? '', reasonID);
                       },
@@ -198,7 +203,7 @@ class BookingSession extends ConsumerWidget {
                           width: 3,
                         ),
                         Text(
-                          'Cancel',
+                          AppLocale.cancel.getString(context),
                           style: CommonTextStyle.textSize12.copyWith(color: Colors.red),
                         ),
                       ],
