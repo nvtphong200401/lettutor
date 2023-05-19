@@ -49,7 +49,7 @@ class ScheduleModel with _$ScheduleModel {
     String? calendarId,
     bool? isDeleted,
     ScheduleDetailInfo? scheduleDetailInfo,
-    String? classReview,
+    dynamic classReview,
     bool? showRecordUrl,
     List<String>? studentMaterials,
     List<Feedback>? feedbacks,

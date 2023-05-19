@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:lettutor/core/infrastructure/failure.dart';
+import 'package:lettutor/infrastructure/teacher/models/list_feedback_model.dart';
 import 'package:lettutor/infrastructure/teacher/models/paginated_tutors.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_schedule_result.dart';
 import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
 import 'package:lettutor/infrastructure/teacher/params/book_class_param.dart';
 import 'package:lettutor/infrastructure/teacher/params/detail_teacher_param.dart';
+import 'package:lettutor/infrastructure/teacher/params/feedback_param.dart';
 import 'package:lettutor/infrastructure/teacher/params/list_teacher_param.dart';
 import 'package:lettutor/infrastructure/teacher/params/search_teacher_param.dart';
 import 'package:lettutor/infrastructure/teacher/params/teacher_favorite_param.dart';
@@ -80,6 +82,13 @@ class TeacherRepository {
 
   Future<Either<Failure, Unit>> bookClass(String scheduleDetailId, String note) async {
     final result = await _httpService.postData<Unit>(BookClassParam(scheduleDetailId, note));
+    return result;
+  }
+
+  Future<Either<Failure, ListFeedbackResult>> getFeedbacks(
+      {required String tutorId, int page = 1, int perPage = 12}) async {
+    final result = await _httpService
+        .getData<ListFeedbackResult>(FeedbackParam(tutorId: tutorId, page: page, perPage: perPage));
     return result;
   }
 }

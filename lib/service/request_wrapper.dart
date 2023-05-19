@@ -5,6 +5,7 @@ import 'package:lettutor/core/infrastructure/failure.dart';
 import 'package:lettutor/infrastructure/courses/models/category_model.dart';
 import 'package:lettutor/infrastructure/courses/models/course_model.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
+import 'package:lettutor/infrastructure/teacher/models/list_feedback_model.dart';
 import 'package:lettutor/infrastructure/teacher/models/teacher_schedule_result.dart';
 import 'package:lettutor/infrastructure/teacher/models/tutor_detail_model.dart';
 import 'package:lettutor/infrastructure/user/models/user_model.dart' as usermodel;
@@ -69,6 +70,9 @@ T _mapJsonToData<T>(Map<String, dynamic> json) {
       break;
     case usermodel.User:
       result = usermodel.User.fromJson(json);
+      break;
+    case ListFeedbackResult:
+      result = ListFeedbackResult.fromJson(json);
       break;
     default:
       result = json;

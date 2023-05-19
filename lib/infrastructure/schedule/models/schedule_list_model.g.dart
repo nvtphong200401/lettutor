@@ -61,7 +61,7 @@ _$_ScheduleModel _$$_ScheduleModelFromJson(Map<String, dynamic> json) =>
           ? null
           : ScheduleDetailInfo.fromJson(
               json['scheduleDetailInfo'] as Map<String, dynamic>),
-      classReview: json['classReview'] as String?,
+      classReview: json['classReview'],
       showRecordUrl: json['showRecordUrl'] as bool?,
       studentMaterials: (json['studentMaterials'] as List<dynamic>?)
           ?.map((e) => e as String)

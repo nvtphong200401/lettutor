@@ -372,7 +372,7 @@ class IconGroup extends ConsumerWidget {
                       topLeft: Radius.circular(10), topRight: Radius.circular(10))),
               builder: (context) {
                 return FeedbackModal(
-                  feedbacks: teacher?.feedbacks ?? [],
+                  tutorId: teacher?.userId ?? '',
                 );
               }),
         ),

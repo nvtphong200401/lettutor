@@ -63,6 +63,7 @@ class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
   TutorDetailNotifier(this.tutor, this._teacherRepository) : super(tutor) {
     log(tutor?.userId ?? 'hi');
     getSchedulesAndCourses();
+    getFeedbacks();
   }
   final TeacherModel? tutor;
   final TeacherRepository _teacherRepository;
@@ -70,6 +71,20 @@ class TutorDetailNotifier extends StateNotifier<TeacherModel?> {
   Future updateFavorite() async {
     _teacherRepository.updateFavorite(tutor?.userId ?? '');
     state = state?.copyWith(isFavorite: !(state?.isFavorite ?? false));
+  }
+
+  int countFeedback = 0;
+  int currentPage = 1;
+
+  Future getFeedbacks({int page = 1, int perPage = 12}) async {
+    final res = await _teacherRepository.getFeedbacks(
+        tutorId: tutor?.userId ?? '', page: page, perPage: perPage);
+    state = state?.copyWith(
+        feedbacks: res.fold((l) => [], (r) {
+      countFeedback = r.data?.count ?? 0;
+      currentPage = page;
+      return r.data?.rows;
+    }));
   }
 
   Future getSchedulesAndCourses() async {

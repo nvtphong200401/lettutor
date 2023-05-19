@@ -363,7 +363,7 @@ mixin _$ScheduleModel {
   bool? get isDeleted => throw _privateConstructorUsedError;
   ScheduleDetailInfo? get scheduleDetailInfo =>
       throw _privateConstructorUsedError;
-  String? get classReview => throw _privateConstructorUsedError;
+  dynamic get classReview => throw _privateConstructorUsedError;
   bool? get showRecordUrl => throw _privateConstructorUsedError;
   List<String>? get studentMaterials => throw _privateConstructorUsedError;
   List<Feedback>? get feedbacks => throw _privateConstructorUsedError;
@@ -400,7 +400,7 @@ abstract class $ScheduleModelCopyWith<$Res> {
       String? calendarId,
       bool? isDeleted,
       ScheduleDetailInfo? scheduleDetailInfo,
-      String? classReview,
+      dynamic classReview,
       bool? showRecordUrl,
       List<String>? studentMaterials,
       List<Feedback>? feedbacks});
@@ -525,7 +525,7 @@ class _$ScheduleModelCopyWithImpl<$Res, $Val extends ScheduleModel>
       classReview: freezed == classReview
           ? _value.classReview
           : classReview // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       showRecordUrl: freezed == showRecordUrl
           ? _value.showRecordUrl
           : showRecordUrl // ignore: cast_nullable_to_non_nullable
@@ -583,7 +583,7 @@ abstract class _$$_ScheduleModelCopyWith<$Res>
       String? calendarId,
       bool? isDeleted,
       ScheduleDetailInfo? scheduleDetailInfo,
-      String? classReview,
+      dynamic classReview,
       bool? showRecordUrl,
       List<String>? studentMaterials,
       List<Feedback>? feedbacks});
@@ -707,7 +707,7 @@ class __$$_ScheduleModelCopyWithImpl<$Res>
       classReview: freezed == classReview
           ? _value.classReview
           : classReview // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       showRecordUrl: freezed == showRecordUrl
           ? _value.showRecordUrl
           : showRecordUrl // ignore: cast_nullable_to_non_nullable
@@ -796,7 +796,7 @@ class _$_ScheduleModel implements _ScheduleModel {
   @override
   final ScheduleDetailInfo? scheduleDetailInfo;
   @override
-  final String? classReview;
+  final dynamic classReview;
   @override
   final bool? showRecordUrl;
   final List<String>? _studentMaterials;
@@ -866,8 +866,8 @@ class _$_ScheduleModel implements _ScheduleModel {
                 other.isDeleted == isDeleted) &&
             (identical(other.scheduleDetailInfo, scheduleDetailInfo) ||
                 other.scheduleDetailInfo == scheduleDetailInfo) &&
-            (identical(other.classReview, classReview) ||
-                other.classReview == classReview) &&
+            const DeepCollectionEquality()
+                .equals(other.classReview, classReview) &&
             (identical(other.showRecordUrl, showRecordUrl) ||
                 other.showRecordUrl == showRecordUrl) &&
             const DeepCollectionEquality()
@@ -899,7 +899,7 @@ class _$_ScheduleModel implements _ScheduleModel {
         calendarId,
         isDeleted,
         scheduleDetailInfo,
-        classReview,
+        const DeepCollectionEquality().hash(classReview),
         showRecordUrl,
         const DeepCollectionEquality().hash(_studentMaterials),
         const DeepCollectionEquality().hash(_feedbacks)
@@ -940,7 +940,7 @@ abstract class _ScheduleModel implements ScheduleModel {
       final String? calendarId,
       final bool? isDeleted,
       final ScheduleDetailInfo? scheduleDetailInfo,
-      final String? classReview,
+      final dynamic classReview,
       final bool? showRecordUrl,
       final List<String>? studentMaterials,
       final List<Feedback>? feedbacks}) = _$_ScheduleModel;
@@ -987,7 +987,7 @@ abstract class _ScheduleModel implements ScheduleModel {
   @override
   ScheduleDetailInfo? get scheduleDetailInfo;
   @override
-  String? get classReview;
+  dynamic get classReview;
   @override
   bool? get showRecordUrl;
   @override
