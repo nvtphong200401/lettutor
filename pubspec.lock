@@ -889,11 +889,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: package
-      resolved-ref: a977fe4bbba348301ec174402b33620e36ec6423
+      ref: "699b511"
+      resolved-ref: "699b511d574a803597574872fe61e02a06121b7b"
       url: "https://github.com/nvtphong200401/voicegpt.git"
     source: git
-    version: "1.0.2+13"
+    version: "1.0.7+13"
   omni_jitsi_meet:
     dependency: "direct main"
     description:
