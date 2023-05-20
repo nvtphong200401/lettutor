@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:expandable/expandable.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
 import 'package:lettutor/core/presentation/common_styles/common_styles.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_lesson_time.dart';
 import 'package:lettutor/core/presentation/common_widgets/common_mixins.dart';
@@ -15,6 +15,7 @@ import 'package:lettutor/gen/colors.gen.dart';
 import 'package:lettutor/infrastructure/schedule/models/schedule_list_model.dart';
 import 'package:lettutor/presentation/schedule/cancel_booking.dart';
 import 'package:lettutor/shared/schedule_providers.dart';
+import 'package:omni_jitsi_meet/jitsi_meet.dart';
 
 import '../../application/schedule/schedule_notifier.dart';
 import '../../core/locales/app_locale.dart';
@@ -33,16 +34,19 @@ class BookingCard extends ConsumerWidget {
       return const SizedBox.shrink();
     }
     final scheduleInfoFirst = list[0].scheduleDetailInfo?.scheduleInfo;
-    final scheduleInfoLast = list[list.length - 1].scheduleDetailInfo?.scheduleInfo;
+    final scheduleInfoLast =
+        list[list.length - 1].scheduleDetailInfo?.scheduleInfo;
     final tutorInfo = scheduleInfoFirst?.tutorInfo;
     return GreyBoxContainer(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          DateFormat('EEE, dd MMM yy', FlutterLocalization.instance.currentLocale?.languageCode)
+          DateFormat('EEE, dd MMM yy',
+                  FlutterLocalization.instance.currentLocale?.languageCode)
               .format(date),
-          style: CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
+          style:
+              CommonTextStyle.textSize24.copyWith(fontWeight: FontWeight.w700),
         ),
         Text(
           '${list.length} ${AppLocale.lesson.getString(context)}',
@@ -64,8 +68,10 @@ class BookingCard extends ConsumerWidget {
         ),
         WhiteBoxContainer(
           child: CommonLessonTime(
-              startTime: scheduleInfoFirst?.startTimestamp.toHourAndMinLocal() ?? '',
-              endTime: scheduleInfoLast?.endTimestamp.toHourAndMinLocal() ?? ''),
+              startTime:
+                  scheduleInfoFirst?.startTimestamp.toHourAndMinLocal() ?? '',
+              endTime:
+                  scheduleInfoLast?.endTimestamp.toHourAndMinLocal() ?? ''),
         ),
         const SizedBox(
           height: 1,
@@ -90,9 +96,9 @@ class BookingCard extends ConsumerWidget {
               ),
             ),
             collapsed: const SizedBox.shrink(),
-            expanded: Column(
+            expanded: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Divider(),
                 Padding(
                   padding: EdgeInsets.only(top: 10.0),
@@ -123,20 +129,47 @@ class BookingCard extends ConsumerWidget {
             style: CommonButtonStyle.primaryButtonStyle.customCopyWith(),
             onPressed: () async {
               final user = ref.read(userNotifierProvider).asData?.value.user;
+              // get token & id
+              final tokenMeeting =
+                  list[0].tutorMeetingLink?.split('token=')[1] ?? '';
+              final base64Decoded =
+                  base64.decode(base64.normalize(tokenMeeting.split('.')[1]));
+              final urlObject = utf8.decode(base64Decoded);
+              final jsonRes = json.decode(urlObject) as Map<String, dynamic>;
+              final roomId = jsonRes['room'] as String? ?? '';
+
               var options = JitsiMeetingOptions(
-                  roomNameOrUrl: list[0].tutorMeetingLink?.substring(13) ?? '',
+                  serverURL: 'https://meet.lettutor.com/',
+                  room: roomId,
+                  token: tokenMeeting,
                   userDisplayName: user?.name,
                   userEmail: user?.email,
-                  userAvatarUrl: user?.avatar);
-              await JitsiMeetWrapper.joinMeeting(
-                options: options,
-                listener: JitsiMeetingListener(
-                  onConferenceWillJoin: (url) => debugPrint("onConferenceWillJoin: url: $url"),
-                  onConferenceJoined: (url) => debugPrint("onConferenceJoined: url: $url"),
-                  onConferenceTerminated: (url, error) =>
-                      debugPrint("onConferenceTerminated: url: $url, error: $error"),
-                ),
-              );
+                  userAvatarURL: user?.avatar);
+              JitsiMeet.joinMeeting(options,
+                  listener: JitsiMeetingListener(
+                    onConferenceWillJoin: (url) =>
+                        debugPrint("onConferenceWillJoin: url: $url"),
+                    onConferenceJoined: (url) =>
+                        debugPrint("onConferenceJoined: url: $url"),
+                    onConferenceTerminated: (url, error) => debugPrint(
+                        "onConferenceTerminated: url: $url, error: $error"),
+                  ));
+              // var options = JitsiMeetingOptions(
+              //     room: list[0].tutorMeetingLink?.substring(13) ?? '',
+              //     userDisplayName: user?.name,
+              //     userEmail: user?.email,
+              //     userAvatarURL: user?.avatar);
+              // await JitsiMeet.joinMeeting(
+              //   options,
+              //   listener: JitsiMeetingListener(
+              //     onConferenceWillJoin: (url) =>
+              //         debugPrint("onConferenceWillJoin: url: $url"),
+              //     onConferenceJoined: (url) =>
+              //         debugPrint("onConferenceJoined: url: $url"),
+              //     onConferenceTerminated: (url, error) => debugPrint(
+              //         "onConferenceTerminated: url: $url, error: $error"),
+              //   ),
+              // );
             },
             child: Text(
               AppLocale.goToMeeting.getString(context),
@@ -176,14 +209,21 @@ class BookingSession extends ConsumerWidget {
                 builder: (context) => CancelBookingDialog(
                       avatarUrl: tutorInfo?.avatar ?? defaultAvatar,
                       teacherName: tutorInfo?.name ?? '',
-                      lessonTime: DateFormat('EEE, dd MMM yy',
-                              FlutterLocalization.instance.currentLocale?.languageCode)
-                          .format(scheduleInfo?.startTimestamp.toLocal() ?? DateTime.now()),
+                      lessonTime: DateFormat(
+                              'EEE, dd MMM yy',
+                              FlutterLocalization
+                                  .instance.currentLocale?.languageCode)
+                          .format(scheduleInfo?.startTimestamp.toLocal() ??
+                              DateTime.now()),
                       onSubmit: (reasonID) {
-                        notifier.cancelSchedule(scheduleInfo?.id ?? '', reasonID);
+                        notifier.cancelSchedule(
+                            scheduleInfo?.id ?? '', reasonID);
                       },
                     )),
-            child: ((scheduleInfo?.startTimestamp.toLocal().difference(DateTime.now()).inHours ??
+            child: ((scheduleInfo?.startTimestamp
+                            .toLocal()
+                            .difference(DateTime.now())
+                            .inHours ??
                         -100) >
                     1)
                 ? Container(
@@ -192,7 +232,8 @@ class BookingSession extends ConsumerWidget {
                       border: Border.all(color: Colors.red),
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
                     child: Row(
                       children: [
                         const Icon(
@@ -205,7 +246,8 @@ class BookingSession extends ConsumerWidget {
                         ),
                         Text(
                           AppLocale.cancel.getString(context),
-                          style: CommonTextStyle.textSize12.copyWith(color: Colors.red),
+                          style: CommonTextStyle.textSize12
+                              .copyWith(color: Colors.red),
                         ),
                       ],
                     ),

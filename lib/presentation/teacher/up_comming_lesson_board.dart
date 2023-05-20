@@ -1,15 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
-
 import 'package:lettutor/core/presentation/extensions.dart';
 import 'package:lettutor/shared/schedule_providers.dart';
 import 'package:lettutor/shared/user_providers.dart';
+import 'package:omni_jitsi_meet/jitsi_meet.dart';
 
 import '../../core/locales/app_locale.dart';
 import '../../core/presentation/common_styles/common_styles.dart';
@@ -116,26 +116,41 @@ class UpcommingLessonBoard extends StatelessWidget {
                                       .asData
                                       ?.value
                                       .user;
+
+// get token & id
+                                  final tokenMeeting = upCommingLesson
+                                          .value[0].tutorMeetingLink
+                                          ?.split('token=')[1] ??
+                                      '';
+                                  final base64Decoded = base64.decode(base64
+                                      .normalize(tokenMeeting.split('.')[1]));
+                                  final urlObject = utf8.decode(base64Decoded);
+                                  final jsonRes = json.decode(urlObject)
+                                      as Map<String, dynamic>;
+                                  final roomId =
+                                      jsonRes['room'] as String? ?? '';
+
                                   var options = JitsiMeetingOptions(
-                                      roomNameOrUrl: upCommingLesson
-                                              .value[0].tutorMeetingLink
-                                              ?.substring(13) ??
-                                          '',
+                                      serverURL: 'https://meet.lettutor.com/',
+                                      room: roomId,
+                                      token: tokenMeeting,
                                       userDisplayName: user?.name,
                                       userEmail: user?.email,
-                                      userAvatarUrl: user?.avatar);
-                                  await JitsiMeetWrapper.joinMeeting(
-                                    options: options,
-                                    listener: JitsiMeetingListener(
-                                      onConferenceWillJoin: (url) => debugPrint(
-                                          "onConferenceWillJoin: url: $url"),
-                                      onConferenceJoined: (url) => debugPrint(
-                                          "onConferenceJoined: url: $url"),
-                                      onConferenceTerminated: (url, error) =>
-                                          debugPrint(
-                                              "onConferenceTerminated: url: $url, error: $error"),
-                                    ),
-                                  );
+                                      userAvatarURL: user?.avatar);
+                                  JitsiMeet.joinMeeting(options,
+                                      listener: JitsiMeetingListener(
+                                        onConferenceWillJoin: (url) => debugPrint(
+                                            "onConferenceWillJoin: url: $url"),
+                                        onConferenceJoined: (url) => debugPrint(
+                                            "onConferenceJoined: url: $url"),
+                                        onConferenceTerminated: (url, error) =>
+                                            debugPrint(
+                                                "onConferenceTerminated: url: $url, error: $error"),
+                                      ));
+                                  // await JitsiMeetWrapper.joinMeeting(
+                                  //   options: options,
+                                  //   listener: ,
+                                  // );
                                 },
                                 style: CommonButtonStyle.primaryButtonStyle
                                     .customCopyWith(
