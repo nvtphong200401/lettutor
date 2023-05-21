@@ -89,6 +89,7 @@ class ListTeachScreen extends HookConsumerWidget {
                     offset: Offset(0, 30),
                     width: 198,
                   ),
+                  isExpanded: true,
                   iconStyleData: const IconStyleData(iconSize: 18),
                   onChanged: (value) {
                     nationalityNotifier.value = value;
