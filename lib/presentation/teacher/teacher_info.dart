@@ -91,6 +91,10 @@ class TeacherInfo extends StatelessWidget {
                   'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${nationality.toLowerCase()}.svg',
                   width: 18,
                   height: 18,
+                  placeholderBuilder: (context) => const Icon(
+                    Icons.flag,
+                    size: 18,
+                  ),
                 ),
                 const SizedBox(
                   width: 10,

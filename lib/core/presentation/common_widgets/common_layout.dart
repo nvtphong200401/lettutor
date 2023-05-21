@@ -32,6 +32,7 @@ class DismissKeyboardScaffold extends ConsumerWidget {
             : Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: FloatingActionButton(
+                  heroTag: null,
                   onPressed: () {
                     context.router.push(const ChatGPTRoute());
                   },

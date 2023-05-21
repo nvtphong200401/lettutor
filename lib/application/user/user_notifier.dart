@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -114,6 +115,7 @@ class UserNotifier extends StateNotifier<AsyncValue<UserModel>> {
     //     specialties: specialties);
     final res = await _userRepository.registerTeacher(param);
     final result = await _userRepository.getUserInfo();
+    debugPrint("call done");
     state = result.fold(
         (l) => AsyncError(l.message.toString(), StackTrace.current), (r) => AsyncData(r));
     return res;

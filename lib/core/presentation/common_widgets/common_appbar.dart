@@ -35,10 +35,12 @@ class CommonAppBar extends ConsumerWidget implements PreferredSizeWidget {
       foregroundColor: Colors.blue,
       title: Padding(
         padding: EdgeInsets.zero,
-        child: Hero(
-          tag: 'app_logo',
-          child: Assets.images.appLogo.svg(height: 45),
-        ),
+        child: isLogin
+            ? Hero(
+                tag: 'app_logo',
+                child: Assets.images.appLogo.svg(height: 45),
+              )
+            : Assets.images.appLogo.svg(height: 45),
       ),
       actions: [
         if (!isLogin)

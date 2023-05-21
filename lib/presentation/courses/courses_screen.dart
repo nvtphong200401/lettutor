@@ -158,7 +158,6 @@ class CoursesScreen extends HookConsumerWidget {
                                 return const SizedBox();
                               },
                               data: (data) {
-                                log('data here');
                                 return DropdownFieldMultipleSelection(
                                   data: data.map((e) => e.title ?? '').toList(),
                                   title: AppLocale.selectCategory.getString(context),
