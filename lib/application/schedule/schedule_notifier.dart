@@ -24,8 +24,14 @@ class ScheduleNotifier extends StateNotifier<ScheduleState> {
     state = const ScheduleState.loading();
     final result = await _scheduleRepository.getScheduleList(perPage, page);
     if (mounted) {
-      state =
-          result.fold((l) => state, (r) => ScheduleState.data(r.rows ?? [], r.count ?? 0, page));
+      state = result.fold((l) {
+        return state.maybeMap(
+          orElse: () {
+            return state;
+          },
+          loading: (value) => ScheduleState.data([], 0, page),
+        );
+      }, (r) => ScheduleState.data(r.rows ?? [], r.count ?? 0, page));
     }
   }
 }

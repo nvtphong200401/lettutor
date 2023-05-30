@@ -42,8 +42,16 @@ class TeachersNotifier extends StateNotifier<TeachersState> {
   Future getTeacherList({int perPage = 9, int currPage = 1}) async {
     if (currPage < 1 || currPage > (state.count / perPage).ceil()) return;
     final result = await _teacherRepository.getListTeacher(perPage, currPage);
-    state = result.fold((l) => state,
-        (r) => TeachersState.data(teachers: r.rows, count: r.count, currentPage: currPage));
+    state = result.fold((l) {
+      return state.maybeMap(
+        orElse: () {
+          return state;
+        },
+        loading: (value) {
+          return TeachersState.data(teachers: [], count: 0, currentPage: 1);
+        },
+      );
+    }, (r) => TeachersState.data(teachers: r.rows, count: r.count, currentPage: currPage));
   }
 
   void searchTeacher(

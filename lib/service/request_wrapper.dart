@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -22,6 +24,7 @@ Future<Either<Failure, T>> requestWrapper<T>(Future<Response> call) async {
     // log('$jsonData');
     return right(_mapJsonToData<T>(jsonData));
   } on DioError catch (err) {
+    log('error ${err.response?.data}');
     await FirebaseCrashlytics.instance
         .recordError(err, StackTrace.current, reason: err.response?.data['message'] ?? err.message);
     return left(

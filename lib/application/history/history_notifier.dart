@@ -17,8 +17,12 @@ class HistoryNotifier extends StateNotifier<ScheduleState> {
     state = const ScheduleState.loading();
     final result = await _scheduleRepository.getHistoryList(perPage, page);
     if (mounted) {
-      state =
-          result.fold((l) => state, (r) => ScheduleState.data(r.rows ?? [], r.count ?? 0, page));
+      state = result.fold(
+          (l) => state.maybeMap(
+                orElse: () => state,
+                loading: (value) => ScheduleState.data([], 0, page),
+              ),
+          (r) => ScheduleState.data(r.rows ?? [], r.count ?? 0, page));
     }
   }
 }
