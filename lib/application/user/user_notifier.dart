@@ -19,8 +19,8 @@ class UserNotifier extends StateNotifier<AsyncValue<UserModel>> {
     state = const AsyncLoading();
     final result = await _userRepository.getUserInfo();
     state = result.fold((l) {
-      return const AsyncData(UserModel(user: null));
-      // return AsyncError(l.message.toString(), StackTrace.current);
+      // return const AsyncData(UserModel(user: null));
+      return AsyncError(l.message.toString(), StackTrace.current);
     }, (r) => AsyncData(r));
     return result;
   }
